@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="Graphics">
+		<Project filename="GraphicsTest/GraphicsTest.cbp">
+			<Depends filename="GGGraphics/GGGraphics.cbp" />
+			<Depends filename="GGComponent/GGComponent.cbp" />
+			<Depends filename="GGEntity/GGEntity.cbp" />
+			<Depends filename="GGSystem/GGSystem.cbp" />
+			<Depends filename="GGUtility/GGUtility.cbp" />
+			<Depends filename="GGCore/GGCore.cbp" />
+		</Project>
+		<Project filename="GGGraphics/GGGraphics.cbp" />
+		<Project filename="GGComponent/GGComponent.cbp" />
+		<Project filename="GGEntity/GGEntity.cbp">
+			<Depends filename="GGComponent/GGComponent.cbp" />
+		</Project>
+		<Project filename="GGSystem/GGSystem.cbp">
+			<Depends filename="GGGraphics/GGGraphics.cbp" />
+			<Depends filename="GGComponent/GGComponent.cbp" />
+			<Depends filename="GGEntity/GGEntity.cbp" />
+			<Depends filename="GGUtility/GGUtility.cbp" />
+			<Depends filename="GGCore/GGCore.cbp" />
+		</Project>
+		<Project filename="GGUtility/GGUtility.cbp" />
+		<Project filename="GGCore/GGCore.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>
