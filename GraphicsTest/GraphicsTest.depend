@@ -1,8 +1,11 @@
 # depslib dependency file v1.0
-1415044998 source:c:\projects\creatio\graphicstest\main.cpp
+1415429955 source:c:\projects\creatio\graphicstest\main.cpp
 	<iostream>
 	<SDL.h>
 	"GGGraphics/include/Graphics.h"
+	"GGSystem/include/System.h"
+	"GGEntity/include/World.h"
+	"GGEntity/include/Entity.h"
 
 1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl.h
 	"SDL_main.h"

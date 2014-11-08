@@ -13,21 +13,20 @@ namespace GGEntity
 {
     EXPORT typedef struct World
     {
-        World(const unsigned int size) :
-            Size(size)
+        World()
         {
-            //Enteties.resize(Size, 0);
-            Model.resize(Size, GGComponent::Model());
-            Physics.resize(Size, GGComponent::Physics());
-            Appearance.resize(Size, GGComponent::Appearance());
+            for (unsigned int i = 0; i < Size; ++i)
+            {
+                Enteties[i] = GGUtility::ToIntegral(GGComponent::Type::None);
+            }
         }
 
-        const unsigned int Size;
-        std::bitset<GGCore::NumbComponentTypes> Enteties;
+        const static unsigned int Size = 2000;
+        std::bitset<GGCore::NumbComponentTypes> Enteties[Size];
 
-        std::vector<GGComponent::Model>      Model;
-        std::vector<GGComponent::Physics>    Physics;
-        std::vector<GGComponent::Appearance> Appearance;
+        GGComponent::Model      Model[Size];
+        GGComponent::Physics    Physics[Size];
+        GGComponent::Appearance Appearance[Size];
     };
 }
 

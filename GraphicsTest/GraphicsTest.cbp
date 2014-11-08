@@ -39,6 +39,8 @@
 			<Add option="-lSDL2main" />
 			<Add option="-lSDL2" />
 			<Add library="C:/Projects/Creatio/GGGraphics/bin/Debug/libGGGraphics.a" />
+			<Add library="C:/Projects/Creatio/GGEntity/bin/Debug/libGGEntity.a" />
+			<Add library="C:/Projects/Creatio/GGSystem/bin/Debug/libGGSystem.a" />
 			<Add directory="C:/Applications/SDL2-2.0.3/x86_64-w64-mingw32/lib" />
 			<Add directory="C:/Projects/Creatio/GGGraphics/bin/Debug" />
 		</Linker>

@@ -29,7 +29,7 @@ int main(int argc, char* args[])
 
     bool running = true;
     float scale = 1.0f;
-    GGEntity::World world(2000);
+    GGEntity::World world;
     GGEntity::CreateEntity(world);
 
     while (running)
@@ -78,7 +78,7 @@ int main(int argc, char* args[])
         }
 
         GGSystem::Movement(world);
-        GGSystem::Render(world)
+        GGSystem::Render(world);
     }
 
     GGGraphics::CleanUp();

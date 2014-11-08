@@ -9,13 +9,18 @@ namespace GGEntity
     {
         for (auto i = 0; i < world.Size; ++i)
         {
-            auto entity = world.Enteties[i];
-
-            if (entity == GGUtility::ToIntegral(GGComponent::Type::None))
+            if (world.Enteties[i] == GGUtility::ToIntegral(GGComponent::Type::None))
             {
-                world.Enteties[entity] = GGUtility::ToIntegral(GGComponent::Type::Model)   |
-                                         GGUtility::ToIntegral(GGComponent::Type::Physics) |
-                                         GGUtility::ToIntegral(GGComponent::Type::Appearance);
+                world.Enteties[i] = GGUtility::ToIntegral(GGComponent::Type::Model)  |
+                                    GGUtility::ToIntegral(GGComponent::Type::Physics) |
+                                    GGUtility::ToIntegral(GGComponent::Type::Appearance);
+
+                world.Model[i].Scale       = glm::mat4(1.0);
+                world.Model[i].Rotation    = glm::mat4(1.0);
+                world.Model[i].Translation = glm::mat4(1.0);
+
+                world.Physics[i].Velocity = glm::vec2(1.0f);
+
                 return i;
             }
         }

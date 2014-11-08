@@ -9,10 +9,9 @@
 			<Target title="Debug">
 				<Option output="bin/Debug/GGComponent" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
-				<Option type="3" />
+				<Option type="1" />
 				<Option compiler="gcc_48" />
-				<Option createDefFile="1" />
-				<Option createStaticLib="1" />
+				<Option use_console_runner="0" />
 				<Compiler>
 					<Add option="-Wall" />
 					<Add option="-DBUILD_DLL" />
