@@ -81,33 +81,21 @@ namespace GGGraphics
         return _programWasBuilt;
     }
 
-    void ShaderManager::BindUniforms()
+    void ShaderManager::BindUniforms(Pipeline& pipeline)
     {
         _uniformsWereBound = false;
 
-        auto scaleUniform = glGetUniformLocation(_program, "Scale");
+        auto mvpUniform = glGetUniformLocation(_program, "MVP");
 
-        if (scaleUniform == 0xFFFFFFFF)
+        if (mvpUniform == 0xFFFFFFFF)
         {
-            SetError("Unable to set scale uniform.");
+            SetError("Unable to set MVP uniform.");
             return;
         }
 
-        _uniforms[Uniform::Scale] = scaleUniform;
+        _uniforms[Uniform::MVP] = mvpUniform;
 
-        SetUniform1f(Uniform::Scale, 1.0f);
-
-        auto worldUniform = glGetUniformLocation(_program, "World");
-
-        if (worldUniform == 0xFFFFFFFF)
-        {
-            SetError("Unable to set world uniform.");
-            return;
-        }
-
-        _uniforms[Uniform::World] = worldUniform;
-
-        SetUniformMatrix4f(Uniform::World, glm::mat4(1.0));
+        SetUniformMatrix4f(Uniform::MVP, pipeline.GetMVPMatrix(glm::mat4(1.0)));
 
         _uniformsWereBound = true;
     }
@@ -159,7 +147,6 @@ namespace GGGraphics
     const std::string ShaderManager::GetShaderSource(const std::string& path) const
     {
         std::ifstream stream(path.c_str());
-
         std::string file;
 
         if (!stream.is_open())
@@ -169,6 +156,7 @@ namespace GGGraphics
         }
 
         std::string line;
+
         while (getline(stream, line))
         {
             file.append(line);

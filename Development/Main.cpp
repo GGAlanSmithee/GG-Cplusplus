@@ -42,18 +42,7 @@ int main(int argc, char* args[])
                 {
                     switch (event.key.keysym.sym)
                     {
-                        case SDLK_1:
-                        {
-                            scale += 0.05f;
-                            GGGraphics::SetScale(scale);
-                            break;
-                        }
-                        case SDLK_2:
-                        {
-                            scale -= 0.05f;
-                            GGGraphics::SetScale(scale);
-                            break;
-                        }
+
                     }
                 }
                 case SDL_KEYUP:
@@ -79,6 +68,7 @@ int main(int argc, char* args[])
 
         GGSystem::Movement(world);
         GGSystem::Render(world);
+        GGGraphics::UpdateScreen();
     }
 
     GGGraphics::CleanUp();

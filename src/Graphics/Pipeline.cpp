@@ -32,18 +32,8 @@ namespace GGGraphics
         _viewMatrix = viewMatrix;
     }
 
-    const glm::mat4 Pipeline::GetModelMatrix() const
+    const glm::mat4 Pipeline::GetMVPMatrix(const glm::mat4& modelMatrix) const
     {
-        return _modelMatrix;
-    }
-
-    void Pipeline::SetModelMatrix(const glm::mat4& modelMatrix)
-    {
-        _modelMatrix = modelMatrix;
-    }
-
-    const glm::mat4 Pipeline::GetMVPMatrix() const
-    {
-        return _projectionMatrix * _viewMatrix * _modelMatrix;;
+        return _projectionMatrix * _viewMatrix * modelMatrix;
     }
 }

@@ -15,12 +15,6 @@ namespace GGEntity
                                     GGUtility::ToIntegral(GGComponent::Type::Physics) |
                                     GGUtility::ToIntegral(GGComponent::Type::Appearance);
 
-//                world.Model[i].Scale       = glm::mat4(1.0);
-//                world.Model[i].Rotation    = glm::mat4(1.0);
-//                world.Model[i].Translation = glm::mat4(1.0);
-//
-//                world.Physics[i].Velocity = glm::vec2(1.0f);
-
                 return i;
             }
         }
@@ -34,33 +28,33 @@ namespace GGEntity
     {
         world.Enteties[entity] = GGUtility::ToIntegral(GGComponent::Type::None);
     }
-////
-////        const unsigned int Manager::CreatePlayer(World&             world,
-////                                                 std::string const& id,
-////                                                 std::string const& path,
-////                                                 const float        x,
-////                                                 const float        y)
-////        {
-////            const unsigned int entity = CreateEntity(world);
-////
-////            if (entity >= world.Size)
-////            {
-////                world.Size;
-////            }
-////
-////            world.Enteties[entity] = GGUtility::ToIntegral(Component::Type::Model) |
-////                                     GGUtility::ToIntegral(Component::Type::Physics)     |
-////                                     GGUtility::ToIntegral(Component::Type::Appearance);
-////
-////            world.Model[entity].Value       = 0.0f;
-////            world.Physics[entity].Value   = glm::vec4(glm::vec3(0.0), 1.0);
-////            world.Appearance[entity].TextureId = id;
-////
-////            int width = 0;
-////            int height = 0;
-////             SDL_QueryTexture(world.texture[id], nullptr, nullptr, &width, &height);
-////
-////            return entity;
-////        }
+
+//    const unsigned int Manager::CreatePlayer(World&             world,
+//                                             std::string const& id,
+//                                             std::string const& path,
+//                                             const float        x,
+//                                             const float        y)
+//    {
+//        const unsigned int entity = CreateEntity(world);
+//
+//        if (entity >= world.Size)
+//        {
+//            world.Size;
+//        }
+//
+//        world.Enteties[entity] = GGUtility::ToIntegral(Component::Type::Model) |
+//                                 GGUtility::ToIntegral(Component::Type::Physics)     |
+//                                 GGUtility::ToIntegral(Component::Type::Appearance);
+//
+//        world.Model[entity].Value       = 0.0f;
+//        world.Physics[entity].Value   = glm::vec4(glm::vec3(0.0), 1.0);
+//        world.Appearance[entity].TextureId = id;
+//
+//        int width = 0;
+//        int height = 0;
+//         SDL_QueryTexture(world.texture[id], nullptr, nullptr, &width, &height);
+//
+//        return entity;
+//    }
 }
 

@@ -6,13 +6,13 @@
 #include <GL/glew.h>
 #include <SDL.h>
 #include <glm/glm.hpp>
+#include "Pipeline.h"
 
 namespace GGGraphics
 {
     enum class Uniform : int
     {
-        World,
-        Scale
+        MVP
     };
 
     class ShaderManager
@@ -30,7 +30,7 @@ namespace GGGraphics
 
             /// @author Alan Smithee
             /// Binds all uniforms
-            void BindUniforms();
+            void BindUniforms(Pipeline&);
 
             /// @author Alan Smithee
             /// Returns a boolean value indicating if the uniforms were bound

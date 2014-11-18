@@ -27,10 +27,8 @@ namespace GGSystem
             model = &(world.Model[entity]);
             appearance = &(world.Appearance[entity]);
 
-            GGGraphics::DrawModel(model->Translation * model->Rotation * model->Scale);
+            GGGraphics::DrawModel(model->Get());
         }
-
-        GGGraphics::UpdateScreen();
     }
 
     void Movement(GGEntity::World& world)
@@ -45,9 +43,9 @@ namespace GGSystem
                 model   = &(world.Model[entity]);
                 physics = &(world.Physics[entity]);
 
-                model->Scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.5f, 0.5f, 1.0f));
-                model->Rotation = glm::rotate(glm::mat4(1.0f), 90.0f, glm::vec3(0.0f, 0.0f, 1.0f));
-                model->Translation = glm::translate(glm::mat4(1.0f), glm::vec3(0.5f, 0.5f, 0.0f));
+                model->Scale = glm::scale(glm::mat4(0.2f), glm::vec3(0.75f, 0.75f, 1.0f));
+                model->Rotation = glm::rotate(glm::mat4(1.0f), 76.0f, glm::vec3(0.0f, 0.0f, 1.0f));
+                model->Translation = glm::translate(glm::mat4(1.0f), glm::vec3(-0.3f, 0.1f, 0.0f));
             }
         }
     }

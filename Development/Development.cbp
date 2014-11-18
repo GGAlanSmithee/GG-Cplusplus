@@ -63,6 +63,8 @@
 		<Unit filename="../src/System/System.cpp" />
 		<Unit filename="../src/System/System.h" />
 		<Unit filename="../src/Utility/Utility.h" />
+		<Unit filename="Basic.fs" />
+		<Unit filename="Basic.vs" />
 		<Unit filename="Main.cpp" />
 		<Extensions>
 			<code_completion />

@@ -62,7 +62,7 @@ namespace GGGraphics
             return;
         }
 
-        shaderManager.BindUniforms();
+        shaderManager.BindUniforms(pipeline);
 
         if (!shaderManager.UniformsWereBound())
         {
@@ -104,7 +104,7 @@ namespace GGGraphics
 
     void DrawModel(const glm::mat4& model)
     {
-        shaderManager.SetUniformMatrix4f(Uniform::World, model);
+        shaderManager.SetUniformMatrix4f(Uniform::MVP, pipeline.GetMVPMatrix(model));
 
         glClear(GL_COLOR_BUFFER_BIT);
 
@@ -136,10 +136,6 @@ namespace GGGraphics
     void SetClearColor(const float r, const float g, const float b, const float a)
     {
         glClearColor(r, g, b, a);
-    }
-    void SetScale(const float scale)
-    {
-        shaderManager.SetUniform1f(Uniform::Scale, scale);
     }
 
     void CleanUp()

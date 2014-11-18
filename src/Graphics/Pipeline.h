@@ -19,10 +19,7 @@ namespace GGGraphics
             const glm::mat4 GetViewMatrix() const;
             void SetViewMatrix(const glm::mat4&);
 
-            const glm::mat4 GetModelMatrix() const;
-            void SetModelMatrix(const glm::mat4&);
-
-            const glm::mat4 GetMVPMatrix() const;
+            const glm::mat4 GetMVPMatrix(const glm::mat4&) const;
 
         private:
             glm::vec2 _screenDimensions = glm::vec2(800.0f, 600.0f);
@@ -33,8 +30,6 @@ namespace GGGraphics
                                                            200.0f);
 
             glm::mat4 _viewMatrix = glm::lookAt(glm::vec3(0,0,3), glm::vec3(0,0,0), glm::vec3(0,1,0));
-
-            glm::mat4 _modelMatrix = glm::mat4(1.0f);
     };
 }
 

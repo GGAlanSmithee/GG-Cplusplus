@@ -25,6 +25,11 @@ namespace GGComponent
         glm::mat4 Scale       = glm::mat4(1.0);
         glm::mat4 Rotation    = glm::mat4(1.0);
         glm::mat4 Translation = glm::mat4(1.0);
+
+        glm::mat4 Get()
+        {
+            return Translation * Rotation * Scale;
+        }
     }
     Model;
 
