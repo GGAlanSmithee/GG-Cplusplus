@@ -81,7 +81,7 @@ namespace GGGraphics
         return _programWasBuilt;
     }
 
-    void ShaderManager::BindUniforms(Pipeline& pipeline)
+    void ShaderManager::BindUniforms()
     {
         _uniformsWereBound = false;
 
@@ -95,7 +95,7 @@ namespace GGGraphics
 
         _uniforms[Uniform::MVP] = mvpUniform;
 
-        SetUniformMatrix4f(Uniform::MVP, pipeline.GetMVPMatrix(glm::mat4(1.0)));
+        SetUniformMatrix4f(Uniform::MVP, glm::mat4(1.0));
 
         _uniformsWereBound = true;
     }
