@@ -30,7 +30,7 @@ namespace GGGraphics
 
             /// @author Alan Smithee
             /// Binds all uniforms
-            void BindUniforms(Pipeline&);
+            void BindUniforms();
 
             /// @author Alan Smithee
             /// Returns a boolean value indicating if the uniforms were bound
