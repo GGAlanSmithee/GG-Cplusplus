@@ -62,7 +62,7 @@ namespace GGGraphics
             return;
         }
 
-        shaderManager.BindUniforms(pipeline);
+        shaderManager.BindUniforms();
 
         if (!shaderManager.UniformsWereBound())
         {
