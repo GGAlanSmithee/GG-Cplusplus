@@ -32,6 +32,8 @@ int main(int argc, char* args[])
     GGEntity::World world(1000);
     GGEntity::CreateEntity(world);
 
+    GGSystem::Load(world);
+
     while (running)
     {
         while (SDL_PollEvent(&event))

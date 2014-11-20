@@ -7,15 +7,18 @@
 #include "ShaderManager.h"
 #include "Pipeline.h"
 #include "Logging.h"
+#include "Texture.h"
 
 namespace GGGraphics
 {
     extern bool wasInitialized;
+    extern bool textureWasLoaded;
 
     extern ShaderManager shaderManager;
     extern Pipeline pipeline;
 
     extern SDL_Window* window;
+    extern SDL_Renderer* renderer;
     extern SDL_GLContext glContext;
 
     extern GLuint VBO;
@@ -25,6 +28,12 @@ namespace GGGraphics
     /// @author Alan Smithee
     /// @date 2014-11-19
     void Initialize();
+
+    /// Loads a texture
+    /// @author Alan Smithee
+    /// @date 2014-11-20
+    /// @param path the path to the image to load
+    const Texture LoadTexture(const std::string&);
 
     /// Creates a vertexbuffer by generating and binding a buffer with vertex data
     /// @author Alan Smithee

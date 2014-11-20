@@ -9,9 +9,11 @@ namespace GGSystem
 {
     using Mask = std::bitset<GGCore::NumbComponentTypes>;
 
+    extern Mask LoadMask;
     extern Mask MovementMask;
     extern Mask RenderMask;
 
+    void Load    (GGEntity::World&);
     void Movement(GGEntity::World&);
     void Render  (GGEntity::World&);
 }

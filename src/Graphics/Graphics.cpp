@@ -1,19 +1,22 @@
+#include <SDL_image.h>
 #include <glm/glm.hpp>
 #include "Graphics.h"
+#include "Texture.h"
 
 namespace GGGraphics
 {
     bool wasInitialized = false;
+    bool textureWasLoaded = false;
 
     ShaderManager shaderManager;
     Pipeline pipeline;
 
     SDL_Window* window = nullptr;
+    SDL_Renderer* renderer = nullptr;
     SDL_GLContext glContext;
 
     GLuint VBO;
     GLuint IBO;
-    GLuint ScaleUniform;
 
     void Initialize()
     {
@@ -43,6 +46,20 @@ namespace GGGraphics
 
         glContext = SDL_GL_CreateContext(window);
 
+        renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
+        if (renderer == nullptr)
+        {
+            SetError("Failed to create renderer: ", SDL_GetError());
+            return;
+        }
+
+        if (!(IMG_Init(IMG_INIT_JPG) & IMG_INIT_JPG))
+        {
+            SetError("Failed to initialize SDL_image: ", IMG_GetError());
+            return;
+        }
+
         GLenum status = glewInit();
 
         if (status != GLEW_OK)
@@ -70,6 +87,56 @@ namespace GGGraphics
         }
 
         wasInitialized = true;
+    }
+
+    const Texture LoadTexture(const std::string& path)
+    {
+        textureWasLoaded = false;
+
+        Texture texture(GL_TEXTURE_2D, path);
+
+        SDL_Surface* surface = IMG_Load(path.c_str());
+
+        if (!surface)
+        {
+            SetError("Failed to load surface: ", IMG_GetError());
+            return texture;
+        }
+
+        int mode;
+
+        if (surface->format->BytesPerPixel == 3) // RGB 24bit
+        {
+            mode = GL_RGB;
+        }
+        else if (surface->format->BytesPerPixel == 4) // RGBA 32bit
+        {
+            mode = GL_RGBA;
+        }
+        else
+        {
+            SetError("Loaded image was of wrong format: ", path.c_str());
+            SDL_FreeSurface(surface);
+
+            return texture;
+        }
+
+        GLuint textureId;
+
+        glGenTextures(1, &textureId);
+        glBindTexture(GL_TEXTURE_2D, textureId);
+        glTexImage2D(GL_TEXTURE_2D, 0, mode, surface->w, surface->h, 0, mode, GL_UNSIGNED_BYTE, surface->pixels);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+        SDL_FreeSurface(surface);
+
+        textureWasLoaded = true;
+
+        texture.Target = GL_TEXTURE_2D;
+        texture.Id = textureId;
+
+        return texture ;
     }
 
     void CreateVertexBuffer()

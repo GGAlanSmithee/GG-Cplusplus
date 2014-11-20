@@ -22,7 +22,7 @@ namespace GGComponent
     /// Contains information of the appearance of any entity using this component
     typedef struct Appearance
     {
-        std::string TextureId    = "";
+        std::string textureName;
     }
     Appearance;
 
@@ -41,7 +41,7 @@ namespace GGComponent
         }
     }
     Model;
-    
+
     /// @author Alan Smithee
     /// @date 2014-11-19
     /// Contains information of the physical attributes of any entity using this component

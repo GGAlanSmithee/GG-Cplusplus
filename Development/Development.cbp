@@ -60,6 +60,7 @@
 		<Unit filename="../src/Graphics/Pipeline.h" />
 		<Unit filename="../src/Graphics/ShaderManager.cpp" />
 		<Unit filename="../src/Graphics/ShaderManager.h" />
+		<Unit filename="../src/Graphics/Texture.h" />
 		<Unit filename="../src/System/System.cpp" />
 		<Unit filename="../src/System/System.h" />
 		<Unit filename="../src/Utility/Utility.h" />

@@ -4,30 +4,24 @@
 
 namespace GGSystem
 {
+    Mask LoadMask = GGUtility::ToIntegral(GGComponent::Type::Appearance);
+
     Mask MovementMask = GGUtility::ToIntegral(GGComponent::Type::Model) |
                         GGUtility::ToIntegral(GGComponent::Type::Physics);
 
     Mask RenderMask = GGUtility::ToIntegral(GGComponent::Type::Model) |
                       GGUtility::ToIntegral(GGComponent::Type::Appearance);
 
-    void Render(GGEntity::World& world)
+    void Load(GGEntity::World& world)
     {
-        GGComponent::Model*      model;
-        GGComponent::Appearance* appearance;
+        GGComponent::Model*   model;
+        GGComponent::Physics* physics;
 
-        GGGraphics::ClearScreen();
-
-        for (unsigned int entity = 0; entity < world.Size; ++entity)
+        for (auto entity = 0; entity < world.Size; ++entity)
         {
-            if ((world.Enteties[entity] & RenderMask) != RenderMask)
+            if ((world.Enteties[entity] & MovementMask) == MovementMask)
             {
-                continue;
             }
-
-            model = &(world.Model[entity]);
-            appearance = &(world.Appearance[entity]);
-
-            GGGraphics::DrawModel(model->Get());
         }
     }
 
@@ -47,6 +41,27 @@ namespace GGSystem
                 model->Rotation = glm::rotate(glm::mat4(1.0f), 76.0f, glm::vec3(0.0f, 0.0f, 1.0f));
                 model->Translation = glm::translate(glm::mat4(1.0f), glm::vec3(-0.3f, 0.1f, 0.0f));
             }
+        }
+    }
+
+    void Render(GGEntity::World& world)
+    {
+        GGComponent::Model*      model;
+        GGComponent::Appearance* appearance;
+
+        GGGraphics::ClearScreen();
+
+        for (unsigned int entity = 0; entity < world.Size; ++entity)
+        {
+            if ((world.Enteties[entity] & RenderMask) != RenderMask)
+            {
+                continue;
+            }
+
+            model = &(world.Model[entity]);
+            appearance = &(world.Appearance[entity]);
+
+            GGGraphics::DrawModel(model->Get());
         }
     }
 }
