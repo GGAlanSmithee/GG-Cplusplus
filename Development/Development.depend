@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1416343568 source:c:\projects\creatio\development\main.cpp
+1416653249 source:c:\projects\creatio\development\main.cpp
 	<iostream>
 	<SDL.h>
 	"Graphics/Graphics.h"
@@ -7,11 +7,12 @@
 	"Entity/World.h"
 	"Entity/Entity.h"
 
-1416342400 source:c:\projects\creatio\src\entity\entity.cpp
+1416652543 source:c:\projects\creatio\src\entity\entity.cpp
 	<iostream>
 	"Entity.h"
 	"Component/Component.h"
 	"Utility/Utility.h"
+	"Enum/Enum.h"
 
 1416339232 c:\projects\creatio\src\entity\entity.h
 	"World.h"
@@ -27,9 +28,10 @@
 
 1415041201 c:\projects\creatio\src\core\core.h
 
-1416343508 c:\projects\creatio\src\component\component.h
+1416652590 c:\projects\creatio\src\component\component.h
 	<string>
 	<glm/glm.hpp>
+	"Enum/Enum.h"
 
 1389479879 c:\applications\glm\glm\glm.hpp
 	"detail/_fixes.hpp"
@@ -401,17 +403,21 @@
 1415312010 c:\projects\creatio\src\utility\utility.h
 	<string>
 
-1416343544 source:c:\projects\creatio\src\graphics\graphics.cpp
+1416654646 source:c:\projects\creatio\src\graphics\graphics.cpp
+	<SDL_image.h>
 	<glm/glm.hpp>
 	"Graphics.h"
+	"Texture.h"
 
-1416339732 c:\projects\creatio\src\graphics\graphics.h
+1416654763 c:\projects\creatio\src\graphics\graphics.h
 	<iostream>
 	<GL/glew.h>
 	<SDL.h>
 	"ShaderManager.h"
 	"Pipeline.h"
 	"Logging.h"
+	"Texture.h"
+	"Enum/Enum.h"
 
 1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl.h
 	"SDL_main.h"
@@ -730,13 +736,15 @@
 	"begin_code.h"
 	"close_code.h"
 
-1416343342 c:\projects\creatio\src\graphics\shadermanager.h
+1416654523 c:\projects\creatio\src\graphics\shadermanager.h
 	<string>
 	<map>
 	<GL/glew.h>
 	<SDL.h>
 	<glm/glm.hpp>
 	"Pipeline.h"
+	"Enum/Enum.h"
+	"Texture.h"
 
 1416342861 c:\projects\creatio\src\graphics\pipeline.h
 	<glm/glm.hpp>
@@ -774,7 +782,7 @@
 1416342880 source:c:\projects\creatio\src\graphics\pipeline.cpp
 	"Pipeline.h"
 
-1416343254 source:c:\projects\creatio\src\graphics\shadermanager.cpp
+1416654442 source:c:\projects\creatio\src\graphics\shadermanager.cpp
 	<iostream>
 	<fstream>
 	<sstream>
@@ -782,6 +790,7 @@
 	<glm/gtc/type_ptr.hpp>
 	"ShaderManager.h"
 	"Logging.h"
+	<SDL_image.h>
 
 1389479879 c:\applications\glm\glm\gtc\type_ptr.hpp
 	"../gtc/quaternion.hpp"
@@ -817,13 +826,38 @@
 1389479879 c:\applications\glm\glm\gtc\type_ptr.inl
 	<cstring>
 
-1416343497 source:c:\projects\creatio\src\system\system.cpp
+1416654666 source:c:\projects\creatio\src\system\system.cpp
 	"System.h"
 	"Graphics/Graphics.h"
 	"Component/Component.h"
 
-1416341160 c:\projects\creatio\src\system\system.h
+1416651839 c:\projects\creatio\src\system\system.h
 	<memory>
 	"Entity/Entity.h"
 	"Core/Core.h"
+
+1416653994 c:\projects\creatio\src\enum\enum.h
+
+1376152754 c:\applications\sdl2_image-2.0.0\x86_64-w64-mingw32\include\sdl2\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1416652360 c:\projects\creatio\src\graphics\texture.h
+	<SDL_opengl.h>
+
+1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_opengl.h
+	"SDL_config.h"
+	<windows.h>
+	<OpenGL/gl.h>
+	<GL/gl.h>
+	<windows.h>
+	<stddef.h>
+	<inttypes.h>
+	<inttypes.h>
+	<inttypes.h>
+	<stdint.h>
+	<stdint.h>
+	<inttypes.h>
 

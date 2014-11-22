@@ -3,6 +3,7 @@
 
 #include <string>
 #include <glm/glm.hpp>
+#include "Enum/Enum.h"
 
 namespace GGComponent
 {
@@ -22,7 +23,7 @@ namespace GGComponent
     /// Contains information of the appearance of any entity using this component
     typedef struct Appearance
     {
-        std::string textureName;
+        GGEnum::Texture Texture;
     }
     Appearance;
 

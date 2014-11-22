@@ -6,6 +6,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include "ShaderManager.h"
 #include "Logging.h"
+#include <SDL_image.h>
 
 namespace GGGraphics
 {
@@ -93,9 +94,21 @@ namespace GGGraphics
             return;
         }
 
-        _uniforms[Uniform::MVP] = mvpUniform;
+        _uniforms[GGEnum::Uniform::MVP] = mvpUniform;
 
-        SetUniformMatrix4f(Uniform::MVP, glm::mat4(1.0));
+        SetUniformMatrix4f(GGEnum::Uniform::MVP, glm::mat4(1.0));
+
+        auto textureSamplerUniform = glGetUniformLocation(_program, "TextureSampler");
+
+        if (textureSamplerUniform == 0xFFFFFFFF)
+        {
+            SetError("Unable to set TextureSampler uniform.");
+            return;
+        }
+
+        _uniforms[GGEnum::Uniform::TextureSampler] = textureSamplerUniform;
+
+        SetUniform1i(GGEnum::Uniform::TextureSampler, 0);
 
         _uniformsWereBound = true;
     }
@@ -105,14 +118,95 @@ namespace GGGraphics
         return _uniformsWereBound;
     }
 
-    void ShaderManager::SetUniform1f(Uniform uniform, const float value)
+    void ShaderManager::LoadTextures()
+    {
+        _texturesWereLoaded = false;
+
+        auto texture = LoadTexture("../gfx/crate.jpg", GL_TEXTURE0, GL_TEXTURE_2D);
+
+        if (texture.Id == -1)
+        {
+            return;
+        }
+
+        _textures[GGEnum::Texture::Crate] = texture;
+
+        _texturesWereLoaded = true;
+    }
+
+    const bool ShaderManager::TexturesWereLoaded() const
+    {
+        return _texturesWereLoaded;
+    }
+
+    //{ Private helpers
+
+    void ShaderManager::SetUniform1i(const GGEnum::Uniform uniform, const int value)
+    {
+        glUniform1i(_uniforms[uniform], value);
+    }
+
+    void ShaderManager::SetUniform1f(const GGEnum::Uniform uniform, const float value)
     {
         glUniform1f(_uniforms[uniform], value);
     }
 
-    void ShaderManager::SetUniformMatrix4f(Uniform uniform, const glm::mat4& value)
+    void ShaderManager::SetUniformMatrix4f(const GGEnum::Uniform uniform, const glm::mat4& value)
     {
         glUniformMatrix4fv(_uniforms[uniform], 1, GL_FALSE, glm::value_ptr(value));
+    }
+
+    void ShaderManager::ActivateTexture(const GGEnum::Texture texture)
+    {
+        glActiveTexture(_textures[texture].Unit);
+        glBindTexture(_textures[texture].Target, _textures[texture].Id);
+    }
+
+    const Texture ShaderManager::LoadTexture(const std::string& path,
+                                             const GLenum unit   = GL_TEXTURE0,
+                                             const GLenum target = GL_TEXTURE_2D)
+    {
+        Texture texture;
+
+        texture.Target = target;
+        texture.Unit = unit;
+
+        SDL_Surface* surface = IMG_Load(path.c_str());
+
+        if (!surface)
+        {
+            SetError("Failed to load surface: ", IMG_GetError());
+
+            return texture;
+        }
+
+        int mode;
+
+        if (surface->format->BytesPerPixel == 3) // RGB 24bit
+        {
+            mode = GL_RGB;
+        }
+        else if (surface->format->BytesPerPixel == 4) // RGBA 32bit
+        {
+            mode = GL_RGBA;
+        }
+        else
+        {
+            SetError("Loaded image was of wrong format: ", path.c_str());
+            SDL_FreeSurface(surface);
+
+            return texture;
+        }
+
+        glGenTextures(1, &texture.Id);
+        glBindTexture(texture.Target, texture.Id);
+        glTexImage2D(texture.Target, 0, mode, surface->w, surface->h, 0, mode, GL_UNSIGNED_BYTE, surface->pixels);
+        glTexParameteri(texture.Target, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(texture.Target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+        SDL_FreeSurface(surface);
+
+        return texture ;
     }
 
     const GLuint ShaderManager::CompileShader(const GLenum type, const std::string& fileName) const
@@ -167,4 +261,6 @@ namespace GGGraphics
 
         return file;
     }
+
+    //}
 }

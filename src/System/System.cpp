@@ -4,26 +4,11 @@
 
 namespace GGSystem
 {
-    Mask LoadMask = GGUtility::ToIntegral(GGComponent::Type::Appearance);
-
     Mask MovementMask = GGUtility::ToIntegral(GGComponent::Type::Model) |
                         GGUtility::ToIntegral(GGComponent::Type::Physics);
 
     Mask RenderMask = GGUtility::ToIntegral(GGComponent::Type::Model) |
                       GGUtility::ToIntegral(GGComponent::Type::Appearance);
-
-    void Load(GGEntity::World& world)
-    {
-        GGComponent::Model*   model;
-        GGComponent::Physics* physics;
-
-        for (auto entity = 0; entity < world.Size; ++entity)
-        {
-            if ((world.Enteties[entity] & MovementMask) == MovementMask)
-            {
-            }
-        }
-    }
 
     void Movement(GGEntity::World& world)
     {
@@ -61,7 +46,7 @@ namespace GGSystem
             model = &(world.Model[entity]);
             appearance = &(world.Appearance[entity]);
 
-            GGGraphics::DrawModel(model->Get());
+            GGGraphics::DrawModel(model->Get(), appearance->Texture);
         }
     }
 }

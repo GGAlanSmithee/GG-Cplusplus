@@ -7,17 +7,9 @@ namespace GGGraphics
 {
     typedef struct Texture
     {
-        Texture(const GLenum target = GL_TEXTURE_2D, std::string path = "") :
-            Path(path),
-            Target(target),
-            Id(-1)
-        {
-
-        }
-
-        std::string Path;
-        GLenum      Target;
-        GLuint      Id;
+        GLenum Unit   = GL_TEXTURE0;
+        GLenum Target = GL_TEXTURE_2D;
+        GLuint Id     = -1;
     }
     Texture;
 }

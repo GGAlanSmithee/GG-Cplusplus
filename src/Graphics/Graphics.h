@@ -8,6 +8,7 @@
 #include "Pipeline.h"
 #include "Logging.h"
 #include "Texture.h"
+#include "Enum/Enum.h"
 
 namespace GGGraphics
 {
@@ -28,12 +29,6 @@ namespace GGGraphics
     /// @author Alan Smithee
     /// @date 2014-11-19
     void Initialize();
-
-    /// Loads a texture
-    /// @author Alan Smithee
-    /// @date 2014-11-20
-    /// @param path the path to the image to load
-    const Texture LoadTexture(const std::string&);
 
     /// Creates a vertexbuffer by generating and binding a buffer with vertex data
     /// @author Alan Smithee
@@ -71,7 +66,8 @@ namespace GGGraphics
     /// @date 2014-11-19
     /// Draws a model to the screen using current context
     /// @param model the model to draw
-    void DrawModel(const glm::mat4&);
+    /// @param texture the texture to use when drawing the model
+    void DrawModel(const glm::mat4&, const GGEnum::Texture);
 
     /// Clears the screen
     /// @author Alan Smithee

@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include "Component/Component.h"
 #include "Utility/Utility.h"
+#include "Enum/Enum.h"
 
 namespace GGEntity
 {
@@ -14,6 +15,8 @@ namespace GGEntity
                 world.Enteties[i] = GGUtility::ToIntegral(GGComponent::Type::Model)  |
                                     GGUtility::ToIntegral(GGComponent::Type::Physics) |
                                     GGUtility::ToIntegral(GGComponent::Type::Appearance);
+
+                world.Appearance[i].Texture = GGEnum::Texture::Crate;
 
                 return i;
             }
