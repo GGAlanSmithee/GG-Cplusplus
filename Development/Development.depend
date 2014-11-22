@@ -26,7 +26,8 @@
 	"Component/Component.h"
 	"Utility/Utility.h"
 
-1415041201 c:\projects\creatio\src\core\core.h
+1416659041 c:\projects\creatio\src\core\core.h
+	<glm/glm.hpp>
 
 1416652590 c:\projects\creatio\src\component\component.h
 	<string>
@@ -403,11 +404,12 @@
 1415312010 c:\projects\creatio\src\utility\utility.h
 	<string>
 
-1416654646 source:c:\projects\creatio\src\graphics\graphics.cpp
+1416661912 source:c:\projects\creatio\src\graphics\graphics.cpp
 	<SDL_image.h>
 	<glm/glm.hpp>
 	"Graphics.h"
 	"Texture.h"
+	"Core/Core.h"
 
 1416654763 c:\projects\creatio\src\graphics\graphics.h
 	<iostream>
@@ -746,7 +748,7 @@
 	"Enum/Enum.h"
 	"Texture.h"
 
-1416342861 c:\projects\creatio\src\graphics\pipeline.h
+1416662039 c:\projects\creatio\src\graphics\pipeline.h
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
 	"Component/Component.h"
@@ -782,7 +784,7 @@
 1416342880 source:c:\projects\creatio\src\graphics\pipeline.cpp
 	"Pipeline.h"
 
-1416654442 source:c:\projects\creatio\src\graphics\shadermanager.cpp
+1416661496 source:c:\projects\creatio\src\graphics\shadermanager.cpp
 	<iostream>
 	<fstream>
 	<sstream>
@@ -826,7 +828,7 @@
 1389479879 c:\applications\glm\glm\gtc\type_ptr.inl
 	<cstring>
 
-1416654666 source:c:\projects\creatio\src\system\system.cpp
+1416661969 source:c:\projects\creatio\src\system\system.cpp
 	"System.h"
 	"Graphics/Graphics.h"
 	"Component/Component.h"

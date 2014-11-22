@@ -2,6 +2,7 @@
 #include <glm/glm.hpp>
 #include "Graphics.h"
 #include "Texture.h"
+#include "Core/Core.h"
 
 namespace GGGraphics
 {
@@ -98,27 +99,60 @@ namespace GGGraphics
 
     void CreateVertexBuffer()
     {
-        glm::vec3 Vertices[] =
-                  {
-                      glm::vec3(-1.0f, -1.0f, 0.0f),
-                      glm::vec3(0.0f, -1.0f, 1.0f),
-                      glm::vec3(1.0f, -1.0f, 0.0f),
-                      glm::vec3(0.0f, 1.0f, 0.0f)
-                  };
+        GGCore::Vertex vertices[] =
+                       {
+                           // Front face
+                           GGCore::Vertex(glm::vec3(-1.0, -1.0,  1.0), glm::vec2(0.0, 0.0)),
+                           GGCore::Vertex(glm::vec3( 1.0, -1.0,  1.0), glm::vec2(1.0, 0.0)),
+                           GGCore::Vertex(glm::vec3( 1.0,  1.0,  1.0), glm::vec2(1.0, 1.0)),
+                           GGCore::Vertex(glm::vec3(-1.0,  1.0,  1.0), glm::vec2(0.0, 1.0)),
+
+                           // Back face
+                           GGCore::Vertex(glm::vec3(-1.0, -1.0, -1.0), glm::vec2(1.0, 0.0)),
+                           GGCore::Vertex(glm::vec3(-1.0,  1.0, -1.0), glm::vec2(1.0, 1.0)),
+                           GGCore::Vertex(glm::vec3( 1.0,  1.0, -1.0), glm::vec2(0.0, 1.0)),
+                           GGCore::Vertex(glm::vec3( 1.0, -1.0, -1.0), glm::vec2(0.0, 0.0)),
+
+                           // Top face
+                           GGCore::Vertex(glm::vec3(-1.0,  1.0, -1.0), glm::vec2(0.0, 1.0)),
+                           GGCore::Vertex(glm::vec3(-1.0,  1.0,  1.0), glm::vec2(0.0, 0.0)),
+                           GGCore::Vertex(glm::vec3( 1.0,  1.0,  1.0), glm::vec2(1.0, 0.0)),
+                           GGCore::Vertex(glm::vec3( 1.0,  1.0, -1.0), glm::vec2(1.0, 1.0)),
+
+                           // Bottom face
+                           GGCore::Vertex(glm::vec3(-1.0, -1.0, -1.0), glm::vec2(1.0, 1.0)),
+                           GGCore::Vertex(glm::vec3( 1.0, -1.0, -1.0), glm::vec2(0.0, 1.0)),
+                           GGCore::Vertex(glm::vec3( 1.0, -1.0,  1.0), glm::vec2(0.0, 0.0)),
+                           GGCore::Vertex(glm::vec3(-1.0, -1.0,  1.0), glm::vec2(1.0, 0.0)),
+
+                           // Right face
+                           GGCore::Vertex(glm::vec3( 1.0, -1.0, -1.0), glm::vec2(1.0, 0.0)),
+                           GGCore::Vertex(glm::vec3( 1.0,  1.0, -1.0), glm::vec2(1.0, 1.0)),
+                           GGCore::Vertex(glm::vec3( 1.0,  1.0,  1.0), glm::vec2(0.0, 1.0)),
+                           GGCore::Vertex(glm::vec3( 1.0, -1.0,  1.0), glm::vec2(0.0, 0.0)),
+
+                           // Left face
+                           GGCore::Vertex(glm::vec3(-1.0, -1.0, -1.0), glm::vec2(0.0, 0.0)),
+                           GGCore::Vertex(glm::vec3(-1.0, -1.0,  1.0), glm::vec2(1.0, 0.0)),
+                           GGCore::Vertex(glm::vec3(-1.0,  1.0,  1.0), glm::vec2(1.0, 1.0)),
+                           GGCore::Vertex(glm::vec3(-1.0,  1.0, -1.0), glm::vec2(0.0, 1.0))
+                       };
 
         glGenBuffers(1, &VBO);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
     }
 
     void CreateIndexBuffer()
     {
         unsigned int Indices[] =
                      {
-                         0, 3, 1,
-                         1, 3, 2,
-                         2, 3, 0,
-                         0, 1, 2
+                         0,  1,  2,    0,  2,  3, // Front face
+                         4,  5,  6,    4,  6,  7, // Back face
+                         8,  9, 10,    8, 10, 11, // Top face
+                        12, 13, 14,   12, 14, 15, // Bottom face
+                        16, 17, 18,   16, 18, 19, // Right face
+                        20, 21, 22,   20, 22, 23  // Left face
                      };
 
         glGenBuffers(1, &IBO);
@@ -129,19 +163,23 @@ namespace GGGraphics
     void DrawModel(const glm::mat4& model, const GGEnum::Texture texture)
     {
         shaderManager.SetUniformMatrix4f(GGEnum::Uniform::MVP, pipeline.GetMVPMatrix(model));
+        shaderManager.ActivateTexture(texture);
 
         glClear(GL_COLOR_BUFFER_BIT);
 
         glEnableVertexAttribArray(0);
+        glEnableVertexAttribArray(1);
+
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GGCore::Vertex), 0);
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(GGCore::Vertex), (const GLvoid*)12);
+
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
-
-        shaderManager.ActivateTexture(texture);
-
-        glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 
         glDisableVertexAttribArray(0);
+        glDisableVertexAttribArray(1);
     }
 
     void ClearScreen()

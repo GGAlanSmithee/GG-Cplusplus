@@ -22,7 +22,7 @@ namespace GGGraphics
             const glm::mat4 GetMVPMatrix(const glm::mat4&) const;
 
         private:
-            glm::vec2 _screenDimensions = glm::vec2(800.0f, 600.0f);
+            glm::vec2 _screenDimensions = glm::vec2(800.0f, 800.0f);
 
             glm::mat4 _projectionMatrix = glm::perspective(45.0f,
                                                            _screenDimensions.x / _screenDimensions.y,
