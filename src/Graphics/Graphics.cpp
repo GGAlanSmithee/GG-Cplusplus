@@ -72,11 +72,11 @@ namespace GGGraphics
 
         SetClearColor(0.6f, 0.8f, 0.92f, 1.0f);
 
-        glFrontFace(GL_CW);
-        glCullFace(GL_BACK);
         glEnable(GL_CULL_FACE);
         glEnable(GL_DEPTH_TEST);
         glDepthFunc(GL_LESS);
+        glFrontFace(GL_CCW);
+        glCullFace(GL_BACK);
 
         shaderManager.CreateProgram();
 

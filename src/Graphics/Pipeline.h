@@ -25,7 +25,7 @@ namespace GGGraphics
             glm::vec2 _screenDimensions = glm::vec2(800.0f, 600.0f);
 
             glm::mat4 _projectionMatrix = glm::perspective(45.0f,
-                                                           -(_screenDimensions.x / _screenDimensions.y),
+                                                           _screenDimensions.x / _screenDimensions.y,
                                                            0.1f,
                                                            100.0f);
 
