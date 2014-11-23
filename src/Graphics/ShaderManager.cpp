@@ -139,8 +139,6 @@ namespace GGGraphics
         return _texturesWereLoaded;
     }
 
-    //{ Private helpers
-
     void ShaderManager::SetUniform1i(const GGEnum::Uniform uniform, const int value)
     {
         glUniform1i(_uniforms[uniform], value);
@@ -161,6 +159,8 @@ namespace GGGraphics
         glActiveTexture(_textures[texture].Unit);
         glBindTexture(_textures[texture].Target, _textures[texture].Id);
     }
+
+    //{ Private helpers
 
     const Texture ShaderManager::LoadTexture(const std::string& path,
                                              const GLenum unit   = GL_TEXTURE0,
@@ -201,8 +201,10 @@ namespace GGGraphics
         glGenTextures(1, &texture.Id);
         glBindTexture(texture.Target, texture.Id);
         glTexImage2D(texture.Target, 0, mode, surface->w, surface->h, 0, mode, GL_UNSIGNED_BYTE, surface->pixels);
-        glTexParameteri(texture.Target, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(texture.Target, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(texture.Target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(texture.Target, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(texture.Target, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
         SDL_FreeSurface(surface);
 

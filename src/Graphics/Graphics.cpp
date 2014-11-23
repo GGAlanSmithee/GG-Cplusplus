@@ -73,6 +73,12 @@ namespace GGGraphics
 
         SetClearColor(0.6f, 0.8f, 0.92f, 1.0f);
 
+        glFrontFace(GL_CW);
+        glCullFace(GL_BACK);
+        glEnable(GL_CULL_FACE);
+        glEnable(GL_DEPTH_TEST);
+        glDepthFunc(GL_LESS);
+
         shaderManager.CreateProgram();
 
         if (!shaderManager.ProgramWasCreated())
@@ -163,7 +169,6 @@ namespace GGGraphics
     void DrawModel(const glm::mat4& model, const GGEnum::Texture texture)
     {
         shaderManager.SetUniformMatrix4f(GGEnum::Uniform::MVP, pipeline.GetMVPMatrix(model));
-        shaderManager.ActivateTexture(texture);
 
         glClear(GL_COLOR_BUFFER_BIT);
 
@@ -172,8 +177,10 @@ namespace GGGraphics
 
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GGCore::Vertex), 0);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GGCore::Vertex), (const GLvoid*)0);
         glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(GGCore::Vertex), (const GLvoid*)12);
+
+        shaderManager.ActivateTexture(texture);
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
@@ -184,7 +191,7 @@ namespace GGGraphics
 
     void ClearScreen()
     {
-        glClear(GL_COLOR_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
 
     void UpdateScreen()
