@@ -12,7 +12,7 @@ namespace GGEntity
         {
             if (world.Enteties[i] == GGUtility::ToIntegral(GGComponent::Type::None))
             {
-                world.Enteties[i] = GGUtility::ToIntegral(GGComponent::Type::Model)  |
+                world.Enteties[i] = GGUtility::ToIntegral(GGComponent::Type::Orientation)  |
                                     GGUtility::ToIntegral(GGComponent::Type::Physics) |
                                     GGUtility::ToIntegral(GGComponent::Type::Appearance);
 

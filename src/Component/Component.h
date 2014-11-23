@@ -9,13 +9,14 @@ namespace GGComponent
 {
     /// @author Alan Smithee
     /// @date 2014-11-19
+    /// @date last updated 2014-11-23
     /// Enum representing the different component types
     enum class Type : int
     {
-        None       = 0,
-        Model      = 1 << 0,
-        Physics    = 1 << 1,
-        Appearance = 1 << 2
+        None        = 0,
+        Orientation = 1 << 0,
+        Physics     = 1 << 1,
+        Appearance  = 1 << 2
     };
 
     /// @author Alan Smithee
@@ -29,8 +30,9 @@ namespace GGComponent
 
     /// @author Alan Smithee
     /// @date 2014-11-19
-    /// Contains information of the model information of any entity using this component
-    typedef struct Model
+    /// @date last updated 2014-11-23
+    /// Contains information about the orientation of an entity
+    typedef struct Orientation
     {
         glm::mat4 Scale       = glm::mat4(1.0);
         glm::mat4 Rotation    = glm::mat4(1.0);

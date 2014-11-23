@@ -16,7 +16,7 @@ namespace GGEntity
             Size(size)
         {
             Enteties.resize(Size, GGUtility::ToIntegral(GGComponent::Type::None));
-            Model.resize(Size, GGComponent::Model());
+            Orientation.resize(Size, GGComponent::Orientation());
             Physics.resize(Size, GGComponent::Physics());
             Appearance.resize(Size, GGComponent::Appearance());
         }
@@ -24,9 +24,9 @@ namespace GGEntity
         unsigned int Size;
         std::vector<std::bitset<GGCore::NumbComponentTypes>> Enteties;
 
-        std::vector<GGComponent::Model>      Model;
-        std::vector<GGComponent::Physics>    Physics;
-        std::vector<GGComponent::Appearance> Appearance;
+        std::vector<GGComponent::Orientation> Orientation;
+        std::vector<GGComponent::Physics>     Physics;
+        std::vector<GGComponent::Appearance>  Appearance;
     };
 }
 
