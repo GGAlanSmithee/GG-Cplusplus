@@ -7,7 +7,6 @@
 namespace GGGraphics
 {
     bool wasInitialized = false;
-    bool textureWasLoaded = false;
 
     ShaderManager shaderManager;
     Pipeline pipeline;

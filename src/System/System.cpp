@@ -17,15 +17,17 @@ namespace GGSystem
 
         for (auto entity = 0; entity < world.Size; ++entity)
         {
-            if ((world.Enteties[entity] & MovementMask) == MovementMask)
+            if ((world.Enteties[entity] & MovementMask) != MovementMask)
             {
-                orientation = &(world.Orientation[entity]);
-                physics     = &(world.Physics[entity]);
-
-                orientation->Scale = glm::scale(glm::mat4(0.2f), glm::vec3(0.5f, 0.5f, 0.5f));
-                orientation->Rotation = glm::rotate(glm::mat4(1.0f), 76.0f, glm::vec3(0.5f, 0.38f, 1.0f));
-                orientation->Translation = glm::translate(glm::mat4(1.0f), glm::vec3(-0.3f, 0.1f, 0.0f));
+                continue;
             }
+
+            orientation = &(world.Orientation[entity]);
+            physics     = &(world.Physics[entity]);
+
+            orientation->Scale = glm::scale(glm::mat4(0.2f), glm::vec3(0.5f, 0.5f, 0.5f));
+            orientation->Rotation = glm::rotate(glm::mat4(1.0f), 76.0f, glm::vec3(0.5f, 0.38f, 1.0f));
+            orientation->Translation = glm::translate(glm::mat4(1.0f), glm::vec3(-0.3f, 0.1f, 0.0f));
         }
     }
 

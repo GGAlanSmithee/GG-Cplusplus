@@ -13,7 +13,6 @@
 namespace GGGraphics
 {
     extern bool wasInitialized;
-    extern bool textureWasLoaded;
 
     extern ShaderManager shaderManager;
     extern Pipeline pipeline;
