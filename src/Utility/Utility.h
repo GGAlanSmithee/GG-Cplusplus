@@ -5,18 +5,18 @@
 
 namespace GGUtility
 {
+    /// Converts an enum variable to its underlying type
+    /// @author Alan Smithee
+    /// @date created 2014-11-25
     template <typename E>
     typename std::underlying_type<E>::type ToUnderlying(E e)
     {
         return static_cast<typename std::underlying_type<E>::type>(e);
     }
 
-    template <typename E>
-    const std::string& ToString(E e)
-    {
-        return ToUnderlying(e);
-    }
-
+    /// Converts an enum variable to an integral value
+    /// @author Alan Smithee
+    /// @date created 2014-11-25
     template<typename E>
     const int ToIntegral(E e)
     {

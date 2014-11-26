@@ -1,12 +1,14 @@
 #include <iostream>
 #include <SDL.h>
-#include "Graphics/Graphics.h"
-#include "System/System.h"
-#include "Entity/World.h"
-#include "Entity/Entity.h"
+#include "Engine/Renderer/Renderer.h"
+#include "Engine/Core/System.h"
+#include "Engine/Core/World.h"
+#include "Engine/Core/Entity.h"
 
 int main(int argc, char* args[])
 {
+    /// @todo MOVE TO CORE.
+    /// Core should take a game as an inparameter and be responsible for running the game
     if (SDL_Init(SDL_INIT_EVENTS) != 0)
     {
         std::cerr << "Failed to initialize SDL Events." << std::endl;
@@ -14,23 +16,23 @@ int main(int argc, char* args[])
         return -1;
     }
 
-    GGGraphics::Initialize();
+    GGRendererEngine::Initialize();
 
-    if (!GGGraphics::WasInitialized())
+    if (!GGRendererEngine::WasInitialized())
     {
-        std::cerr << GGGraphics::GetError() << std::endl;
+        std::cerr << GGRendererEngine::GetError() << std::endl;
         return -1;
     }
 
-    GGGraphics::CreateVertexBuffer();
-    GGGraphics::CreateIndexBuffer();
+    GGRendererEngine::CreateVertexBuffer();
+    GGRendererEngine::CreateIndexBuffer();
 
     SDL_Event event;
 
     bool running = true;
     float scale = 1.0f;
-    GGEntity::World world(1000);
-    GGEntity::CreateEntity(world);
+    GGCoreEngine::World world(1000);
+    GGCoreEngine::CreateEntity(world);
 
     while (running)
     {
@@ -66,12 +68,12 @@ int main(int argc, char* args[])
             }
         }
 
-        GGSystem::Movement(world);
-        GGSystem::Render(world);
-        GGGraphics::UpdateScreen();
+        GGCoreEngine::Movement(world);
+        GGCoreEngine::Render(world);
+        GGRendererEngine::UpdateScreen();
     }
 
-    GGGraphics::CleanUp();
+    GGRendererEngine::CleanUp();
     SDL_Quit();
 
     return 0;

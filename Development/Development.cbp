@@ -30,8 +30,9 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add directory="C:/Projects/Creatio/src" />
+			<Add directory="C:/Projects/Creatio/Src" />
 			<Add directory="C:/Applications/glm" />
+			<Add directory="C:/Applications/tinyxml2" />
 			<Add directory="C:/Applications/SDL2-2.0.3/x86_64-w64-mingw32/include/SDL2" />
 			<Add directory="C:/Applications/SDL2_image-2.0.0/x86_64-w64-mingw32/include/SDL2" />
 		</Compiler>
@@ -47,24 +48,31 @@
 			<Add directory="C:/Applications/SDL2-2.0.3/x86_64-w64-mingw32/lib" />
 			<Add directory="C:/Applications/SDL2_image-2.0.0/x86_64-w64-mingw32/lib" />
 		</Linker>
-		<Unit filename="../src/Component/Component.h" />
-		<Unit filename="../src/Core/Core.h" />
-		<Unit filename="../src/Entity/Entity.cpp" />
-		<Unit filename="../src/Entity/Entity.h" />
-		<Unit filename="../src/Entity/World.h" />
-		<Unit filename="../src/Enum/Enum.h" />
-		<Unit filename="../src/Graphics/Graphics.cpp" />
-		<Unit filename="../src/Graphics/Graphics.h" />
-		<Unit filename="../src/Graphics/Logging.cpp" />
-		<Unit filename="../src/Graphics/Logging.h" />
-		<Unit filename="../src/Graphics/Pipeline.cpp" />
-		<Unit filename="../src/Graphics/Pipeline.h" />
-		<Unit filename="../src/Graphics/ShaderManager.cpp" />
-		<Unit filename="../src/Graphics/ShaderManager.h" />
-		<Unit filename="../src/Graphics/Texture.h" />
-		<Unit filename="../src/System/System.cpp" />
-		<Unit filename="../src/System/System.h" />
-		<Unit filename="../src/Utility/Utility.h" />
+		<Unit filename="../Src/Engine/AI/Ai.h" />
+		<Unit filename="../Src/Engine/Audio/Audio.h" />
+		<Unit filename="../Src/Engine/Core/Core.cpp" />
+		<Unit filename="../Src/Engine/Input/Input.h" />
+		<Unit filename="../Src/Engine/Physics/Physics.h" />
+		<Unit filename="../Src/Engine/Renderer/Enum.h" />
+		<Unit filename="../Src/Engine/Renderer/Logging.cpp" />
+		<Unit filename="../Src/Engine/Renderer/Logging.h" />
+		<Unit filename="../Src/Engine/Renderer/Pipeline.cpp" />
+		<Unit filename="../Src/Engine/Renderer/Pipeline.h" />
+		<Unit filename="../Src/Engine/Renderer/Renderer.cpp" />
+		<Unit filename="../Src/Engine/Renderer/Renderer.h" />
+		<Unit filename="../Src/Engine/Renderer/ShaderManager.cpp" />
+		<Unit filename="../Src/Engine/Renderer/ShaderManager.h" />
+		<Unit filename="../Src/Engine/Renderer/Texture.h" />
+		<Unit filename="../Src/Engine/Renderer/Vertex.h" />
+		<Unit filename="../Src/Game/Component/Component.h" />
+		<Unit filename="../Src/Game/Entity/Entity.cpp" />
+		<Unit filename="../Src/Game/Entity/Entity.h" />
+		<Unit filename="../Src/Game/Entity/World.h" />
+		<Unit filename="../Src/Game/Instance.h" />
+		<Unit filename="../Src/Game/System/System.cpp" />
+		<Unit filename="../Src/Game/System/System.h" />
+		<Unit filename="../Src/Game/Utility.h" />
+		<Unit filename="../Src/Utility/Utility.h" />
 		<Unit filename="Basic.fs" />
 		<Unit filename="Basic.vs" />
 		<Unit filename="Main.cpp" />
