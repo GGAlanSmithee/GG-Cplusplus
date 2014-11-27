@@ -5,6 +5,9 @@
 
 namespace GGRendererEngine
 {
+    /// Contains information about a textures shader related information, such as id, unit and target
+    /// @author Alan Smithee
+    /// @date created 2014-11-27
     typedef struct Texture
     {
         GLenum Unit   = GL_TEXTURE0;
