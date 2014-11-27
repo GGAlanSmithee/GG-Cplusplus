@@ -17,4 +17,4 @@
 
 1. "fixes bug causing meshes to not render"
 2. "changes the namespace GG to GGCore"
-3. "updates frame work X to new version"
+3. "updates framework X to new version"
