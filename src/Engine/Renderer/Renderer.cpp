@@ -12,7 +12,6 @@ namespace GGRendererEngine
     Pipeline pipeline;
 
     SDL_Window* window = nullptr;
-    SDL_Renderer* renderer = nullptr;
     SDL_GLContext glContext;
 
     GLuint VBO;
@@ -45,14 +44,6 @@ namespace GGRendererEngine
                                   SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
 
         glContext = SDL_GL_CreateContext(window);
-
-        renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
-        if (renderer == nullptr)
-        {
-            SetError("Failed to create renderer: ", SDL_GetError());
-            return;
-        }
 
         if (!(IMG_Init(IMG_INIT_JPG) & IMG_INIT_JPG))
         {
