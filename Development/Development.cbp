@@ -50,10 +50,15 @@
 		</Linker>
 		<Unit filename="../Src/Engine/AI/Ai.h" />
 		<Unit filename="../Src/Engine/Audio/Audio.h" />
-		<Unit filename="../Src/Engine/Core/Core.cpp" />
+		<Unit filename="../Src/Engine/Core/Component.h" />
+		<Unit filename="../Src/Engine/Core/Core.h" />
+		<Unit filename="../Src/Engine/Core/Entity.cpp" />
+		<Unit filename="../Src/Engine/Core/Entity.h" />
+		<Unit filename="../Src/Engine/Core/System.cpp" />
+		<Unit filename="../Src/Engine/Core/System.h" />
+		<Unit filename="../Src/Engine/Core/World.h" />
 		<Unit filename="../Src/Engine/Input/Input.h" />
 		<Unit filename="../Src/Engine/Physics/Physics.h" />
-		<Unit filename="../Src/Engine/Renderer/Enum.h" />
 		<Unit filename="../Src/Engine/Renderer/Logging.cpp" />
 		<Unit filename="../Src/Engine/Renderer/Logging.h" />
 		<Unit filename="../Src/Engine/Renderer/Pipeline.cpp" />
@@ -64,14 +69,7 @@
 		<Unit filename="../Src/Engine/Renderer/ShaderManager.h" />
 		<Unit filename="../Src/Engine/Renderer/Texture.h" />
 		<Unit filename="../Src/Engine/Renderer/Vertex.h" />
-		<Unit filename="../Src/Game/Component/Component.h" />
-		<Unit filename="../Src/Game/Entity/Entity.cpp" />
-		<Unit filename="../Src/Game/Entity/Entity.h" />
-		<Unit filename="../Src/Game/Entity/World.h" />
-		<Unit filename="../Src/Game/Instance.h" />
-		<Unit filename="../Src/Game/System/System.cpp" />
-		<Unit filename="../Src/Game/System/System.h" />
-		<Unit filename="../Src/Game/Utility.h" />
+		<Unit filename="../Src/Game/Game.h" />
 		<Unit filename="../Src/Utility/Utility.h" />
 		<Unit filename="Basic.fs" />
 		<Unit filename="Basic.vs" />

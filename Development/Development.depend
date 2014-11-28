@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1416653249 source:c:\projects\creatio\development\main.cpp
+1417046172 source:c:\projects\creatio\development\main.cpp
 	<iostream>
 	<SDL.h>
-	"Graphics/Graphics.h"
-	"System/System.h"
-	"Entity/World.h"
-	"Entity/Entity.h"
+	"Engine/Renderer/Renderer.h"
+	"Engine/Core/System.h"
+	"Engine/Core/World.h"
+	"Engine/Core/Entity.h"
 
 1416770940 source:c:\projects\creatio\src\entity\entity.cpp
 	<iostream>
@@ -401,7 +401,7 @@
 	<intrin.h>
 	<limits>
 
-1417045577 c:\projects\creatio\src\utility\utility.h
+1417193184 c:\projects\creatio\src\utility\utility.h
 	<string>
 
 1416772468 source:c:\projects\creatio\src\graphics\graphics.cpp
@@ -838,7 +838,7 @@
 	"Entity/Entity.h"
 	"Core/Core.h"
 
-1417045800 c:\projects\creatio\src\enum\enum.h
+1417193184 c:\projects\creatio\src\enum\enum.h
 
 1376152754 c:\applications\sdl2_image-2.0.0\x86_64-w64-mingw32\include\sdl2\sdl_image.h
 	"SDL.h"
@@ -874,7 +874,7 @@
 	"World.h"
 	<memory>
 
-1417045810 c:\projects\creatio\src\engine\core\world.h
+1417193184 c:\projects\creatio\src\engine\core\world.h
 	<vector>
 	<memory>
 	<bitset>
@@ -892,7 +892,7 @@
 1417045420 source:c:\projects\creatio\src\engine\renderer\logging.cpp
 	"Logging.h"
 
-1417045422 c:\projects\creatio\src\engine\renderer\logging.h
+1417193184 c:\projects\creatio\src\engine\renderer\logging.h
 	<string>
 	<vector>
 	<GL/glew.h>
@@ -900,7 +900,7 @@
 1417045424 source:c:\projects\creatio\src\engine\renderer\pipeline.cpp
 	"Pipeline.h"
 
-1417045427 c:\projects\creatio\src\engine\renderer\pipeline.h
+1417193184 c:\projects\creatio\src\engine\renderer\pipeline.h
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
 	"Engine/Core/Component.h"
@@ -915,7 +915,7 @@
 	"Engine/Core/Component.h"
 	"Engine/Core/Entity.h"
 
-1417045874 c:\projects\creatio\src\engine\renderer\renderer.h
+1417193184 c:\projects\creatio\src\engine\renderer\renderer.h
 	<iostream>
 	<GL/glew.h>
 	<SDL.h>
@@ -925,7 +925,7 @@
 	"Texture.h"
 	"Enum/Enum.h"
 
-1417045869 c:\projects\creatio\src\engine\renderer\shadermanager.h
+1417193184 c:\projects\creatio\src\engine\renderer\shadermanager.h
 	<string>
 	<map>
 	<GL/glew.h>
@@ -935,10 +935,10 @@
 	"Enum/Enum.h"
 	"Texture.h"
 
-1417045445 c:\projects\creatio\src\engine\renderer\texture.h
+1417193184 c:\projects\creatio\src\engine\renderer\texture.h
 	<SDL_opengl.h>
 
-1417045914 source:c:\projects\creatio\src\engine\renderer\renderer.cpp
+1417193184 source:c:\projects\creatio\src\engine\renderer\renderer.cpp
 	<SDL_image.h>
 	<glm/glm.hpp>
 	"Engine/Renderer/Renderer.h"
