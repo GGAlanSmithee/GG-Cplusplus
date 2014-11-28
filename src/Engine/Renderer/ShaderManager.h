@@ -12,6 +12,10 @@
 
 namespace GGRendererEngine
 {
+    /// Represents a glsl shader and contains information about its uniforms etc
+    /// @author Alan Smithee
+    /// @date created 2014-11-28
+    /// @todo Change name to Shader and refactor away functionality and only keep data related information
     class ShaderManager
     {
         public:
