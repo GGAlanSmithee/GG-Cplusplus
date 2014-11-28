@@ -13,8 +13,13 @@ namespace GGCoreEngine
     /// Represents and identifies all current enteties in a game
     /// @author Alan Smithee
     /// @date created 2014-11-25
+    /// @remarks The world is made up of a list of enteties and lits of the different components available
     typedef struct World
     {
+        /// Initializes a world object
+        /// @author Alan Smithee
+        /// @date created 2014-11-28
+        /// @param size the inital size of the world
         World(const unsigned int size) :
             Size(size)
         {
@@ -24,12 +29,31 @@ namespace GGCoreEngine
             AppearanceComponents.resize(Size, Appearance());
         }
 
+        /// Worldsize
+        /// @author Alan Smithee
+        /// @date created 2014-11-28
         unsigned int Size;
+        
+        /// List of enteties
+        /// @author Alan Smithee
+        /// @date created 2014-11-28
+        /// @remarks an entity is idetified with a mask that specifies what components the entety is made up of
         std::vector<std::bitset<NumbComponentTypes>> Enteties;
 
+        /// List of orientation components
+        /// @author Alan Smithee
+        /// @date created 2014-11-28
         std::vector<Orientation> OrientationComponents;
-        std::vector<Physics>     PhysicsComponents;
-        std::vector<Appearance>  AppearanceComponents;
+        
+        /// List of physics components
+        /// @author Alan Smithee
+        /// @date created 2014-11-28
+        std::vector<Physics> PhysicsComponents;
+        
+        /// List of appearance components
+        /// @author Alan Smithee
+        /// @date created 2014-11-28
+        std::vector<Appearance> AppearanceComponents;
     }
     World;
 }
