@@ -1,3 +1,6 @@
+#ifndef MANAGER_H_INCLUDED
+#define MANAGER_H_INCLUDED
+
 namespace GGCore
 {
     /// Abstract baseclass for managers. A manager is a class that provides logic which affects some part of the game that isn't component specific
@@ -27,3 +30,5 @@ namespace GGCore
             virtual void OnFixedUpdate();
     }
 }
+
+#endif // MANAGER_H_INCLUDED
