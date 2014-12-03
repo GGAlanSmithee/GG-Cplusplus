@@ -1,10 +1,9 @@
 # depslib dependency file v1.0
-1417046172 source:c:\projects\creatio\development\main.cpp
+1417643426 source:c:\projects\creatio\development\main.cpp
 	<iostream>
 	<SDL.h>
-	"Engine/Renderer/Renderer.h"
-	"Engine/Core/System.h"
-	"Engine/Core/World.h"
+	"Game/Game.h"
+	"Engine/Core/Core.h"
 	"Engine/Core/Entity.h"
 
 1416770940 source:c:\projects\creatio\src\entity\entity.cpp
@@ -963,9 +962,19 @@
 
 1417642197 c:\projects\creatio\src\engine\core\manager.h
 
-1417642339 source:c:\projects\creatio\src\game\game.cpp
+1417644050 source:c:\projects\creatio\src\game\game.cpp
 	"Game/Game.h"
 
-1417642308 c:\projects\creatio\src\game\game.h
+1417644053 c:\projects\creatio\src\game\game.h
 	"Engine/Core/World.h"
+
+1417644079 source:c:\projects\creatio\src\engine\core\core.cpp
+	<iostream>
+	<SDL.h>
+	"Engine/Core/Core.h"
+	"Engine/Core/System.h"
+	"Engine/Renderer/Renderer.h"
+
+1417643537 c:\projects\creatio\src\engine\core\core.h
+	"Game/Game.h"
 

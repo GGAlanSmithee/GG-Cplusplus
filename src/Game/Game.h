@@ -18,6 +18,12 @@ namespace GGGame
             /// @param world the world holding enteties that live withing the scope of the whole game
             Game(GGCoreEngine::World&);
 
+            /// Gets the games world
+            /// @author Alan Smithee
+            /// @date created 2014-11-25
+            /// @return the games world
+            const GGCoreEngine::World GetWorld() const;
+
         private:
             GGCoreEngine::World _world;
     };
