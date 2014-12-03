@@ -1,3 +1,5 @@
+#include "Engine/Core/manager.h"
+
 namespace GGCore
 {
     Manager::Manager()
