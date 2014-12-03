@@ -958,3 +958,14 @@
 	"Logging.h"
 	<SDL_image.h>
 
+1417642195 source:c:\projects\creatio\src\engine\core\manager.cpp
+	"Engine/Core/manager.h"
+
+1417642197 c:\projects\creatio\src\engine\core\manager.h
+
+1417642339 source:c:\projects\creatio\src\game\game.cpp
+	"Game/Game.h"
+
+1417642308 c:\projects\creatio\src\game\game.h
+	"Engine/Core/World.h"
+

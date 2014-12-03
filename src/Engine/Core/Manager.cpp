@@ -1,10 +1,10 @@
 #include "Engine/Core/manager.h"
 
-namespace GGCore
+namespace GGCoreEngine
 {
     Manager::Manager()
     {
-    // Empty
+        // Empty
     }
 
     Manager::~Manager()

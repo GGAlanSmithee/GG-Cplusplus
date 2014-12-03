@@ -2,8 +2,9 @@
 
 namespace GGGame
 {
-    Game::Game(World&)
+    Game::Game(GGCoreEngine::World& world) :
+        _world(world)
     {
-        // Empty
+
     }
 }

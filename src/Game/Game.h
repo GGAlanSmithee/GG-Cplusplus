@@ -1,6 +1,8 @@
 #ifndef GAME_H_INCLUDED
 #define GAME_H_INCLUDED
 
+#include "Engine/Core/World.h"
+
 namespace GGGame
 {
     /// Represents a game instance and serves as the main starting point of any game using the GGEngine
@@ -10,10 +12,14 @@ namespace GGGame
     class Game
     {
         public:
-            Game(World&);
+            /// Default constructor for initializing a game instance
+            /// @author Alan Smithee
+            /// @date created 2014-11-25
+            /// @param world the world holding enteties that live withing the scope of the whole game
+            Game(GGCoreEngine::World&);
 
         private:
-            World _world;
+            GGCoreEngine::World _world;
     };
 }
 
