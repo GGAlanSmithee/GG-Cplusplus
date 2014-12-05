@@ -21,4 +21,24 @@ namespace GGCoreEngine
     {
         // Virtual
     }
+    
+    InputManager::InputManager()
+    {
+        //Empty
+    }
+
+    InputManager::~InputManager()
+    {
+        //Empty
+    }
+    
+    void InputManager::OnUpdate()
+    {
+        //Empty
+    }
+    
+    void InputManager::OnFixedUpdate()
+    {
+        //Empty
+    }
 }
