@@ -1,6 +1,8 @@
 #ifndef GAME_H_INCLUDED
 #define GAME_H_INCLUDED
 
+#include <memory>
+#include <vector>
 #include "Engine/Core/World.h"
 
 namespace GGGame
@@ -26,6 +28,7 @@ namespace GGGame
 
         private:
             GGCoreEngine::World _world;
+            std::vector<std::unique_ptr<GGCoreEngine::Manager>> _managers;
     };
 }
 
