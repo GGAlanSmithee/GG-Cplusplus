@@ -51,9 +51,12 @@
 		<Unit filename="../Src/Engine/AI/Ai.h" />
 		<Unit filename="../Src/Engine/Audio/Audio.h" />
 		<Unit filename="../Src/Engine/Core/Component.h" />
+		<Unit filename="../Src/Engine/Core/Core.cpp" />
 		<Unit filename="../Src/Engine/Core/Core.h" />
 		<Unit filename="../Src/Engine/Core/Entity.cpp" />
 		<Unit filename="../Src/Engine/Core/Entity.h" />
+		<Unit filename="../Src/Engine/Core/Manager.cpp" />
+		<Unit filename="../Src/Engine/Core/Manager.h" />
 		<Unit filename="../Src/Engine/Core/System.cpp" />
 		<Unit filename="../Src/Engine/Core/System.h" />
 		<Unit filename="../Src/Engine/Core/World.h" />
@@ -69,6 +72,7 @@
 		<Unit filename="../Src/Engine/Renderer/ShaderManager.h" />
 		<Unit filename="../Src/Engine/Renderer/Texture.h" />
 		<Unit filename="../Src/Engine/Renderer/Vertex.h" />
+		<Unit filename="../Src/Game/Game.cpp" />
 		<Unit filename="../Src/Game/Game.h" />
 		<Unit filename="../Src/Utility/Utility.h" />
 		<Unit filename="Basic.fs" />

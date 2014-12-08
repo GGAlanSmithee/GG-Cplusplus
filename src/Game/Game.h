@@ -4,6 +4,7 @@
 #include <memory>
 #include <vector>
 #include "Engine/Core/World.h"
+#include "Engine/Core/Manager.h"
 
 namespace GGGame
 {
