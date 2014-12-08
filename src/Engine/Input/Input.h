@@ -6,28 +6,26 @@
 
 namespace GGInputEngine
 {
-	/// Listens to and polls events
-	/// @author Alan Smithee
-	/// @date created 2014-12-08
-	extern SDL_Event* event;
-	
 	/// Polls for events and dispatches them to an event manager
 	/// @author Alan Smithee
 	/// @date created 2014-12-08
 	/// @param eventMananger user defined event manager to be invoked on each event
-	void HandleEvents(const std::unique_ptr<GGCoreEngine::EventManager>&);
+	/// @param event SDL event poller variable
+	void HandleEvents(const std::unique_ptr<GGCoreEngine::EventManager>&, SDL_Event&);
 	
 	/// Catches and dispatches all key down events
 	/// @author Alan Smithee
 	/// @date created 2014-12-08
 	/// @param eventMananger user defined event manager to be invoked on key down events
-	void OnKeyDown(const std::unique_ptr<GGCoreEngine::EventManager>&);
+	/// @param event SDL event poller variable
+	void OnKeyDown(const std::unique_ptr<GGCoreEngine::EventManager>&, SDL_Event&);
 	
 	/// Catches and dispatches all key down events
 	/// @author Alan Smithee
 	/// @date created 2014-12-08
 	/// @param eventMananger user defined event manager to be invoked on key down events
-	void OnKeyUp(const std::unique_ptr<GGCoreEngine::EventManager>&);
+	/// @param event SDL event poller variable
+	void OnKeyUp(const std::unique_ptr<GGCoreEngine::EventManager>&, SDL_Event&);
 }
 
 #endif // INPUT_H_INCLUDED
