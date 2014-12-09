@@ -24,6 +24,12 @@ Mesh;
 
 typedef struct Geometry
 {
+    Geometry(std::string name) :
+        Name(name)
+    {
+        // Empty
+    }
+
     std::string       Name;
     std::vector<Mesh> Meshes;
 }
@@ -93,11 +99,16 @@ int main()
         return -1;
     }
 
+    std::vector<Geometry> geometryList;
+
     for (auto geometries = Child(root, "library_geometries"); geometries != nullptr; geometries = SameSibling(geometries))
     {
-        std::cout << "geometries" << std::endl;
+        for (auto geometry = Child(geometries, "geometry"); geometry != nullptr; geometry = SameSibling(geometry))
+        {
+            geometryList.push_back(Geometry(""));
+        }
 
-        IterateGeometries(geometries);
+        //IterateGeometries(geometries);
     }
 
 //    while (colladaGeometries != nullptr)
