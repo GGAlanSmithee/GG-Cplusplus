@@ -1,5 +1,33 @@
 #include <iostream>
+#include <string>
+#include <vector>
 #include "tinyxml2.h"
+
+typedef struct Polylist
+{
+
+}
+Polylist;
+
+typedef struct Source
+{
+
+}
+Source;
+
+typedef struct Mesh
+{
+    Polylist polylist;
+    std::vector<Source> Sources;
+}
+Mesh;
+
+typedef struct Geometry
+{
+    std::string       Name;
+    std::vector<Mesh> Meshes;
+}
+Geometry;
 
 tinyxml2::XMLElement* Child(tinyxml2::XMLElement* el, std::string name)
 {
@@ -9,6 +37,36 @@ tinyxml2::XMLElement* Child(tinyxml2::XMLElement* el, std::string name)
 tinyxml2::XMLElement* SameSibling(tinyxml2::XMLElement* el)
 {
     return el->NextSiblingElement(el->Name());
+}
+
+void IteratePolylistInputs(tinyxml2::XMLElement* polylist)
+{
+    std::cout << "polylist" << std::endl;
+
+    for (auto input = Child(polylist, "input"); input != nullptr; input = SameSibling(input))
+    {
+        std::cout << "input" << std::endl;
+    }
+}
+
+void IterateMeshes(tinyxml2::XMLElement* geometry)
+{
+    for (auto mesh = Child(geometry, "mesh"); mesh != nullptr; mesh = SameSibling(mesh))
+    {
+        std::cout << "mesh" << std::endl;
+
+        IteratePolylistInputs(Child(mesh, "polylist"));
+    }
+}
+
+void IterateGeometries(tinyxml2::XMLElement* geometries)
+{
+    for (auto geometry = Child(geometries, "geometry"); geometry != nullptr; geometry = SameSibling(geometry))
+    {
+        std::cout << "geometry" << std::endl;
+
+        IterateMeshes(geometry);
+    }
 }
 
 int main()
@@ -37,7 +95,9 @@ int main()
 
     for (auto geometries = Child(root, "library_geometries"); geometries != nullptr; geometries = SameSibling(geometries))
     {
-        std::cout << "hej" << std::endl;
+        std::cout << "geometries" << std::endl;
+
+        IterateGeometries(geometries);
     }
 
 //    while (colladaGeometries != nullptr)
