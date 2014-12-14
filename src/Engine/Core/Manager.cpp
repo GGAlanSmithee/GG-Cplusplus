@@ -21,7 +21,7 @@ namespace GGCoreEngine
     {
         // Virtual
     }
-    
+
     InputManager::InputManager()
     {
         //Empty
@@ -31,12 +31,12 @@ namespace GGCoreEngine
     {
         //Empty
     }
-    
+
     void InputManager::OnUpdate()
     {
         //Empty
     }
-    
+
     void InputManager::OnFixedUpdate()
     {
         //Empty

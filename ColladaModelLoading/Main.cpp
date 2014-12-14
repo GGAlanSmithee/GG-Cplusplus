@@ -1,36 +1,93 @@
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 #include "tinyxml2.h"
 
+const std::vector<std::string>& Split(const std::string &s, char delim, std::vector<std::string> &elems)
+{
+    std::stringstream ss(s);
+    std::string item;
+
+    while (std::getline(ss, item, delim))
+    {
+        elems.push_back(item);
+    }
+
+    return elems;
+}
+
+std::vector<std::string> Split(const std::string &s, char delim)
+{
+    std::vector<std::string> elems;
+
+    Split(s, delim, elems);
+
+    return elems;
+}
+
+const std::vector<int> ToInts(const std::vector<std::string>& strings)
+{
+    std::vector<int> ints;
+
+    for (auto s : strings)
+    {
+        ints.push_back(std::stoi(s));
+    }
+
+    return ints;
+}
+
+const std::vector<int> GetPolyIndices(const tinyxml2::XMLElement* element)
+{
+    return ToInts(Split(element->FirstChildElement("p")->GetText(), ' '));
+}
+
+const std::vector<int> GetPolyVertices(const tinyxml2::XMLElement* element)
+{
+    return ToInts(Split(element->FirstChildElement("vcount")->GetText(), ' '));
+}
+
+typedef struct Node
+{
+    Node(std::string name) : Name(name)
+    {
+        // Empty
+    }
+
+    std::string Name;
+}
+Node;
+
 typedef struct Polylist
 {
-
+    std::vector<int> Indicies;
 }
 Polylist;
 
-typedef struct Source
+typedef struct Source : Node
 {
-
+    Source(std::string name) : Node(name)
+    {
+        // Empty
+    }
 }
 Source;
 
 typedef struct Mesh
 {
-    Polylist polylist;
+    std::vector<int> Indicies;
     std::vector<Source> Sources;
 }
 Mesh;
 
-typedef struct Geometry
+typedef struct Geometry : Node
 {
-    Geometry(std::string name) :
-        Name(name)
+    Geometry(std::string name) : Node(name)
     {
         // Empty
     }
 
-    std::string       Name;
     std::vector<Mesh> Meshes;
 }
 Geometry;
@@ -43,36 +100,6 @@ tinyxml2::XMLElement* Child(tinyxml2::XMLElement* el, std::string name)
 tinyxml2::XMLElement* SameSibling(tinyxml2::XMLElement* el)
 {
     return el->NextSiblingElement(el->Name());
-}
-
-void IteratePolylistInputs(tinyxml2::XMLElement* polylist)
-{
-    std::cout << "polylist" << std::endl;
-
-    for (auto input = Child(polylist, "input"); input != nullptr; input = SameSibling(input))
-    {
-        std::cout << "input" << std::endl;
-    }
-}
-
-void IterateMeshes(tinyxml2::XMLElement* geometry)
-{
-    for (auto mesh = Child(geometry, "mesh"); mesh != nullptr; mesh = SameSibling(mesh))
-    {
-        std::cout << "mesh" << std::endl;
-
-        IteratePolylistInputs(Child(mesh, "polylist"));
-    }
-}
-
-void IterateGeometries(tinyxml2::XMLElement* geometries)
-{
-    for (auto geometry = Child(geometries, "geometry"); geometry != nullptr; geometry = SameSibling(geometry))
-    {
-        std::cout << "geometry" << std::endl;
-
-        IterateMeshes(geometry);
-    }
 }
 
 int main()
@@ -101,14 +128,51 @@ int main()
 
     std::vector<Geometry> geometryList;
 
-    for (auto geometries = Child(root, "library_geometries"); geometries != nullptr; geometries = SameSibling(geometries))
+    for (auto geosNode = Child(root, "library_geometries"); geosNode != nullptr; geosNode = SameSibling(geosNode))
     {
-        for (auto geometry = Child(geometries, "geometry"); geometry != nullptr; geometry = SameSibling(geometry))
+        for (auto geoNode = Child(geosNode, "geometry"); geoNode != nullptr; geoNode = SameSibling(geoNode))
         {
-            geometryList.push_back(Geometry(""));
-        }
+            Geometry geometry(geoNode->Attribute("name"));
 
-        //IterateGeometries(geometries);
+            for (auto meshNode = Child(geoNode, "mesh"); meshNode != nullptr; meshNode = SameSibling(meshNode))
+            {
+                Mesh mesh;
+
+                auto polyNode = Child(meshNode, "polylist");
+                auto indices = GetPolyIndices(polyNode);
+                auto vertices = GetPolyVertices(polyNode);
+                auto polyCount = std::stoi(polyNode->Attribute("count"));
+
+                for (auto index : indices)
+                {
+                    std::cout << index << std::endl;
+                }
+
+                for (auto vertex : vertices)
+                {
+                    std::cout << vertex << std::endl;
+                }
+
+                geometry.Meshes.push_back(mesh);
+            }
+
+            geometryList.push_back(geometry);
+        }
+    }
+
+    for (auto geometry : geometryList)
+    {
+        std::cout << geometry.Name << std::endl;
+
+        for (auto mesh : geometry.Meshes)
+        {
+            for (auto index : mesh.Indicies)
+            {
+                std::cout << index << ' ';
+            }
+
+            std::cout << std::endl;
+        }
     }
 
 //    while (colladaGeometries != nullptr)
