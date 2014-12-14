@@ -26,6 +26,18 @@ std::vector<std::string> Split(const std::string &s, char delim)
     return elems;
 }
 
+const std::vector<float> ToFloats(const std::vector<std::string>& strings)
+{
+    std::vector<float> floats;
+
+    for (auto s : strings)
+    {
+        floats.push_back(std::stof(s));
+    }
+
+    return floats;
+}
+
 const std::vector<int> ToInts(const std::vector<std::string>& strings)
 {
     std::vector<int> ints;
@@ -65,12 +77,11 @@ typedef struct Polylist
 }
 Polylist;
 
-typedef struct Source : Node
+typedef struct Source
 {
-    Source(std::string name) : Node(name)
-    {
-        // Empty
-    }
+    int TotalCount = 0;
+    int Stride     = 0;
+    std::vector<float> Values;
 }
 Source;
 
@@ -92,7 +103,7 @@ typedef struct Geometry : Node
 }
 Geometry;
 
-tinyxml2::XMLElement* Child(tinyxml2::XMLElement* el, std::string name)
+tinyxml2::XMLElement* Child(tinyxml2::XMLElement* el, const std::string& name)
 {
     return el->FirstChildElement(name.c_str());
 }
@@ -100,6 +111,31 @@ tinyxml2::XMLElement* Child(tinyxml2::XMLElement* el, std::string name)
 tinyxml2::XMLElement* SameSibling(tinyxml2::XMLElement* el)
 {
     return el->NextSiblingElement(el->Name());
+}
+
+Source& GetSource(tinyxml2::XMLElement* mesh, const std::string& geometryName, const std::string& sourceName)
+{
+    Source source;
+
+    for (auto srcNode = Child(mesh, "source"); srcNode != nullptr; srcNode = SameSibling(srcNode))
+    {
+        if (std::string(srcNode->Attribute("id")).compare(geometryName + "-" + sourceName) == 0)
+        {
+            source.TotalCount = std::stoi(srcNode->FirstChildElement("float_array")
+                                            ->Attribute("count"));
+
+            source.Stride = std::stoi(srcNode->FirstChildElement("technique_common")
+                                             ->FirstChildElement("accessor")
+                                             ->Attribute("stride"));
+
+
+                                             auto text = srcNode->FirstChildElement("float_array")->GetText();
+                                             auto splitText = Split(text, ' ');
+//            source.Values = ToFloats(Split(text, ' '));
+        }
+    }
+
+    return source;
 }
 
 int main()
@@ -141,7 +177,25 @@ int main()
                 auto polyNode = Child(meshNode, "polylist");
                 auto indices = GetPolyIndices(polyNode);
                 auto vertices = GetPolyVertices(polyNode);
-                auto polyCount = std::stoi(polyNode->Attribute("count"));
+                auto vertexCount = std::stoi(polyNode->Attribute("count"));
+                auto positionSource = GetSource(meshNode, geoNode->Attribute("id"), "positions");
+
+                int accumilatedIndexCount = 0;
+                for (int i = 0; i < vertexCount; ++i)
+                {
+                    auto vertex = vertices.at(i);
+
+                    std::cout << "Vertex: ";
+
+                    for (int j = accumilatedIndexCount; j < accumilatedIndexCount+vertex; ++j)
+                    {
+                        std::cout << indices[j] << " ";
+                    }
+
+                    std::cout << std::endl;
+
+                    accumilatedIndexCount += vertex;
+                }
 
                 for (auto index : indices)
                 {
