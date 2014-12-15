@@ -3,56 +3,7 @@
 #include <string>
 #include <vector>
 #include "tinyxml2.h"
-
-const std::vector<std::string>& Split(const std::string &s, char delim, std::vector<std::string> &elems)
-{
-    std::stringstream ss(s);
-    std::string item;
-
-    while (std::getline(ss, item, delim))
-    {
-        elems.push_back(item);
-    }
-
-    return elems;
-}
-
-std::vector<std::string> Split(const std::string &s, char delim)
-{
-    std::vector<std::string> elems;
-
-    Split(s, delim, elems);
-
-    return elems;
-}
-
-std::vector<int> ToInts(const std::string& s)
-{
-    auto partStrings = Split(s, ' ');
-    
-    std::vector<int> ints;
-    
-    for (auto ps : partStrings)
-    {
-        ints.push_back(std::stoi(ps));
-    }
-    
-    return ints;
-}
-
-std::vector<float> ToFloats(const std::string& s)
-{
-    auto partStrings = Split(s, ' ');
-    
-    std::vector<float> floats;
-    
-    for (auto ps : partStrings)
-    {
-        floats.push_back(std::stof(ps));
-    }
-    
-    return floats;
-}
+#include "Utility/Utility.h"
 
 const std::vector<int> GetPolyIndices(const tinyxml2::XMLElement* element)
 {
@@ -126,13 +77,13 @@ Source& GetSource(tinyxml2::XMLElement* mesh, const std::string& geometryName, c
         if (std::string(srcNode->Attribute("id")).compare(geometryName + "-" + sourceName) == 0)
         {
             source.TotalCount = std::stoi(srcNode->FirstChildElement("float_array")
-                                            ->Attribute("count"));
+                                                 ->Attribute("count"));
 
             source.Stride = std::stoi(srcNode->FirstChildElement("technique_common")
                                              ->FirstChildElement("accessor")
                                              ->Attribute("stride"));
 
-            source.Values = ToFloats(srcNode->FirstChildElement("float_array")->GetText());
+            source.Values = GGUtility::ToFloats(srcNode->FirstChildElement("float_array")->GetText());
         }
     }
 
