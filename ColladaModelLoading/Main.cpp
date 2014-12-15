@@ -26,38 +26,42 @@ std::vector<std::string> Split(const std::string &s, char delim)
     return elems;
 }
 
-const std::vector<float> ToFloats(const std::vector<std::string>& strings)
+std::vector<int> ToInts(const std::string& s)
 {
-    std::vector<float> floats;
-
-    for (auto s : strings)
+    auto partStrings = Split(s, ' ');
+    
+    std::vector<int> ints;
+    
+    for (auto ps : partStrings)
     {
-        floats.push_back(std::stof(s));
+        ints.push_back(std::stoi(ps));
     }
-
-    return floats;
+    
+    return ints;
 }
 
-const std::vector<int> ToInts(const std::vector<std::string>& strings)
+std::vector<float> ToFloats(const std::string& s)
 {
-    std::vector<int> ints;
-
-    for (auto s : strings)
+    auto partStrings = Split(s, ' ');
+    
+    std::vector<float> floats;
+    
+    for (auto ps : partStrings)
     {
-        ints.push_back(std::stoi(s));
+        floats.push_back(std::stof(ps));
     }
-
-    return ints;
+    
+    return floats;
 }
 
 const std::vector<int> GetPolyIndices(const tinyxml2::XMLElement* element)
 {
-    return ToInts(Split(element->FirstChildElement("p")->GetText(), ' '));
+    return ToInts(element->FirstChildElement("p")->GetText());
 }
 
 const std::vector<int> GetPolyVertices(const tinyxml2::XMLElement* element)
 {
-    return ToInts(Split(element->FirstChildElement("vcount")->GetText(), ' '));
+    return ToInts(element->FirstChildElement("vcount")->GetText());
 }
 
 typedef struct Node
@@ -128,10 +132,7 @@ Source& GetSource(tinyxml2::XMLElement* mesh, const std::string& geometryName, c
                                              ->FirstChildElement("accessor")
                                              ->Attribute("stride"));
 
-
-                                             auto text = srcNode->FirstChildElement("float_array")->GetText();
-                                             auto splitText = Split(text, ' ');
-//            source.Values = ToFloats(Split(text, ' '));
+            source.Values = ToFloats(srcNode->FirstChildElement("float_array")->GetText());
         }
     }
 
