@@ -68,7 +68,7 @@ tinyxml2::XMLElement* SameSibling(tinyxml2::XMLElement* el)
     return el->NextSiblingElement(el->Name());
 }
 
-Source& GetSource(tinyxml2::XMLElement* mesh, const std::string& geometryName, const std::string& sourceName)
+const Source GetSource(tinyxml2::XMLElement* mesh, const std::string& geometryName, const std::string& sourceName)
 {
     Source source;
 
@@ -131,6 +131,7 @@ int main()
                 auto vertices = GetPolyVertices(polyNode);
                 auto vertexCount = std::stoi(polyNode->Attribute("count"));
                 auto positionSource = GetSource(meshNode, geoNode->Attribute("id"), "positions");
+                auto normalSource = GetSource(meshNode, geoNode->Attribute("id"), "normals");
 
                 int accumilatedIndexCount = 0;
                 for (int i = 0; i < vertexCount; ++i)
@@ -159,6 +160,28 @@ int main()
                     std::cout << vertex << std::endl;
                 }
 
+                std::cout << "position total count: " << positionSource.TotalCount << std::endl;
+                std::cout << "position stride: " << positionSource.Stride << std::endl;
+                std::cout << "position values: " << std::endl;
+
+                for (auto positionValue : positionSource.Values)
+                {
+                    std::cout << positionValue << " ";
+                }
+
+                std::cout << std::endl;
+
+                std::cout << "normal total count: " << normalSource.TotalCount << std::endl;
+                std::cout << "normal stride: " << normalSource.Stride << std::endl;
+                std::cout << "normal values: " << std::endl;
+
+                for (auto normalValue : normalSource.Values)
+                {
+                    std::cout << normalValue << " ";
+                }
+
+                std::cout << std::endl;
+
                 geometry.Meshes.push_back(mesh);
             }
 
@@ -180,106 +203,6 @@ int main()
             std::cout << std::endl;
         }
     }
-
-//    while (colladaGeometries != nullptr)
-//    {
-//        auto ggGeometries = ggDoc.NewElement("geometries");
-//        ggDoc.InsertEndChild(ggGeometries);
-//
-//        auto colladaGeometry = colladaGeometries->FirstChildElement("geometry");
-//
-//        while (colladaGeometry != nullptr)
-//        {
-//            auto geometryName = std::string(colladaGeometry->Attribute("id"));
-//
-//            auto ggGeometry = ggDoc.NewElement("geometry");
-//            ggGeometries->InsertEndChild(ggGeometry);
-//
-//            auto colladaMesh = colladaGeometry->FirstChildElement("mesh");
-//
-//            while (colladaMesh != nullptr)
-//            {
-//                auto ggMesh = ggDoc.NewElement("mesh");
-//                ggGeometry->InsertEndChild(ggMesh);
-//
-//                auto colladaSource = colladaMesh->FirstChildElement("source");
-//
-//                while (colladaSource != nullptr)
-//                {
-//                    if (std::string(colladaSource->Attribute("id")).compare(geometryName + "-positions") == 0)
-//                    {
-//                        auto floatArray = colladaSource->FirstChildElement("float_array");
-//                        auto accessor = colladaSource->FirstChildElement("technique_common")
-//                                                   ->FirstChildElement("accessor");
-//
-//                        auto count = floatArray->Attribute("count");
-//                        auto stride = accessor->Attribute("stride");
-//                        auto strideCount = accessor->Attribute("count");
-//
-//                        auto ggPositions = ggDoc.NewElement("positions");
-//                        ggPositions->SetText(floatArray->GetText());
-//                        ggPositions->SetAttribute("offset", 0);
-//                        ggPositions->SetAttribute("count", count);
-//                        ggPositions->SetAttribute("stride", stride);
-//                        ggPositions->SetAttribute("stride-count", strideCount);
-//                        ggMesh->InsertEndChild(ggPositions);
-//                    }
-//                    else if (std::string(colladaSource->Attribute("id")).compare(geometryName + "-normals") == 0)
-//                    {
-//                        auto floatArray = colladaSource->FirstChildElement("float_array");
-//                        auto accessor = colladaSource->FirstChildElement("technique_common")
-//                                                     ->FirstChildElement("accessor");
-//
-//                        auto count = floatArray->Attribute("count");
-//                        auto stride = accessor->Attribute("stride");
-//                        auto strideCount = accessor->Attribute("count");
-//
-//                        auto ggNormals = ggDoc.NewElement("normals");
-//                        ggNormals->SetText(floatArray->GetText());
-//                        ggNormals->SetAttribute("offset", 1);
-//                        ggNormals->SetAttribute("count", count);
-//                        ggNormals->SetAttribute("stride", stride);
-//                        ggNormals->SetAttribute("stride-count", strideCount);
-//                        ggMesh->InsertEndChild(ggNormals);
-//                    }
-//
-//                    colladaSource = colladaSource->NextSiblingElement("source");
-//                }
-//
-//                auto polyList = colladaMesh->FirstChildElement("polylist");
-//
-//                if (polyList != nullptr)
-//                {
-//                    auto ggIndices = ggDoc.NewElement("inidces");
-//                    ggIndices->SetAttribute("count", polyList->Attribute("count"));
-//                    ggIndices->SetText(polyList->FirstChildElement("p")->GetText());
-//                    ggMesh->InsertEndChild(ggIndices);
-//                }
-//
-//                colladaMesh = colladaMesh->NextSiblingElement("mesh");
-//            }
-//
-//            colladaGeometry = colladaGeometry->NextSiblingElement("geometry");
-//        }
-//
-//        colladaGeometries = colladaGeometries->NextSiblingElement("library_geometries");
-//    }
-
-//    tinyxml2::XMLDocument ggDoc;
-//
-//	auto declaration = ggDoc.NewDeclaration("xml version=\"1.0\"");
-//	ggDoc.InsertFirstChild(declaration);
-//
-//    std::string ggModelName;
-//    std::cout << "Enter the name of the file to save: ";
-//    std::cin >> ggModelName;
-//
-//    auto result = ggDoc.SaveFile((ggModelName + ".gg").c_str());
-//
-//    if (result != tinyxml2::XML_SUCCESS)
-//    {
-//        std::cerr << "Could not save model XML data: " << result << std::endl;
-//    }
 
     return 0;
 }
