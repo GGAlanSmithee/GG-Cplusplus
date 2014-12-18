@@ -7,12 +7,12 @@
 
 const std::vector<int> GetPolyIndices(const tinyxml2::XMLElement* element)
 {
-    return ToInts(element->FirstChildElement("p")->GetText());
+    return GGUtility::ToInts(element->FirstChildElement("p")->GetText());
 }
 
 const std::vector<int> GetPolyVertices(const tinyxml2::XMLElement* element)
 {
-    return ToInts(element->FirstChildElement("vcount")->GetText());
+    return GGUtility::ToInts(element->FirstChildElement("vcount")->GetText());
 }
 
 typedef struct Node

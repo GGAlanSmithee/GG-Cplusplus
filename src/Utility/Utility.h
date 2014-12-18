@@ -30,26 +30,13 @@ namespace GGUtility
         return ToUnderlying(e);
     }
 
-    /// Splits a string by a character into a vector of substrings 
+    /// Splits a string by a character into a vector of substrings
     /// @author Alan Smithee
     /// @date created 2014-12-15
     /// @param s the string to split
     /// @param delim the delimeter to split the string at
     /// @return a vector of substrings
-    std::vector<std::string> Split(const std::string& s, char delim)
-    {
-        std::vector<std::string> elems;
-
-        std::stringstream ss(s);
-        std::string item;
-
-        while (std::getline(ss, item, delim))
-        {
-            elems.push_back(item);
-        }
-
-        return elems;
-    }
+    std::vector<std::string> Split(const std::string&, char);
 
     /// Converts a space separated string of int values to an array of ints
     /// @author Alan Smithee
@@ -57,19 +44,7 @@ namespace GGUtility
     /// @param s the string to split
     /// @return a vector of ints
     /// @remark the string is split using the Split function, and then converted to integers
-    std::vector<int> ToInts(const std::string& s)
-    {
-        auto partStrings = Split(s, ' ');
-    
-        std::vector<int> ints;
-    
-        for (auto ps : partStrings)
-        {
-            ints.push_back(std::stoi(ps));
-        }
-    
-        return ints;
-    }
+    std::vector<int> ToInts(const std::string&);
 
     /// Converts a space separated string of float values to an array of floats
     /// @author Alan Smithee
@@ -77,19 +52,7 @@ namespace GGUtility
     /// @param s the string to split
     /// @return a vector of floats
     /// @remark the string is split using the Split function, and then converted to floats
-    std::vector<float> ToFloats(const std::string& s)
-    {
-        auto partStrings = Split(s, ' ');
-    
-        std::vector<float> floats;
-    
-        for (auto ps : partStrings)
-        {
-            floats.push_back(std::stof(ps));
-        }
-    
-        return floats;
-    }
+    std::vector<float> ToFloats(const std::string&);
 }
 
 #endif // UTILITY_H_INCLUDED

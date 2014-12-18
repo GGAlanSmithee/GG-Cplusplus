@@ -74,6 +74,7 @@
 		<Unit filename="../Src/Engine/Renderer/Vertex.h" />
 		<Unit filename="../Src/Game/Game.cpp" />
 		<Unit filename="../Src/Game/Game.h" />
+		<Unit filename="../Src/Utility/Utility.cpp" />
 		<Unit filename="../Src/Utility/Utility.h" />
 		<Unit filename="Basic.fs" />
 		<Unit filename="Basic.vs" />
