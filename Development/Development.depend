@@ -848,7 +848,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1416652360 c:\projects\creatio\src\graphics\texture.h
+1419102084 c:\projects\creatio\src\graphics\texture.h
 	<SDL_opengl.h>
 
 1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_opengl.h
@@ -917,17 +917,17 @@
 	"Engine/Core/Component.h"
 	"Engine/Core/Entity.h"
 
-1417193184 c:\projects\creatio\src\engine\renderer\renderer.h
+1419102009 c:\projects\creatio\src\engine\renderer\renderer.h
 	<iostream>
 	<GL/glew.h>
 	<SDL.h>
 	"ShaderManager.h"
 	"Pipeline.h"
 	"Logging.h"
-	"Texture.h"
+	"Graphics/Texture.h"
 	"Enum/Enum.h"
 
-1417193184 c:\projects\creatio\src\engine\renderer\shadermanager.h
+1419102172 c:\projects\creatio\src\engine\renderer\shadermanager.h
 	<string>
 	<map>
 	<GL/glew.h>
@@ -935,22 +935,22 @@
 	<glm/glm.hpp>
 	"Pipeline.h"
 	"Enum/Enum.h"
-	"Texture.h"
+	"Graphics/Texture.h"
 
 1417193184 c:\projects\creatio\src\engine\renderer\texture.h
 	<SDL_opengl.h>
 
-1417193184 source:c:\projects\creatio\src\engine\renderer\renderer.cpp
+1419102415 source:c:\projects\creatio\src\engine\renderer\renderer.cpp
 	<SDL_image.h>
 	<glm/glm.hpp>
-	"Engine/Renderer/Renderer.h"
-	"Engine/Renderer/Texture.h"
-	"Engine/Renderer/Vertex.h"
+	"Renderer.h"
+	"Graphics/Texture.h"
+	"Graphics/Vertex.h"
 
 1417045447 c:\projects\creatio\src\engine\renderer\vertex.h
 	<glm/glm.hpp>
 
-1417045941 source:c:\projects\creatio\src\engine\renderer\shadermanager.cpp
+1419102429 source:c:\projects\creatio\src\engine\renderer\shadermanager.cpp
 	<iostream>
 	<fstream>
 	<sstream>
@@ -986,4 +986,7 @@
 
 1418863232 source:c:\projects\creatio\src\utility\utility.cpp
 	"Utility/Utility.h"
+
+1419102490 c:\projects\creatio\src\graphics\vertex.h
+	<glm/glm.hpp>
 

@@ -162,11 +162,11 @@ namespace GGRendererEngine
 
     //{ Private helpers
 
-    const Texture ShaderManager::LoadTexture(const std::string& path,
-                                             const GLenum unit   = GL_TEXTURE0,
-                                             const GLenum target = GL_TEXTURE_2D)
+    const GGGraphics::Texture ShaderManager::LoadTexture(const std::string& path,
+                                                         const GLenum unit   = GL_TEXTURE0,
+                                                         const GLenum target = GL_TEXTURE_2D)
     {
-        Texture texture;
+        GGGraphics::Texture texture;
 
         texture.Target = target;
         texture.Unit = unit;

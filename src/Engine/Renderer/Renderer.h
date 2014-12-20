@@ -7,7 +7,7 @@
 #include "ShaderManager.h"
 #include "Pipeline.h"
 #include "Logging.h"
-#include "Texture.h"
+#include "Graphics/Texture.h"
 #include "Enum/Enum.h"
 
 namespace GGRendererEngine
@@ -22,7 +22,7 @@ namespace GGRendererEngine
     /// @date created 2014-11-28
     /// @todo remove this when refactored shader functionality
     extern ShaderManager shaderManager;
-    
+
     /// Instance of the rendering pipeline
     /// @author Alan Smithee
     /// @date created 2014-11-28
@@ -33,7 +33,7 @@ namespace GGRendererEngine
     /// @author Alan Smithee
     /// @date created 2014-11-28
     extern SDL_Window* window;
-    
+
     /// The GL context, maanged via SDL
     /// @author Alan Smithee
     /// @date created 2014-11-28
@@ -44,7 +44,7 @@ namespace GGRendererEngine
     /// @date created 2014-11-28
     /// @todo: should this be moved to the shader or pipeline?
     extern GLuint VBO;
-    
+
     /// Index Buffer Object, used to upload index data to the graphics card
     /// @author Alan Smithee
     /// @date created 2014-11-28

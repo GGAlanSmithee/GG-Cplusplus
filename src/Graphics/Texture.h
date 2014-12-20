@@ -3,7 +3,7 @@
 
 #include <SDL_opengl.h>
 
-namespace GGRendererEngine
+namespace GGGraphics
 {
     /// Contains information about a textures shader related information, such as id, unit and target
     /// @author Alan Smithee

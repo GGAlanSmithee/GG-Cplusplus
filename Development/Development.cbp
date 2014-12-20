@@ -70,10 +70,10 @@
 		<Unit filename="../Src/Engine/Renderer/Renderer.h" />
 		<Unit filename="../Src/Engine/Renderer/ShaderManager.cpp" />
 		<Unit filename="../Src/Engine/Renderer/ShaderManager.h" />
-		<Unit filename="../Src/Engine/Renderer/Texture.h" />
-		<Unit filename="../Src/Engine/Renderer/Vertex.h" />
 		<Unit filename="../Src/Game/Game.cpp" />
 		<Unit filename="../Src/Game/Game.h" />
+		<Unit filename="../Src/Graphics/Texture.h" />
+		<Unit filename="../Src/Graphics/Vertex.h" />
 		<Unit filename="../Src/Utility/Utility.cpp" />
 		<Unit filename="../Src/Utility/Utility.h" />
 		<Unit filename="Basic.fs" />

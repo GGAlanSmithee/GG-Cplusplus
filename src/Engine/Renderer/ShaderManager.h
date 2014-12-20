@@ -8,7 +8,7 @@
 #include <glm/glm.hpp>
 #include "Pipeline.h"
 #include "Enum/Enum.h"
-#include "Texture.h"
+#include "Graphics/Texture.h"
 
 namespace GGRendererEngine
 {
@@ -83,14 +83,14 @@ namespace GGRendererEngine
             void ActivateTexture(const GGEnum::Texture);
 
         private:
-            const Texture LoadTexture(const std::string&, const GLenum, const GLenum);
+            const GGGraphics::Texture LoadTexture(const std::string&, const GLenum, const GLenum);
             const GLuint CompileShader(const GLenum, const std::string&) const;
             const std::string GetShaderSource(const std::string&) const;
 
             GLuint _program;
 
             std::map<GGEnum::Uniform, GLuint>  _uniforms;
-            std::map<GGEnum::Texture, Texture> _textures;
+            std::map<GGEnum::Texture, GGGraphics::Texture> _textures;
 
             bool _programWasBuilt   = false;
             bool _uniformsWereBound = false;
