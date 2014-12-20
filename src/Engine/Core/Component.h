@@ -15,10 +15,10 @@ namespace GGCoreEngine
     /// @date created 2014-11-19
     enum class ComponentType : int
     {
-        None        = 0,
-        Orientation = 1 << 0,
-        Physics     = 1 << 1,
-        Appearance  = 1 << 2
+        None       = 0,
+        Transform  = 1 << 0,
+        Physics    = 1 << 1,
+        Appearance = 1 << 2
     };
 
     /// Contains information of the appearance of an entity
@@ -30,11 +30,11 @@ namespace GGCoreEngine
     }
     Appearance;
 
-    /// Contains information about the orientation of an entity
+    /// Contains information about the scale, rotation and translation of an entity
     /// @author Alan Smithee
     /// @date created 2014-11-19
-    /// @date changed 2014-11-23
-    typedef struct Orientation
+    /// @date changed 2014-12-20
+    typedef struct Transform
     {
         glm::mat4 Scale       = glm::mat4(1.0);
         glm::mat4 Rotation    = glm::mat4(1.0);
@@ -45,7 +45,7 @@ namespace GGCoreEngine
             return Translation * Rotation * Scale;
         }
     }
-    Orientation;
+    Transform;
 
     /// Contains information of the physical attributes of an entity
     /// @author Alan Smithee

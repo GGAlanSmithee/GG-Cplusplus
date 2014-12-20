@@ -24,7 +24,7 @@ namespace GGCoreEngine
             Size(size)
         {
             Enteties.resize(Size, GGUtility::ToIntegral(ComponentType::None));
-            OrientationComponents.resize(Size, Orientation());
+            TransformComponents.resize(Size, Transform());
             PhysicsComponents.resize(Size, Physics());
             AppearanceComponents.resize(Size, Appearance());
         }
@@ -33,23 +33,23 @@ namespace GGCoreEngine
         /// @author Alan Smithee
         /// @date created 2014-11-28
         unsigned int Size;
-        
+
         /// List of enteties
         /// @author Alan Smithee
         /// @date created 2014-11-28
         /// @remarks an entity is idetified with a mask that specifies what components the entety is made up of
         std::vector<std::bitset<NumbComponentTypes>> Enteties;
 
-        /// List of orientation components
+        /// List of transform components
         /// @author Alan Smithee
         /// @date created 2014-11-28
-        std::vector<Orientation> OrientationComponents;
-        
+        std::vector<Transform> TransformComponents;
+
         /// List of physics components
         /// @author Alan Smithee
         /// @date created 2014-11-28
         std::vector<Physics> PhysicsComponents;
-        
+
         /// List of appearance components
         /// @author Alan Smithee
         /// @date created 2014-11-28

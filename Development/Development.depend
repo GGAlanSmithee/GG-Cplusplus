@@ -865,7 +865,7 @@
 	<stdint.h>
 	<inttypes.h>
 
-1417045836 source:c:\projects\creatio\src\engine\core\entity.cpp
+1419101794 source:c:\projects\creatio\src\engine\core\entity.cpp
 	<iostream>
 	"Entity.h"
 	"Engine/Core/Component.h"
@@ -876,7 +876,7 @@
 	"World.h"
 	<memory>
 
-1417193184 c:\projects\creatio\src\engine\core\world.h
+1419101788 c:\projects\creatio\src\engine\core\world.h
 	<vector>
 	<memory>
 	<bitset>
@@ -884,7 +884,7 @@
 	"Utility/Utility.h"
 	"Enum/Enum.h"
 
-1417045817 c:\projects\creatio\src\engine\core\component.h
+1419101792 c:\projects\creatio\src\engine\core\component.h
 	<string>
 	<glm/glm.hpp>
 	"Enum/Enum.h"
@@ -907,7 +907,7 @@
 	<glm/gtc/matrix_transform.hpp>
 	"Engine/Core/Component.h"
 
-1417045902 source:c:\projects\creatio\src\engine\core\system.cpp
+1419101790 source:c:\projects\creatio\src\engine\core\system.cpp
 	"System.h"
 	"Engine/Renderer/Renderer.h"
 	"Engine/Core/Component.h"
@@ -983,4 +983,7 @@
 
 1417643537 c:\projects\creatio\src\engine\core\core.h
 	"Game/Game.h"
+
+1418863232 source:c:\projects\creatio\src\utility\utility.cpp
+	"Utility/Utility.h"
 

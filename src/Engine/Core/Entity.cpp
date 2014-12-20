@@ -12,7 +12,7 @@ namespace GGCoreEngine
         {
             if (world.Enteties[i] == GGUtility::ToIntegral(ComponentType::None))
             {
-                world.Enteties[i] = GGUtility::ToIntegral(ComponentType::Orientation)  |
+                world.Enteties[i] = GGUtility::ToIntegral(ComponentType::Transform)  |
                                     GGUtility::ToIntegral(ComponentType::Physics) |
                                     GGUtility::ToIntegral(ComponentType::Appearance);
 

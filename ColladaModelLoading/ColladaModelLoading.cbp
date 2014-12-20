@@ -30,8 +30,9 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add directory="C:/Applications/tinyxml2" />
 			<Add directory="C:/Projects/Creatio/Src" />
+			<Add directory="C:/Applications/tinyxml2" />
+			<Add directory="C:/Applications/glm" />
 		</Compiler>
 		<Linker>
 			<Add library="C:/Applications/tinyxml2/bin/libtinyxmllib.a" />

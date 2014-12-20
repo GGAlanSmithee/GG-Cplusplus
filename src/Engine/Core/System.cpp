@@ -4,15 +4,15 @@
 
 namespace GGCoreEngine
 {
-    Mask MovementMask = GGUtility::ToIntegral(ComponentType::Orientation) |
+    Mask MovementMask = GGUtility::ToIntegral(ComponentType::Transform) |
                         GGUtility::ToIntegral(ComponentType::Physics);
 
-    Mask RenderMask = GGUtility::ToIntegral(ComponentType::Orientation) |
+    Mask RenderMask = GGUtility::ToIntegral(ComponentType::Transform) |
                       GGUtility::ToIntegral(ComponentType::Appearance);
 
     void Movement(World& world)
     {
-        Orientation* orientation;
+        Transform* transform;
         Physics*     physics;
 
         for (auto entity = 0; entity < world.Size; ++entity)
@@ -22,18 +22,18 @@ namespace GGCoreEngine
                 continue;
             }
 
-            orientation = &(world.OrientationComponents[entity]);
+            transform = &(world.TransformComponents[entity]);
             physics     = &(world.PhysicsComponents[entity]);
 
-            orientation->Scale = glm::scale(glm::mat4(0.2f), glm::vec3(0.5f, 0.5f, 0.5f));
-            orientation->Rotation = glm::rotate(glm::mat4(1.0f), 76.0f, glm::vec3(0.5f, 0.38f, 1.0f));
-            orientation->Translation = glm::translate(glm::mat4(1.0f), glm::vec3(-0.3f, 0.1f, 0.0f));
+            transform->Scale = glm::scale(glm::mat4(0.2f), glm::vec3(0.5f, 0.5f, 0.5f));
+            transform->Rotation = glm::rotate(glm::mat4(1.0f), 76.0f, glm::vec3(0.5f, 0.38f, 1.0f));
+            transform->Translation = glm::translate(glm::mat4(1.0f), glm::vec3(-0.3f, 0.1f, 0.0f));
         }
     }
 
     void Render(World& world)
     {
-        Orientation* orientation;
+        Transform* transform;
         Appearance*  appearance;
 
         GGRendererEngine::ClearScreen();
@@ -45,10 +45,10 @@ namespace GGCoreEngine
                 continue;
             }
 
-            orientation = &(world.OrientationComponents[entity]);
+            transform = &(world.TransformComponents[entity]);
             appearance = &(world.AppearanceComponents[entity]);
 
-            GGRendererEngine::DrawModel(orientation->Get(), appearance->Texture);
+            GGRendererEngine::DrawModel(transform->Get(), appearance->Texture);
         }
     }
 }

@@ -4,16 +4,7 @@
 #include <vector>
 #include "tinyxml2.h"
 #include "Utility/Utility.h"
-
-const std::vector<int> GetPolyIndices(const tinyxml2::XMLElement* element)
-{
-    return GGUtility::ToInts(element->FirstChildElement("p")->GetText());
-}
-
-const std::vector<int> GetPolyVertices(const tinyxml2::XMLElement* element)
-{
-    return GGUtility::ToInts(element->FirstChildElement("vcount")->GetText());
-}
+#include <glm/glm.hpp>
 
 typedef struct Node
 {
@@ -127,60 +118,37 @@ int main()
                 Mesh mesh;
 
                 auto polyNode = Child(meshNode, "polylist");
-                auto indices = GetPolyIndices(polyNode);
-                auto vertices = GetPolyVertices(polyNode);
-                auto vertexCount = std::stoi(polyNode->Attribute("count"));
+                auto indices = GGUtility::ToInts(polyNode->FirstChildElement("p")->GetText());
+                auto VerticesPerPoly = GGUtility::ToInts(polyNode->FirstChildElement("vcount")->GetText());
+                auto polyCount = std::stoi(polyNode->Attribute("count"));
+
                 auto positionSource = GetSource(meshNode, geoNode->Attribute("id"), "positions");
                 auto normalSource = GetSource(meshNode, geoNode->Attribute("id"), "normals");
 
-                int accumilatedIndexCount = 0;
-                for (int i = 0; i < vertexCount; ++i)
+                auto currentIndex = 0;
+                for (auto i = 0; i < polyCount; ++i)
                 {
-                    auto vertex = vertices.at(i);
+                    //for (auto j = 0; j < VerticesPerPoly[i]; ++j)
+                    //{
+                        std::vector<float> vertexPositions;
 
-                    std::cout << "Vertex: ";
+                        for (auto k = 0; k < positionSource.Stride; ++k)
+                        {
+                            vertexPositions.push_back(positionSource.Values[indices[currentIndex]]);
+                            ++currentIndex;
+                        }
 
-                    for (int j = accumilatedIndexCount; j < accumilatedIndexCount+vertex; ++j)
-                    {
-                        std::cout << indices[j] << " ";
-                    }
+                        std::vector<float> vertexNormals;
 
-                    std::cout << std::endl;
+                        for (auto k = 0; k < normalSource.Stride; ++k)
+                        {
+                            vertexNormals.push_back(normalSource.Values[indices[currentIndex]]);
+                            ++currentIndex;
+                        }
 
-                    accumilatedIndexCount += vertex;
+//                        auto positionVec = glm::vec3(vertexPositions[0], vertexPositions[1], vertexPositions[2]);
+                    //}
                 }
-
-                for (auto index : indices)
-                {
-                    std::cout << index << std::endl;
-                }
-
-                for (auto vertex : vertices)
-                {
-                    std::cout << vertex << std::endl;
-                }
-
-                std::cout << "position total count: " << positionSource.TotalCount << std::endl;
-                std::cout << "position stride: " << positionSource.Stride << std::endl;
-                std::cout << "position values: " << std::endl;
-
-                for (auto positionValue : positionSource.Values)
-                {
-                    std::cout << positionValue << " ";
-                }
-
-                std::cout << std::endl;
-
-                std::cout << "normal total count: " << normalSource.TotalCount << std::endl;
-                std::cout << "normal stride: " << normalSource.Stride << std::endl;
-                std::cout << "normal values: " << std::endl;
-
-                for (auto normalValue : normalSource.Values)
-                {
-                    std::cout << normalValue << " ";
-                }
-
-                std::cout << std::endl;
 
                 geometry.Meshes.push_back(mesh);
             }
