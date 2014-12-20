@@ -2,9 +2,10 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <glm/glm.hpp>
 #include "tinyxml2.h"
 #include "Utility/Utility.h"
-#include <glm/glm.hpp>
+#include "Graphics/Vertex.h"
 
 typedef struct Node
 {
@@ -33,8 +34,8 @@ Source;
 
 typedef struct Mesh
 {
-    std::vector<int> Indicies;
-    std::vector<Source> Sources;
+    std::vector<int> Indices;
+    std::vector<GGGraphics::Vertex> Vertices;
 }
 Mesh;
 
@@ -130,6 +131,7 @@ int main()
                 {
                     //for (auto j = 0; j < VerticesPerPoly[i]; ++j)
                     //{
+
                         std::vector<float> vertexPositions;
 
                         for (auto k = 0; k < positionSource.Stride; ++k)
@@ -138,6 +140,8 @@ int main()
                             ++currentIndex;
                         }
 
+
+
                         std::vector<float> vertexNormals;
 
                         for (auto k = 0; k < normalSource.Stride; ++k)
@@ -145,6 +149,12 @@ int main()
                             vertexNormals.push_back(normalSource.Values[indices[currentIndex]]);
                             ++currentIndex;
                         }
+
+                        mesh.Vertices.push_back(GGGraphics::Vertex(glm::vec3(vertexPositions[0],
+                                                                             vertexPositions[1],
+                                                                             vertexPositions[2]),
+                                                                   glm::vec2(1.0f,
+                                                                             1.0f)));
 
 //                        auto positionVec = glm::vec3(vertexPositions[0], vertexPositions[1], vertexPositions[2]);
                     //}
@@ -163,9 +173,17 @@ int main()
 
         for (auto mesh : geometry.Meshes)
         {
-            for (auto index : mesh.Indicies)
+            for (auto index : mesh.Indices)
             {
                 std::cout << index << ' ';
+            }
+
+            std::cout << std::endl;
+
+            for (auto index : mesh.Vertices)
+            {
+                std::cout << index.Position.z  << ", " << index.Position.y  << ", " << index.Position.z;
+                std::cout << std::endl;
             }
 
             std::cout << std::endl;
