@@ -18,12 +18,6 @@ typedef struct Node
 }
 Node;
 
-typedef struct Polylist
-{
-    std::vector<int> Indicies;
-}
-Polylist;
-
 typedef struct Source
 {
     int TotalCount = 0;
@@ -129,35 +123,27 @@ int main()
                 auto currentIndex = 0;
                 for (auto i = 0; i < polyCount; ++i)
                 {
-                    //for (auto j = 0; j < VerticesPerPoly[i]; ++j)
-                    //{
+                    std::vector<float> vertexPositions;
 
-                        std::vector<float> vertexPositions;
+                    for (auto k = 0; k < positionSource.Stride; ++k)
+                    {
+                        vertexPositions.push_back(positionSource.Values[indices[currentIndex]]);
+                        ++currentIndex;
+                    }
 
-                        for (auto k = 0; k < positionSource.Stride; ++k)
-                        {
-                            vertexPositions.push_back(positionSource.Values[indices[currentIndex]]);
-                            ++currentIndex;
-                        }
+                    std::vector<float> vertexNormals;
 
+                    for (auto k = 0; k < normalSource.Stride; ++k)
+                    {
+                        vertexNormals.push_back(normalSource.Values[indices[currentIndex]]);
+                        ++currentIndex;
+                    }
 
-
-                        std::vector<float> vertexNormals;
-
-                        for (auto k = 0; k < normalSource.Stride; ++k)
-                        {
-                            vertexNormals.push_back(normalSource.Values[indices[currentIndex]]);
-                            ++currentIndex;
-                        }
-
-                        mesh.Vertices.push_back(GGGraphics::Vertex(glm::vec3(vertexPositions[0],
-                                                                             vertexPositions[1],
-                                                                             vertexPositions[2]),
-                                                                   glm::vec2(1.0f,
-                                                                             1.0f)));
-
-//                        auto positionVec = glm::vec3(vertexPositions[0], vertexPositions[1], vertexPositions[2]);
-                    //}
+                    mesh.Vertices.push_back(GGGraphics::Vertex(glm::vec3(vertexPositions[0],
+                                                                         vertexPositions[1],
+                                                                         vertexPositions[2]),
+                                                               glm::vec2(1.0f,
+                                                                         1.0f)));
                 }
 
                 geometry.Meshes.push_back(mesh);
