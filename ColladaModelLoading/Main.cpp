@@ -103,8 +103,6 @@ int main()
 
     std::vector<Geometry> geometryList;
 
-    /// @todo remove most of this! Just read in indices and vertices position, normal and texture coords
-    /// @todo it will be passed to the shaders and they will map indicies -> vertices!
     for (auto geosNode = Child(root, "library_geometries"); geosNode != nullptr; geosNode = SameSibling(geosNode))
     {
         for (auto geoNode = Child(geosNode, "geometry"); geoNode != nullptr; geoNode = SameSibling(geoNode))
@@ -122,6 +120,7 @@ int main()
 
                 auto positionSource = GetSource(meshNode, geoNode->Attribute("id"), "positions");
                 auto normalSource = GetSource(meshNode, geoNode->Attribute("id"), "normals");
+                auto textureSource = GetSource(meshNode, geoNode->Attribute("id"), "map-0");
 
                 auto currentIndex = 0;
                 for (auto i = 0; i < polyCount; ++i)
@@ -142,12 +141,27 @@ int main()
                         ++currentIndex;
                     }
 
+                    std::vector<float> vertexTextureCoords;
+
+                    for (auto k = 0; k < textureSource.Stride; ++k)
+                    {
+                        vertexTextureCoords.push_back(textureSource.Values[indices[currentIndex]]);
+                        ++currentIndex;
+                    }
+
                     mesh.Vertices.push_back(GGGraphics::Vertex(glm::vec3(vertexPositions[0],
                                                                          vertexPositions[1],
                                                                          vertexPositions[2]),
-                                                               glm::vec3(1.0f),
+                                                               glm::vec3(vertexNormals[0],
+                                                                         vertexNormals[1],
+                                                                         vertexNormals[2]),
                                                                glm::vec2(1.0f,
                                                                          1.0f)));
+                }
+
+                for (auto index : indices)
+                {
+                    mesh.Indices.push_back(static_cast<unsigned int>(index));
                 }
 
                 geometry.Meshes.push_back(mesh);
@@ -167,6 +181,13 @@ int main()
             {
                 std::cout << index.Position.z  << ", " << index.Position.y  << ", " << index.Position.z;
                 std::cout << std::endl;
+            }
+
+            std::cout << std::endl;
+
+            for (auto index : mesh.Indices)
+            {
+                std::cout << index << ", ";
             }
 
             std::cout << std::endl;
