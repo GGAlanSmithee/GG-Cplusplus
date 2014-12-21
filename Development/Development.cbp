@@ -72,6 +72,7 @@
 		<Unit filename="../Src/Engine/Renderer/ShaderManager.h" />
 		<Unit filename="../Src/Game/Game.cpp" />
 		<Unit filename="../Src/Game/Game.h" />
+		<Unit filename="../Src/Graphics/Model.h" />
 		<Unit filename="../Src/Graphics/Texture.h" />
 		<Unit filename="../Src/Graphics/Vertex.h" />
 		<Unit filename="../Src/Utility/Utility.cpp" />

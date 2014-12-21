@@ -6,6 +6,7 @@
 #include "tinyxml2.h"
 #include "Utility/Utility.h"
 #include "Graphics/Vertex.h"
+#include "Graphics/Mesh.h"
 
 typedef struct Node
 {
@@ -26,12 +27,12 @@ typedef struct Source
 }
 Source;
 
-typedef struct Mesh
-{
-    std::vector<int> Indices;
-    std::vector<GGGraphics::Vertex> Vertices;
-}
-Mesh;
+//typedef struct Mesh
+//{
+//    std::vector<int> Indices;
+//    std::vector<GGGraphics::Vertex> Vertices;
+//}
+//Mesh;
 
 typedef struct Geometry : Node
 {
@@ -40,7 +41,7 @@ typedef struct Geometry : Node
         // Empty
     }
 
-    std::vector<Mesh> Meshes;
+    std::vector<GGGraphics::Mesh> Meshes;
 }
 Geometry;
 
@@ -102,6 +103,8 @@ int main()
 
     std::vector<Geometry> geometryList;
 
+    /// @todo remove most of this! Just read in indices and vertices position, normal and texture coords
+    /// @todo it will be passed to the shaders and they will map indicies -> vertices!
     for (auto geosNode = Child(root, "library_geometries"); geosNode != nullptr; geosNode = SameSibling(geosNode))
     {
         for (auto geoNode = Child(geosNode, "geometry"); geoNode != nullptr; geoNode = SameSibling(geoNode))
@@ -110,7 +113,7 @@ int main()
 
             for (auto meshNode = Child(geoNode, "mesh"); meshNode != nullptr; meshNode = SameSibling(meshNode))
             {
-                Mesh mesh;
+                GGGraphics::Mesh mesh;
 
                 auto polyNode = Child(meshNode, "polylist");
                 auto indices = GGUtility::ToInts(polyNode->FirstChildElement("p")->GetText());
@@ -142,6 +145,7 @@ int main()
                     mesh.Vertices.push_back(GGGraphics::Vertex(glm::vec3(vertexPositions[0],
                                                                          vertexPositions[1],
                                                                          vertexPositions[2]),
+                                                               glm::vec3(1.0f),
                                                                glm::vec2(1.0f,
                                                                          1.0f)));
                 }
@@ -159,13 +163,6 @@ int main()
 
         for (auto mesh : geometry.Meshes)
         {
-            for (auto index : mesh.Indices)
-            {
-                std::cout << index << ' ';
-            }
-
-            std::cout << std::endl;
-
             for (auto index : mesh.Vertices)
             {
                 std::cout << index.Position.z  << ", " << index.Position.y  << ", " << index.Position.z;
