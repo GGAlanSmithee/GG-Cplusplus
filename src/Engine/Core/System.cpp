@@ -4,11 +4,41 @@
 
 namespace GGCoreEngine
 {
+    Mask CameraMask = GGUtility::ToIntegral(ComponentType::Transform) |
+                      GGUtility::ToIntegral(ComponentType::Focus) |
+                      GGUtility::ToIntegral(ComponentType::PointOfView) |
+                      GGUtility::ToIntegral(ComponentType::Display);
+
     Mask MovementMask = GGUtility::ToIntegral(ComponentType::Transform) |
                         GGUtility::ToIntegral(ComponentType::Physics);
 
     Mask RenderMask = GGUtility::ToIntegral(ComponentType::Transform) |
                       GGUtility::ToIntegral(ComponentType::Appearance);
+
+    void Camera(World& world)
+    {
+        Display*     d;
+        Focus*       f;
+        PointOfView* p;
+        Transform*   t;
+
+        GGRendererEngine::ClearScreen();
+
+        for (unsigned int entity = 0; entity < world.Size; ++entity)
+        {
+            if ((world.Enteties[entity] & CameraMask) != CameraMask)
+            {
+                continue;
+            }
+
+            d = &(world.DisplayComponents[entity]);
+            f = &(world.FocusComponents[entity]);
+            p = &(world.PointOfViewComponents[entity]);
+            t = &(world.TransformComponents[entity]);
+
+            /// @todo use camera here
+        }
+    }
 
     void Movement(World& world)
     {
@@ -33,8 +63,8 @@ namespace GGCoreEngine
 
     void Render(World& world)
     {
-        Transform* transform;
-        Appearance*  appearance;
+        Transform*  t;
+        Appearance* a;
 
         GGRendererEngine::ClearScreen();
 
@@ -45,10 +75,10 @@ namespace GGCoreEngine
                 continue;
             }
 
-            transform = &(world.TransformComponents[entity]);
-            appearance = &(world.AppearanceComponents[entity]);
+            t = &(world.TransformComponents[entity]);
+            a = &(world.AppearanceComponents[entity]);
 
-            GGRendererEngine::DrawModel(transform->Get(), appearance->Texture);
+            GGRendererEngine::DrawModel(t->Get(), a->Texture);
         }
     }
 }

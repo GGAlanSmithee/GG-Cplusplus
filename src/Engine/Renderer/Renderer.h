@@ -42,13 +42,13 @@ namespace GGRendererEngine
     /// Vertex Buffer Object, used to upload vertex data to the graphics card
     /// @author Alan Smithee
     /// @date created 2014-11-28
-    /// @todo: should this be moved to the shader or pipeline?
+    /// @todo should this be moved to the shader or pipeline?
     extern GLuint VBO;
 
     /// Index Buffer Object, used to upload index data to the graphics card
     /// @author Alan Smithee
     /// @date created 2014-11-28
-    /// @todo: should this be moved to the shader or pipeline?
+    /// @todo should this be moved to the shader or pipeline?
     extern GLuint IBO;
 
     /// Initializes SDL video and OpenGL

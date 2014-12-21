@@ -884,9 +884,11 @@
 	"Utility/Utility.h"
 	"Enum/Enum.h"
 
-1419101792 c:\projects\creatio\src\engine\core\component.h
+1419174705 c:\projects\creatio\src\engine\core\component.h
 	<string>
+	<GL/glew.h>
 	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
 	"Enum/Enum.h"
 
 1417043415 c:\projects\creatio\src\utility\enum.h
@@ -917,7 +919,7 @@
 	"Engine/Core/Component.h"
 	"Engine/Core/Entity.h"
 
-1419102009 c:\projects\creatio\src\engine\renderer\renderer.h
+1419174617 c:\projects\creatio\src\engine\renderer\renderer.h
 	<iostream>
 	<GL/glew.h>
 	<SDL.h>
