@@ -11,14 +11,14 @@
 
 enum class SourceType
 {
-    Vertex,
+    Position,
     Normal,
     Texcoord
 };
 
-std::map<std::string, SourceType> sources
+std::map<std::string, SourceType> Sources
                                   {
-                                      {"VERTEX", SourceType::Vertex},
+                                      {"VERTEX", SourceType::Position},
                                       {"NORMAL", SourceType::Normal},
                                       {"TEXCOORD", SourceType::Texcoord},
                                   };
@@ -41,13 +41,6 @@ typedef struct Source
     std::vector<float> Values;
 }
 Source;
-
-//typedef struct Mesh
-//{
-//    std::vector<int> Indices;
-//    std::vector<GGGraphics::Vertex> Vertices;
-//}
-//Mesh;
 
 typedef struct Geometry : Node
 {
@@ -90,6 +83,30 @@ const Source GetSource(tinyxml2::XMLElement* mesh, const std::string& name)
     }
 
     return source;
+}
+
+const std::map<SourceType, Source> GetAllSources(tinyxml2::XMLElement* meshNode, tinyxml2::XMLElement* polyNode)
+{
+    std::map<SourceType, Source> sources;
+
+    for (auto input = Child(polyNode, "input"); input != nullptr; input = SameSibling(input))
+    {
+        auto sourceName = std::string(input->Attribute("source"));
+        sourceName = sourceName.substr(1);
+
+        Source source;
+
+        SourceType sourceType = Sources[input->Attribute("semantic")];
+
+        if (sourceType == SourceType::Position)
+        {
+            sourceName = sourceName.substr(0, sourceName.find("vertices")) + "positions";
+        }
+
+        sources[sourceType] = GetSource(meshNode, sourceName);
+    }
+
+    return sources;
 }
 
 const unsigned int GetNumberOfChilds(tinyxml2::XMLElement* parent, const std::string& childName)
@@ -142,83 +159,53 @@ int main()
 
                 auto polyNode = Child(meshNode, "polylist");
                 auto indices = GGUtility::ToInts(polyNode->FirstChildElement("p")->GetText());
+                auto sources = GetAllSources(meshNode, polyNode);
 
-                std::vector<float> positions;
-                std::vector<float> normals;
-                std::vector<float> textureCoords;
+                /// @todo iterate sources rather than vertices?
 
-                for (auto input = Child(polyNode, "input"); input != nullptr; input = SameSibling(input))
+                std::vector<GGGraphics::Vertex> vertexList;
+
+                for (const auto& kv : sources)
                 {
-                    auto sourceName = std::string(input->Attribute("source"));
-                    sourceName = sourceName.substr(sourceName.find(geoNode->Attribute("id")));
+                    std::cout << static_cast<std::underlying_type<SourceType>::type>(kv.first) << std::endl;
 
-                    switch (sources[input->Attribute("semantic")])
-                    {
-                        case SourceType::Vertex:
-                        {
-                            sourceName = sourceName.substr(0, sourceName.find("vertices")) + "positions";
-                            auto positionSource = GetSource(meshNode, sourceName);
-                            break;
-                        }
-                        case SourceType::Normal:
-                        {
-                            auto normalSource = GetSource(meshNode, sourceName);
-                            break;
-                        }
-                        case SourceType::Texcoord:
-                        {
-                            auto texCoordSource = GetSource(meshNode, sourceName);
-                            break;
-                        }
-                    }
+                    // switch type of source here and add to vertex n in vertex list
                 }
 
-//                auto numbInputs = GetNumberOfChilds(polyNode, "input");
-//                auto numbSources = GetNumberOfChilds(meshNode, "source");
-//
-//                if (numbInputs != numbSources)
-//                {
-//                    std::cerr << "The number of inputs and sources does not match" << std::endl;
-//                }
-//
-//                auto positionSource = GetSource(meshNode, geoNode->Attribute("id"), "positions");
-//                auto normalSource = GetSource(meshNode, geoNode->Attribute("id"), "normals");
-//                auto textureSource = GetSource(meshNode, geoNode->Attribute("id"), "map-0");
-//
-//                for (auto i = 0; i < indices.size(); i += numbInputs)
-//                {
-//                    mesh.Indices.push_back(static_cast<unsigned int>(indices[i]));
-//
-//                    std::vector<float> vertexPositions;
-//
-//                    for (auto k = 0; k < positionSource.Stride; ++k)
-//                    {
-//                        vertexPositions.push_back(positionSource.Values[indices[i] + k]);
-//                    }
-//
-//                    std::vector<float> vertexNormals;
-//
-//                    for (auto k = 0; k < normalSource.Stride; ++k)
-//                    {
-//                        vertexNormals.push_back(normalSource.Values[indices[i + 1] + k]);
-//                    }
-//
-//                    std::vector<float> vertexTextureCoords;
-//
-//                    for (auto k = 0; k < textureSource.Stride; ++k)
-//                    {
-//                        vertexTextureCoords.push_back(textureSource.Values[indices[i + 2] + k]);
-//                    }
-//
-//                    mesh.Vertices.push_back(GGGraphics::Vertex(glm::vec3(vertexPositions[0],
-//                                                                         vertexPositions[1],
-//                                                                         vertexPositions[2]),
-//                                                               glm::vec3(vertexNormals[0],
-//                                                                         vertexNormals[1],
-//                                                                         vertexNormals[2]),
-//                                                               glm::vec2(vertexTextureCoords[0],
-//                                                                         vertexTextureCoords[2])));
-//                }
+                for (auto i = 0; i < indices.size(); i += sources.size())
+                {
+                    mesh.Indices.push_back(static_cast<unsigned int>(indices[i]));
+
+                    std::vector<float> vertexPositions;
+
+                    for (auto k = 0; k < sources[SourceType::Position].Stride; ++k)
+                    {
+                        vertexPositions.push_back(sources[SourceType::Position].Values[indices[i] + k]);
+                    }
+
+                    std::vector<float> vertexNormals;
+
+                    for (auto k = 0; k < sources[SourceType::Normal].Stride; ++k)
+                    {
+                        vertexNormals.push_back(sources[SourceType::Normal].Values[indices[i + 1] + k]);
+                    }
+
+                    std::vector<float> vertexTextureCoords;
+
+                    for (auto k = 0; k < sources[SourceType::Texcoord].Stride; ++k)
+                    {
+                        vertexTextureCoords.push_back(sources[SourceType::Texcoord].Values[indices[i + 2] + k]);
+                    }
+
+                    mesh.Vertices.push_back(GGGraphics::Vertex(glm::vec3(vertexPositions[0],
+                                                                         vertexPositions[1],
+                                                                         vertexPositions[2]),
+                                                               glm::vec3(vertexNormals[0],
+                                                                         vertexNormals[1],
+                                                                         vertexNormals[2]),
+                                                               glm::vec2(vertexTextureCoords[0],
+                                                                         vertexTextureCoords[2])));
+                }
 
                 geometry.Meshes.push_back(mesh);
             }
