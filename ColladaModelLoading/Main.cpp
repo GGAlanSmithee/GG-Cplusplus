@@ -2,11 +2,26 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <map>
 #include <glm/glm.hpp>
 #include "tinyxml2.h"
 #include "Utility/Utility.h"
 #include "Graphics/Vertex.h"
 #include "Graphics/Mesh.h"
+
+enum class SourceType
+{
+    Vertex,
+    Normal,
+    Texcoord
+};
+
+std::map<std::string, SourceType> sources
+                                  {
+                                      {"VERTEX", SourceType::Vertex},
+                                      {"NORMAL", SourceType::Normal},
+                                      {"TEXCOORD", SourceType::Texcoord},
+                                  };
 
 typedef struct Node
 {
@@ -55,13 +70,13 @@ tinyxml2::XMLElement* SameSibling(tinyxml2::XMLElement* el)
     return el->NextSiblingElement(el->Name());
 }
 
-const Source GetSource(tinyxml2::XMLElement* mesh, const std::string& geometryName, const std::string& sourceName)
+const Source GetSource(tinyxml2::XMLElement* mesh, const std::string& name)
 {
     Source source;
 
     for (auto srcNode = Child(mesh, "source"); srcNode != nullptr; srcNode = SameSibling(srcNode))
     {
-        if (std::string(srcNode->Attribute("id")).compare(geometryName + "-" + sourceName) == 0)
+        if (std::string(srcNode->Attribute("id")).compare(name) == 0)
         {
             source.TotalCount = std::stoi(srcNode->FirstChildElement("float_array")
                                                  ->Attribute("count"));
@@ -75,6 +90,18 @@ const Source GetSource(tinyxml2::XMLElement* mesh, const std::string& geometryNa
     }
 
     return source;
+}
+
+const unsigned int GetNumberOfChilds(tinyxml2::XMLElement* parent, const std::string& childName)
+{
+    auto numbChilds = 0;
+
+    for (auto child = Child(parent, childName); child != nullptr; child = SameSibling(child))
+    {
+        ++numbChilds;
+    }
+
+    return numbChilds;
 }
 
 int main()
@@ -115,54 +142,83 @@ int main()
 
                 auto polyNode = Child(meshNode, "polylist");
                 auto indices = GGUtility::ToInts(polyNode->FirstChildElement("p")->GetText());
-                auto VerticesPerPoly = GGUtility::ToInts(polyNode->FirstChildElement("vcount")->GetText());
-                auto polyCount = std::stoi(polyNode->Attribute("count"));
 
-                auto numbInputs = 0;
+                std::vector<float> positions;
+                std::vector<float> normals;
+                std::vector<float> textureCoords;
 
                 for (auto input = Child(polyNode, "input"); input != nullptr; input = SameSibling(input))
                 {
-                    ++numbInputs;
+                    auto sourceName = std::string(input->Attribute("source"));
+                    sourceName = sourceName.substr(sourceName.find(geoNode->Attribute("id")));
+
+                    switch (sources[input->Attribute("semantic")])
+                    {
+                        case SourceType::Vertex:
+                        {
+                            sourceName = sourceName.substr(0, sourceName.find("vertices")) + "positions";
+                            auto positionSource = GetSource(meshNode, sourceName);
+                            break;
+                        }
+                        case SourceType::Normal:
+                        {
+                            auto normalSource = GetSource(meshNode, sourceName);
+                            break;
+                        }
+                        case SourceType::Texcoord:
+                        {
+                            auto texCoordSource = GetSource(meshNode, sourceName);
+                            break;
+                        }
+                    }
                 }
 
-                auto positionSource = GetSource(meshNode, geoNode->Attribute("id"), "positions");
-                auto normalSource = GetSource(meshNode, geoNode->Attribute("id"), "normals");
-                auto textureSource = GetSource(meshNode, geoNode->Attribute("id"), "map-0");
-
-                for (auto i = 0; i < indices.size(); i += numbInputs)
-                {
-                    mesh.Indices.push_back(static_cast<unsigned int>(indices[i]));
-
-                    std::vector<float> vertexPositions;
-
-                    for (auto k = 0; k < positionSource.Stride; ++k)
-                    {
-                        vertexPositions.push_back(positionSource.Values[indices[i] + k]);
-                    }
-
-                    std::vector<float> vertexNormals;
-
-                    for (auto k = 0; k < normalSource.Stride; ++k)
-                    {
-                        vertexNormals.push_back(normalSource.Values[indices[i + 1] + k]);
-                    }
-
-                    std::vector<float> vertexTextureCoords;
-
-                    for (auto k = 0; k < textureSource.Stride; ++k)
-                    {
-                        vertexTextureCoords.push_back(textureSource.Values[indices[i + 2] + k]);
-                    }
-
-                    mesh.Vertices.push_back(GGGraphics::Vertex(glm::vec3(vertexPositions[0],
-                                                                         vertexPositions[1],
-                                                                         vertexPositions[2]),
-                                                               glm::vec3(vertexNormals[0],
-                                                                         vertexNormals[1],
-                                                                         vertexNormals[2]),
-                                                               glm::vec2(vertexTextureCoords[0],
-                                                                         vertexTextureCoords[2])));
-                }
+//                auto numbInputs = GetNumberOfChilds(polyNode, "input");
+//                auto numbSources = GetNumberOfChilds(meshNode, "source");
+//
+//                if (numbInputs != numbSources)
+//                {
+//                    std::cerr << "The number of inputs and sources does not match" << std::endl;
+//                }
+//
+//                auto positionSource = GetSource(meshNode, geoNode->Attribute("id"), "positions");
+//                auto normalSource = GetSource(meshNode, geoNode->Attribute("id"), "normals");
+//                auto textureSource = GetSource(meshNode, geoNode->Attribute("id"), "map-0");
+//
+//                for (auto i = 0; i < indices.size(); i += numbInputs)
+//                {
+//                    mesh.Indices.push_back(static_cast<unsigned int>(indices[i]));
+//
+//                    std::vector<float> vertexPositions;
+//
+//                    for (auto k = 0; k < positionSource.Stride; ++k)
+//                    {
+//                        vertexPositions.push_back(positionSource.Values[indices[i] + k]);
+//                    }
+//
+//                    std::vector<float> vertexNormals;
+//
+//                    for (auto k = 0; k < normalSource.Stride; ++k)
+//                    {
+//                        vertexNormals.push_back(normalSource.Values[indices[i + 1] + k]);
+//                    }
+//
+//                    std::vector<float> vertexTextureCoords;
+//
+//                    for (auto k = 0; k < textureSource.Stride; ++k)
+//                    {
+//                        vertexTextureCoords.push_back(textureSource.Values[indices[i + 2] + k]);
+//                    }
+//
+//                    mesh.Vertices.push_back(GGGraphics::Vertex(glm::vec3(vertexPositions[0],
+//                                                                         vertexPositions[1],
+//                                                                         vertexPositions[2]),
+//                                                               glm::vec3(vertexNormals[0],
+//                                                                         vertexNormals[1],
+//                                                                         vertexNormals[2]),
+//                                                               glm::vec2(vertexTextureCoords[0],
+//                                                                         vertexTextureCoords[2])));
+//                }
 
                 geometry.Meshes.push_back(mesh);
             }
