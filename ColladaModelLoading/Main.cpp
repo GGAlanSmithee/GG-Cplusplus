@@ -118,35 +118,40 @@ int main()
                 auto VerticesPerPoly = GGUtility::ToInts(polyNode->FirstChildElement("vcount")->GetText());
                 auto polyCount = std::stoi(polyNode->Attribute("count"));
 
+                auto numbInputs = 0;
+
+                for (auto input = Child(polyNode, "input"); input != nullptr; input = SameSibling(input))
+                {
+                    ++numbInputs;
+                }
+
                 auto positionSource = GetSource(meshNode, geoNode->Attribute("id"), "positions");
                 auto normalSource = GetSource(meshNode, geoNode->Attribute("id"), "normals");
                 auto textureSource = GetSource(meshNode, geoNode->Attribute("id"), "map-0");
 
-                auto currentIndex = 0;
-                for (auto i = 0; i < polyCount; ++i)
+                for (auto i = 0; i < indices.size(); i += numbInputs)
                 {
+                    mesh.Indices.push_back(static_cast<unsigned int>(indices[i]));
+
                     std::vector<float> vertexPositions;
 
                     for (auto k = 0; k < positionSource.Stride; ++k)
                     {
-                        vertexPositions.push_back(positionSource.Values[indices[currentIndex]]);
-                        ++currentIndex;
+                        vertexPositions.push_back(positionSource.Values[indices[i] + k]);
                     }
 
                     std::vector<float> vertexNormals;
 
                     for (auto k = 0; k < normalSource.Stride; ++k)
                     {
-                        vertexNormals.push_back(normalSource.Values[indices[currentIndex]]);
-                        ++currentIndex;
+                        vertexNormals.push_back(normalSource.Values[indices[i + 1] + k]);
                     }
 
                     std::vector<float> vertexTextureCoords;
 
                     for (auto k = 0; k < textureSource.Stride; ++k)
                     {
-                        vertexTextureCoords.push_back(textureSource.Values[indices[currentIndex]]);
-                        ++currentIndex;
+                        vertexTextureCoords.push_back(textureSource.Values[indices[i + 2] + k]);
                     }
 
                     mesh.Vertices.push_back(GGGraphics::Vertex(glm::vec3(vertexPositions[0],
@@ -155,13 +160,8 @@ int main()
                                                                glm::vec3(vertexNormals[0],
                                                                          vertexNormals[1],
                                                                          vertexNormals[2]),
-                                                               glm::vec2(1.0f,
-                                                                         1.0f)));
-                }
-
-                for (auto index : indices)
-                {
-                    mesh.Indices.push_back(static_cast<unsigned int>(index));
+                                                               glm::vec2(vertexTextureCoords[0],
+                                                                         vertexTextureCoords[2])));
                 }
 
                 geometry.Meshes.push_back(mesh);
@@ -179,7 +179,9 @@ int main()
         {
             for (auto index : mesh.Vertices)
             {
-                std::cout << index.Position.z  << ", " << index.Position.y  << ", " << index.Position.z;
+                std::cout << index.Position.x  << ", " << index.Position.y  << ", " << index.Position.z << std::endl;
+                std::cout << index.Normal.x  << ", " << index.Normal.y  << ", " << index.Normal.z << std::endl;
+                std::cout << index.Texture.x  << ", " << index.Texture.y  << std::endl;
                 std::cout << std::endl;
             }
 
