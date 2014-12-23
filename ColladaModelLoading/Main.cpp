@@ -161,50 +161,44 @@ int main()
                 auto indices = GGUtility::ToInts(polyNode->FirstChildElement("p")->GetText());
                 auto sources = GetAllSources(meshNode, polyNode);
 
-                /// @todo iterate sources rather than vertices?
-
-                std::vector<GGGraphics::Vertex> vertexList;
-
-                for (const auto& kv : sources)
-                {
-                    std::cout << static_cast<std::underlying_type<SourceType>::type>(kv.first) << std::endl;
-
-                    // switch type of source here and add to vertex n in vertex list
-                }
-
-                for (auto i = 0; i < indices.size(); i += sources.size())
+                auto i = 0;
+                while (i < indices.size() && sources.size() != 0)
                 {
                     mesh.Indices.push_back(static_cast<unsigned int>(indices[i]));
 
-                    std::vector<float> vertexPositions;
+                    glm::vec3 position(0.0f);
 
-                    for (auto k = 0; k < sources[SourceType::Position].Stride; ++k)
+                    if (sources.count(SourceType::Position))
                     {
-                        vertexPositions.push_back(sources[SourceType::Position].Values[indices[i] + k]);
+                        position = glm::vec3(sources[SourceType::Position].Values[indices[i]],
+                                             sources[SourceType::Position].Values[indices[i] + 1],
+                                             sources[SourceType::Position].Values[indices[i] + 2]);
+
+                        ++i;
                     }
 
-                    std::vector<float> vertexNormals;
+                    glm::vec3 normal(0.0f);
 
-                    for (auto k = 0; k < sources[SourceType::Normal].Stride; ++k)
+                    if (sources.count(SourceType::Position))
                     {
-                        vertexNormals.push_back(sources[SourceType::Normal].Values[indices[i + 1] + k]);
+                        normal = glm::vec3(sources[SourceType::Normal].Values[indices[i]],
+                                           sources[SourceType::Normal].Values[indices[i] + 1],
+                                           sources[SourceType::Normal].Values[indices[i] + 2]);
+
+                        ++i;
                     }
 
-                    std::vector<float> vertexTextureCoords;
+                    glm::vec2 texcoord(0.0f);
 
-                    for (auto k = 0; k < sources[SourceType::Texcoord].Stride; ++k)
+                    if (sources.count(SourceType::Texcoord))
                     {
-                        vertexTextureCoords.push_back(sources[SourceType::Texcoord].Values[indices[i + 2] + k]);
+                        texcoord = glm::vec2(sources[SourceType::Texcoord].Values[indices[i]],
+                                             sources[SourceType::Texcoord].Values[indices[i] + 1]);
+
+                        ++i;
                     }
 
-                    mesh.Vertices.push_back(GGGraphics::Vertex(glm::vec3(vertexPositions[0],
-                                                                         vertexPositions[1],
-                                                                         vertexPositions[2]),
-                                                               glm::vec3(vertexNormals[0],
-                                                                         vertexNormals[1],
-                                                                         vertexNormals[2]),
-                                                               glm::vec2(vertexTextureCoords[0],
-                                                                         vertexTextureCoords[2])));
+                    mesh.Vertices.push_back(GGGraphics::Vertex(position, normal, texcoord));
                 }
 
                 geometry.Meshes.push_back(mesh);
