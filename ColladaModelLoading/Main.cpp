@@ -8,6 +8,7 @@
 #include "Utility/Utility.h"
 #include "Graphics/Vertex.h"
 #include "Graphics/Mesh.h"
+#include "Graphics/Geometry.h"
 
 enum class SourceType
 {
@@ -41,17 +42,6 @@ typedef struct Source
     std::vector<float> Values;
 }
 Source;
-
-typedef struct Geometry : Node
-{
-    Geometry(std::string name) : Node(name)
-    {
-        // Empty
-    }
-
-    std::vector<GGGraphics::Mesh> Meshes;
-}
-Geometry;
 
 tinyxml2::XMLElement* Child(tinyxml2::XMLElement* el, const std::string& name)
 {
@@ -134,6 +124,7 @@ int main()
     if (loadingResult != tinyxml2::XML_SUCCESS)
     {
         std::cerr << "Could not load model" << std::endl;
+
         return -1;
     }
 
@@ -142,16 +133,17 @@ int main()
 	if (root == nullptr)
     {
         std::cerr << "The loaded model is not a valid collada model" << std::endl;
+
         return -1;
     }
 
-    std::vector<Geometry> geometryList;
+    std::vector<GGGraphics::Geometry> geometryList;
 
     for (auto geosNode = Child(root, "library_geometries"); geosNode != nullptr; geosNode = SameSibling(geosNode))
     {
         for (auto geoNode = Child(geosNode, "geometry"); geoNode != nullptr; geoNode = SameSibling(geoNode))
         {
-            Geometry geometry(geoNode->Attribute("name"));
+            GGGraphics::Geometry geometry(geoNode->Attribute("name"));
 
             for (auto meshNode = Child(geoNode, "mesh"); meshNode != nullptr; meshNode = SameSibling(meshNode))
             {
@@ -170,20 +162,24 @@ int main()
 
                     if (sources.count(SourceType::Position))
                     {
-                        position = glm::vec3(sources[SourceType::Position].Values[indices[i]],
-                                             sources[SourceType::Position].Values[indices[i] + 1],
-                                             sources[SourceType::Position].Values[indices[i] + 2]);
+                        if (sources[SourceType::Position].Stride == 3)
+                        {
+                            auto values = sources[SourceType::Position].Values;
+                            position = glm::vec3(values[indices[i]], values[indices[i] + 1], values[indices[i] + 2]);
+                        }
 
                         ++i;
                     }
 
                     glm::vec3 normal(0.0f);
 
-                    if (sources.count(SourceType::Position))
+                    if (sources.count(SourceType::Normal))
                     {
-                        normal = glm::vec3(sources[SourceType::Normal].Values[indices[i]],
-                                           sources[SourceType::Normal].Values[indices[i] + 1],
-                                           sources[SourceType::Normal].Values[indices[i] + 2]);
+                        if (sources[SourceType::Normal].Stride == 3)
+                        {
+                            auto values = sources[SourceType::Normal].Values;
+                            normal = glm::vec3(values[indices[i]], values[indices[i] + 1], values[indices[i] + 2]);
+                        }
 
                         ++i;
                     }
@@ -192,8 +188,11 @@ int main()
 
                     if (sources.count(SourceType::Texcoord))
                     {
-                        texcoord = glm::vec2(sources[SourceType::Texcoord].Values[indices[i]],
-                                             sources[SourceType::Texcoord].Values[indices[i] + 1]);
+                        if (sources[SourceType::Texcoord].Stride == 2)
+                        {
+                            auto values = sources[SourceType::Texcoord].Values;
+                            texcoord = glm::vec2(values[indices[i]], values[indices[i] + 1]);
+                        }
 
                         ++i;
                     }

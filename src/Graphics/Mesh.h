@@ -1,5 +1,5 @@
-#ifndef MODEL_H_INCLUDED
-#define MODEL_H_INCLUDED
+#ifndef MESH_H_INCLUDED
+#define MESH_H_INCLUDED
 
 #include <vector>
 #include "Vertex.h"
@@ -24,4 +24,4 @@ namespace GGGraphics
     Mesh;
 }
 
-#endif // MODEL_H_INCLUDED
+#endif // MESH_H_INCLUDED

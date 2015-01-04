@@ -37,6 +37,7 @@
 		<Linker>
 			<Add library="C:/Applications/tinyxml2/bin/libtinyxmllib.a" />
 		</Linker>
+		<Unit filename="../Src/Graphics/Geometry.h" />
 		<Unit filename="../Src/Graphics/Mesh.h" />
 		<Unit filename="../Src/Graphics/Vertex.h" />
 		<Unit filename="../Src/Utility/Utility.cpp" />
