@@ -113,13 +113,13 @@ const unsigned int GetNumberOfChilds(tinyxml2::XMLElement* parent, const std::st
 
 int main()
 {
-    std::string colladaFileName = "crate";
-//
-//    std::cout << "Enter the name of the collada file to load (without .dae): ";
-//    std::cin >> colladaFileName;
+    std::string fileName;
+
+    std::cout << "Enter the name of the collada file to load (without .dae): ";
+    std::cin >> fileName;
 
     tinyxml2::XMLDocument colladaDoc;
-    auto loadingResult = colladaDoc.LoadFile((colladaFileName + ".dae").c_str());
+    auto loadingResult = colladaDoc.LoadFile((fileName + ".dae").c_str());
 
     if (loadingResult != tinyxml2::XML_SUCCESS)
     {
@@ -207,30 +207,65 @@ int main()
         }
     }
 
+    tinyxml2::XMLDocument ggDoc;
+
+    auto ggDeclaration = ggDoc.NewDeclaration("xml version=\"1.0\"");
+	ggDoc.InsertFirstChild(ggDeclaration);
+
+    auto ggGeometries = ggDoc.NewElement("geometries");
+    ggDoc.InsertEndChild(ggGeometries);
+
     for (auto geometry : geometryList)
     {
-        std::cout << geometry.Name << std::endl;
+        auto ggGeometry = ggDoc.NewElement("geometry");
+        ggGeometries->InsertEndChild(ggGeometry);
 
         for (auto mesh : geometry.Meshes)
         {
+            auto ggMesh = ggDoc.NewElement("mesh");
+            ggGeometry->InsertEndChild(ggMesh);
+
             for (auto vertex : mesh.Vertices)
             {
-                std::cout << vertex.Position.x  << ", " << vertex.Position.y  << ", " << vertex.Position.z << std::endl;
-                std::cout << vertex.Normal.x  << ", " << vertex.Normal.y  << ", " << vertex.Normal.z << std::endl;
-                std::cout << vertex.TexCoord.x  << ", " << vertex.TexCoord.y  << std::endl;
-                std::cout << std::endl;
+                auto ggVertex = ggDoc.NewElement("Vertex");
+                ggMesh->InsertEndChild(ggVertex);
+
+                std::stringstream position;
+                position << vertex.Position.x << " " << vertex.Position.y << " " << vertex.Position.z;
+
+                auto ggPosition = ggDoc.NewElement("Position");
+                ggPosition->InsertEndChild(ggDoc.NewText(position.str().c_str()));
+                ggVertex->InsertEndChild(ggPosition);
+
+                std::stringstream normal;
+                normal << vertex.Normal.x << " " << vertex.Normal.y << " " << vertex.Normal.z;
+
+                auto ggNormal = ggDoc.NewElement("Normal");
+                ggNormal->InsertEndChild(ggDoc.NewText(normal.str().c_str()));
+                ggVertex->InsertEndChild(ggNormal);
+
+                std::stringstream texCoord;
+                texCoord << vertex.TexCoord.x << " " << vertex.TexCoord.y;
+
+                auto ggTexCoord = ggDoc.NewElement("TexCoord");
+                ggTexCoord->InsertEndChild(ggDoc.NewText(texCoord.str().c_str()));
+                ggVertex->InsertEndChild(ggTexCoord);
             }
 
-            std::cout << std::endl;
+            std::stringstream indices;
 
             for (auto index : mesh.Indices)
             {
-                std::cout << index << ", ";
+                indices << index << " ";
             }
 
-            std::cout << std::endl;
+            auto ggIndices = ggDoc.NewElement("Indices");
+            ggIndices->InsertEndChild(ggDoc.NewText(indices.str().c_str()));
+            ggMesh->InsertEndChild(ggIndices);
         }
     }
+
+    ggDoc.SaveFile((fileName + ".gg").c_str());
 
     return 0;
 }
