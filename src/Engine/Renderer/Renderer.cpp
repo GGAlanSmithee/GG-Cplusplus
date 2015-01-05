@@ -167,8 +167,8 @@ namespace GGRendererEngine
 
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GGGraphics::Vertex), (const GLvoid*)(sizeof(float)*0));
-        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(GGGraphics::Vertex), (const GLvoid*)(sizeof(float)*6));
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GGGraphics::Vertex), (const GLvoid*)offsetof(GGGraphics::Vertex, Position));
+        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(GGGraphics::Vertex), (const GLvoid*)offsetof(GGGraphics::Vertex, TexCoord));
 
         shaderManager.ActivateTexture(texture);
 

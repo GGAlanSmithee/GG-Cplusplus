@@ -213,11 +213,11 @@ int main()
 
         for (auto mesh : geometry.Meshes)
         {
-            for (auto index : mesh.Vertices)
+            for (auto vertex : mesh.Vertices)
             {
-                std::cout << index.Position.x  << ", " << index.Position.y  << ", " << index.Position.z << std::endl;
-                std::cout << index.Normal.x  << ", " << index.Normal.y  << ", " << index.Normal.z << std::endl;
-                std::cout << index.Texture.x  << ", " << index.Texture.y  << std::endl;
+                std::cout << vertex.Position.x  << ", " << vertex.Position.y  << ", " << vertex.Position.z << std::endl;
+                std::cout << vertex.Normal.x  << ", " << vertex.Normal.y  << ", " << vertex.Normal.z << std::endl;
+                std::cout << vertex.TexCoord.x  << ", " << vertex.TexCoord.y  << std::endl;
                 std::cout << std::endl;
             }
 

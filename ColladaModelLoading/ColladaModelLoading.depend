@@ -19,7 +19,7 @@
 	<android/log.h>
 	<assert.h>
 
-1420389169 source:c:\projects\creatio\colladamodelloading\main.cpp
+1420459186 source:c:\projects\creatio\colladamodelloading\main.cpp
 	<iostream>
 	<sstream>
 	<string>
@@ -408,7 +408,7 @@
 	<intrin.h>
 	<limits>
 
-1419175671 c:\projects\creatio\src\graphics\vertex.h
+1420459070 c:\projects\creatio\src\graphics\vertex.h
 	<glm/glm.hpp>
 
 1420389015 c:\projects\creatio\src\graphics\mesh.h
