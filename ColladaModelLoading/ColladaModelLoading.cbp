@@ -40,6 +40,8 @@
 		<Unit filename="../Src/Graphics/Geometry.h" />
 		<Unit filename="../Src/Graphics/Mesh.h" />
 		<Unit filename="../Src/Graphics/Vertex.h" />
+		<Unit filename="../Src/Manager/Resource/Resource.cpp" />
+		<Unit filename="../Src/Manager/Resource/Resource.h" />
 		<Unit filename="../Src/Utility/Utility.cpp" />
 		<Unit filename="../Src/Utility/Utility.h" />
 		<Unit filename="Main.cpp" />

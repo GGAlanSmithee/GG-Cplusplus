@@ -19,18 +19,9 @@
 	<android/log.h>
 	<assert.h>
 
-1420459186 source:c:\projects\creatio\colladamodelloading\main.cpp
+1420660026 source:c:\projects\creatio\colladamodelloading\main.cpp
 	<iostream>
-	<sstream>
-	<string>
-	<vector>
-	<map>
-	<glm/glm.hpp>
-	"tinyxml2.h"
-	"Utility/Utility.h"
-	"Graphics/Vertex.h"
-	"Graphics/Mesh.h"
-	"Graphics/Geometry.h"
+	"Manager/Resource/Resource.h"
 
 1418863223 c:\projects\creatio\src\utility\utility.h
 	<string>
@@ -408,7 +399,7 @@
 	<intrin.h>
 	<limits>
 
-1420459070 c:\projects\creatio\src\graphics\vertex.h
+1420661288 c:\projects\creatio\src\graphics\vertex.h
 	<glm/glm.hpp>
 
 1420389015 c:\projects\creatio\src\graphics\mesh.h
@@ -418,4 +409,21 @@
 1420389122 c:\projects\creatio\src\graphics\geometry.h
 	<vector>
 	<string>
+
+1420660346 c:\projects\creatio\src\manager\resource\resource.h
+	<sstream>
+	<string>
+	<vector>
+	<map>
+	<glm/glm.hpp>
+	"tinyxml2.h"
+	"Utility/Utility.h"
+	"Graphics/Vertex.h"
+	"Graphics/Mesh.h"
+	"Graphics/Geometry.h"
+
+1420661660 source:c:\projects\creatio\src\manager\resource\resource.cpp
+	"Resource.h"
+	<iostream>
+	<fstream>
 

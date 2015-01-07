@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<geometries>
+    <geometry>
+        <mesh>
+            <vertex>
+                <position>1 1 -1</position>
+                <normal>0 0 -1</normal>
+                <texcoord>0.622418 0.492187</texcoord>
+            </vertex>
+            <vertex>
+                <position>1 -1 1</position>
+                <normal>0 0 -1</normal>
+                <texcoord>0.492187 0.622418</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 1 -1</position>
+                <normal>0 0 -1</normal>
+                <texcoord>0.622418 0.729169</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 -1 -1</position>
+                <normal>0 -1 0</normal>
+                <texcoord>0.729169 0.385437</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 -1 -1</position>
+                <normal>0 -1 0</normal>
+                <texcoord>0.385437 0.729169</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 -1 -1</position>
+                <normal>0 -1 0</normal>
+                <texcoord>0.729169 0.385435</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 -1 -1</position>
+                <normal>-1 0 0</normal>
+                <texcoord>0.385435 0.255207</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 -1 -1</position>
+                <normal>-1 0 0</normal>
+                <texcoord>0.255207 0.385434</texcoord>
+            </vertex>
+            <vertex>
+                <position>1 -1 1</position>
+                <normal>-1 0 0</normal>
+                <texcoord>0.385434 0.0182253</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 -1 -1</position>
+                <normal>0 0 1</normal>
+                <texcoord>0.0182253 0.622415</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 -1 -1</position>
+                <normal>0 0 1</normal>
+                <texcoord>0.622415 0.0182241</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 1 -1</position>
+                <normal>0 0 1</normal>
+                <texcoord>0.0182241 0.8594</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 1 -1</position>
+                <normal>0 1 1</normal>
+                <texcoord>0.8594 0.966151</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 -1 -1</position>
+                <normal>0 1 1</normal>
+                <texcoord>0.966151 0.622418</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 -1 -1</position>
+                <normal>0 1 1</normal>
+                <texcoord>0.622418 0.966151</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 -1 -1</position>
+                <normal>1 1 -5.66244e-007</normal>
+                <texcoord>0.966151 0.622418</texcoord>
+            </vertex>
+            <vertex>
+                <position>1 1 -1</position>
+                <normal>1 1 -5.66244e-007</normal>
+                <texcoord>0.622418 0.729169</texcoord>
+            </vertex>
+            <vertex>
+                <position>1 -1 -1</position>
+                <normal>1 1 -5.66244e-007</normal>
+                <texcoord>0.729169 0.622418</texcoord>
+            </vertex>
+            <vertex>
+                <position>1 -1 -1</position>
+                <normal>1 -5.66244e-007 3.27825e-007</normal>
+                <texcoord>0.622418 0.966151</texcoord>
+            </vertex>
+            <vertex>
+                <position>1 1 -1</position>
+                <normal>1 -5.66244e-007 3.27825e-007</normal>
+                <texcoord>0.966151 0.385437</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 1 -1</position>
+                <normal>1 -5.66244e-007 3.27825e-007</normal>
+                <texcoord>0.385437 0.966151</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 -1 -1</position>
+                <normal>-5.66244e-007 3.27825e-007 -4.76837e-007</normal>
+                <texcoord>0.966151 0.385437</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 -1 -1</position>
+                <normal>-5.66244e-007 3.27825e-007 -4.76837e-007</normal>
+                <texcoord>0.385437 0.729169</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 -1 -1</position>
+                <normal>-5.66244e-007 3.27825e-007 -4.76837e-007</normal>
+                <texcoord>0.729169 0.385437</texcoord>
+            </vertex>
+            <vertex>
+                <position>1 1 -1</position>
+                <normal>3.27825e-007 -4.76837e-007 -1</normal>
+                <texcoord>0.385437 0.729169</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 -1 -1</position>
+                <normal>3.27825e-007 -4.76837e-007 -1</normal>
+                <texcoord>0.729169 0.385437</texcoord>
+            </vertex>
+            <vertex>
+                <position>1 -1 1</position>
+                <normal>3.27825e-007 -4.76837e-007 -1</normal>
+                <texcoord>0.385437 0.966151</texcoord>
+            </vertex>
+            <vertex>
+                <position>1 -1 1</position>
+                <normal>-4.76837e-007 -1 0</normal>
+                <texcoord>0.966151 0.148456</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 -1 -1</position>
+                <normal>-4.76837e-007 -1 0</normal>
+                <texcoord>0.148456 0.966151</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 1 -1</position>
+                <normal>-4.76837e-007 -1 0</normal>
+                <texcoord>0.966151 0.622417</texcoord>
+            </vertex>
+            <vertex>
+                <position>1 -1 -1</position>
+                <normal>-1 0 -1</normal>
+                <texcoord>0.622417 0.255206</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 1 -1</position>
+                <normal>-1 0 -1</normal>
+                <texcoord>0.255206 0.622418</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 -1 -1</position>
+                <normal>-1 0 -1</normal>
+                <texcoord>0.622418 0.492187</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 -1 -1</position>
+                <normal>0 -1 2.08616e-007</normal>
+                <texcoord>0.492187 0.385436</texcoord>
+            </vertex>
+            <vertex>
+                <position>-1 -1 -1</position>
+                <normal>0 -1 2.08616e-007</normal>
+                <texcoord>0.385436 0.492188</texcoord>
+            </vertex>
+            <vertex>
+                <position>1 -1 -1</position>
+                <normal>0 -1 2.08616e-007</normal>
+                <texcoord>0.492188 0.385436</texcoord>
+            </vertex>
+            <indices>0 1 2 7 6 5 4 5 1 5 6 2 2 6 7 4 0 3 3 0 2 4 7 5 0 4 1 1 5 2 3 2 7 7 4 3 </indices>
+        </mesh>
+    </geometry>
+</geometries>
