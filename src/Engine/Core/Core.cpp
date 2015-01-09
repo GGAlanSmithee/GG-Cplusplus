@@ -23,9 +23,6 @@ namespace GGCoreEngine
             return -1;
         }
 
-        GGRendererEngine::CreateVertexBuffer();
-        GGRendererEngine::CreateIndexBuffer();
-
         SDL_Event event;
 
         bool running = true;
@@ -68,9 +65,9 @@ namespace GGCoreEngine
             auto world = game.GetWorld();
 
             GGCoreEngine::Movement(world);
-            
+
             GGRendererEngine::ClearScreen();
-            
+
             GGCoreEngine::Render(world);
 
             GGRendererEngine::UpdateScreen();

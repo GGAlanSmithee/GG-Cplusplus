@@ -410,7 +410,7 @@
 	<vector>
 	<string>
 
-1420660346 c:\projects\creatio\src\manager\resource\resource.h
+1420820476 c:\projects\creatio\src\manager\resource\resource.h
 	<sstream>
 	<string>
 	<vector>
@@ -422,7 +422,7 @@
 	"Graphics/Mesh.h"
 	"Graphics/Geometry.h"
 
-1420661660 source:c:\projects\creatio\src\manager\resource\resource.cpp
+1420821519 source:c:\projects\creatio\src\manager\resource\resource.cpp
 	"Resource.h"
 	<iostream>
 	<fstream>

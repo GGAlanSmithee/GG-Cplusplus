@@ -4,18 +4,18 @@
 
 namespace // Private varaibles and functions
 {
-    using Mask = std::bitset<NumbComponentTypes>;
-    
-    Mask CameraMask = GGUtility::ToIntegral(ComponentType::Transform) |
-                      GGUtility::ToIntegral(ComponentType::Focus) |
-                      GGUtility::ToIntegral(ComponentType::PointOfView) |
-                      GGUtility::ToIntegral(ComponentType::Display);
+    using Mask = std::bitset<GGCoreEngine::NumbComponentTypes>;
 
-    Mask MovementMask = GGUtility::ToIntegral(ComponentType::Transform) |
-                        GGUtility::ToIntegral(ComponentType::Physics);
+    Mask CameraMask = GGUtility::ToIntegral(GGCoreEngine::ComponentType::Transform) |
+                      GGUtility::ToIntegral(GGCoreEngine::ComponentType::Focus) |
+                      GGUtility::ToIntegral(GGCoreEngine::ComponentType::PointOfView) |
+                      GGUtility::ToIntegral(GGCoreEngine::ComponentType::Display);
 
-    Mask RenderMask = GGUtility::ToIntegral(ComponentType::Transform) |
-                      GGUtility::ToIntegral(ComponentType::Appearance);
+    Mask MovementMask = GGUtility::ToIntegral(GGCoreEngine::ComponentType::Transform) |
+                        GGUtility::ToIntegral(GGCoreEngine::ComponentType::Physics);
+
+    Mask RenderMask = GGUtility::ToIntegral(GGCoreEngine::ComponentType::Transform) |
+                      GGUtility::ToIntegral(GGCoreEngine::ComponentType::Appearance);
 }
 
 namespace GGCoreEngine

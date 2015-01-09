@@ -8,15 +8,15 @@ namespace // Private varaibles and functions
 {
     bool wasInitialized = false;
 
-    ShaderManager shaderManager;
-    Pipeline pipeline;
+    GGRendererEngine::ShaderManager shaderManager;
+    GGRendererEngine::Pipeline pipeline;
 
     SDL_Window* window = nullptr;
     SDL_GLContext glContext;
 
     GLuint VBO;
     GLuint IBO;
-    
+
     void CreateVertexBuffer()
     {
         GGGraphics::Vertex vertices[] =
@@ -156,6 +156,9 @@ namespace GGRendererEngine
             return;
         }
 
+        CreateVertexBuffer();
+        CreateIndexBuffer();
+
         wasInitialized = true;
     }
 
@@ -168,7 +171,7 @@ namespace GGRendererEngine
     {
         SDL_GL_SwapWindow(window);
     }
-    
+
     void DrawModel(const glm::mat4& model, const GGEnum::Texture texture)
     {
         shaderManager.SetUniformMatrix4f(GGEnum::Uniform::MVP, pipeline.GetMVPMatrix(model));

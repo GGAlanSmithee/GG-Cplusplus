@@ -909,17 +909,17 @@
 	<glm/gtc/matrix_transform.hpp>
 	"Engine/Core/Component.h"
 
-1419175466 source:c:\projects\creatio\src\engine\core\system.cpp
+1420820686 source:c:\projects\creatio\src\engine\core\system.cpp
 	"System.h"
 	"Engine/Renderer/Renderer.h"
 	"Engine/Core/Component.h"
 
-1419175263 c:\projects\creatio\src\engine\core\system.h
+1420820476 c:\projects\creatio\src\engine\core\system.h
 	<memory>
 	"Engine/Core/Component.h"
 	"Engine/Core/Entity.h"
 
-1419174617 c:\projects\creatio\src\engine\renderer\renderer.h
+1420820476 c:\projects\creatio\src\engine\renderer\renderer.h
 	<iostream>
 	<GL/glew.h>
 	<SDL.h>
@@ -942,7 +942,7 @@
 1417193184 c:\projects\creatio\src\engine\renderer\texture.h
 	<SDL_opengl.h>
 
-1420459091 source:c:\projects\creatio\src\engine\renderer\renderer.cpp
+1420821374 source:c:\projects\creatio\src\engine\renderer\renderer.cpp
 	<SDL_image.h>
 	<glm/glm.hpp>
 	"Renderer.h"
@@ -976,7 +976,7 @@
 	"Engine/Core/World.h"
 	"Engine/Core/Manager.h"
 
-1419180255 source:c:\projects\creatio\src\engine\core\core.cpp
+1420820606 source:c:\projects\creatio\src\engine\core\core.cpp
 	<iostream>
 	<SDL.h>
 	"Engine/Core/Core.h"
@@ -989,6 +989,47 @@
 1418863232 source:c:\projects\creatio\src\utility\utility.cpp
 	"Utility/Utility.h"
 
-1420459070 c:\projects\creatio\src\graphics\vertex.h
+1420661288 c:\projects\creatio\src\graphics\vertex.h
 	<glm/glm.hpp>
+
+1420661660 source:c:\projects\creatio\src\manager\resource\resource.cpp
+	"Resource.h"
+	<iostream>
+	<fstream>
+
+1420820476 c:\projects\creatio\src\manager\resource\resource.h
+	<sstream>
+	<string>
+	<vector>
+	<map>
+	<glm/glm.hpp>
+	"tinyxml2.h"
+	"Utility/Utility.h"
+	"Graphics/Vertex.h"
+	"Graphics/Mesh.h"
+	"Graphics/Geometry.h"
+
+1416775588 c:\applications\tinyxml2\tinyxml2.h
+	<ctype.h>
+	<limits.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdarg.h>
+	<cctype>
+	<climits>
+	<cstdio>
+	<cstdlib>
+	<cstring>
+	<cstdarg>
+	<android/log.h>
+	<assert.h>
+
+1420389015 c:\projects\creatio\src\graphics\mesh.h
+	<vector>
+	"Vertex.h"
+
+1420389122 c:\projects\creatio\src\graphics\geometry.h
+	<vector>
+	<string>
 
