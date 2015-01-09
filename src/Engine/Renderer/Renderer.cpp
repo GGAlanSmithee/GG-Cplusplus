@@ -156,6 +156,7 @@ namespace GGRendererEngine
             return;
         }
 
+        /// @todo move these!
         CreateVertexBuffer();
         CreateIndexBuffer();
 
