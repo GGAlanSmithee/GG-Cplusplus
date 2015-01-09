@@ -2,8 +2,10 @@
 #include "Engine/Renderer/Renderer.h"
 #include "Engine/Core/Component.h"
 
-namespace GGCoreEngine
+namespace // Private varaibles and functions
 {
+    using Mask = std::bitset<NumbComponentTypes>;
+    
     Mask CameraMask = GGUtility::ToIntegral(ComponentType::Transform) |
                       GGUtility::ToIntegral(ComponentType::Focus) |
                       GGUtility::ToIntegral(ComponentType::PointOfView) |
@@ -14,15 +16,16 @@ namespace GGCoreEngine
 
     Mask RenderMask = GGUtility::ToIntegral(ComponentType::Transform) |
                       GGUtility::ToIntegral(ComponentType::Appearance);
+}
 
+namespace GGCoreEngine
+{
     void Camera(World& world)
     {
         Display*     d;
         Focus*       f;
         PointOfView* p;
         Transform*   t;
-
-        GGRendererEngine::ClearScreen();
 
         for (unsigned int entity = 0; entity < world.Size; ++entity)
         {
@@ -65,8 +68,6 @@ namespace GGCoreEngine
     {
         Transform*  t;
         Appearance* a;
-
-        GGRendererEngine::ClearScreen();
 
         for (unsigned int entity = 0; entity < world.Size; ++entity)
         {
