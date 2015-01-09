@@ -79,16 +79,6 @@ namespace // Private varaibles and functions
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indices), Indices, GL_STATIC_DRAW);
     }
-    
-    void ClearScreen()
-    {
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    }
-
-    void UpdateScreen()
-    {
-        SDL_GL_SwapWindow(window);
-    }
 }
 
 namespace GGRendererEngine
@@ -169,6 +159,16 @@ namespace GGRendererEngine
         wasInitialized = true;
     }
 
+    void ClearScreen()
+    {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    }
+
+    void UpdateScreen()
+    {
+        SDL_GL_SwapWindow(window);
+    }
+    
     void DrawModel(const glm::mat4& model, const GGEnum::Texture texture)
     {
         shaderManager.SetUniformMatrix4f(GGEnum::Uniform::MVP, pipeline.GetMVPMatrix(model));
