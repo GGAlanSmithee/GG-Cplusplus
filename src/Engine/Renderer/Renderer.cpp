@@ -79,6 +79,16 @@ namespace // Private varaibles and functions
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indices), Indices, GL_STATIC_DRAW);
     }
+    
+    void ClearScreen()
+    {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    }
+
+    void UpdateScreen()
+    {
+        SDL_GL_SwapWindow(window);
+    }
 }
 
 namespace GGRendererEngine
