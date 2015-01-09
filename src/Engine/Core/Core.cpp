@@ -68,6 +68,9 @@ namespace GGCoreEngine
             auto world = game.GetWorld();
 
             GGCoreEngine::Movement(world);
+            
+            GGRendererEngine::ClearScreen();
+            
             GGCoreEngine::Render(world);
 
             GGRendererEngine::UpdateScreen();
