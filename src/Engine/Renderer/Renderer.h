@@ -33,6 +33,16 @@ namespace GGRendererEngine
     /// @param a alpha value
     void SetClearColor(const float, const float, const float, const float);
 
+    /// Clears the screen
+    /// @author Alan Smithee
+    /// @date 2014-11-19
+    void ClearScreen();
+
+    /// Updates the screen by swapping it according to the set swap interval
+    /// @author Alan Smithee
+    /// @date created 2014-11-19
+    void UpdateScreen();
+
     /// @author Alan Smithee
     /// @date created 2014-11-19
     /// Draws a model to the screen using current context
