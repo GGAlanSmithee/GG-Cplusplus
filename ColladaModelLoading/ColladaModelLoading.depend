@@ -19,17 +19,19 @@
 	<android/log.h>
 	<assert.h>
 
-1420660026 source:c:\projects\creatio\colladamodelloading\main.cpp
+1420924449 source:c:\projects\creatio\colladamodelloading\main.cpp
 	<iostream>
-	"Manager/Resource/Resource.h"
+	"Manager/Resource/Import.h"
+	"Manager/Resource/Export.h"
 
-1418863223 c:\projects\creatio\src\utility\utility.h
+1420848089 c:\projects\creatio\src\utility\utility.h
 	<string>
 	<sstream>
 	<string>
 	<vector>
+	<algorithm>
 
-1418863232 source:c:\projects\creatio\src\utility\utility.cpp
+1420847816 source:c:\projects\creatio\src\utility\utility.cpp
 	"Utility/Utility.h"
 
 1389479879 c:\applications\glm\glm\glm.hpp
@@ -406,9 +408,10 @@
 	<vector>
 	"Vertex.h"
 
-1420389122 c:\projects\creatio\src\graphics\geometry.h
+1420846815 c:\projects\creatio\src\graphics\geometry.h
 	<vector>
 	<string>
+	"Mesh.h"
 
 1420820476 c:\projects\creatio\src\manager\resource\resource.h
 	<sstream>
@@ -426,4 +429,34 @@
 	"Resource.h"
 	<iostream>
 	<fstream>
+
+1420923963 source:c:\projects\creatio\src\manager\resource\core.cpp
+	<dirent.h>
+	"Core.h"
+
+1420923923 c:\projects\creatio\src\manager\resource\core.h
+	<string>
+
+1420924031 source:c:\projects\creatio\src\manager\resource\export.cpp
+	<tinyxml2.h>
+	<sstream>
+	"Core.h"
+	"Export.h"
+
+1420923304 c:\projects\creatio\src\manager\resource\export.h
+	"Graphics/Scene.h"
+
+1420846852 c:\projects\creatio\src\graphics\scene.h
+	"Geometry.h"
+
+1420924898 source:c:\projects\creatio\src\manager\resource\import.cpp
+	<iostream>
+	<map>
+	<tinyxml2.h>
+	"Core.h"
+	"Import.h"
+	"Utility/Utility.h"
+
+1420924511 c:\projects\creatio\src\manager\resource\import.h
+	"Graphics/Scene.h"
 

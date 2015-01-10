@@ -43,12 +43,13 @@ namespace GGRendererEngine
     /// @date created 2014-11-19
     void UpdateScreen();
 
+    /// Draws a model to the screen using current context
     /// @author Alan Smithee
     /// @date created 2014-11-19
-    /// Draws a model to the screen using current context
+    /// @date changed 2015-01-10
     /// @param model the model to draw
     /// @param texture the texture to use when drawing the model
-    void DrawModel(const glm::mat4&, const GGEnum::Texture);
+    void DrawModel(const glm::mat4&, const std::string&);
 
     /// Cleans up used resources by destroying the glContext and deleting the SDL_Window* used
     /// @author Alan Smithee

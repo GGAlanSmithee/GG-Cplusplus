@@ -18,7 +18,7 @@ namespace GGEnum
     /// @todo when implementing texture batching, this might be removed in favor of a map of texture (texture name / texture)
     enum class Texture : int
     {
-        Crate
+
     };
 }
 

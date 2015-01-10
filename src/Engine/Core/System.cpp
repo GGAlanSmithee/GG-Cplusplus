@@ -79,7 +79,7 @@ namespace GGCoreEngine
             t = &(world.TransformComponents[entity]);
             a = &(world.AppearanceComponents[entity]);
 
-            GGRendererEngine::DrawModel(t->Get(), a->Texture);
+            GGRendererEngine::DrawModel(t->Get(), a->Scene);
         }
     }
 }

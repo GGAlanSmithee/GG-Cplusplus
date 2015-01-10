@@ -1,342 +1,126 @@
+#include <dirent.h>
+#include <map>
+#include <SDL.h>
+#include <SDL_image.h>
+#include <SDL_opengl.h>
+#include "Core.h"
+#include "Graphics/Scene.h"
+#include "Import.h"
 #include "Resource.h"
-#include <iostream>
-#include <fstream>
+#include "Utility/Utility.h"
 
 namespace // private functions
 {
-    const std::string ModelPath         = "../Model/";
-    const std::string ColladaFileEnding = ".dae";
-    const std::string GGFileEnding      = ".gg";
+    std::map<std::string, GGGraphics::Scene>   Scenes;
+    std::map<std::string, GGGraphics::Texture> Textures;
 
-    bool colladaModelWasImported = false;
-    bool ggModelWasImported = false;
+    std::vector<std::string> AllowedImageEndings =
+                            {
+                                "png"
+                            };
 
-    enum class SourceType
+    void LoadTexture(const std::string& name, const GLenum unit = GL_TEXTURE0, const GLenum target = GL_TEXTURE_2D)
     {
-        Position,
-        Normal,
-        Texcoord
-    };
+        GGGraphics::Texture texture;
 
-    std::map<std::string, SourceType> Sources
-                                      {
-                                          {"VERTEX", SourceType::Position},
-                                          {"NORMAL", SourceType::Normal},
-                                          {"TEXCOORD", SourceType::Texcoord},
-                                      };
+        texture.Target = target;
+        texture.Unit = unit;
 
-    typedef struct Source
-    {
-        int TotalCount = 0;
-        int Stride     = 0;
-        std::vector<float> Values;
-    }
-    Source;
+        SDL_Surface* surface = IMG_Load((GGResourceManager::GetTexturePath() + name).c_str());
 
-    tinyxml2::XMLElement* Child(tinyxml2::XMLElement* el, const std::string& name)
-    {
-        return el->FirstChildElement(name.c_str());
-    }
-
-    tinyxml2::XMLElement* SameSibling(tinyxml2::XMLElement* el)
-    {
-        return el->NextSiblingElement(el->Name());
-    }
-
-    const Source GetSource(tinyxml2::XMLElement* mesh, const std::string& name)
-    {
-        Source source;
-
-        for (auto srcNode = Child(mesh, "source"); srcNode != nullptr; srcNode = SameSibling(srcNode))
+        if (!surface)
         {
-            if (std::string(srcNode->Attribute("id")).compare(name) == 0)
-            {
-                source.TotalCount = std::stoi(srcNode->FirstChildElement("float_array")
-                                                     ->Attribute("count"));
+            //SetError("Failed to load surface: ", IMG_GetError());
 
-                source.Stride = std::stoi(srcNode->FirstChildElement("technique_common")
-                                                 ->FirstChildElement("accessor")
-                                                 ->Attribute("stride"));
-
-                source.Values = GGUtility::ToFloats(srcNode->FirstChildElement("float_array")->GetText());
-            }
+            return;
         }
 
-        return source;
-    }
+        int mode;
 
-    const std::map<SourceType, Source> GetAllSources(tinyxml2::XMLElement* meshNode, tinyxml2::XMLElement* polyNode)
-    {
-        std::map<SourceType, Source> sources;
-
-        for (auto input = Child(polyNode, "input"); input != nullptr; input = SameSibling(input))
+        if (surface->format->BytesPerPixel == 3) // RGB 24bit
         {
-            auto sourceName = std::string(input->Attribute("source"));
-            sourceName = sourceName.substr(1);
+            mode = GL_RGB;
+        }
+        else if (surface->format->BytesPerPixel == 4) // RGBA 32bit
+        {
+            mode = GL_RGBA;
+        }
+        else
+        {
+            //SetError("Loaded image was of wrong format: ", name.c_str());
 
-            SourceType sourceType = Sources[input->Attribute("semantic")];
+            SDL_FreeSurface(surface);
 
-            if (sourceType == SourceType::Position)
-            {
-                sourceName = sourceName.substr(0, sourceName.find("vertices")) + "positions";
-            }
-
-            sources[sourceType] = GetSource(meshNode, sourceName);
+            return;
         }
 
-        return sources;
+        glGenTextures(1, &texture.Id);
+        glBindTexture(texture.Target, texture.Id);
+        glTexImage2D(texture.Target, 0, mode, surface->w, surface->h, 0, mode, GL_UNSIGNED_BYTE, surface->pixels);
+        glTexParameteri(texture.Target, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(texture.Target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(texture.Target, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(texture.Target, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+        SDL_FreeSurface(surface);
+
+        Textures[name] = texture;
     }
 }
 
 namespace GGResourceManager
 {
-    const bool ColladaModelWasImported()
+    void LoadAllModels()
     {
-        return colladaModelWasImported;
-    }
+        auto dir = opendir(GGResourceManager::GetModelPath().c_str());
 
-    const bool GGModelWasImported()
-    {
-        return ggModelWasImported;
-    }
-
-    const std::vector<GGGraphics::Geometry> ImportColladaModel(const std::string& modelName)
-    {
-        colladaModelWasImported = true;
-
-        std::vector<GGGraphics::Geometry> geometries;
-
-        std::string completeModelName = ModelPath + modelName + ColladaFileEnding;
-
-        tinyxml2::XMLDocument colladaDoc;
-        auto loadingResult = colladaDoc.LoadFile(completeModelName.c_str());
-
-        if (loadingResult != tinyxml2::XML_SUCCESS)
+        if (dir != nullptr)
         {
-            std::cerr << "Could not load model" << std::endl;
+            struct dirent* entity = nullptr;
 
-            colladaModelWasImported = false;
-
-            return geometries;
-        }
-
-        auto root = colladaDoc.FirstChildElement("COLLADA");
-
-        if (root == nullptr)
-        {
-            std::cerr << "The loaded model is not a valid collada model" << std::endl;
-
-            colladaModelWasImported = false;
-
-            return geometries;
-        }
-
-        for (auto geosNode = Child(root, "library_geometries"); geosNode != nullptr; geosNode = SameSibling(geosNode))
-        {
-            for (auto geoNode = Child(geosNode, "geometry"); geoNode != nullptr; geoNode = SameSibling(geoNode))
+            while (entity = readdir(dir))
             {
-                GGGraphics::Geometry geometry(geoNode->Attribute("name"));
-
-                for (auto meshNode = Child(geoNode, "mesh"); meshNode != nullptr; meshNode = SameSibling(meshNode))
+                if (GGUtility::EndsWith(entity->d_name, GGResourceManager::GetGGFileEnding()))
                 {
-                    GGGraphics::Mesh mesh;
+                    GGGraphics::Scene scene;
 
-                    auto polyNode = Child(meshNode, "polylist");
-                    auto indices = GGUtility::ToInts(polyNode->FirstChildElement("p")->GetText());
-                    auto sources = GetAllSources(meshNode, polyNode);
+                    scene = ImportGGModel(entity->d_name);
 
-                    auto i = 0;
-                    while (i < indices.size() && sources.size() != 0)
-                    {
-                        mesh.Indices.push_back(static_cast<unsigned int>(indices[i]));
+                    /// @todo this should not be hardcoded!
+                    scene.Textures.push_back("crate");
 
-                        glm::vec3 position(0.0f);
-
-                        if (sources.count(SourceType::Position))
-                        {
-                            if (sources[SourceType::Position].Stride == 3)
-                            {
-                                auto values = sources[SourceType::Position].Values;
-                                position = glm::vec3(values[indices[i]], values[indices[i] + 1], values[indices[i] + 2]);
-                            }
-
-                            ++i;
-                        }
-
-                        glm::vec3 normal(0.0f);
-
-                        if (sources.count(SourceType::Normal))
-                        {
-                            if (sources[SourceType::Normal].Stride == 3)
-                            {
-                                auto values = sources[SourceType::Normal].Values;
-                                normal = glm::vec3(values[indices[i]], values[indices[i] + 1], values[indices[i] + 2]);
-                            }
-
-                            ++i;
-                        }
-
-                        glm::vec2 texcoord(0.0f);
-
-                        if (sources.count(SourceType::Texcoord))
-                        {
-                            if (sources[SourceType::Texcoord].Stride == 2)
-                            {
-                                auto values = sources[SourceType::Texcoord].Values;
-                                texcoord = glm::vec2(values[indices[i]], values[indices[i] + 1]);
-                            }
-
-                            ++i;
-                        }
-
-                        mesh.Vertices.push_back(GGGraphics::Vertex(position, normal, texcoord));
-                    }
-
-                    geometry.Meshes.push_back(mesh);
+                    Scenes["test"] = scene;
                 }
-
-                geometries.push_back(geometry);
             }
-        }
 
-        return geometries;
+            closedir(dir);
+        }
     }
 
-    const std::vector<GGGraphics::Geometry> ImportGGModel(const std::string& modelName)
+    void LoadAllTextures()
     {
-        ggModelWasImported = true;
+        auto dir = opendir(GGResourceManager::GetTexturePath().c_str());
 
-        std::vector<GGGraphics::Geometry> geometryList;
-
-        std::string completeModelName = ModelPath + modelName + GGFileEnding;
-
-        tinyxml2::XMLDocument ggDoc;
-        auto loadingResult = ggDoc.LoadFile(completeModelName.c_str());
-
-        if (loadingResult != tinyxml2::XML_SUCCESS)
+        if (dir != nullptr)
         {
-            std::cerr << "Could not load model" << std::endl;
+            struct dirent* entity = nullptr;
 
-            ggModelWasImported = false;
-
-            return geometryList;
-        }
-
-        for (auto geometries = ggDoc.FirstChildElement("geometries"); geometries != nullptr; geometries = SameSibling(geometries))
-        {
-            for (auto geoNode = Child(geometries, "geometry"); geoNode != nullptr; geoNode = SameSibling(geoNode))
+            while (entity = readdir(dir))
             {
-                GGGraphics::Geometry geometry("test");
+                std::string name(entity->d_name);
 
-                for (auto meshNode = Child(geoNode, "mesh"); meshNode != nullptr; meshNode = SameSibling(meshNode))
+                if (GGUtility::Contains(AllowedImageEndings, name.substr(name.rfind(".") + 1)))
                 {
-                    GGGraphics::Mesh mesh;
-
-                    auto indices = GGUtility::ToInts(Child(meshNode, "indices")->GetText());
-
-                    for (auto index : indices)
-                    {
-                        mesh.Indices.push_back(static_cast<unsigned int>(index));
-                    }
-
-                    for (auto vertNode = Child(meshNode, "vertex"); vertNode != nullptr; vertNode = SameSibling(vertNode))
-                    {
-                        auto positionData = GGUtility::ToInts(Child(vertNode, "position")->GetText());
-                        auto normalData = GGUtility::ToInts(Child(vertNode, "normal")->GetText());
-                        auto texCoordData = GGUtility::ToInts(Child(vertNode, "texcoord")->GetText());
-
-                        glm::vec3 position;
-                        glm::vec3 normal;
-                        glm::vec2 texCoord;
-
-                        if (positionData.size() == 3)
-                        {
-                            position = glm::vec3(positionData[0], positionData[1], positionData[2]);
-                        }
-
-                        if (normalData.size() == 3)
-                        {
-                            normal = glm::vec3(normalData[0], normalData[1], normalData[2]);
-                        }
-
-                        if (texCoordData.size() == 2)
-                        {
-                            texCoord = glm::vec2(texCoordData[0], texCoordData[1]);
-                        }
-
-                        mesh.Vertices.push_back(GGGraphics::Vertex(position, normal, texCoord));
-                    }
-
-                    geometry.Meshes.push_back(mesh);
+                    LoadTexture(name);
                 }
-
-                geometryList.push_back(geometry);
             }
-        }
 
-        return geometryList;
+            closedir(dir);
+        }
     }
 
-    void ExportGGModel(const std::vector<GGGraphics::Geometry>& geometries, const std::string& modelName)
+    const GGGraphics::Texture GetTexture(const std::string& texture)
     {
-        tinyxml2::XMLDocument ggDoc;
-
-        auto ggDeclaration = ggDoc.NewDeclaration("xml version=\"1.0\"");
-        ggDoc.InsertFirstChild(ggDeclaration);
-
-        auto ggGeometries = ggDoc.NewElement("geometries");
-        ggDoc.InsertEndChild(ggGeometries);
-
-        for (auto geometry : geometries)
-        {
-            auto ggGeometry = ggDoc.NewElement("geometry");
-            ggGeometries->InsertEndChild(ggGeometry);
-
-            for (auto mesh : geometry.Meshes)
-            {
-                auto ggMesh = ggDoc.NewElement("mesh");
-                ggGeometry->InsertEndChild(ggMesh);
-
-                for (auto vertex : mesh.Vertices)
-                {
-                    auto ggVertex = ggDoc.NewElement("vertex");
-                    ggMesh->InsertEndChild(ggVertex);
-
-                    std::stringstream position;
-                    position << vertex.Position.x << " " << vertex.Position.y << " " << vertex.Position.z;
-
-                    auto ggPosition = ggDoc.NewElement("position");
-                    ggPosition->InsertEndChild(ggDoc.NewText(position.str().c_str()));
-                    ggVertex->InsertEndChild(ggPosition);
-
-                    std::stringstream normal;
-                    normal << vertex.Normal.x << " " << vertex.Normal.y << " " << vertex.Normal.z;
-
-                    auto ggNormal = ggDoc.NewElement("normal");
-                    ggNormal->InsertEndChild(ggDoc.NewText(normal.str().c_str()));
-                    ggVertex->InsertEndChild(ggNormal);
-
-                    std::stringstream texCoord;
-                    texCoord << vertex.TexCoord.x << " " << vertex.TexCoord.y;
-
-                    auto ggTexCoord = ggDoc.NewElement("texcoord");
-                    ggTexCoord->InsertEndChild(ggDoc.NewText(texCoord.str().c_str()));
-                    ggVertex->InsertEndChild(ggTexCoord);
-                }
-
-                std::stringstream indices;
-
-                for (auto index : mesh.Indices)
-                {
-                    indices << index << " ";
-                }
-
-                auto ggIndices = ggDoc.NewElement("indices");
-                ggIndices->InsertEndChild(ggDoc.NewText(indices.str().c_str()));
-                ggMesh->InsertEndChild(ggIndices);
-            }
-        }
-
-        ggDoc.SaveFile((ModelPath + modelName + GGFileEnding).c_str());
+        return Textures[texture];
     }
 }

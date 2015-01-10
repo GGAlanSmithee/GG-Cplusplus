@@ -5,7 +5,6 @@
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include "Enum/Enum.h"
 
 namespace GGCoreEngine
 {
@@ -33,7 +32,7 @@ namespace GGCoreEngine
     /// @todo add information about model etc when done with model loading functionality
     typedef struct Appearance
     {
-        GGEnum::Texture Texture;
+        std::string Scene;
     }
     Appearance;
 

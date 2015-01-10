@@ -5,6 +5,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 namespace GGUtility
 {
@@ -53,6 +54,26 @@ namespace GGUtility
     /// @return a vector of floats
     /// @remark the string is split using the Split function, and then converted to floats
     std::vector<float> ToFloats(const std::string&);
+
+    /// Checks if a string ends with another string
+    /// @author Alan Smithee
+    /// @date created 2015-01-09
+    /// @param fullString the full string to check
+    /// @param ending the ending to check against
+    /// @return true if fullString ends with ending, false if not
+    const bool EndsWith(const std::string&, const std::string&);
+
+    /// Checks if an array of T contains a cetrain element
+    /// @author Alan Smithee
+    /// @date created 2015-01-09
+    /// @param arr the array to check
+    /// @param element the element to check for
+    /// @return true if arr contains element, false if not
+    template<class T>
+    const bool Contains(std::vector<T> arr, const T element)
+    {
+        return std::find(std::begin(arr), std::end(arr), element) != std::end(arr);
+    }
 }
 
 #endif // UTILITY_H_INCLUDED

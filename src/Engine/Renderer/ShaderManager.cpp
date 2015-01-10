@@ -4,9 +4,10 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include "ShaderManager.h"
-#include "Logging.h"
 #include <SDL_image.h>
+#include "Logging.h"
+#include "Manager/Resource/Resource.h"
+#include "ShaderManager.h"
 
 namespace GGRendererEngine
 {
@@ -118,27 +119,6 @@ namespace GGRendererEngine
         return _uniformsWereBound;
     }
 
-    void ShaderManager::LoadTextures()
-    {
-        _texturesWereLoaded = false;
-
-        auto texture = LoadTexture("../gfx/crate.jpg", GL_TEXTURE0, GL_TEXTURE_2D);
-
-        if (texture.Id == -1)
-        {
-            return;
-        }
-
-        _textures[GGEnum::Texture::Crate] = texture;
-
-        _texturesWereLoaded = true;
-    }
-
-    const bool ShaderManager::TexturesWereLoaded() const
-    {
-        return _texturesWereLoaded;
-    }
-
     void ShaderManager::SetUniform1i(const GGEnum::Uniform uniform, const int value)
     {
         glUniform1i(_uniforms[uniform], value);
@@ -154,62 +134,13 @@ namespace GGRendererEngine
         glUniformMatrix4fv(_uniforms[uniform], 1, GL_FALSE, glm::value_ptr(value));
     }
 
-    void ShaderManager::ActivateTexture(const GGEnum::Texture texture)
+    void ShaderManager::ActivateTexture(const std::string& texture)
     {
-        glActiveTexture(_textures[texture].Unit);
-        glBindTexture(_textures[texture].Target, _textures[texture].Id);
+        glActiveTexture(GGResourceManager::GetTexture(texture).Unit);
+        glBindTexture(GGResourceManager::GetTexture(texture).Target, GGResourceManager::GetTexture(texture).Id);
     }
 
     //{ Private helpers
-
-    const GGGraphics::Texture ShaderManager::LoadTexture(const std::string& path,
-                                                         const GLenum unit   = GL_TEXTURE0,
-                                                         const GLenum target = GL_TEXTURE_2D)
-    {
-        GGGraphics::Texture texture;
-
-        texture.Target = target;
-        texture.Unit = unit;
-
-        SDL_Surface* surface = IMG_Load(path.c_str());
-
-        if (!surface)
-        {
-            SetError("Failed to load surface: ", IMG_GetError());
-
-            return texture;
-        }
-
-        int mode;
-
-        if (surface->format->BytesPerPixel == 3) // RGB 24bit
-        {
-            mode = GL_RGB;
-        }
-        else if (surface->format->BytesPerPixel == 4) // RGBA 32bit
-        {
-            mode = GL_RGBA;
-        }
-        else
-        {
-            SetError("Loaded image was of wrong format: ", path.c_str());
-            SDL_FreeSurface(surface);
-
-            return texture;
-        }
-
-        glGenTextures(1, &texture.Id);
-        glBindTexture(texture.Target, texture.Id);
-        glTexImage2D(texture.Target, 0, mode, surface->w, surface->h, 0, mode, GL_UNSIGNED_BYTE, surface->pixels);
-        glTexParameteri(texture.Target, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(texture.Target, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexParameteri(texture.Target, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(texture.Target, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-        SDL_FreeSurface(surface);
-
-        return texture ;
-    }
 
     const GLuint ShaderManager::CompileShader(const GLenum type, const std::string& fileName) const
     {

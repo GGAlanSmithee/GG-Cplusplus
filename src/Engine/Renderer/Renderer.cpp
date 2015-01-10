@@ -3,6 +3,7 @@
 #include "Renderer.h"
 #include "Graphics/Texture.h"
 #include "Graphics/Vertex.h"
+#include "Manager/Resource/Resource.h"
 
 namespace // Private varaibles and functions
 {
@@ -149,12 +150,7 @@ namespace GGRendererEngine
             return;
         }
 
-        shaderManager.LoadTextures();
-
-        if (!shaderManager.TexturesWereLoaded())
-        {
-            return;
-        }
+        GGResourceManager::LoadAllTextures();
 
         /// @todo move these!
         CreateVertexBuffer();
@@ -173,7 +169,7 @@ namespace GGRendererEngine
         SDL_GL_SwapWindow(window);
     }
 
-    void DrawModel(const glm::mat4& model, const GGEnum::Texture texture)
+    void DrawModel(const glm::mat4& model, const std::string& texture)
     {
         shaderManager.SetUniformMatrix4f(GGEnum::Uniform::MVP, pipeline.GetMVPMatrix(model));
 

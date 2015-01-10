@@ -8,7 +8,6 @@
 #include <glm/glm.hpp>
 #include "Pipeline.h"
 #include "Enum/Enum.h"
-#include "Graphics/Texture.h"
 
 namespace GGRendererEngine
 {
@@ -30,18 +29,6 @@ namespace GGRendererEngine
             /// @date 2014-11-22
             /// @return true if the program was built succesfully, false if not
             const bool ProgramWasCreated() const;
-
-            /// Loads all textures
-            /// @author Alan Smithee
-            /// @date 2014-11-22
-            /// @remarks The textures that are loaded are stored in the Handles structure in the Texture map
-            void LoadTextures();
-
-            /// Returns a boolean value indicating if the textures were loaded
-            /// @author Alan Smithee
-            /// @date 2014-11-22
-            /// @return true if the textures were loaded succesfully, false if not
-            const bool TexturesWereLoaded() const;
 
             /// Binds all uniforms
             /// @author Alan Smithee
@@ -78,23 +65,21 @@ namespace GGRendererEngine
 
             /// Activates a texture on the shader
             /// @author Alan Smithee
-            /// @date 2014-11-22
+            /// @date created 2014-11-22
+            /// @date changed 2015-01-10
             /// @param texture the texture to activate
-            void ActivateTexture(const GGEnum::Texture);
+            void ActivateTexture(const std::string&);
 
         private:
-            const GGGraphics::Texture LoadTexture(const std::string&, const GLenum, const GLenum);
             const GLuint CompileShader(const GLenum, const std::string&) const;
             const std::string GetShaderSource(const std::string&) const;
 
             GLuint _program;
 
             std::map<GGEnum::Uniform, GLuint>  _uniforms;
-            std::map<GGEnum::Texture, GGGraphics::Texture> _textures;
 
             bool _programWasBuilt   = false;
             bool _uniformsWereBound = false;
-            bool _texturesWereLoaded = false;
     };
 }
 

@@ -1,6 +1,7 @@
 #ifndef TEXTURE_H_INCLUDED
 #define TEXTURE_H_INCLUDED
 
+#include <SDL.h>
 #include <SDL_opengl.h>
 
 namespace GGGraphics

@@ -3,6 +3,7 @@
 #include "Engine/Core/Core.h"
 #include "Engine/Core/System.h"
 #include "Engine/Renderer/Renderer.h"
+#include "Manager/Resource/Resource.h"
 
 namespace GGCoreEngine
 {
@@ -27,6 +28,8 @@ namespace GGCoreEngine
 
         bool running = true;
         float scale = 1.0f;
+
+        GGResourceManager::LoadAllModels();
 
         while (running)
         {

@@ -44,4 +44,14 @@ namespace GGUtility
 
         return floats;
     }
+
+    const bool EndsWith(const std::string& fullString, const std::string& ending)
+    {
+        if (fullString.length() >= ending.length())
+        {
+            return fullString.compare(fullString.length() - ending.length(), ending.length(), ending) == 0;
+        }
+
+        return false;
+    }
 }

@@ -400,11 +400,12 @@
 	<intrin.h>
 	<limits>
 
-1418863223 c:\projects\creatio\src\utility\utility.h
+1420848089 c:\projects\creatio\src\utility\utility.h
 	<string>
 	<sstream>
 	<string>
 	<vector>
+	<algorithm>
 
 1416772468 source:c:\projects\creatio\src\graphics\graphics.cpp
 	<SDL_image.h>
@@ -840,7 +841,7 @@
 	"Entity/Entity.h"
 	"Core/Core.h"
 
-1417193184 c:\projects\creatio\src\enum\enum.h
+1420845178 c:\projects\creatio\src\enum\enum.h
 
 1376152754 c:\applications\sdl2_image-2.0.0\x86_64-w64-mingw32\include\sdl2\sdl_image.h
 	"SDL.h"
@@ -848,7 +849,8 @@
 	"begin_code.h"
 	"close_code.h"
 
-1419102084 c:\projects\creatio\src\graphics\texture.h
+1420925196 c:\projects\creatio\src\graphics\texture.h
+	<SDL.h>
 	<SDL_opengl.h>
 
 1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_opengl.h
@@ -865,7 +867,7 @@
 	<stdint.h>
 	<inttypes.h>
 
-1419101794 source:c:\projects\creatio\src\engine\core\entity.cpp
+1420846882 source:c:\projects\creatio\src\engine\core\entity.cpp
 	<iostream>
 	"Entity.h"
 	"Engine/Core/Component.h"
@@ -884,12 +886,11 @@
 	"Utility/Utility.h"
 	"Enum/Enum.h"
 
-1419175490 c:\projects\creatio\src\engine\core\component.h
+1420846899 c:\projects\creatio\src\engine\core\component.h
 	<string>
 	<GL/glew.h>
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
-	"Enum/Enum.h"
 
 1417043415 c:\projects\creatio\src\utility\enum.h
 
@@ -909,7 +910,7 @@
 	<glm/gtc/matrix_transform.hpp>
 	"Engine/Core/Component.h"
 
-1420820686 source:c:\projects\creatio\src\engine\core\system.cpp
+1420846916 source:c:\projects\creatio\src\engine\core\system.cpp
 	"System.h"
 	"Engine/Renderer/Renderer.h"
 	"Engine/Core/Component.h"
@@ -919,7 +920,7 @@
 	"Engine/Core/Component.h"
 	"Engine/Core/Entity.h"
 
-1420820476 c:\projects\creatio\src\engine\renderer\renderer.h
+1420846958 c:\projects\creatio\src\engine\renderer\renderer.h
 	<iostream>
 	<GL/glew.h>
 	<SDL.h>
@@ -929,7 +930,7 @@
 	"Graphics/Texture.h"
 	"Enum/Enum.h"
 
-1420822751 c:\projects\creatio\src\engine\renderer\shadermanager.h
+1420847573 c:\projects\creatio\src\engine\renderer\shadermanager.h
 	<string>
 	<map>
 	<GL/glew.h>
@@ -937,30 +938,31 @@
 	<glm/glm.hpp>
 	"Pipeline.h"
 	"Enum/Enum.h"
-	"Graphics/Texture.h"
 
 1417193184 c:\projects\creatio\src\engine\renderer\texture.h
 	<SDL_opengl.h>
 
-1420821374 source:c:\projects\creatio\src\engine\renderer\renderer.cpp
+1420847513 source:c:\projects\creatio\src\engine\renderer\renderer.cpp
 	<SDL_image.h>
 	<glm/glm.hpp>
 	"Renderer.h"
 	"Graphics/Texture.h"
 	"Graphics/Vertex.h"
+	"Manager/Resource/Resource.h"
 
 1417045447 c:\projects\creatio\src\engine\renderer\vertex.h
 	<glm/glm.hpp>
 
-1419102429 source:c:\projects\creatio\src\engine\renderer\shadermanager.cpp
+1420847540 source:c:\projects\creatio\src\engine\renderer\shadermanager.cpp
 	<iostream>
 	<fstream>
 	<sstream>
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtc/type_ptr.hpp>
-	"ShaderManager.h"
-	"Logging.h"
 	<SDL_image.h>
+	"Logging.h"
+	"Manager/Resource/Resource.h"
+	"ShaderManager.h"
 
 1418401239 source:c:\projects\creatio\src\engine\core\manager.cpp
 	"Engine/Core/manager.h"
@@ -976,38 +978,38 @@
 	"Engine/Core/World.h"
 	"Engine/Core/Manager.h"
 
-1420820606 source:c:\projects\creatio\src\engine\core\core.cpp
+1420843745 source:c:\projects\creatio\src\engine\core\core.cpp
 	<iostream>
 	<SDL.h>
 	"Engine/Core/Core.h"
 	"Engine/Core/System.h"
 	"Engine/Renderer/Renderer.h"
+	"Manager/Resource/Resource.h"
 
 1417643537 c:\projects\creatio\src\engine\core\core.h
 	"Game/Game.h"
 
-1418863232 source:c:\projects\creatio\src\utility\utility.cpp
+1420847816 source:c:\projects\creatio\src\utility\utility.cpp
 	"Utility/Utility.h"
 
 1420661288 c:\projects\creatio\src\graphics\vertex.h
 	<glm/glm.hpp>
 
-1420661660 source:c:\projects\creatio\src\manager\resource\resource.cpp
-	"Resource.h"
-	<iostream>
-	<fstream>
-
-1420820476 c:\projects\creatio\src\manager\resource\resource.h
-	<sstream>
-	<string>
-	<vector>
+1420924913 source:c:\projects\creatio\src\manager\resource\resource.cpp
+	<dirent.h>
 	<map>
-	<glm/glm.hpp>
-	"tinyxml2.h"
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_opengl.h>
+	"Core.h"
+	"Graphics/Scene.h"
+	"Import.h"
+	"Resource.h"
 	"Utility/Utility.h"
-	"Graphics/Vertex.h"
-	"Graphics/Mesh.h"
-	"Graphics/Geometry.h"
+
+1420924603 c:\projects\creatio\src\manager\resource\resource.h
+	<string>
+	"Graphics/Texture.h"
 
 1416775588 c:\applications\tinyxml2\tinyxml2.h
 	<ctype.h>
@@ -1029,7 +1031,29 @@
 	<vector>
 	"Vertex.h"
 
-1420389122 c:\projects\creatio\src\graphics\geometry.h
+1420846815 c:\projects\creatio\src\graphics\geometry.h
 	<vector>
 	<string>
+	"Mesh.h"
+
+1420846852 c:\projects\creatio\src\graphics\scene.h
+	"Geometry.h"
+
+1420923963 source:c:\projects\creatio\src\manager\resource\core.cpp
+	<dirent.h>
+	"Core.h"
+
+1420923923 c:\projects\creatio\src\manager\resource\core.h
+	<string>
+
+1420924511 c:\projects\creatio\src\manager\resource\import.h
+	"Graphics/Scene.h"
+
+1420924898 source:c:\projects\creatio\src\manager\resource\import.cpp
+	<iostream>
+	<map>
+	<tinyxml2.h>
+	"Core.h"
+	"Import.h"
+	"Utility/Utility.h"
 

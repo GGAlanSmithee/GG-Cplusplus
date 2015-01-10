@@ -45,6 +45,7 @@
 			<Add option="-lglu32" />
 			<Add option="-lglew32" />
 			<Add option="-lglew32mx" />
+			<Add library="C:/Applications/tinyxml2/bin/libtinyxmllib.a" />
 			<Add directory="C:/Applications/SDL2-2.0.3/x86_64-w64-mingw32/lib" />
 			<Add directory="C:/Applications/SDL2_image-2.0.0/x86_64-w64-mingw32/lib" />
 		</Linker>
@@ -74,8 +75,15 @@
 		<Unit filename="../Src/Game/Game.h" />
 		<Unit filename="../Src/Graphics/Geometry.h" />
 		<Unit filename="../Src/Graphics/Mesh.h" />
+		<Unit filename="../Src/Graphics/Scene.h" />
 		<Unit filename="../Src/Graphics/Texture.h" />
 		<Unit filename="../Src/Graphics/Vertex.h" />
+		<Unit filename="../Src/Manager/Resource/Core.cpp" />
+		<Unit filename="../Src/Manager/Resource/Core.h" />
+		<Unit filename="../Src/Manager/Resource/Import.cpp" />
+		<Unit filename="../Src/Manager/Resource/Import.h" />
+		<Unit filename="../Src/Manager/Resource/Resource.cpp" />
+		<Unit filename="../Src/Manager/Resource/Resource.h" />
 		<Unit filename="../Src/Utility/Utility.cpp" />
 		<Unit filename="../Src/Utility/Utility.h" />
 		<Unit filename="Basic.fs" />

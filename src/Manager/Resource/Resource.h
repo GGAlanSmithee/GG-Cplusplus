@@ -1,51 +1,27 @@
 #ifndef RESOURCE_H_INCLUDED
 #define RESOURCE_H_INCLUDED
 
-#include <sstream>
 #include <string>
-#include <vector>
-#include <map>
-#include <glm/glm.hpp>
-#include "tinyxml2.h"
-#include "Utility/Utility.h"
-#include "Graphics/Vertex.h"
-#include "Graphics/Mesh.h"
-#include "Graphics/Geometry.h"
+#include "Graphics/Texture.h"
 
 namespace GGResourceManager
 {
-    /// Indicates if a collada model was loaded
+    /// Loads all models from the current model path
     /// @author Alan Smithee
-    /// @date created 20154-01-08
-    /// @return true if the model was loaded, false if not
-    const bool ColladaModelWasImported();
-    
-    /// Indicates if a gg model was loaded
-    /// @author Alan Smithee
-    /// @date created 20154-01-08
-    /// @return true if the model was loaded, false if not
-    const bool GGModelWasImported();
+    /// @date created 2015-01-09
+    void LoadAllModels();
 
-    /// Imports a collada model
+    /// Loads all textures from the current texture path
     /// @author Alan Smithee
-    /// @date created 20154-01-08
-    /// @param modelName the name of the model to import
-    /// @return a vector of geometries
-    const std::vector<GGGraphics::Geometry> ImportColladaModel(const std::string&);
-    
-    /// Imports a gg model
+    /// @date created 2015-01-09
+    void LoadAllTextures();
+
+    /// Gets a texture by its name
     /// @author Alan Smithee
-    /// @date created 20154-01-08
-    /// @param modelName the name of the model to import
-    /// @return a vector of geometries
-    const std::vector<GGGraphics::Geometry> ImportGGModel(const std::string&);
-    
-    /// Exports a gg model
-    /// @author Alan Smithee
-    /// @date created 20154-01-08
-    /// @param geometries vector of geometries to export
-    /// @param modelName the name to save the exported model as
-    void ExportGGModel(const std::vector<GGGraphics::Geometry>&, const std::string&);
+    /// @date created 2015-01-10
+    /// @param texture the name of the texture to get
+    /// @return the texture with the name passed in
+    const GGGraphics::Texture GetTexture(const std::string&);
 }
 
 #endif // RESOURCE_H_INCLUDED

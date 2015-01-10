@@ -16,7 +16,7 @@ namespace GGCoreEngine
                                     GGUtility::ToIntegral(ComponentType::Physics) |
                                     GGUtility::ToIntegral(ComponentType::Appearance);
 
-                world.AppearanceComponents[i].Texture = GGEnum::Texture::Crate;
+                world.AppearanceComponents[i].Scene = "test";
 
                 return i;
             }
