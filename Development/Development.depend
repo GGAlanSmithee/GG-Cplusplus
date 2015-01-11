@@ -867,12 +867,13 @@
 	<stdint.h>
 	<inttypes.h>
 
-1420846882 source:c:\projects\creatio\src\engine\core\entity.cpp
+1420986464 source:c:\projects\creatio\src\engine\core\entity.cpp
 	<iostream>
 	"Entity.h"
 	"Engine/Core/Component.h"
 	"Utility/Utility.h"
 	"Enum/Enum.h"
+	"Manager/Resource/Resource.h"
 
 1417045618 c:\projects\creatio\src\engine\core\entity.h
 	"World.h"
@@ -886,7 +887,7 @@
 	"Utility/Utility.h"
 	"Enum/Enum.h"
 
-1420846899 c:\projects\creatio\src\engine\core\component.h
+1420986480 c:\projects\creatio\src\engine\core\component.h
 	<string>
 	<GL/glew.h>
 	<glm/glm.hpp>
@@ -905,12 +906,12 @@
 1417045424 source:c:\projects\creatio\src\engine\renderer\pipeline.cpp
 	"Pipeline.h"
 
-1417193184 c:\projects\creatio\src\engine\renderer\pipeline.h
+1420997869 c:\projects\creatio\src\engine\renderer\pipeline.h
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
 	"Engine/Core/Component.h"
 
-1420846916 source:c:\projects\creatio\src\engine\core\system.cpp
+1420998051 source:c:\projects\creatio\src\engine\core\system.cpp
 	"System.h"
 	"Engine/Renderer/Renderer.h"
 	"Engine/Core/Component.h"
@@ -920,14 +921,15 @@
 	"Engine/Core/Component.h"
 	"Engine/Core/Entity.h"
 
-1420846958 c:\projects\creatio\src\engine\renderer\renderer.h
+1420998008 c:\projects\creatio\src\engine\renderer\renderer.h
 	<iostream>
 	<GL/glew.h>
 	<SDL.h>
-	"ShaderManager.h"
 	"Pipeline.h"
-	"Logging.h"
+	"Manager/Logging/Logging.h"
+	"Graphics/Shader.h"
 	"Graphics/Texture.h"
+	"Graphics/Vertex.h"
 	"Enum/Enum.h"
 
 1420847573 c:\projects\creatio\src\engine\renderer\shadermanager.h
@@ -942,9 +944,10 @@
 1417193184 c:\projects\creatio\src\engine\renderer\texture.h
 	<SDL_opengl.h>
 
-1420847513 source:c:\projects\creatio\src\engine\renderer\renderer.cpp
+1420998025 source:c:\projects\creatio\src\engine\renderer\renderer.cpp
 	<SDL_image.h>
 	<glm/glm.hpp>
+	<glm/gtc/type_ptr.hpp>
 	"Renderer.h"
 	"Graphics/Texture.h"
 	"Graphics/Vertex.h"
@@ -978,7 +981,7 @@
 	"Engine/Core/World.h"
 	"Engine/Core/Manager.h"
 
-1420843745 source:c:\projects\creatio\src\engine\core\core.cpp
+1420998029 source:c:\projects\creatio\src\engine\core\core.cpp
 	<iostream>
 	<SDL.h>
 	"Engine/Core/Core.h"
@@ -995,20 +998,24 @@
 1420661288 c:\projects\creatio\src\graphics\vertex.h
 	<glm/glm.hpp>
 
-1420924913 source:c:\projects\creatio\src\manager\resource\resource.cpp
+1420988252 source:c:\projects\creatio\src\manager\resource\resource.cpp
 	<dirent.h>
+	<glm/gtc/type_ptr.hpp>
 	<map>
 	<SDL.h>
 	<SDL_image.h>
-	<SDL_opengl.h>
+	<iostream>
 	"Core.h"
 	"Graphics/Scene.h"
 	"Import.h"
+	"Manager/Logging/Logging.h"
 	"Resource.h"
 	"Utility/Utility.h"
 
-1420924603 c:\projects\creatio\src\manager\resource\resource.h
+1420986432 c:\projects\creatio\src\manager\resource\resource.h
 	<string>
+	"Graphics/Scene.h"
+	"Graphics/Shader.h"
 	"Graphics/Texture.h"
 
 1416775588 c:\applications\tinyxml2\tinyxml2.h
@@ -1036,24 +1043,53 @@
 	<string>
 	"Mesh.h"
 
-1420846852 c:\projects\creatio\src\graphics\scene.h
+1420986347 c:\projects\creatio\src\graphics\scene.h
 	"Geometry.h"
 
-1420923963 source:c:\projects\creatio\src\manager\resource\core.cpp
+1420982888 source:c:\projects\creatio\src\manager\resource\core.cpp
 	<dirent.h>
 	"Core.h"
 
-1420923923 c:\projects\creatio\src\manager\resource\core.h
+1420982881 c:\projects\creatio\src\manager\resource\core.h
 	<string>
 
-1420924511 c:\projects\creatio\src\manager\resource\import.h
+1420977984 c:\projects\creatio\src\manager\resource\import.h
 	"Graphics/Scene.h"
+	"Graphics/Shader.h"
 
-1420924898 source:c:\projects\creatio\src\manager\resource\import.cpp
+1420986392 source:c:\projects\creatio\src\manager\resource\import.cpp
 	<iostream>
+	<fstream>
 	<map>
 	<tinyxml2.h>
 	"Core.h"
 	"Import.h"
+	"Manager/Logging/Logging.h"
 	"Utility/Utility.h"
+
+1420969518 c:\projects\creatio\src\engine\renderer\shader.h
+	<string>
+	<map>
+	<GL/glew.h>
+	<SDL.h>
+	<glm/glm.hpp>
+	"Pipeline.h"
+	"Enum/Enum.h"
+
+1420984218 c:\projects\creatio\src\manager\logging\logging.h
+	<string>
+	<vector>
+	<GL/glew.h>
+
+1420978183 c:\projects\creatio\src\graphics\shader.h
+	<map>
+	<string>
+	<GL/glew.h>
+	<SDL.h>
+	<SDL_opengl.h>
+	"Enum/Enum.h"
+
+1420984857 source:c:\projects\creatio\src\manager\logging\logging.cpp
+	<iostream>
+	"Logging.h"
 

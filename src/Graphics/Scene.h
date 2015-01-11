@@ -29,10 +29,11 @@ namespace GGGraphics
         /// @date created 2015-01-09
         std::vector<Geometry> Geometries;
 
-        /// The names of the textures of the scene
+        /// The name of the texture of the scene
         /// @author Alan Smithee
         /// @date created 2015-01-09
-        std::vector<std::string> Textures;
+        /// @date created 2015-01-11
+        std::string Texture;
     }
     Scene;
 }

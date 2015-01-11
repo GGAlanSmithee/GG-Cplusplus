@@ -5,38 +5,37 @@
 #include <vector>
 #include <GL/glew.h>
 
-namespace GGRendererEngine
+namespace GGLoggingManager
 {
-    /// Holds the last encountered error
+    /// Logs an error text
     /// @author Alan Smithee
     /// @date created 2014-11-28
-    /// @todo this needs to be refactored to be encapsulated
-    extern std::string error;
+    /// @date changed 2015-01-11
+    void LogError(const char*, const char* = "");
 
-    /// Sets an error text
+    /// Logs an error text
     /// @author Alan Smithee
     /// @date created 2014-11-28
-    void SetError(const char*, const char* = "");
-    
-    /// Sets an error text
+    /// @date changed 2015-01-11
+    void LogError(const char*, const unsigned char*);
+
+    /// Logs an error text
     /// @author Alan Smithee
     /// @date created 2014-11-28
-    void SetError(const char*, const unsigned char*);
-    
-    /// Sets an error text
+    /// @date changed 2015-01-11
+    void LogError(const char*, const std::string&);
+
+    /// Logs an error text
     /// @author Alan Smithee
     /// @date created 2014-11-28
-    void SetError(const char*, const std::string&);
-    
-    /// Sets an error text
+    /// @date changed 2015-01-11
+    void LogError(const char*, const std::vector<char>&);
+
+    /// Logs an error text
     /// @author Alan Smithee
     /// @date created 2014-11-28
-    void SetError(const char*, const std::vector<char>&);
-    
-    /// Sets an error text
-    /// @author Alan Smithee
-    /// @date created 2014-11-28
-    void SetError(const char*, const int);
+    /// @date changed 2015-01-11
+    void LogError(const char*, const int);
 
     /// Retrieves the info log from a shader
     /// @author Alan Smithee
@@ -44,7 +43,7 @@ namespace GGRendererEngine
     /// @param shader the id of the sahder to get the log for
     /// @return an errormessage as a char vector
     const std::vector<GLchar> GetShaderInfoLog(const GLuint);
-    
+
     /// Retrieves the info log from a shader program
     /// @author Alan Smithee
     /// @date created 2014-11-28
@@ -52,11 +51,10 @@ namespace GGRendererEngine
     /// @return an errormessage as a char vector
     const std::vector<GLchar> GetProgramInfoLog(const GLuint);
 
-    /// Gets the latest recorded error from within the GGGraphics namespace
+    /// Sets the logging method to console
     /// @author Alan Smithee
     /// @date created 2014-11-28
-    /// @return an errormessage as a std::string
-    const std::string GetError();
+    void SetLoggingMethodToConsole();
 }
 
 

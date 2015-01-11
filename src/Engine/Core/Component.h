@@ -2,6 +2,7 @@
 #define COMPONENT_H_INCLUDED
 
 #include <string>
+
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -29,10 +30,11 @@ namespace GGCoreEngine
     /// Enables an entity to have an observable appearance in the 3D world
     /// @author Alan Smithee
     /// @date created 2014-11-19
-    /// @todo add information about model etc when done with model loading functionality
+    /// @date changed 2015-01-11
     typedef struct Appearance
     {
         std::string Scene;
+        std::string Shader;
     }
     Appearance;
 

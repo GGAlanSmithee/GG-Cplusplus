@@ -63,21 +63,20 @@
 		<Unit filename="../Src/Engine/Core/World.h" />
 		<Unit filename="../Src/Engine/Input/Input.h" />
 		<Unit filename="../Src/Engine/Physics/Physics.h" />
-		<Unit filename="../Src/Engine/Renderer/Logging.cpp" />
-		<Unit filename="../Src/Engine/Renderer/Logging.h" />
 		<Unit filename="../Src/Engine/Renderer/Pipeline.cpp" />
 		<Unit filename="../Src/Engine/Renderer/Pipeline.h" />
 		<Unit filename="../Src/Engine/Renderer/Renderer.cpp" />
 		<Unit filename="../Src/Engine/Renderer/Renderer.h" />
-		<Unit filename="../Src/Engine/Renderer/ShaderManager.cpp" />
-		<Unit filename="../Src/Engine/Renderer/ShaderManager.h" />
 		<Unit filename="../Src/Game/Game.cpp" />
 		<Unit filename="../Src/Game/Game.h" />
 		<Unit filename="../Src/Graphics/Geometry.h" />
 		<Unit filename="../Src/Graphics/Mesh.h" />
 		<Unit filename="../Src/Graphics/Scene.h" />
+		<Unit filename="../Src/Graphics/Shader.h" />
 		<Unit filename="../Src/Graphics/Texture.h" />
 		<Unit filename="../Src/Graphics/Vertex.h" />
+		<Unit filename="../Src/Manager/Logging/Logging.cpp" />
+		<Unit filename="../Src/Manager/Logging/Logging.h" />
 		<Unit filename="../Src/Manager/Resource/Core.cpp" />
 		<Unit filename="../Src/Manager/Resource/Core.h" />
 		<Unit filename="../Src/Manager/Resource/Import.cpp" />
@@ -86,8 +85,6 @@
 		<Unit filename="../Src/Manager/Resource/Resource.h" />
 		<Unit filename="../Src/Utility/Utility.cpp" />
 		<Unit filename="../Src/Utility/Utility.h" />
-		<Unit filename="Basic.fs" />
-		<Unit filename="Basic.vs" />
 		<Unit filename="Main.cpp" />
 		<Extensions>
 			<code_completion />

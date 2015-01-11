@@ -64,6 +64,8 @@
 		<Unit filename="../Src/Graphics/Mesh.h" />
 		<Unit filename="../Src/Graphics/Scene.h" />
 		<Unit filename="../Src/Graphics/Vertex.h" />
+		<Unit filename="../Src/Manager/Logging/Logging.cpp" />
+		<Unit filename="../Src/Manager/Logging/Logging.h" />
 		<Unit filename="../Src/Manager/Resource/Core.cpp" />
 		<Unit filename="../Src/Manager/Resource/Core.h" />
 		<Unit filename="../Src/Manager/Resource/Export.cpp" />

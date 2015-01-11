@@ -65,6 +65,6 @@ namespace GGResourceManager
             }
         }
 
-        ggDoc.SaveFile((GetModelPath() + modelName + GetGGFileEnding()).c_str());
+        ggDoc.SaveFile((GetModelPath() + modelName + GetGGModelFileEnding()).c_str());
     }
 }

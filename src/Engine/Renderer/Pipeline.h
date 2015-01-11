@@ -19,7 +19,7 @@ namespace GGRendererEngine
             /// @date created 2014-11-28
             /// @return a 2d vector where x is screen width and y screen height
             const glm::vec2 GetScreenDimensions() const;
-            
+
             /// Sets the screens (main viewports) dimensions
             /// @author Alan Smithee
             /// @date created 2014-11-28
@@ -29,9 +29,9 @@ namespace GGRendererEngine
             /// Gets the projection matrix
             /// @author Alan Smithee
             /// @date created 2014-11-28
-            /// @return the projection matrix as a 4d matrix 
+            /// @return the projection matrix as a 4d matrix
             const glm::mat4 GetProjectionMatrix() const;
-            
+
             /// Sets the projection matrix
             /// @author Alan Smithee
             /// @date created 2014-11-28
@@ -43,7 +43,7 @@ namespace GGRendererEngine
             /// @date created 2014-11-28
             /// @return the view matrix as a 4d matrix
             const glm::mat4 GetViewMatrix() const;
-            
+
             /// Sets the view matrix
             /// @author Alan Smithee
             /// @date created 2014-11-28

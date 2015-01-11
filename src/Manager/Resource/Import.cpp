@@ -1,14 +1,20 @@
 #include <iostream>
+#include <fstream>
 #include <map>
 #include <tinyxml2.h>
+
 #include "Core.h"
 #include "Import.h"
+#include "Manager/Logging/Logging.h"
 #include "Utility/Utility.h"
 
 namespace // Private variables and functions
 {
     bool colladaModelWasImported = false;
     bool ggModelWasImported      = false;
+    bool ggShaderWasImported     = false;
+    bool shaderWasCreated        = false;
+    bool uniformsWereBound       = false;
 
     enum class SourceType
     {
@@ -80,6 +86,168 @@ namespace // Private variables and functions
 
         return sources;
     }
+
+    const std::string GetShaderSource(const std::string& name)
+    {
+        auto completeName = GGResourceManager::GetShaderSourcePath() + name;
+
+        std::ifstream stream(completeName.c_str());
+        std::string file;
+
+        if (!stream.is_open())
+        {
+            GGLoggingManager::LogError("Could not open file with path ", GGResourceManager::GetShaderSourcePath() + name);
+            return "";
+        }
+
+        std::string line;
+
+        while (getline(stream, line))
+        {
+            file.append(line);
+            file.append("\n");
+        }
+
+        stream.close();
+
+        return file;
+    }
+
+    const GLuint CompileShader(const GLenum type, const std::string& fileName)
+    {
+        auto shader = glCreateShader(type);
+
+        if (shader == 0)
+        {
+            GGLoggingManager::LogError("Could not create shader of type ", type);
+            return shader;
+        }
+
+        auto shaderSource = GetShaderSource(fileName);
+
+        if (shaderSource == "")
+        {
+            GGLoggingManager::LogError("Could not read shader source for shader with name ", fileName);
+            return static_cast<GLuint>(-1);
+        }
+
+        auto source = (const GLchar*)shaderSource.c_str();
+        glShaderSource(shader, 1, &source, 0);
+
+        glCompileShader(shader);
+
+        GLint isCompiled = 0;
+        glGetShaderiv(shader, GL_COMPILE_STATUS, &isCompiled);
+
+        if (isCompiled == GL_FALSE)
+        {
+            GGLoggingManager::LogError("Could not compile vertex shader: ", GGLoggingManager::GetShaderInfoLog(shader));
+            glDeleteShader(shader);
+            return 0;
+        }
+
+        return shader;
+    }
+
+    void CreatePhongShader(GGGraphics::Shader& shader,
+                           const std::string& vertexShaderName,
+                           const std::string& fragmentShaderName)
+    {
+        shaderWasCreated = false;
+
+        auto vertexShader = CompileShader(GL_VERTEX_SHADER, vertexShaderName);
+
+        if (vertexShader <= 0)
+        {
+            return;
+        }
+
+        auto fragmentShader = CompileShader(GL_FRAGMENT_SHADER, fragmentShaderName);
+
+        if (fragmentShader <= 0)
+        {
+            glDeleteShader(vertexShader);
+
+            return;
+        }
+
+        shader.Program = glCreateProgram();
+
+        glAttachShader(shader.Program, vertexShader);
+        glAttachShader(shader.Program, fragmentShader);
+
+        glLinkProgram(shader.Program);
+
+        GLint isLinked = 0;
+        glGetProgramiv(shader.Program, GL_LINK_STATUS, (int*)&isLinked);
+
+        if (isLinked == GL_FALSE)
+        {
+            GGLoggingManager::LogError("Could not link program: ", GGLoggingManager::GetProgramInfoLog(shader.Program));
+
+            glDeleteProgram(shader.Program);
+
+            glDeleteShader(vertexShader);
+            glDeleteShader(fragmentShader);
+
+            return;
+        }
+
+        glDetachShader(shader.Program, vertexShader);
+        glDetachShader(shader.Program, fragmentShader);
+
+        glValidateProgram(shader.Program);
+
+        GLint isValid = 0;
+        glGetProgramiv(shader.Program, GL_VALIDATE_STATUS, &isValid);
+
+        if (isValid == GL_FALSE)
+        {
+            GGLoggingManager::LogError("Program is not valid: ", GGLoggingManager::GetProgramInfoLog(shader.Program));
+
+            glDeleteProgram(shader.Program);
+
+            glDeleteShader(vertexShader);
+            glDeleteShader(fragmentShader);
+
+            return;
+        }
+
+        shaderWasCreated = true;
+
+        glUseProgram(shader.Program);
+    }
+
+    void BindUniforms(GGGraphics::Shader& shader)
+    {
+        uniformsWereBound = false;
+
+        auto mvpUniform = glGetUniformLocation(shader.Program, "MVP");
+
+        if (mvpUniform == 0xFFFFFFFF)
+        {
+            GGLoggingManager::LogError("Unable to set MVP uniform.");
+            return;
+        }
+
+        shader.Uniforms[GGEnum::Uniform::MVP] = mvpUniform;
+
+        //SetUniformMatrix4f(GGEnum::Uniform::MVP, glm::mat4(1.0));
+
+        auto textureSamplerUniform = glGetUniformLocation(shader.Program, "TextureSampler");
+
+        if (textureSamplerUniform == 0xFFFFFFFF)
+        {
+            GGLoggingManager::LogError("Unable to set TextureSampler uniform.");
+            return;
+        }
+
+        shader.Uniforms[GGEnum::Uniform::TextureSampler] = textureSamplerUniform;
+
+        //SetUniform1i(GGEnum::Uniform::TextureSampler, 0);
+
+        uniformsWereBound = true;
+    }
 }
 
 namespace GGResourceManager
@@ -94,9 +262,14 @@ namespace GGResourceManager
         return ggModelWasImported;
     }
 
+    const bool GGShaderWasImported()
+    {
+        return ggShaderWasImported;
+    }
+
     const GGGraphics::Scene ImportColladaModel(const std::string& modelName)
     {
-        colladaModelWasImported = true;
+        colladaModelWasImported = false;
 
         GGGraphics::Scene scene;
 
@@ -107,10 +280,7 @@ namespace GGResourceManager
 
         if (loadingResult != tinyxml2::XML_SUCCESS)
         {
-            /// @todo use logger system when built
-            std::cerr << "Could not load model" << std::endl;
-
-            colladaModelWasImported = false;
+            GGLoggingManager::LogError("Could not load model");
 
             return scene;
         }
@@ -119,9 +289,7 @@ namespace GGResourceManager
 
         if (root == nullptr)
         {
-            std::cerr << "The loaded model is not a valid collada model" << std::endl;
-
-            colladaModelWasImported = false;
+            GGLoggingManager::LogError("The loaded model is not a valid collada model");
 
             return scene;
         }
@@ -194,12 +362,14 @@ namespace GGResourceManager
             }
         }
 
+        colladaModelWasImported = true;
+
         return scene;
     }
 
     const GGGraphics::Scene ImportGGModel(const std::string& modelName)
     {
-        ggModelWasImported = true;
+        ggModelWasImported = false;
 
         GGGraphics::Scene scene;
 
@@ -211,8 +381,6 @@ namespace GGResourceManager
         if (loadingResult != tinyxml2::XML_SUCCESS)
         {
             std::cerr << "Could not load model" << std::endl;
-
-            ggModelWasImported = false;
 
             return scene;
         }
@@ -269,6 +437,64 @@ namespace GGResourceManager
             }
         }
 
+        scene.Texture = "crate";
+
+        ggModelWasImported = true;
+
         return scene;
+    }
+
+    const GGGraphics::Shader ImportGGShader(const std::string& shaderName)
+    {
+        ggShaderWasImported = false;
+
+        GGGraphics::Shader shader;
+
+        std::string completeShaderName = GetShaderPath() + shaderName;
+
+        tinyxml2::XMLDocument ggShaderDoc;
+        auto loadingResult = ggShaderDoc.LoadFile(completeShaderName.c_str());
+
+        if (loadingResult != tinyxml2::XML_SUCCESS)
+        {
+            GGLoggingManager::LogError("Could not load shader.");
+
+            return shader;
+        }
+
+        auto shaderNode = ggShaderDoc.FirstChildElement("shader");
+
+        if (shaderNode == nullptr)
+        {
+            GGLoggingManager::LogError("Shader is formatted in the wrong way.");
+
+            return shader;
+        }
+
+        shader.Name = shaderNode->Attribute("name");
+
+        if (shader.Name.compare(GetPhongShaderName()) == 0)
+        {
+            auto vertexShaderName = Child(shaderNode, "vertex")->Attribute("name") + GetVertexShaderFileEnding();
+            auto fragmentShaderName = Child(shaderNode, "fragment")->Attribute("name") + GetFragmentShaderFileEnding();
+
+            CreatePhongShader(shader, vertexShaderName, fragmentShaderName);
+
+            if (!shaderWasCreated)
+            {
+                return shader;
+            }
+
+            BindUniforms(shader);
+
+            if (!uniformsWereBound)
+            {
+                return shader;
+            }
+        }
+
+        ggShaderWasImported = true;
+
+        return shader;
     }
 }

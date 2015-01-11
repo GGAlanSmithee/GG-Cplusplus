@@ -1,8 +1,10 @@
 #include <iostream>
+
 #include "Entity.h"
 #include "Engine/Core/Component.h"
 #include "Utility/Utility.h"
 #include "Enum/Enum.h"
+#include "Manager/Resource/Resource.h"
 
 namespace GGCoreEngine
 {
@@ -17,6 +19,7 @@ namespace GGCoreEngine
                                     GGUtility::ToIntegral(ComponentType::Appearance);
 
                 world.AppearanceComponents[i].Scene = "test";
+                world.AppearanceComponents[i].Shader = "phong";
 
                 return i;
             }

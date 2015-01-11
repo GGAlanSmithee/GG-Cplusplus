@@ -1,11 +1,14 @@
 #include <dirent.h>
+#include <glm/gtc/type_ptr.hpp>
 #include <map>
 #include <SDL.h>
 #include <SDL_image.h>
-#include <SDL_opengl.h>
+#include <iostream>
+
 #include "Core.h"
 #include "Graphics/Scene.h"
 #include "Import.h"
+#include "Manager/Logging/Logging.h"
 #include "Resource.h"
 #include "Utility/Utility.h"
 
@@ -13,6 +16,7 @@ namespace // private functions
 {
     std::map<std::string, GGGraphics::Scene>   Scenes;
     std::map<std::string, GGGraphics::Texture> Textures;
+    std::map<std::string, GGGraphics::Shader>  Shaders;
 
     std::vector<std::string> AllowedImageEndings =
                             {
@@ -30,7 +34,7 @@ namespace // private functions
 
         if (!surface)
         {
-            //SetError("Failed to load surface: ", IMG_GetError());
+            GGLoggingManager::LogError("Failed to load surface: ", IMG_GetError());
 
             return;
         }
@@ -47,7 +51,7 @@ namespace // private functions
         }
         else
         {
-            //SetError("Loaded image was of wrong format: ", name.c_str());
+            GGLoggingManager::LogError("Loaded image is of the wrong format: ", name.c_str());
 
             SDL_FreeSurface(surface);
 
@@ -64,7 +68,22 @@ namespace // private functions
 
         SDL_FreeSurface(surface);
 
-        Textures[name] = texture;
+        Textures[name.substr(0, name.rfind("."))] = texture;
+    }
+
+    void SetUniform1i(GGGraphics::Shader& shader, const GGEnum::Uniform uniform, const int value)
+    {
+        glUniform1i(shader.Uniforms[uniform], value);
+    }
+
+    void SetUniform1f(GGGraphics::Shader& shader, const GGEnum::Uniform uniform, const float value)
+    {
+        glUniform1f(shader.Uniforms[uniform], value);
+    }
+
+    void SetUniformMatrix4f(GGGraphics::Shader& shader, const GGEnum::Uniform uniform, const glm::mat4& value)
+    {
+        glUniformMatrix4fv(shader.Uniforms[uniform], 1, GL_FALSE, glm::value_ptr(value));
     }
 }
 
@@ -74,53 +93,119 @@ namespace GGResourceManager
     {
         auto dir = opendir(GGResourceManager::GetModelPath().c_str());
 
-        if (dir != nullptr)
+        if (dir == nullptr)
         {
-            struct dirent* entity = nullptr;
+            GGLoggingManager::LogError("Could not open model path: ",  GGResourceManager::GetModelPath());
 
-            while (entity = readdir(dir))
-            {
-                if (GGUtility::EndsWith(entity->d_name, GGResourceManager::GetGGFileEnding()))
-                {
-                    GGGraphics::Scene scene;
-
-                    scene = ImportGGModel(entity->d_name);
-
-                    /// @todo this should not be hardcoded!
-                    scene.Textures.push_back("crate");
-
-                    Scenes["test"] = scene;
-                }
-            }
-
-            closedir(dir);
+            return;
         }
+
+        struct dirent* entity = nullptr;
+
+        while (entity = readdir(dir))
+        {
+            if (GGUtility::EndsWith(entity->d_name, GGResourceManager::GetGGModelFileEnding()))
+            {
+                auto scene = ImportGGModel(entity->d_name);
+
+                Scenes["test"] = scene;
+            }
+        }
+
+        closedir(dir);
     }
 
     void LoadAllTextures()
     {
         auto dir = opendir(GGResourceManager::GetTexturePath().c_str());
 
-        if (dir != nullptr)
+        if (dir == nullptr)
         {
-            struct dirent* entity = nullptr;
+            GGLoggingManager::LogError("Could not open texture path: ",  GGResourceManager::GetTexturePath());
 
-            while (entity = readdir(dir))
-            {
-                std::string name(entity->d_name);
-
-                if (GGUtility::Contains(AllowedImageEndings, name.substr(name.rfind(".") + 1)))
-                {
-                    LoadTexture(name);
-                }
-            }
-
-            closedir(dir);
+            return;
         }
+
+        struct dirent* entity = nullptr;
+
+        while (entity = readdir(dir))
+        {
+            std::string name(entity->d_name);
+
+            if (GGUtility::Contains(AllowedImageEndings, name.substr(name.rfind(".") + 1)))
+            {
+                LoadTexture(name);
+            }
+        }
+
+        closedir(dir);
+    }
+
+    void LoadAllShaders()
+    {
+        auto dir = opendir(GGResourceManager::GetShaderPath().c_str());
+
+        if (dir == nullptr)
+        {
+            GGLoggingManager::LogError("Could not open shader path: ", GGResourceManager::GetShaderPath());
+            return;
+        }
+
+        struct dirent* entity = nullptr;
+
+        while (entity = readdir(dir))
+        {
+            if (GGUtility::EndsWith(entity->d_name, GGResourceManager::GetGGShaderFileEnding()))
+            {
+                auto shader = ImportGGShader(entity->d_name);
+
+                if (!GGShaderWasImported())
+                {
+                    GGLoggingManager::LogError("One or more shader could not be loaded.");
+
+                    return;
+                }
+
+                Shaders[shader.Name] = shader;
+            }
+        }
+
+        closedir(dir);
     }
 
     const GGGraphics::Texture GetTexture(const std::string& texture)
     {
         return Textures[texture];
+    }
+
+    void UseShader(GGGraphics::Shader& shader)
+    {
+        glUseProgram(shader.Program);
+    }
+
+    void ActivateTexture(const std::string& texture)
+    {
+        glActiveTexture(GetTexture(texture).Unit);
+        glBindTexture(GetTexture(texture).Target, GetTexture(texture).Id);
+    }
+
+    void SetMVPUniform(GGGraphics::Shader& shader, const glm::mat4& mvp)
+    {
+        SetUniformMatrix4f(shader, GGEnum::Uniform::MVP, mvp);
+    }
+
+    const GGGraphics::Scene GetScene(const std::string& scene)
+    {
+        for (auto kvp : Scenes)
+        {
+            auto f = kvp.first;
+        }
+
+        return Scenes[scene];
+    }
+
+    const GGGraphics::Shader GetShader(const std::string& shader)
+    {
+        return Shaders[shader];
     }
 }

@@ -20,16 +20,26 @@ namespace GGCoreEngine
 
         if (!GGRendererEngine::WasInitialized())
         {
-            std::cerr << GGRendererEngine::GetError() << std::endl;
             return -1;
         }
+
+        GGResourceManager::LoadAllTextures();
+        GGResourceManager::LoadAllModels();
+        GGResourceManager::LoadAllShaders();
+
+        GGGraphics::Scene scene = GGResourceManager::GetScene("test");
+        GGGraphics::Geometry geometry = scene.Geometries[0];
+        GGGraphics::Mesh mesh = geometry.Meshes[0];
+        std::vector<GGGraphics::Vertex> vertices = mesh.Vertices;
+        std::vector<unsigned int> indices = mesh.Indices;
+
+        GGRendererEngine::CreateVertexBuffer(vertices);
+        GGRendererEngine::CreateIndexBuffer(indices);
 
         SDL_Event event;
 
         bool running = true;
         float scale = 1.0f;
-
-        GGResourceManager::LoadAllModels();
 
         while (running)
         {
