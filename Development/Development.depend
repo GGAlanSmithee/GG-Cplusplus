@@ -906,7 +906,7 @@
 1417045424 source:c:\projects\creatio\src\engine\renderer\pipeline.cpp
 	"Pipeline.h"
 
-1420997869 c:\projects\creatio\src\engine\renderer\pipeline.h
+1421003121 c:\projects\creatio\src\engine\renderer\pipeline.h
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
 	"Engine/Core/Component.h"
@@ -944,7 +944,7 @@
 1417193184 c:\projects\creatio\src\engine\renderer\texture.h
 	<SDL_opengl.h>
 
-1420998025 source:c:\projects\creatio\src\engine\renderer\renderer.cpp
+1421003039 source:c:\projects\creatio\src\engine\renderer\renderer.cpp
 	<SDL_image.h>
 	<glm/glm.hpp>
 	<glm/gtc/type_ptr.hpp>

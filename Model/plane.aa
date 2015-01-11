@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<geometries>
+    <geometry>
+        <mesh>
+            <vertex>
+                <position>-1 -1 1</position>
+                <normal>1 1 1</normal>
+                <texcoord>0 0</texcoord>
+            </vertex>
+			<vertex>
+                <position>1 -1 1</position>
+                <normal>1 1 1</normal>
+                <texcoord>1 0</texcoord>
+            </vertex>
+			<vertex>
+                <position>1 1 1</position>
+                <normal>1 1 1</normal>
+                <texcoord>1 1</texcoord>
+            </vertex>
+			<vertex>
+                <position>-1 1 1</position>
+                <normal>1 1 1</normal>
+                <texcoord>0 1</texcoord>
+            </vertex>
+            <indices>0 1 2 0 2 3 </indices>
+        </mesh>
+    </geometry>
+</geometries>
