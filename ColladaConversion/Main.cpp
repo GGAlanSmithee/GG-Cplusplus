@@ -1,6 +1,5 @@
 #include <iostream>
-#include "Manager/Resource/Import.h"
-#include "Manager/Resource/Export.h"
+#include "ColladaConversion.h"
 
 int main()
 {
@@ -9,14 +8,14 @@ int main()
     std::cout << "Enter the name of the collada file to load (without file ending): ";
     std::cin >> modelName;
 
-    auto scene = GGResourceManager::ImportColladaModel(modelName);
+    auto scene = GGColladaConversion::ImportColladaModel(modelName);
 
-    if (!GGResourceManager::ColladaModelWasImported())
+    if (!GGColladaConversion::ColladaModelWasImported())
     {
         return -1;
     }
 
-    GGResourceManager::ExportGGModel(scene, modelName);
+    GGColladaConversion::ExportGGModel(scene, modelName);
 
     std::cout << "Model converted succesfully!" << std::endl;
 

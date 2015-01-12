@@ -944,7 +944,7 @@
 1417193184 c:\projects\creatio\src\engine\renderer\texture.h
 	<SDL_opengl.h>
 
-1421003039 source:c:\projects\creatio\src\engine\renderer\renderer.cpp
+1421003214 source:c:\projects\creatio\src\engine\renderer\renderer.cpp
 	<SDL_image.h>
 	<glm/glm.hpp>
 	<glm/gtc/type_ptr.hpp>
@@ -1053,11 +1053,11 @@
 1420982881 c:\projects\creatio\src\manager\resource\core.h
 	<string>
 
-1420977984 c:\projects\creatio\src\manager\resource\import.h
+1421079805 c:\projects\creatio\src\manager\resource\import.h
 	"Graphics/Scene.h"
 	"Graphics/Shader.h"
 
-1420986392 source:c:\projects\creatio\src\manager\resource\import.cpp
+1421080316 source:c:\projects\creatio\src\manager\resource\import.cpp
 	<iostream>
 	<fstream>
 	<map>

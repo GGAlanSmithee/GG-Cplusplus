@@ -1,11 +1,10 @@
 #ifndef UTILITY_H_INCLUDED
 #define UTILITY_H_INCLUDED
 
+#include <algorithm>
 #include <string>
 #include <sstream>
-#include <string>
 #include <vector>
-#include <algorithm>
 
 namespace GGUtility
 {
