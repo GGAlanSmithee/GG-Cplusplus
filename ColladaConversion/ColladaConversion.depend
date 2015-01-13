@@ -15,9 +15,10 @@
 	<sstream>
 	<vector>
 
-1421080897 source:c:\projects\creatio\colladaconversion\colladaconversion.cpp
+1421173138 source:c:\projects\creatio\colladaconversion\colladaconversion.cpp
 	<map>
 	<tinyxml2.h>
+	<iostream>
 	"ColladaConversion.h"
 	"Manager/Resource/Core.h"
 	"Utility/Utility.h"

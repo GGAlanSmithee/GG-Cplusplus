@@ -400,12 +400,11 @@
 	<intrin.h>
 	<limits>
 
-1420848089 c:\projects\creatio\src\utility\utility.h
+1421080930 c:\projects\creatio\src\utility\utility.h
+	<algorithm>
 	<string>
 	<sstream>
-	<string>
 	<vector>
-	<algorithm>
 
 1416772468 source:c:\projects\creatio\src\graphics\graphics.cpp
 	<SDL_image.h>
@@ -911,7 +910,7 @@
 	<glm/gtc/matrix_transform.hpp>
 	"Engine/Core/Component.h"
 
-1420998051 source:c:\projects\creatio\src\engine\core\system.cpp
+1421177384 source:c:\projects\creatio\src\engine\core\system.cpp
 	"System.h"
 	"Engine/Renderer/Renderer.h"
 	"Engine/Core/Component.h"

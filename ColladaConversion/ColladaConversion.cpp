@@ -1,5 +1,6 @@
 #include <map>
 #include <tinyxml2.h>
+#include <iostream>
 
 #include "ColladaConversion.h"
 #include "Manager/Resource/Core.h"
@@ -70,6 +71,11 @@ namespace // Private functions and variables
                                                      ->FirstChildElement("accessor")
                                                      ->Attribute("stride"));
 
+                    if (sourceType == SourceType::Position)
+                    {
+                        std::cout << srcNode->FirstChildElement("float_array")->GetText() << std::endl;
+                    }
+
                     source.Values = GGUtility::ToFloats(srcNode->FirstChildElement("float_array")->GetText());
                 }
             }
@@ -78,6 +84,35 @@ namespace // Private functions and variables
         }
 
         return sources;
+    }
+
+    const bool VertexExistsInMesh(const GGGraphics::Mesh& mesh, const GGGraphics::Vertex& vertex)
+    {
+        for (auto v : mesh.Vertices)
+        {
+            if (v.Position == vertex.Position && v.Normal == vertex.Normal && v.TexCoord == vertex.TexCoord)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    const unsigned int GetIndexOfExistingVertex(const GGGraphics::Mesh& mesh, const GGGraphics::Vertex& vertex)
+    {
+        auto index = 0;
+        for (auto v : mesh.Vertices)
+        {
+            if (v.Position == vertex.Position && v.Normal == vertex.Normal && v.TexCoord == vertex.TexCoord)
+            {
+                break;;
+            }
+
+            ++index;
+        }
+
+        return index;
     }
 }
 
@@ -134,16 +169,16 @@ namespace GGColladaConversion
                     auto i = 0;
                     while (i < indices.size() && sources.size() != 0)
                     {
-                        mesh.Indices.push_back(static_cast<unsigned int>(indices[i]));
-
                         glm::vec3 position(0.0f);
 
                         if (sources.count(SourceType::Position))
                         {
                             if (sources[SourceType::Position].Stride == 3)
                             {
+                                auto index = indices[i] * sources[SourceType::Position].Stride;
                                 auto values = sources[SourceType::Position].Values;
-                                position = glm::vec3(values[indices[i]], values[indices[i] + 1], values[indices[i] + 2]);
+
+                                position = glm::vec3(values[index], values[index + 1], values[index + 2]);
                             }
 
                             ++i;
@@ -155,8 +190,10 @@ namespace GGColladaConversion
                         {
                             if (sources[SourceType::Normal].Stride == 3)
                             {
+                                auto index = indices[i] * sources[SourceType::Normal].Stride;
                                 auto values = sources[SourceType::Normal].Values;
-                                normal = glm::vec3(values[indices[i]], values[indices[i] + 1], values[indices[i] + 2]);
+
+                                normal = glm::vec3(values[index], values[index + 1], values[index + 2]);
                             }
 
                             ++i;
@@ -168,14 +205,27 @@ namespace GGColladaConversion
                         {
                             if (sources[SourceType::Texcoord].Stride == 2)
                             {
+                                auto index = indices[i] * sources[SourceType::Texcoord].Stride;
                                 auto values = sources[SourceType::Texcoord].Values;
-                                texcoord = glm::vec2(values[indices[i]], values[indices[i] + 1]);
+
+                                texcoord = glm::vec2(values[index], values[index + 1]);
                             }
 
                             ++i;
                         }
 
-                        mesh.Vertices.push_back(GGGraphics::Vertex(position, normal, texcoord));
+                        auto vertex = GGGraphics::Vertex(position, normal, texcoord);
+
+                        if (VertexExistsInMesh(mesh, vertex))
+                        {
+                            mesh.Indices.push_back(GetIndexOfExistingVertex(mesh, vertex));
+                        }
+                        else
+                        {
+                            std::cout << i << ": " << indices[i] << std::endl;
+                            mesh.Indices.push_back(static_cast<unsigned int>(indices[i]));
+                            mesh.Vertices.push_back(vertex);
+                        }
                     }
 
                     geometry.Meshes.push_back(mesh);
