@@ -73,6 +73,15 @@ namespace GGUtility
     {
         return std::find(std::begin(arr), std::end(arr), element) != std::end(arr);
     }
+
+    /// Rounds a floating point value to n decmial places
+    /// @author Alan Smithee
+    /// @date created 2015-01-14
+    /// @param value the value to round
+    /// @param decimalPlaces the number of decimal places to round to
+    /// @return the rounded value
+    /// @remarks the default value for decimal places param is 5
+    const float Round(const float, const unsigned int = 5);
 }
 
 #endif // UTILITY_H_INCLUDED

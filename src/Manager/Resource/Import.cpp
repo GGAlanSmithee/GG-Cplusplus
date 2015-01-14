@@ -235,9 +235,9 @@ namespace GGResourceManager
 
                     for (auto vertNode = Child(meshNode, "vertex"); vertNode != nullptr; vertNode = SameSibling(vertNode))
                     {
-                        auto positionData = GGUtility::ToInts(Child(vertNode, "position")->GetText());
-                        auto normalData = GGUtility::ToInts(Child(vertNode, "normal")->GetText());
-                        auto texCoordData = GGUtility::ToInts(Child(vertNode, "texcoord")->GetText());
+                        auto positionData = GGUtility::ToFloats(Child(vertNode, "position")->GetText());
+                        auto normalData = GGUtility::ToFloats(Child(vertNode, "normal")->GetText());
+                        auto texCoordData = GGUtility::ToFloats(Child(vertNode, "texcoord")->GetText());
 
                         glm::vec3 position;
                         glm::vec3 normal;
@@ -268,7 +268,7 @@ namespace GGResourceManager
             }
         }
 
-        scene.Texture = "crate";
+        scene.Texture = "a";
 
         ggModelWasImported = true;
 

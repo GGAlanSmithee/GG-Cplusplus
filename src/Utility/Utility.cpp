@@ -54,4 +54,11 @@ namespace GGUtility
 
         return false;
     }
+
+    const float Round(const float value, const unsigned int decimalPlaces)
+    {
+        auto exponent = 10 ^ decimalPlaces;
+
+        return std::floor(value * exponent + 0.5) / exponent;
+    }
 }

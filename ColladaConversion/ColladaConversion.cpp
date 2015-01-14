@@ -71,11 +71,6 @@ namespace // Private functions and variables
                                                      ->FirstChildElement("accessor")
                                                      ->Attribute("stride"));
 
-                    if (sourceType == SourceType::Position)
-                    {
-                        std::cout << srcNode->FirstChildElement("float_array")->GetText() << std::endl;
-                    }
-
                     source.Values = GGUtility::ToFloats(srcNode->FirstChildElement("float_array")->GetText());
                 }
             }
@@ -215,17 +210,19 @@ namespace GGColladaConversion
                         }
 
                         auto vertex = GGGraphics::Vertex(position, normal, texcoord);
+                        auto currentVertexIndex = 0;
 
                         if (VertexExistsInMesh(mesh, vertex))
                         {
-                            mesh.Indices.push_back(GetIndexOfExistingVertex(mesh, vertex));
+                            currentVertexIndex = GetIndexOfExistingVertex(mesh, vertex);
                         }
                         else
                         {
-                            std::cout << i << ": " << indices[i] << std::endl;
-                            mesh.Indices.push_back(static_cast<unsigned int>(indices[i]));
                             mesh.Vertices.push_back(vertex);
+                            currentVertexIndex = mesh.Vertices.size() - 1;
                         }
+
+                        mesh.Indices.push_back(static_cast<unsigned int>(currentVertexIndex));
                     }
 
                     geometry.Meshes.push_back(mesh);
