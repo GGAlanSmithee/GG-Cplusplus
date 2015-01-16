@@ -1,0 +1,197 @@
+// header
+namespace GAL
+{
+	enum class UniformType
+	{
+		1f, 2f, 3f, 4f,
+		1fv, 2fv, 3fv, 4fv,
+		1i, 2i, 3i, 4i,
+		1iv, 2iv, 3iv, 4iv,
+		1ui, 2ui, 3ui, 4ui,
+		1uiv, 2uiv, 3uiv, 4uiv,
+		M2, M3, M4, M2x3, M3x2, M2x4, M4x2, M3x4, M4x3
+	};
+}
+
+// source
+
+#include <typeinfo>
+
+namespace // Private functions and variables
+{
+	bool uniformWasSet = false;
+	
+	enum class ApiType
+	{
+		OpenGL,
+		DirectX
+	}
+	
+	ApiType apiType = ApiType::OpenGL;
+	
+	template<typename... T, typename... Args>
+	const T GetAsUnderlyingType(const Args&&... args)
+	{
+		return dynamic_cast<T>(args)...;
+	}
+	
+	const bool ArgumentTypeIsValidForUniformType(UniformType uniformType, const std::type_info& typeInfo)
+	{
+		switch (uniformType)
+		{
+			case UniformType::1f:
+			case UniformType::2f:
+			case UniformType::3f:
+			case UniformType::4f:
+			case UniformType::1fv:
+			case UniformType::2fv:
+			case UniformType::3fv:
+			case UniformType::4fv:
+			{
+				return typeid(float) == typeInfo;
+			}
+			case UniformType::1i:
+			case UniformType::2i:
+			case UniformType::3i:
+			case UniformType::4i:
+			case UniformType::1iv:
+			case UniformType::2iv:
+			case UniformType::3iv:
+			case UniformType::4iv:
+			{
+				return typeid(int) == typeInfo;
+			}
+			case UniformType::1ui:
+			case UniformType::2ui:
+			case UniformType::3ui:
+			case UniformType::4ui:
+			case UniformType::1uiv:
+			case UniformType::2uiv:
+			case UniformType::3uiv:
+			case UniformType::4uiv:
+			{
+				return typeid(unsigned int) == typeInfo;
+			}
+			case UniformType::M2:
+			{
+				return typeid(glm::mat2) == typeInfo;
+			}
+			case UniformType::M3:
+			{
+				return typeid(glm::mat3) == typeInfo;
+			}
+			case UniformType::M4:
+			{
+				return typeid(glm::mat4) == typeInfo;
+			}
+			case UniformType::M2x3:
+			{
+				return typeid(glm::mat2x3) == typeInfo;
+			}
+			case UniformType::M3x2:
+			{
+				return typeid(glm::mat3x2) == typeInfo;
+			}
+			case UniformType::M2x4:
+			{
+				return typeid(glm::mat2x4) == typeInfo;
+			}
+			case UniformType::M4x2:
+			{
+				return typeid(glm::mat4x2) == typeInfo;
+			}
+			case UniformType::M3x4:
+			{
+				return typeid(glm::mat3x4) == typeInfo;
+			}
+			case UniformType::M4x3:
+			{
+				return typeid(glm::mat4x3) == typeInfo;
+			}
+		}
+		
+		return false;
+	}
+	
+    void SetUniform1f(GLuint uniformHandle, const float value)
+    {
+        glUniform1f(uniformHandle, value);
+    }
+
+	void SetUniform1i(GGGraphics::Shader& shader, const GGEnum::Uniform uniform, const int value)
+    {
+        glUniform1i(shader.Uniforms[uniform], value);
+    }
+
+    void SetUniformMatrix4f(GGGraphics::Shader& shader, const GGEnum::Uniform uniform, const glm::mat4& value)
+    {
+        glUniformMatrix4fv(shader.Uniforms[uniform], 1, GL_FALSE, glm::value_ptr(value));
+    }
+}
+
+namespace GGGAL
+{
+	template<typename... Args>
+	void SetUniform(const UniformType uniformType, GLuint uniformHandle, const Args&&... args)
+	{
+		uniformWasSet = false;
+		
+		auto numbArguments = sizeof...(Args);
+		
+		if (numbArguments == 0)
+		{
+			GGLoggingManager::LogError("No arguments were passed in.");
+			
+			return;
+		}
+		
+		if (!ArgumentsCountIsvalidForUniformType(uniformType, numbArguments))
+		{
+			GGLoggingManager::LogError("The number of arguments are not valid for the uniform type.");
+			
+			return;
+		}
+		
+		if (!ArgumentTypeIsValidForUniformType(uniformType, typeid(args[0])))
+		{
+			GGLoggingManager::LogError("Argument type is not valid for the uniform type.");
+			
+			return;
+		}
+		
+		auto values = GetAsUnderlyingType(args);
+		
+		switch (uniformType)
+		{
+			case UniformType::1f: glUniform1f(uniformHandle, values[0]); break;
+			case UniformType::2f: glUniform2f(uniformHandle, values[0], values[1]); break;
+			case UniformType::3f: glUniform3f(uniformHandle, values[0], values[1], values[2]); break;
+			case UniformType::4f: glUniform4f(uniformHandle, values[0], values[1], values[2], values[3]); break;
+			case UniformType::1fv: glUniform1f(uniformHandle, values[0]); break;
+			case UniformType::2fv: glUniform2f(uniformHandle, values[0], values[1]); break;
+			case UniformType::3fv: glUniform3f(uniformHandle, values[0], values[1], values[2]); break;
+			case UniformType::4fv: glUniform4f(uniformHandle, values[0], values[1], values[2], values[3]); break;
+			case UniformType::1i: glUniform1i(uniformHandle, values[0]); break;
+			case UniformType::2i: glUniform2i(uniformHandle, values[0], values[1]); break;
+			case UniformType::3i: glUniform3i(uniformHandle, values[0], values[1], values[2]); break;
+			case UniformType::4i: glUniform4i(uniformHandle, values[0], values[1], values[2], values[3]); break;
+			case UniformType::1iv: glUniform1i(uniformHandle, values[0]); break;
+			case UniformType::2iv: glUniform2i(uniformHandle, values[0], values[1]); break;
+			case UniformType::3iv: glUniform3i(uniformHandle, values[0], values[1], values[2]); break;
+			case UniformType::4iv: glUniform4i(uniformHandle, values[0], values[1], values[2], values[3]); break;
+			glUniformMatrix4fv(shader.Uniforms[uniform], 1, GL_FALSE, values[0]);
+		}
+		
+		uniformWasSet = true;
+	}
+	
+	void UseOpenGL()
+	{
+		apiType = ApiType::OpenGL;
+	}
+	
+	void UseDirectX()
+	{
+		apiType = ApiType::DirectX;
+	}
+}
