@@ -268,7 +268,7 @@ namespace GGResourceManager
             }
         }
 
-        scene.Texture = "a";
+        scene.Texture = "crate";
 
         ggModelWasImported = true;
 
