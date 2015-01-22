@@ -3,10 +3,10 @@
 
 namespace // Private variables and functions
 {
-    std::string ModelPath         = "C:/Projects/Creatio/Model/";
-    std::string TexturePath       = "C:/Projects/Creatio/Gfx/";
-    std::string ShaderPath        = "C:/Projects/Creatio/Shader/";
-    std::string ShaderSourcePath  = "C:/Projects/Creatio/Shader/Source/";
+    std::string ModelPath         = "C:/Projects/Creatio/Content/Model/";
+    std::string TexturePath       = "C:/Projects/Creatio/Content/Gfx/";
+    std::string ShaderPath        = "C:/Projects/Creatio/Content/Shader/";
+    std::string ShaderSourcePath  = "C:/Projects/Creatio/Content/Shader/Source/";
 
     const std::string ColladaFileEnding        = ".dae";
     const std::string GGModelFileEnding        = ".ggmodel";

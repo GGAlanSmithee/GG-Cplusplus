@@ -210,6 +210,11 @@ namespace GGColladaConversion
                         }
 
                         auto vertex = GGGraphics::Vertex(position, normal, texcoord);
+
+                        std::cout << position.x << " " << position.y << " " << position.z << " : "
+                                  << normal.x << " " << normal.y << " " << normal.z << " : "
+                                  << texcoord.x << " " << texcoord.y << std::endl << std::endl;
+
                         auto currentVertexIndex = 0;
 
                         if (VertexExistsInMesh(mesh, vertex))

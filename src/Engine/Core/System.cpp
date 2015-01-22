@@ -60,7 +60,7 @@ namespace GGCoreEngine
 
             transform->Scale = glm::scale(glm::mat4(0.2f), glm::vec3(0.5f, 0.5f, 0.5f));
             transform->Rotation = glm::rotate(glm::mat4(1.0f), 76.0f, glm::vec3(0.75f, 1.0f, 0.302f));
-            transform->Translation = glm::translate(glm::mat4(1.0f), glm::vec3(-0.3f, 0.1f, 0.0f));
+            transform->Translation = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -1.0f));
         }
     }
 

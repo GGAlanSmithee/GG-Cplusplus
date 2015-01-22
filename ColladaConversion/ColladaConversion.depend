@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1420982888 source:c:\projects\creatio\src\manager\resource\core.cpp
+1421612337 source:c:\projects\creatio\src\manager\resource\core.cpp
 	<dirent.h>
 	"Core.h"
 
@@ -15,7 +15,7 @@
 	<sstream>
 	<vector>
 
-1421447346 source:c:\projects\creatio\colladaconversion\colladaconversion.cpp
+1421613245 source:c:\projects\creatio\colladaconversion\colladaconversion.cpp
 	<map>
 	<tinyxml2.h>
 	<iostream>
@@ -43,7 +43,7 @@
 	<string>
 	"Graphics/Scene.h"
 
-1420986347 c:\projects\creatio\src\graphics\scene.h
+1421614741 c:\projects\creatio\src\graphics\scene.h
 	"Geometry.h"
 
 1420846815 c:\projects\creatio\src\graphics\geometry.h
@@ -55,7 +55,7 @@
 	<vector>
 	"Vertex.h"
 
-1420661288 c:\projects\creatio\src\graphics\vertex.h
+1421788385 c:\projects\creatio\src\graphics\vertex.h
 	<glm/glm.hpp>
 
 1389479879 c:\applications\glm\glm\glm.hpp
@@ -425,7 +425,242 @@
 	<intrin.h>
 	<limits>
 
-1421080758 source:c:\projects\creatio\colladaconversion\main.cpp
+1421956154 source:c:\projects\creatio\colladaconversion\main.cpp
 	<iostream>
 	"ColladaConversion.h"
+
+1421602816 c:\applications\assimp-3.1.1\include\assimp\cimport.h
+	"types.h"
+
+1421602823 c:\applications\assimp-3.1.1\include\assimp\types.h
+	<sys/types.h>
+	<memory.h>
+	<math.h>
+	<stddef.h>
+	<string.h>
+	<limits.h>
+	"defs.h"
+	"vector3.h"
+	"vector2.h"
+	"color4.h"
+	"matrix3x3.h"
+	"matrix4x4.h"
+	"quaternion.h"
+	<cstring>
+	<new>
+	<string>
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+	"vector2.inl"
+	"vector3.inl"
+	"color4.inl"
+	"quaternion.inl"
+	"matrix3x3.inl"
+	"matrix4x4.inl"
+
+1421602817 c:\applications\assimp-3.1.1\include\assimp\defs.h
+
+1421602823 c:\applications\assimp-3.1.1\include\assimp\vector3.h
+	<cmath>
+	<math.h>
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1421602823 c:\applications\assimp-3.1.1\include\assimp\compiler\pushpack1.h
+
+1421602823 c:\applications\assimp-3.1.1\include\assimp\compiler\poppack1.h
+
+1421602823 c:\applications\assimp-3.1.1\include\assimp\vector2.h
+	<cmath>
+	<math.h>
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1421602816 c:\applications\assimp-3.1.1\include\assimp\color4.h
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1421602820 c:\applications\assimp-3.1.1\include\assimp\matrix3x3.h
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1421602820 c:\applications\assimp-3.1.1\include\assimp\matrix4x4.h
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1421602822 c:\applications\assimp-3.1.1\include\assimp\quaternion.h
+
+1421602823 c:\applications\assimp-3.1.1\include\assimp\vector2.inl
+	"vector2.h"
+	<cmath>
+
+1421602823 c:\applications\assimp-3.1.1\include\assimp\vector3.inl
+	"vector3.h"
+	<cmath>
+
+1421602816 c:\applications\assimp-3.1.1\include\assimp\color4.inl
+	"color4.h"
+
+1421602822 c:\applications\assimp-3.1.1\include\assimp\quaternion.inl
+	"quaternion.h"
+	<cmath>
+
+1421602820 c:\applications\assimp-3.1.1\include\assimp\matrix3x3.inl
+	"matrix3x3.h"
+	"matrix4x4.h"
+	<algorithm>
+	<cmath>
+	<limits>
+
+1421602820 c:\applications\assimp-3.1.1\include\assimp\matrix4x4.inl
+	"matrix4x4.h"
+	"matrix3x3.h"
+	"quaternion.h"
+	<algorithm>
+	<limits>
+	<cmath>
+	<math.h>
+
+1421602823 c:\applications\assimp-3.1.1\include\assimp\scene.h
+	"types.h"
+	"texture.h"
+	"mesh.h"
+	"light.h"
+	"camera.h"
+	"material.h"
+	"anim.h"
+	"metadata.h"
+
+1421602823 c:\applications\assimp-3.1.1\include\assimp\texture.h
+	"types.h"
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1421602821 c:\applications\assimp-3.1.1\include\assimp\mesh.h
+	"types.h"
+
+1421602818 c:\applications\assimp-3.1.1\include\assimp\light.h
+	"types.h"
+
+1421602816 c:\applications\assimp-3.1.1\include\assimp\camera.h
+	"types.h"
+
+1421602819 c:\applications\assimp-3.1.1\include\assimp\material.h
+	"types.h"
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+	"material.inl"
+
+1421602819 c:\applications\assimp-3.1.1\include\assimp\material.inl
+
+1421602816 c:\applications\assimp-3.1.1\include\assimp\anim.h
+	"types.h"
+	"quaternion.h"
+
+1421602821 c:\applications\assimp-3.1.1\include\assimp\metadata.h
+	<assert.h>
+	"Compiler/pstdint.h"
+	<stdint.h>
+	<string>
+
+1421602823 c:\applications\assimp-3.1.1\include\assimp\compiler\pstdint.h
+	<stddef.h>
+	<limits.h>
+	<signal.h>
+	<stdint.h>
+	<wchar.h>
+
+1421602822 c:\applications\assimp-3.1.1\include\assimp\postprocess.h
+	"types.h"
+
+1421602817 c:\applications\assimp-3.1.1\include\assimp\importer.hpp
+	"types.h"
+	"config.h"
+
+1421602816 c:\applications\assimp-3.1.1\include\assimp\config.h
+
+1414335518 c:\projects\creatio\include\assimp\importer.hpp
+	"types.h"
+	"config.h"
+
+1414335518 c:\projects\creatio\include\assimp\types.h
+	<sys/types.h>
+	<memory.h>
+	<math.h>
+	<stddef.h>
+	"defs.h"
+	"vector3.h"
+	"vector2.h"
+	"color4.h"
+	"matrix3x3.h"
+	"matrix4x4.h"
+	"quaternion.h"
+	<new>
+	<string>
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+	"vector2.inl"
+	"vector3.inl"
+	"color4.inl"
+	"quaternion.inl"
+	"matrix3x3.inl"
+	"matrix4x4.inl"
+
+1414335518 c:\projects\creatio\include\assimp\defs.h
+
+1414335518 c:\projects\creatio\include\assimp\vector3.h
+	<math.h>
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1414335519 c:\projects\creatio\include\assimp\compiler\pushpack1.h
+
+1414335519 c:\projects\creatio\include\assimp\compiler\poppack1.h
+
+1414335518 c:\projects\creatio\include\assimp\vector2.h
+	<math.h>
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1414335518 c:\projects\creatio\include\assimp\color4.h
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1414335518 c:\projects\creatio\include\assimp\matrix3x3.h
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1414335519 c:\projects\creatio\include\assimp\matrix4x4.h
+	"./Compiler/pushpack1.h"
+	"./Compiler/poppack1.h"
+
+1414335518 c:\projects\creatio\include\assimp\quaternion.h
+
+1414335518 c:\projects\creatio\include\assimp\vector2.inl
+	"vector2.h"
+
+1414335518 c:\projects\creatio\include\assimp\vector3.inl
+	"vector3.h"
+
+1414335519 c:\projects\creatio\include\assimp\color4.inl
+	"color4.h"
+
+1414335518 c:\projects\creatio\include\assimp\quaternion.inl
+	"quaternion.h"
+
+1414335518 c:\projects\creatio\include\assimp\matrix3x3.inl
+	"matrix3x3.h"
+	"matrix4x4.h"
+	<algorithm>
+	<limits>
+
+1414335518 c:\projects\creatio\include\assimp\matrix4x4.inl
+	"matrix4x4.h"
+	"matrix3x3.h"
+	"quaternion.h"
+	<algorithm>
+	<limits>
+	<math.h>
+
+1414335519 c:\projects\creatio\include\assimp\config.h
 

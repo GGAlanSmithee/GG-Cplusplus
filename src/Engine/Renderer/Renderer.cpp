@@ -110,7 +110,7 @@ namespace GGRendererEngine
 
         GGResourceManager::SetMVPUniform(shader, pipeline.GetMVPMatrix(transform));
 
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
@@ -124,7 +124,8 @@ namespace GGRendererEngine
         GGResourceManager::ActivateTexture(scene.Texture);
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
-        glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+        /// @todo fix this:
+        glDrawElements(GL_TRIANGLES, scene.Geometries[0].Meshes[0].Indices.size(), GL_UNSIGNED_INT, 0);
 
         glDisableVertexAttribArray(0);
         glDisableVertexAttribArray(1);
