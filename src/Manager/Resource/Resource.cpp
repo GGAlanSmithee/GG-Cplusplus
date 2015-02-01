@@ -30,7 +30,7 @@ namespace // private functions
         texture.Target = target;
         texture.Unit = unit;
 
-        SDL_Surface* surface = IMG_Load((GGResourceManager::GetTexturePath() + name).c_str());
+        SDL_Surface* surface = IMG_Load((GGResource::GetTexturePath() + name).c_str());
 
         if (!surface)
         {
@@ -87,41 +87,41 @@ namespace // private functions
     }
 }
 
-namespace GGResourceManager
+namespace GGResource
 {
     void LoadAllModels()
     {
-        auto dir = opendir(GGResourceManager::GetModelPath().c_str());
-
-        if (dir == nullptr)
-        {
-            GGLoggingManager::LogError("Could not open model path: ",  GGResourceManager::GetModelPath());
-
-            return;
-        }
-
-        struct dirent* entity = nullptr;
-
-        while (entity = readdir(dir))
-        {
-            if (GGUtility::EndsWith(entity->d_name, GGResourceManager::GetGGModelFileEnding()))
-            {
-                auto scene = ImportGGModel(entity->d_name);
-
-                Scenes["test"] = scene;
-            }
-        }
-
-        closedir(dir);
+//        auto dir = opendir(GGResource::GetModelPath().c_str());
+//
+//        if (dir == nullptr)
+//        {
+//            GGLoggingManager::LogError("Could not open model path: ",  GGResource::GetModelPath());
+//
+//            return;
+//        }
+//
+//        struct dirent* entity = nullptr;
+//
+//        while (entity = readdir(dir))
+//        {
+//            if (GGUtility::EndsWith(entity->d_name, GGResource::GetGGModelFileEnding()))
+//            {
+//                auto scene = ImportGGModel(entity->d_name);
+//
+//                Scenes["test"] = scene;
+//            }
+//        }
+//
+//        closedir(dir);
     }
 
     void LoadAllTextures()
     {
-        auto dir = opendir(GGResourceManager::GetTexturePath().c_str());
+        auto dir = opendir(GGResource::GetTexturePath().c_str());
 
         if (dir == nullptr)
         {
-            GGLoggingManager::LogError("Could not open texture path: ",  GGResourceManager::GetTexturePath());
+            GGLoggingManager::LogError("Could not open texture path: ",  GGResource::GetTexturePath());
 
             return;
         }
@@ -143,34 +143,34 @@ namespace GGResourceManager
 
     void LoadAllShaders()
     {
-        auto dir = opendir(GGResourceManager::GetShaderPath().c_str());
-
-        if (dir == nullptr)
-        {
-            GGLoggingManager::LogError("Could not open shader path: ", GGResourceManager::GetShaderPath());
-            return;
-        }
-
-        struct dirent* entity = nullptr;
-
-        while (entity = readdir(dir))
-        {
-            if (GGUtility::EndsWith(entity->d_name, GGResourceManager::GetGGShaderFileEnding()))
-            {
-                auto shader = ImportGGShader(entity->d_name);
-
-                if (!GGShaderWasImported())
-                {
-                    GGLoggingManager::LogError("One or more shader could not be loaded.");
-
-                    return;
-                }
-
-                Shaders[shader.Name] = shader;
-            }
-        }
-
-        closedir(dir);
+//        auto dir = opendir(GGResource::GetShaderPath().c_str());
+//
+//        if (dir == nullptr)
+//        {
+//            GGLoggingManager::LogError("Could not open shader path: ", GGResource::GetShaderPath());
+//            return;
+//        }
+//
+//        struct dirent* entity = nullptr;
+//
+//        while (entity = readdir(dir))
+//        {
+//            if (GGUtility::EndsWith(entity->d_name, GGResource::GetGGShaderFileEnding()))
+//            {
+//                auto shader = ImportGGShader(entity->d_name);
+//
+//                if (!GGShaderWasImported())
+//                {
+//                    GGLoggingManager::LogError("One or more shader could not be loaded.");
+//
+//                    return;
+//                }
+//
+//                Shaders[shader.Name] = shader;
+//            }
+//        }
+//
+//        closedir(dir);
     }
 
     const GGGraphics::Texture GetTexture(const std::string& texture)

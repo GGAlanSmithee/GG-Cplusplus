@@ -17,7 +17,7 @@ namespace // Private variables and functions
     const std::string PhongShaderName = "phong";
 }
 
-namespace GGResourceManager
+namespace GGResource
 {
     const std::string& GetModelPath()
     {

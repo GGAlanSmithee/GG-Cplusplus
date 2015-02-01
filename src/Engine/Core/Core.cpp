@@ -23,11 +23,11 @@ namespace GGCoreEngine
             return -1;
         }
 
-        GGResourceManager::LoadAllTextures();
-        GGResourceManager::LoadAllModels();
-        GGResourceManager::LoadAllShaders();
+        GGResource::LoadAllTextures();
+        GGResource::LoadAllModels();
+        GGResource::LoadAllShaders();
 
-        GGGraphics::Scene scene = GGResourceManager::GetScene("test");
+        GGGraphics::Scene scene = GGResource::GetScene("test");
         GGGraphics::Geometry geometry = scene.Geometries[0];
         GGGraphics::Mesh mesh = geometry.Meshes[0];
         std::vector<GGGraphics::Vertex> vertices = mesh.Vertices;

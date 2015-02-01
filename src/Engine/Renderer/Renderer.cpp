@@ -103,12 +103,12 @@ namespace GGRendererEngine
 
     void DrawModel(const glm::mat4& transform, const std::string& sceneName, const std::string& shaderName)
     {
-        auto shader = GGResourceManager::GetShader(shaderName);
+        auto shader = GGResource::GetShader(shaderName);
 
         /// @todo to avoid context switches, refactor this to sort by programs, textures etc!
-        GGResourceManager::UseShader(shader);
+        GGResource::UseShader(shader);
 
-        GGResourceManager::SetMVPUniform(shader, pipeline.GetMVPMatrix(transform));
+        GGResource::SetMVPUniform(shader, pipeline.GetMVPMatrix(transform));
 
         //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -120,8 +120,8 @@ namespace GGRendererEngine
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GGGraphics::Vertex), (const GLvoid*)offsetof(GGGraphics::Vertex, Position));
         glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(GGGraphics::Vertex), (const GLvoid*)offsetof(GGGraphics::Vertex, TexCoord));
 
-        auto scene = GGResourceManager::GetScene(sceneName);
-        GGResourceManager::ActivateTexture(scene.Texture);
+        auto scene = GGResource::GetScene(sceneName);
+        GGResource::ActivateTexture(scene.Texture);
 
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
         /// @todo fix this:

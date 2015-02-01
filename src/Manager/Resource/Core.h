@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace GGResourceManager
+namespace GGResource
 {
     /// Returns the active model path
     /// @author Alan Smithee

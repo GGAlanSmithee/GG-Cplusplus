@@ -6,8 +6,17 @@
 #include "Graphics/Shader.h"
 #include "Graphics/Texture.h"
 
-namespace GGResourceManager
+namespace GGResource
 {
+    class Instance
+    {
+        public:
+        private:
+            std::map<std::string, GGGraphics::Scene>   Scenes;
+            std::map<std::string, GGGraphics::Texture> Textures;
+            std::map<std::string, GGGraphics::Shader>  Shaders;
+    };
+
     /// Loads all models from the current model path
     /// @author Alan Smithee
     /// @date created 2015-01-09
