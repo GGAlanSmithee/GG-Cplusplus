@@ -3,8 +3,6 @@
 #include "Entity.h"
 #include "Engine/Core/Component.h"
 #include "Utility/Utility.h"
-#include "Enum/Enum.h"
-#include "Manager/Resource/Resource.h"
 
 namespace GGCoreEngine
 {
@@ -14,12 +12,11 @@ namespace GGCoreEngine
         {
             if (world.Enteties[i] == GGUtility::ToIntegral(ComponentType::None))
             {
-                world.Enteties[i] = GGUtility::ToIntegral(ComponentType::Transform)  |
-                                    GGUtility::ToIntegral(ComponentType::Physics) |
+                world.Enteties[i] = GGUtility::ToIntegral(ComponentType::Transform) |
+                                    GGUtility::ToIntegral(ComponentType::Physics)   |
                                     GGUtility::ToIntegral(ComponentType::Appearance);
 
-                world.AppearanceComponents[i].Scene = "test";
-                world.AppearanceComponents[i].Shader = "phong";
+                world.AppearanceComponents[i].Texture = "helloword";
 
                 return i;
             }

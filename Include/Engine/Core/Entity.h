@@ -1,5 +1,5 @@
-#ifndef ENTITY_H_INCLUDED
-#define ENTITY_H_INCLUDED
+#ifndef ENGINE_CORE_ENTITY_H_INCLUDED
+#define ENGINE_CORE_ENTITY_H_INCLUDED
 
 #include "World.h"
 #include <memory>
@@ -18,4 +18,4 @@ namespace GGCoreEngine
 }
 
 
-#endif // ENTITY_H_INCLUDED
+#endif // ENGINE_CORE_ENTITY_H_INCLUDED

@@ -1,11 +1,8 @@
-#ifndef COMPONENT_H_INCLUDED
-#define COMPONENT_H_INCLUDED
+#ifndef ENGINE_CORE_COMPONENT_H_INCLUDED
+#define ENGINE_CORE_COMPONENT_H_INCLUDED
 
 #include <string>
-
-#include <GL/glew.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+#include "Math/Vec2.h"
 
 namespace GGCoreEngine
 {
@@ -27,14 +24,13 @@ namespace GGCoreEngine
         Transform   = 1 << 5
     };
 
-    /// Enables an entity to have an observable appearance in the 3D world
+    /// Enables an entity to have an observable appearance in the 2D world
     /// @author Alan Smithee
     /// @date created 2014-11-19
-    /// @date changed 2015-01-11
+    /// @date changed 2015-02-01
     typedef struct Appearance
     {
-        std::string Scene;
-        std::string Shader;
+        std::string Texture;
     }
     Appearance;
 
@@ -43,62 +39,52 @@ namespace GGCoreEngine
     /// @date created 2014-12-21
     typedef struct Display
     {
-        GLuint Target = static_cast<GLuint>(0);
-        bool IsOrtho  = false;
+        SDL_Rect Viewport;
     }
     Display;
 
     /// Enables an entity to focus at a target
     /// @author Alan Smithee
     /// @date created 2014-12-21
+    /// @date changed 2015-02-01
     typedef struct Focus
     {
-        glm::mat4 Target = glm::mat4(1.0);
+        GGMath::Vec2 Target = GGMath::Vec2(0.0f);
     }
     Focus;
 
-    /// Enables an entity to move in, and interact with the 3D world
+    /// Enables an entity to move in, and interact with the 2D world
     /// @author Alan Smithee
     /// @date created 2014-11-19
+    /// @date changed 2015-02-01
     typedef struct Physics
     {
-        glm::vec2 Velocity = glm::vec2(1.0f);
+        float Velocity = 2.0f;
     }
     Physics;
 
     /// Enables an entity to have a point of view (to observe other enteties and objects)
     /// @author Alan Smithee
     /// @date created 2014-12-21
+    /// @date created 2015-02-01
     typedef struct PointOfView
     {
-        float FoV         = 45.0f;
-        float AspectRatio = 800.0f / 600.0f;
-        float Near        = 0.1f;
-        float Far         = 200.0f;
-
-        const glm::mat4 Get()
-        {
-            return glm::perspective(FoV, AspectRatio, Near, Far);
-        }
+        float Width = 800;
+        float Height = 600;
     }
     PointOfView;
 
-    /// Enables an entity to be placed and oriented in the 3D world
+    /// Enables an entity to be placed, scaled and oriented in the 2D world
     /// @author Alan Smithee
     /// @date created 2014-11-19
-    /// @date changed 2014-12-20
+    /// @date changed 2015-02-01
     typedef struct Transform
     {
-        glm::mat4 Scale       = glm::mat4(1.0);
-        glm::mat4 Rotation    = glm::mat4(1.0);
-        glm::mat4 Translation = glm::mat4(1.0);
-
-        glm::mat4 Get()
-        {
-            return Translation * Rotation * Scale;
-        }
+        float Scale              = 1.0f;
+        float Rotation           = 0.0f;
+        GGMath::Vec2 Translation = GGMath::Vec2(1.0f);
     }
     Transform;
 }
 
-#endif // COMPONENT_H_INCLUDED
+#endif // ENGINE_CORE_COMPONENT_H_INCLUDED

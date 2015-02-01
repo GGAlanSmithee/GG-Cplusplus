@@ -8,23 +8,11 @@ namespace GGRendererEngine
     class InstanceAccessor
     {
         public:
-            static Instance* Create()
+            static Instance* Create(SDL_Window* window)
             {
                 Instance* instance = new Instance();
 
-                instance->_window = SDL_CreateWindow("Hello, World!",
-                                                     SDL_WINDOWPOS_UNDEFINED,
-                                                     SDL_WINDOWPOS_UNDEFINED,
-                                                     640,
-                                                     480,
-                                                     SDL_WINDOW_ALLOW_HIGHDPI);
-
-                if (instance->_window == nullptr)
-                {
-                    Destroy(instance);
-                }
-
-                instance->_renderer = SDL_CreateRenderer(instance->_window, -1, SDL_RENDERER_ACCELERATED);
+                instance->_renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
                 if (instance->_renderer == nullptr)
                 {
@@ -47,12 +35,6 @@ namespace GGRendererEngine
                     instance->_renderer = nullptr;
                 }
 
-                if (instance->_window != nullptr)
-                {
-                    SDL_DestroyWindow(instance->_window);
-                    instance->_window = nullptr;
-                }
-
                 delete instance;
                 instance = nullptr;
             }
@@ -70,9 +52,9 @@ namespace GGRendererEngine
             }
     };
 
-    Instance* Create()
+    Instance* Create(SDL_Window* window)
     {
-        return InstanceAccessor::Create();
+        return InstanceAccessor::Create(window);
     }
 
     void Destroy(Instance* instance)

@@ -6,7 +6,6 @@
 #include <bitset>
 #include "Engine/Core/Component.h"
 #include "Utility/Utility.h"
-#include "Enum/Enum.h"
 
 namespace GGCoreEngine
 {
