@@ -5,9 +5,9 @@ int main(int argc, char* args[])
 {
     GGCoreEngine::World world(1000);
 
-    GGApplication::Game game(world);
+    GGApplication::Application application(world);
 
-    return GGCoreEngine::Execute(game);
+    return GGCoreEngine::Execute(application);
 
     return 0;
 }

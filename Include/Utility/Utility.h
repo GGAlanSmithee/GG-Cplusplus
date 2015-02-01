@@ -1,9 +1,8 @@
-#ifndef UTILITY_H_INCLUDED
-#define UTILITY_H_INCLUDED
+#ifndef UTILITY_UTILITY_H_INCLUDED
+#define UTILITY_UTILITY_H_INCLUDED
 
 #include <algorithm>
 #include <string>
-#include <sstream>
 #include <vector>
 
 namespace GGUtility
@@ -84,4 +83,4 @@ namespace GGUtility
     const float Round(const float, const unsigned int = 5);
 }
 
-#endif // UTILITY_H_INCLUDED
+#endif // UTILITY_UTILITY_H_INCLUDED

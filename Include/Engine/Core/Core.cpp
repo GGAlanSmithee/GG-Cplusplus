@@ -2,10 +2,11 @@
 #include <SDL.h>
 #include "Engine/Core/Core.h"
 #include "Engine/Renderer/Renderer.h"
+#include "Engine/Event/Event.h"
 
 namespace GGCoreEngine
 {
-    const int Execute(GGApplication::Game& game)
+    const int Execute(GGApplication::Application& application)
     {
         if (SDL_Init(SDL_INIT_EVENTS | SDL_INIT_VIDEO) != 0)
         {
@@ -42,33 +43,22 @@ namespace GGCoreEngine
 
         auto texture = GGRendererEngine::CreateTexture(renderer);
 
+        auto event = GGEventEngine::Create();
+
         auto running = true;
+
+        GGEventEngine::RegisterCallbackToKeyboardEvent(event, SDLK_ESCAPE, [&]() { running = false; });
+
         while (running)
         {
-            SDL_Event event;
-            if (SDL_PollEvent(&event))
-            {
-                if (event.type == SDL_QUIT)
-                {
-                    running = false;
-                }
-                if (event.type == SDL_KEYDOWN)
-                {
-                    switch (event.key.keysym.sym)
-                    {
-                        case SDLK_ESCAPE:
-                        {
-                            running = false;
-                            break;
-                        }
-                    }
-                }
-            }
+            GGEventEngine::HandleEvents(event);
 
             GGRendererEngine::Render(renderer, texture);
 
             SDL_Delay(1);
         }
+
+        GGEventEngine::Destroy(event);
 
         SDL_DestroyTexture(texture);
         GGRendererEngine::Destroy(renderer);

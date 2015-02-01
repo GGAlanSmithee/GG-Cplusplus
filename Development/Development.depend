@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1422782570 source:c:\projects\creatio\include\engine\renderer\renderer.cpp
+1422786586 source:c:\projects\creatio\include\engine\renderer\renderer.cpp
 	"Renderer.h"
 	<iostream>
 	<SDL.h>
@@ -324,11 +324,9 @@
 	"begin_code.h"
 	"close_code.h"
 
-1422708599 source:c:\projects\creatio\development\main.cpp
-	<iostream>
-	<SDL.h>
-	<SDL_image.h>
-	"Engine/Renderer/Renderer.h"
+1422818710 source:c:\projects\creatio\development\main.cpp
+	"Application/Application.h"
+	"Engine/Core/Core.h"
 
 1376152754 c:\applications\sdl2_image-2.0.0\x86_64-w64-mingw32\include\sdl2\sdl_image.h
 	"SDL.h"
@@ -336,16 +334,14 @@
 	"begin_code.h"
 	"close_code.h"
 
-1422781088 source:c:\projects\creatio\include\application\application.cpp
+1422815581 source:c:\projects\creatio\include\application\application.cpp
 	"Application/Application.h"
 
-1422781019 c:\projects\creatio\include\application\application.h
+1422818702 c:\projects\creatio\include\application\application.h
 	<memory>
-	<vector>
 	"Engine/Core/World.h"
-	"Engine/Core/Manager.h"
 
-1422781127 c:\projects\creatio\include\engine\core\world.h
+1422815521 c:\projects\creatio\include\engine\core\world.h
 	<vector>
 	<memory>
 	<bitset>
@@ -359,21 +355,21 @@
 1422781842 c:\projects\creatio\include\math\vec2.h
 	<SDL.h>
 
-1421272058 c:\projects\creatio\include\utility\utility.h
+1422815001 c:\projects\creatio\include\utility\utility.h
 	<algorithm>
 	<string>
-	<sstream>
 	<vector>
 
 1418401178 c:\projects\creatio\include\engine\core\manager.h
 
-1422783124 source:c:\projects\creatio\include\engine\core\core.cpp
+1422818263 source:c:\projects\creatio\include\engine\core\core.cpp
 	<iostream>
 	<SDL.h>
 	"Engine/Core/Core.h"
 	"Engine/Renderer/Renderer.h"
+	"Engine/Event/Event.h"
 
-1422782650 c:\projects\creatio\include\engine\core\core.h
+1422784068 c:\projects\creatio\include\engine\core\core.h
 	"Application/Application.h"
 
 1422782265 source:c:\projects\creatio\include\engine\core\entity.cpp
@@ -388,4 +384,35 @@
 
 1422782592 source:c:\projects\creatio\include\math\vec2.cpp
 	"Vec2.h"
+
+1422784709 c:\projects\creatio\include\manager\input\input.h
+
+1422785814 source:c:\projects\creatio\include\engine\input\input.cpp
+	"Input.h"
+
+1422785699 c:\projects\creatio\include\engine\input\input.h
+	<SDL.h>
+	<memory>
+	"Manager/Input/Input.h"
+
+1422785235 source:c:\projects\creatio\include\manager\input\gameinput.cpp
+	"GameInput.h"
+
+1422786206 c:\projects\creatio\include\manager\input\gameinput.h
+	"Input.h"
+
+1422784711 source:c:\projects\creatio\include\manager\input\input.cpp
+	"Manager/Input/Input.h"
+
+1422815010 source:c:\projects\creatio\include\utility\utility.cpp
+	<sstream>
+	"Utility/Utility.h"
+
+1422818628 source:c:\projects\creatio\include\engine\event\event.cpp
+	"Event.h"
+
+1422818607 c:\projects\creatio\include\engine\event\event.h
+	<SDL.h>
+	<unordered_map>
+	<functional>
 

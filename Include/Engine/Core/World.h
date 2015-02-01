@@ -1,5 +1,5 @@
-#ifndef WORLD_H_INCLUDED
-#define WORLD_H_INCLUDED
+#ifndef ENGINE_CORE_WORLD_H_INCLUDED
+#define ENGINE_CORE_WORLD_H_INCLUDED
 
 #include <vector>
 #include <memory>
@@ -78,4 +78,4 @@ namespace GGCoreEngine
     World;
 }
 
-#endif // WORLD_H_INCLUDED
+#endif // ENGINE_CORE_WORLD_H_INCLUDED

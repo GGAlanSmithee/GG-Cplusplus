@@ -1,3 +1,4 @@
+#include <sstream>
 #include "Utility/Utility.h"
 
 namespace GGUtility

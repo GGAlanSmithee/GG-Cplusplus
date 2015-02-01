@@ -2,24 +2,13 @@
 
 namespace GGApplication
 {
-    Editor::Editor(GGCoreEngine::World& world) :
+    Application::Application(const GGCoreEngine::World& world) :
         _world(world)
     {
         // Empty
     }
 
-    const GGCoreEngine::World Editor::GetWorld() const
-    {
-        return _world;
-    }
-
-    Game::Game(GGCoreEngine::World& world) :
-        _world(world)
-    {
-        // Empty
-    }
-
-    const GGCoreEngine::World Game::GetWorld() const
+    const GGCoreEngine::World Application::GetWorld() const
     {
         return _world;
     }
