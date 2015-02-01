@@ -1,20 +1,38 @@
 #include <iostream>
 #include <SDL.h>
+#include <SDL_image.h>
 #include "Engine/Core/Core.h"
 #include "Engine/Renderer/Renderer.h"
 #include "Engine/Event/Event.h"
+#include "Manager/Texture/Texture.h"
+#include "Loader/Loader.h"
 
 namespace GGCoreEngine
 {
-    const int Execute(GGApplication::Application& application)
+    const bool InitializeSDL(const int flags)
     {
-        if (SDL_Init(SDL_INIT_EVENTS | SDL_INIT_VIDEO) != 0)
+        if (SDL_Init(flags) != 0)
         {
-            std::cerr << "Failed to initialize SDL Events." << std::endl;
-
-            return -1;
+            std::cerr << "Failed to initialize SDL: " << SDL_GetError() << std::endl;
+            return false;
         }
 
+        return true;
+    }
+
+    const bool InitializeSDLImage(const int flags)
+    {
+        if (!(IMG_Init(flags) & flags))
+        {
+            std::cerr << "Failed to initialize SDL_Image: " << IMG_GetError() << std::endl;
+            return false;
+        }
+
+        return true;
+    }
+
+    const int Execute(GGApplication::Application& application)
+    {
         auto window = SDL_CreateWindow("Hello, World!",
                                    SDL_WINDOWPOS_UNDEFINED,
                                    SDL_WINDOWPOS_UNDEFINED,
@@ -41,7 +59,11 @@ namespace GGCoreEngine
             return -1;
         }
 
-        auto texture = GGRendererEngine::CreateTexture(renderer);
+        auto textureManager = GGTextureManager::Create();
+
+        auto handle = GGTextureManager::AddTexture(textureManager,
+                                                   GGLoader::LoadTexture(GGRendererEngine::GetRenderer(renderer),
+                                                                         "test.png"));
 
         auto event = GGEventEngine::Create();
 
@@ -53,14 +75,15 @@ namespace GGCoreEngine
         {
             GGEventEngine::HandleEvents(event);
 
+            auto texture = GGTextureManager::GetTexture(textureManager, handle);
             GGRendererEngine::Render(renderer, texture);
 
             SDL_Delay(1);
         }
 
+        GGTextureManager::Destroy(textureManager);
         GGEventEngine::Destroy(event);
 
-        SDL_DestroyTexture(texture);
         GGRendererEngine::Destroy(renderer);
 
         SDL_DestroyWindow(window);

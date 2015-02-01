@@ -9,15 +9,14 @@ namespace GGEventEngine
 {
     class Instance
     {
-        private:
-            friend class InstanceAccessor;
+        friend class InstanceAccessor;
 
-            Instance() { };
+        Instance() { };
 
-            SDL_Event _event;
+        SDL_Event _event;
 
-            std::unordered_map<SDL_Keycode, std::function<void()>> _keyDownCallbacks;
-            std::unordered_map<SDL_Keycode, std::function<void()>> _keyUpCallbacks;
+        std::unordered_map<SDL_Keycode, std::function<void()>> _keyDownCallbacks;
+        std::unordered_map<SDL_Keycode, std::function<void()>> _keyUpCallbacks;
     };
 
     /// Creates an instance of the event engine

@@ -5,6 +5,18 @@
 
 namespace GGCoreEngine
 {
+    /// Initialized SDL
+    /// @author Alan Smithee
+    /// @date created 2015-02-01
+    /// @param flags the flags used to initialize SDL
+    const bool InitializeSDL(const int);
+
+    /// Initialized SDL image
+    /// @author Alan Smithee
+    /// @date created 2015-02-01
+    /// @param flags the flags used to initialize SDL image
+    const bool InitializeSDLImage(const int);
+
     /// Executes the core engine
     /// @author Alan Smithee
     /// @date created 2014-12-03

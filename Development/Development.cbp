@@ -54,6 +54,10 @@
 		<Unit filename="../Include/Engine/Event/Event.h" />
 		<Unit filename="../Include/Engine/Renderer/Renderer.cpp" />
 		<Unit filename="../Include/Engine/Renderer/Renderer.h" />
+		<Unit filename="../Include/Loader/Loader.cpp" />
+		<Unit filename="../Include/Loader/Loader.h" />
+		<Unit filename="../Include/Manager/Texture/Texture.cpp" />
+		<Unit filename="../Include/Manager/Texture/Texture.h" />
 		<Unit filename="../Include/Math/Vec2.cpp" />
 		<Unit filename="../Include/Math/Vec2.h" />
 		<Unit filename="../Include/Utility/Utility.cpp" />

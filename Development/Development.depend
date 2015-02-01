@@ -1,10 +1,10 @@
 # depslib dependency file v1.0
-1422786586 source:c:\projects\creatio\include\engine\renderer\renderer.cpp
+1422824893 source:c:\projects\creatio\include\engine\renderer\renderer.cpp
 	"Renderer.h"
 	<iostream>
 	<SDL.h>
 
-1422782620 c:\projects\creatio\include\engine\renderer\renderer.h
+1422824410 c:\projects\creatio\include\engine\renderer\renderer.h
 	<SDL.h>
 
 1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl.h
@@ -324,7 +324,9 @@
 	"begin_code.h"
 	"close_code.h"
 
-1422818710 source:c:\projects\creatio\development\main.cpp
+1422822318 source:c:\projects\creatio\development\main.cpp
+	<SDL.h>
+	<SDL_image.h>
 	"Application/Application.h"
 	"Engine/Core/Core.h"
 
@@ -362,14 +364,17 @@
 
 1418401178 c:\projects\creatio\include\engine\core\manager.h
 
-1422818263 source:c:\projects\creatio\include\engine\core\core.cpp
+1422825164 source:c:\projects\creatio\include\engine\core\core.cpp
 	<iostream>
 	<SDL.h>
+	<SDL_image.h>
 	"Engine/Core/Core.h"
 	"Engine/Renderer/Renderer.h"
 	"Engine/Event/Event.h"
+	"Manager/Texture/Texture.h"
+	"Loader/Loader.h"
 
-1422784068 c:\projects\creatio\include\engine\core\core.h
+1422822153 c:\projects\creatio\include\engine\core\core.h
 	"Application/Application.h"
 
 1422782265 source:c:\projects\creatio\include\engine\core\entity.cpp
@@ -411,8 +416,26 @@
 1422818628 source:c:\projects\creatio\include\engine\event\event.cpp
 	"Event.h"
 
-1422818607 c:\projects\creatio\include\engine\event\event.h
+1422822629 c:\projects\creatio\include\engine\event\event.h
 	<SDL.h>
 	<unordered_map>
 	<functional>
+
+1422824072 source:c:\projects\creatio\include\loader\loader.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"Loader.h"
+
+1422824063 c:\projects\creatio\include\loader\loader.h
+	<string>
+
+1422824795 c:\projects\creatio\include\manager\texture\texture.h
+	<string>
+	<SDL.h>
+	<unordered_map>
+
+1422824846 source:c:\projects\creatio\include\manager\texture\texture.cpp
+	<iostream>
+	"Texture.h"
 

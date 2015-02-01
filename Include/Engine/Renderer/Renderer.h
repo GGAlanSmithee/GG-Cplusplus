@@ -7,18 +7,18 @@ namespace GGRendererEngine
 {
     class Instance
     {
-        private:
-            friend class InstanceAccessor;
+        friend class InstanceAccessor;
 
-            Instance() { };
+        Instance() { };
 
-            SDL_Renderer* _renderer = nullptr;
+        SDL_Renderer* _renderer = nullptr;
     };
 
     Instance* Create(SDL_Window*);
     void Destroy(Instance*);
     void Render(Instance*, SDL_Texture*);
     SDL_Texture* CreateTexture(Instance*);
+    SDL_Renderer* GetRenderer(Instance*);
 }
 
 #endif // ENGINE_RENDERER_RENDERER_H_INCLUDED

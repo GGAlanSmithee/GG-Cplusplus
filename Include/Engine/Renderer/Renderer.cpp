@@ -13,6 +13,7 @@ namespace GGRendererEngine
             static void Destroy(Instance*);
             static SDL_Texture* CreateTexture(Instance*, SDL_Surface*);
             static void Render(Instance*, SDL_Texture*);
+            static SDL_Renderer* GetRenderer(Instance*);
     };
 
     Instance* InstanceAccessor::Create(SDL_Window* window)
@@ -57,6 +58,11 @@ namespace GGRendererEngine
         SDL_RenderCopy(instance->_renderer, texture, nullptr, nullptr);
         SDL_RenderPresent(instance->_renderer);
     }
+
+    SDL_Renderer* InstanceAccessor::GetRenderer(Instance* instance)
+    {
+        return instance->_renderer;
+    }
 }
 
 /// Public interface
@@ -86,5 +92,10 @@ namespace GGRendererEngine
         SDL_FreeSurface(surface);
 
         return texture;
+    }
+
+    SDL_Renderer* GetRenderer(Instance* instance)
+    {
+        return InstanceAccessor::GetRenderer(instance);
     }
 }
