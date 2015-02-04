@@ -1,15 +1,12 @@
 #include "Application/Application.h"
 
-namespace GGApplication
+GG_Application::GG_Application(const GGCoreEngine::World& world) :
+    _world(world)
 {
-    Application::Application(const GGCoreEngine::World& world) :
-        _world(world)
-    {
-        // Empty
-    }
+    // Empty
+}
 
-    const GGCoreEngine::World Application::GetWorld() const
-    {
-        return _world;
-    }
+const GG_World GG_Application::GetWorld() const
+{
+    return _world;
 }
