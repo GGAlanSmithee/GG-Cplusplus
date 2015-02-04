@@ -7,13 +7,15 @@
 /// @author Alan Smithee
 /// @date created 2015-02-01
 /// @param flags the flags used to initialize SDL
-const bool GG_InitializeSDL(const int);
+/// @exception init_error could not initialize SDL
+void GG_InitializeSDL(const int);
 
 /// Initialized SDL image
 /// @author Alan Smithee
 /// @date created 2015-02-01
 /// @param flags the flags used to initialize SDL image
-const bool GG_InitializeSDLImage(const int);
+/// @exception init_error could not initialize SDL image
+void GG_InitializeSDLImage(const int);
 
 /// Executes the core engine
 /// @author Alan Smithee
