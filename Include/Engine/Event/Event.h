@@ -13,20 +13,20 @@ class GG_Event
         /// @author Alan Smithee
         /// @date created 2015-02-01
         /// @return a pointer to an event
-        friend GG_Event* Create();
+        friend GG_Event* GG_CreateEvent();
 
         /// Destroys an instance by freeing the memory used
         /// @author Alan Smithee
         /// @date created 2015-02-01
         /// @param event a pointer to the event to destroy
-        friend void Destroy(GG_Event*);
+        friend void GG_Destroy(GG_Event*);
 
         /// Polls for events and dispatches them to registered callbacks (if any)
         /// @author Alan Smithee
         /// @date created 2014-12-08
         /// @date changed 2015-02-01
         /// @param event the event used to handle events
-        friend void HandleEvents(GG_Event*);
+        friend void GG_HandleEvents(GG_Event*);
 
         /// Registers a callback to a keyboard event
         /// @author Alan Smithee
@@ -34,9 +34,7 @@ class GG_Event
         /// @param event the event used to handle events
         /// @param keycode the keycode to bind the callback to
         /// @param callback the callback to invoke when this event occours
-        friend void RegisterKeyboardEvent(GG_Event*, const SDL_Keycode, std::function<void()>);
-            
-        friend const SDL_Event GetEvent(GG_Event*);
+        friend void GG_RegisterKeyboardEvent(GG_Event*, const SDL_Keycode, std::function<void()>);
             
     private:
         GG_Event() { };
