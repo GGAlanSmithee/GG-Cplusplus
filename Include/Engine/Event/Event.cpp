@@ -1,132 +1,91 @@
+#include <stdexcept>
 #include "Event.h"
 
-// Instance accessor
-namespace GGEventEngine
+GG_Event* GG_CreateEvent()
 {
-    class InstanceAccessor
-    {
-        public:
-            static Instance* Create();
-            static void Destroy(Instance*);
-            static SDL_Event& GetEvent(Instance*);
-            static void RegisterCallbackToKeyboardEvent(Instance*, SDL_Keycode, std::function<void()>);
-            static void HandleKeyDown(Instance*, const SDL_Keycode&);
-            static void HandleKeyUp(Instance*, const SDL_Keycode&);
-    };
+    /// @todo instantiate maps with all keycodes to avoid costly resizing operators during runtime
 
-    Instance* InstanceAccessor::Create()
-    {
-        /// @todo instantiate maps with all keycodes to avoid costly operators during runtime
-
-        return new Instance();
-    }
-
-    void InstanceAccessor::Destroy(Instance* instance)
-    {
-        if (instance == nullptr)
-        {
-            return;
-        }
-
-        for (auto& kvp: instance->_keyDownCallbacks)
-        {
-            if (kvp.second != nullptr)
-            {
-                kvp.second = nullptr;
-            }
-        }
-
-        instance->_keyDownCallbacks.clear();
-
-        delete instance;
-        instance = nullptr;
-    }
-
-    SDL_Event& InstanceAccessor::GetEvent(Instance* instance)
-    {
-        return instance->_event;
-    }
-
-    void InstanceAccessor::RegisterCallbackToKeyboardEvent(Instance* instance,
-                                                           SDL_Keycode keycode,
-                                                           std::function<void()> callback)
-    {
-        instance->_keyDownCallbacks[keycode] = callback;
-    }
-
-    void InstanceAccessor::HandleKeyDown(Instance* instance, const SDL_Keycode& keycode)
-    {
-        auto callback = instance->_keyDownCallbacks[keycode];
-
-        if (callback == nullptr)
-        {
-            return;
-        }
-
-        callback();
-    }
-
-	void InstanceAccessor::HandleKeyUp(Instance* instance, const SDL_Keycode& keycode)
-    {
-        auto callback = instance->_keyUpCallbacks[keycode];
-
-        if (callback == nullptr)
-        {
-            return;
-        }
-
-        callback();
-    }
+    return new GG_Event();
 }
 
-// Public interface
-namespace GGEventEngine
+void GG_DestroyEvent(GG_Event* event)
 {
-    Instance* Create()
+    if (event == nullptr)
     {
-        return InstanceAccessor::Create();
+        return;
     }
 
-    void Destroy(Instance* instance)
+    for (auto& kvp : event->_keyDownCallbacks)
     {
-        InstanceAccessor::Destroy(instance);
-    }
-
-	void HandleEvents(Instance* instance)
-    {
-        auto event = InstanceAccessor::GetEvent(instance);
-
-        while (SDL_PollEvent(&event))
+        if (kvp.second != nullptr)
         {
-            switch (event.type)
+            kvp.second = nullptr;
+        }
+    }
+
+    event->_keyDownCallbacks.clear();
+
+    delete event;
+    event = nullptr;
+}
+
+void GG_RegisterCallbackToKeyboardEvent(GG_Event* event, const SDL_Keycode keycode, std::function<void()> callback)
+{
+    if (event == nullptr)
+    {
+        throw std::invalid_argument("event cannot be null.");
+    }
+    
+    if (callback == nullptr)
+    {
+        throw std::invalid_argument("callback cannot be null.");
+    }
+    
+    event->_keyDownCallbacks[keycode] = callback;
+}
+
+void GG_HandleKeyDown(GG_Event* event, const SDL_Keycode keycode)
+{
+    if (event->_keyDownCallbacks.count(keycode) <= 0)
+    {
+        return;
+    }
+
+    event->_keyDownCallbacks.at(keycode)();
+}
+
+void GG_HandleKeyUp(GG_Event* event, const SDL_Keycode keycode)
+{
+    if (event->_keyUpCallbacks.count(keycode) <= 0)
+    {
+        return;
+    }
+
+    event->_keyUpCallbacks.at(keycode)();
+}
+
+void GG_HandleEvents(GG_Event* event)
+{
+    auto e = event->_event;
+    
+    while (SDL_PollEvent(&e))
+    {
+        switch (e.type)
+        {
+            case SDL_KEYDOWN:
             {
-                case SDL_KEYDOWN:
-                {
-                    InstanceAccessor::HandleKeyDown(instance, event.key.keysym.sym);
-                    break;
-                }
-                case SDL_KEYUP:
-                {
-                    InstanceAccessor::HandleKeyUp(instance, event.key.keysym.sym);
-                    break;
-                }
-                case SDL_QUIT:
-                {
-                    // Empty
-                }
+                HandleKeyDown(event, e.key.keysym.sym);
+                break;
+            }
+            case SDL_KEYUP:
+            {
+                HandleKeyUp(event, e.key.keysym.sym);
+                break;
+            }
+            case SDL_QUIT:
+            {
+                // Empty
             }
         }
-    }
-
-	void RegisterCallbackToKeyboardEvent(Instance* instance,
-                                         const SDL_Keycode keycode,
-                                         std::function<void()> callback)
-    {
-        if (instance == nullptr || callback == nullptr)
-        {
-            return;
-        }
-
-        InstanceAccessor::RegisterCallbackToKeyboardEvent(instance, keycode, callback);
     }
 }
