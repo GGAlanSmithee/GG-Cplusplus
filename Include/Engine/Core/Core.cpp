@@ -30,6 +30,7 @@ GG_Engine* const GG_CreateEngine(const std::string& title,
 
     if (engine->_window == nullptr)
     {
+        GG_DestroyEngine(engine);
         throw init_error(std::string("Failed to create SDL window: ") + SDL_GetError());
     }
 
@@ -90,7 +91,7 @@ void GG_QuitSDLImage()
 
 const int GG_Execute(GG_Engine* const engine)
 {
-    auto renderer = GGRendererEngine::Create(GG_GetWindow(engine));
+    auto renderer = GG_CreateRenderer(GG_GetWindow(engine));
 
     if (renderer == nullptr)
     {
@@ -100,7 +101,7 @@ const int GG_Execute(GG_Engine* const engine)
 
     auto textureManager = GGTextureManager::Create();
     auto handle = GGTextureManager::AddTexture(textureManager,
-    GGLoader::LoadTexture(GGRendererEngine::GetRenderer(renderer), "test.png"));
+    GGLoader::LoadTexture(GG_GetSDLRenderer(renderer), "test.png"));
 
     auto event = GG_CreateEvent();
 
@@ -113,7 +114,7 @@ const int GG_Execute(GG_Engine* const engine)
         GG_HandleEvents(event);
 
         auto texture = GGTextureManager::GetTexture(textureManager, handle);
-        GGRendererEngine::Render(renderer, texture);
+        GG_RenderTexture(renderer, texture);
 
         SDL_Delay(1);
     }
@@ -121,7 +122,7 @@ const int GG_Execute(GG_Engine* const engine)
     GGTextureManager::Destroy(textureManager);
     GG_DestroyEvent(event);
 
-    GGRendererEngine::Destroy(renderer);
+    GG_DestroyRenderer(renderer);
 
     SDL_Quit();
 

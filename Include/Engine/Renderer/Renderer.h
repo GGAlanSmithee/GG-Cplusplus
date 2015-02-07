@@ -3,22 +3,57 @@
 
 #include <SDL.h>
 
-namespace GGRendererEngine
+class GG_Renderer
 {
-    class Instance
-    {
-        friend class InstanceAccessor;
+    public:
+        friend GG_Renderer* const GG_CreateRenderer(SDL_Window* const);
+        friend void GG_DestroyRenderer(GG_Renderer*);
+        friend SDL_Texture* const GG_CreateTexture(GG_Renderer* const);
+        friend void GG_RenderTexture(GG_Renderer* const, SDL_Texture* const);
+        /// @todo remove this method, it break encapsulation, refactor code using it
+        friend SDL_Renderer* const GG_GetSDLRenderer(GG_Renderer* const);
 
-        Instance() { };
+    private:
+        GG_Renderer() { };
+        ~GG_Renderer() { };
 
         SDL_Renderer* _renderer = nullptr;
-    };
+};
 
-    Instance* Create(SDL_Window*);
-    void Destroy(Instance*);
-    void Render(Instance*, SDL_Texture*);
-    SDL_Texture* CreateTexture(Instance*);
-    SDL_Renderer* GetRenderer(Instance*);
-}
+/// Creates an instance of the GG_Renderer class
+/// @author Alan Smithee
+/// @date created 2015-02-07
+/// @param window a SDL window to bind the renderer too
+/// @return an instance of the GG_Renderer class
+/// @todo wrap SDL_Window in own GG_Window class
+/// @remarks friend of GG_Renderer
+GG_Renderer* const GG_CreateRenderer(SDL_Window* const);
+
+/// Destroys an instance of the GG_Renderer class
+/// @author Alan Smithee
+/// @date created 2015-02-07
+/// @param renderer the renderer to destroy
+/// @remarks friend of GG_Renderer
+void GG_DestroyRenderer(GG_Renderer*);
+
+/// Creates a texture
+/// @author Alan Smithee
+/// @date created 2015-02-07
+/// @param renderer the renderer to use to create the texture
+/// @return a SDL_Texture
+/// @remarks friend of GG_Renderer
+SDL_Texture* const GG_CreateTexture(GG_Renderer* const);
+
+/// Renders a texture
+/// @author Alan Smithee
+/// @date created 2015-02-07
+/// @param renderer the renderer to use to render the texture
+/// @param texture the texture to render
+/// @remarks friend of GG_Renderer
+void GG_RenderTexture(GG_Renderer* const, SDL_Texture* const);
+
+/// @todo remove this method, it breaks encapsulation, refactor code using it
+SDL_Renderer* const GG_GetSDLRenderer(GG_Renderer* const);
+
 
 #endif // ENGINE_RENDERER_RENDERER_H_INCLUDED

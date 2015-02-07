@@ -4,7 +4,7 @@
 	<iostream>
 	<SDL.h>
 
-1422824410 c:\projects\creatio\include\engine\renderer\renderer.h
+1423307810 c:\projects\creatio\include\engine\renderer\renderer.h
 	<SDL.h>
 
 1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl.h
@@ -366,7 +366,7 @@
 
 1418401178 c:\projects\creatio\include\engine\core\manager.h
 
-1423306551 source:c:\projects\creatio\include\engine\core\core.cpp
+1423308352 source:c:\projects\creatio\include\engine\core\core.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -445,5 +445,6 @@
 	<iostream>
 	"Texture.h"
 
-1423298314 c:\projects\creatio\include\utility\exception.h
+1423308447 c:\projects\creatio\include\utility\exception.h
+	<stdexcept>
 

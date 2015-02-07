@@ -2,100 +2,60 @@
 
 #include <iostream>
 #include <SDL.h>
+#include "Utility/Exception.h"
 
-/// Instance accessor
-namespace GGRendererEngine
+/// @todo add parameter for flags
+GG_Renderer* const GG_CreateRenderer(SDL_Window* const window)
 {
-    class InstanceAccessor
+    auto renderer = new GG_Renderer();
+
+    renderer->_renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
+    if (renderer->_renderer == nullptr)
     {
-        public:
-            static Instance* Create(SDL_Window*);
-            static void Destroy(Instance*);
-            static SDL_Texture* CreateTexture(Instance*, SDL_Surface*);
-            static void Render(Instance*, SDL_Texture*);
-            static SDL_Renderer* GetRenderer(Instance*);
-    };
-
-    Instance* InstanceAccessor::Create(SDL_Window* window)
-    {
-        Instance* instance = new Instance();
-
-        instance->_renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
-        if (instance->_renderer == nullptr)
-        {
-            Destroy(instance);
-        }
-
-        return instance;
+        GG_DestroyRenderer(renderer);
+        throw init_error(std::string("Failed to create SDL renderer: ") + SDL_GetError());
     }
 
-    void InstanceAccessor::Destroy(Instance* instance)
-    {
-        if (instance == nullptr)
-        {
-            return;
-        }
-
-        if (instance->_renderer != nullptr)
-        {
-            SDL_DestroyRenderer(instance->_renderer);
-            instance->_renderer = nullptr;
-        }
-
-        delete instance;
-        instance = nullptr;
-    }
-
-    SDL_Texture* InstanceAccessor::CreateTexture(Instance* instance, SDL_Surface* surface)
-    {
-        return SDL_CreateTextureFromSurface(instance->_renderer, surface);
-    }
-
-    void InstanceAccessor::Render(Instance* instance, SDL_Texture* texture)
-    {
-        SDL_RenderClear(instance->_renderer);
-        SDL_RenderCopy(instance->_renderer, texture, nullptr, nullptr);
-        SDL_RenderPresent(instance->_renderer);
-    }
-
-    SDL_Renderer* InstanceAccessor::GetRenderer(Instance* instance)
-    {
-        return instance->_renderer;
-    }
+    return renderer;
 }
 
-/// Public interface
-namespace GGRendererEngine
+void GG_DestroyRenderer(GG_Renderer* renderer)
 {
-    Instance* Create(SDL_Window* window)
+    if (renderer == nullptr)
     {
-        return InstanceAccessor::Create(window);
+        return;
     }
 
-    void Destroy(Instance* instance)
+    if (renderer->_renderer != nullptr)
     {
-        InstanceAccessor::Destroy(instance);
+        SDL_DestroyRenderer(renderer->_renderer);
+        renderer->_renderer = nullptr;
     }
 
-    void Render(Instance* instance, SDL_Texture* texture)
-    {
-        InstanceAccessor::Render(instance, texture);
-    }
+    delete renderer;
+    renderer = nullptr;
+}
 
-    SDL_Texture* CreateTexture(Instance* instance)
-    {
-        SDL_Surface* surface = SDL_LoadBMP("helloworld.bmp");
+SDL_Texture* const GG_CreateTexture(GG_Renderer* const renderer)
+{
+    SDL_Surface* surface = SDL_LoadBMP("helloworld.bmp");
 
-        auto texture = InstanceAccessor::CreateTexture(instance, surface);
+    auto texture = SDL_CreateTextureFromSurface(renderer->_renderer, surface);
 
-        SDL_FreeSurface(surface);
+    SDL_FreeSurface(surface);
 
-        return texture;
-    }
+    return texture;
+}
 
-    SDL_Renderer* GetRenderer(Instance* instance)
-    {
-        return InstanceAccessor::GetRenderer(instance);
-    }
+void GG_RenderTexture(GG_Renderer* const renderer, SDL_Texture* const texture)
+{
+    SDL_RenderClear(renderer->_renderer);
+    SDL_RenderCopy(renderer->_renderer, texture, nullptr, nullptr);
+    SDL_RenderPresent(renderer->_renderer);
+}
+
+SDL_Renderer* const GG_GetSDLRenderer(GG_Renderer* renderer)
+{
+    return renderer->_renderer;
 }
