@@ -6,7 +6,7 @@
 
 namespace GGCoreEngine
 {
-    const unsigned int CreateEntity(World& world)
+    const unsigned int CreateEntity(GG_World& world)
     {
         for (auto i = 0; i < world.Size; ++i)
         {
@@ -27,7 +27,7 @@ namespace GGCoreEngine
         return world.Size;
     }
 
-    void DestroyEntity(World& world, const unsigned int entity)
+    void DestroyEntity(GG_World& world, const unsigned int entity)
     {
         world.Enteties[entity] = GGUtility::ToIntegral(ComponentType::None);
     }

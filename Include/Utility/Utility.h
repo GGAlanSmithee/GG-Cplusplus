@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <string>
+#include <stdexcept>
 #include <vector>
 
 namespace GGUtility

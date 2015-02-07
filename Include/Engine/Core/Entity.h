@@ -9,12 +9,12 @@ namespace GGCoreEngine
     /// Creates an entity by assigning it a mask and returning its id
     /// @author Alan Smithee
     /// @date created 2014-11-25
-    const unsigned int CreateEntity (World&);
+    const unsigned int CreateEntity (GG_World&);
 
     /// Destroys an entity by assigning it an empty mask (ComponentType::None)
     /// @author Alan Smithee
     /// @date created 2014-11-25
-    void DestroyEntity(World&, const unsigned int);
+    void DestroyEntity(GG_World&, const unsigned int);
 }
 
 
