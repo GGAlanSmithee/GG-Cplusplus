@@ -325,7 +325,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1423305829 source:c:\projects\creatio\development\main.cpp
+1423430004 source:c:\projects\creatio\development\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -367,7 +367,7 @@
 
 1418401178 c:\projects\creatio\include\engine\core\manager.h
 
-1423426010 source:c:\projects\creatio\include\engine\core\core.cpp
+1423432592 source:c:\projects\creatio\include\engine\core\core.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -380,8 +380,11 @@
 	"Utility/Exception.h"
 	<stdexcept>
 
-1423306467 c:\projects\creatio\include\engine\core\core.h
+1423432854 c:\projects\creatio\include\engine\core\core.h
 	"Application/Application.h"
+	"Engine/Renderer/Renderer.h"
+	"Engine/Event/Event.h"
+	"Manager/Texture/Texture.h"
 
 1423304972 source:c:\projects\creatio\include\engine\core\entity.cpp
 	<iostream>

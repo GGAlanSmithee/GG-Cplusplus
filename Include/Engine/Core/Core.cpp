@@ -10,29 +10,41 @@
 #include "Utility/Exception.h"
 #include <stdexcept>
 
-GG_Engine* const GG_CreateEngine(const std::string& title,
-                                 const unsigned int x,
-                                 const unsigned int y,
-                                 const unsigned int w,
-                                 const unsigned int h,
-                                 const unsigned int flags)
+GG_Engine::GG_Engine(SDL_Window* window,
+                     GG_Renderer* renderer,
+                     GG_Event* event,
+                     GG_TextureManager* textureManager) :
+    _window(window),
+    _renderer(renderer),
+    _event(event),
+    _textureManager(textureManager)
 {
-    auto engine = new GG_Engine();
+    // Empty
+}
 
-    engine->_window = SDL_CreateWindow(title.c_str(), x, y, w, h, flags);
+GG_Engine::~GG_Engine()
+{
+    GG_DestroyTextureManager(_textureManager);
+    GG_DestroyEvent(_event);
+    GG_DestroyRenderer(_renderer);
+}
 
-    if (engine->_window == nullptr)
-    {
-        GG_DestroyEngine(engine);
-        throw init_error(std::string("Failed to create SDL window: ") + SDL_GetError());
-    }
-
-    return engine;
+GG_Engine* const GG_CreateEngine(SDL_Window* const window,
+                                 GG_Renderer* const renderer,
+                                 GG_Event* const event,
+                                 GG_TextureManager* const textureManager)
+{
+    return new GG_Engine(window, renderer, event, textureManager);
 }
 
 SDL_Window* const GG_GetWindow(GG_Engine* const engine)
 {
     return engine->_window;
+}
+
+GG_Event* const GG_GetEventFromEngine(GG_Engine* const engine)
+{
+    return engine->_event;
 }
 
 void GG_DestroyEngine(GG_Engine* engine)
@@ -84,43 +96,22 @@ void GG_QuitSDLImage()
 
 const int GG_Execute(GG_Engine* const engine)
 {
-    GG_Renderer* renderer = nullptr;
+    //auto texture = GGLoader::LoadTexture(GG_GetSDLRenderer(renderer), "test.png");
 
-    try
-    {
-        renderer = GG_CreateRenderer(GG_GetWindow(engine));
-    }
-    catch (const init_error& e)
-    {
-        GG_DestroyEngine(engine);
-        throw;
-    }
-
-    auto textureManager = GG_CreateTextureManager();
-    auto event = GG_CreateEvent();
-
-    auto texture = GGLoader::LoadTexture(GG_GetSDLRenderer(renderer), "test.png");
-
-    auto handle = GG_AddTexture(textureManager, texture);
+    //auto handle = GG_AddTexture(textureManager, texture);
 
     auto running = true;
 
-    GG_RegisterKeyboardEvent(event, SDLK_ESCAPE, [&]() { running = false; });
+    GG_RegisterKeyboardEvent(GG_GetEventFromEngine(engine), SDLK_ESCAPE, [&]() { running = false; });
 
     while (running)
     {
-        GG_HandleEvents(event);
+        GG_HandleEvents(GG_GetEventFromEngine(engine));
 
-        GG_RenderTexture(renderer, GG_GetTexture(textureManager, handle));
+        //GG_RenderTexture(renderer, GG_GetTexture(textureManager, handle));
 
         SDL_Delay(1);
     }
-
-    GG_DestroyEvent(event);
-    GG_DestroyTextureManager(textureManager);
-    GG_DestroyRenderer(renderer);
-
-    SDL_Quit();
 
     return 0;
 }

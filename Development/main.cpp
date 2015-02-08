@@ -27,16 +27,27 @@ int main(int argc, char* args[])
         return -1;
     }
 
+    SDL_Window* window = SDL_CreateWindow("Hello, World!",
+                                          SDL_WINDOWPOS_UNDEFINED,
+                                          SDL_WINDOWPOS_UNDEFINED,
+                                          640,
+                                          480,
+                                          SDL_WINDOW_ALLOW_HIGHDPI);
+
+    if (window == nullptr)
+    {
+        std::cerr << "Failed to create SDL window: " << SDL_GetError() << std::endl;
+        return -1;
+    }
+
     GG_Engine* engine = nullptr;
 
     try
     {
-        engine = GG_CreateEngine("Hello, World!",
-                                 SDL_WINDOWPOS_UNDEFINED,
-                                 SDL_WINDOWPOS_UNDEFINED,
-                                 640,
-                                 480,
-                                 SDL_WINDOW_ALLOW_HIGHDPI);
+        engine = GG_CreateEngine(window,
+                                 GG_CreateRenderer(window),
+                                 GG_CreateEvent(),
+                                 GG_CreateTextureManager());
     }
     catch (const init_error& e)
     {

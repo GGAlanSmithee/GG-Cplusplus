@@ -2,43 +2,50 @@
 #define ENGINE_CORE_CORE_H_INCLUDED
 
 #include "Application/Application.h"
+#include "Engine/Renderer/Renderer.h"
+#include "Engine/Event/Event.h"
+#include "Manager/Texture/Texture.h"
 
 class GG_Engine
 {
     public:
-        friend GG_Engine* const GG_CreateEngine(const std::string&,
-                                                const unsigned int,
-                                                const unsigned int,
-                                                const unsigned int,
-                                                const unsigned int,
-                                                const unsigned int);
+        friend GG_Engine* const GG_CreateEngine(SDL_Window*,
+                                                GG_Renderer*,
+                                                GG_Event*,
+                                                GG_TextureManager*);
         friend void GG_DestroyEngine(GG_Engine*);
         friend SDL_Window* const GG_GetWindow(GG_Engine* const);
 
-    private:
-        GG_Engine() { };
-        ~GG_Engine() { };
+        friend GG_Event* const GG_GetEventFromEngine(GG_Engine* const);
 
-        SDL_Window* _window;
+    private:
+        GG_Engine(SDL_Window*,
+                  GG_Renderer*,
+                  GG_Event*,
+                  GG_TextureManager*);
+
+        ~GG_Engine();
+
+        SDL_Window*        _window;
+        GG_Renderer*       _renderer;
+        GG_Event*          _event;
+        GG_TextureManager* _textureManager;
 };
 
 /// Creates an instance of the core engine
 /// @author Alan Smithee
 /// @date created 2015-02-07
+/// @date changed 2015-02-08
 /// @return a pointer to a newly created engine
-/// @param title the title of the window
-/// @param x the x position of the window
-/// @param y the y position of the window
-/// @param w the widht of the window
-/// @param h the height of the window
-/// @param flags flags to use when creating the SDL_Window*
+/// @param window the engines window
+/// @param renderer the engines renderer
+/// @param event the engines event
+/// @param textureManager the engines textureManager
 /// @remarks friend of GG_Engine
-GG_Engine* const GG_CreateEngine(const std::string&,
-                                 const unsigned int,
-                                 const unsigned int,
-                                 const unsigned int,
-                                 const unsigned int,
-                                 const unsigned int);
+GG_Engine* const GG_CreateEngine(SDL_Window* const,
+                                 GG_Renderer* const,
+                                 GG_Event* const,
+                                 GG_TextureManager* const);
 
 /// Destroys an instance of the core engine by freeing the memory used
 /// @author Alan Smithee
@@ -54,6 +61,14 @@ void GG_DestroyEngine(GG_Engine*);
 /// @return the window, or null if no window is set
 /// @remarks friend of GG_Engine
 SDL_Window* const GG_GetWindow(GG_Engine* const);
+
+/// Gets the event handler that the engine is currently using
+/// @author Alan Smithee
+/// @date created 2015-02-08
+/// @param engine the engine to get the event handler from
+/// @return the event handler, or null if no event handler is set
+/// @remarks friend of GG_Engine
+GG_Event* const GG_GetEventFromEngine(GG_Engine* const);
 
 /// Initialized SDL
 /// @author Alan Smithee
