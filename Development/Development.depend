@@ -1,10 +1,11 @@
 # depslib dependency file v1.0
-1422825197 source:c:\projects\creatio\include\engine\renderer\renderer.cpp
+1423385918 source:c:\projects\creatio\include\engine\renderer\renderer.cpp
 	"Renderer.h"
 	<iostream>
 	<SDL.h>
+	"Utility/Exception.h"
 
-1423307810 c:\projects\creatio\include\engine\renderer\renderer.h
+1423385951 c:\projects\creatio\include\engine\renderer\renderer.h
 	<SDL.h>
 
 1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl.h
@@ -366,7 +367,7 @@
 
 1418401178 c:\projects\creatio\include\engine\core\manager.h
 
-1423308352 source:c:\projects\creatio\include\engine\core\core.cpp
+1423426010 source:c:\projects\creatio\include\engine\core\core.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -427,7 +428,7 @@
 	<unordered_map>
 	<functional>
 
-1422824072 source:c:\projects\creatio\include\loader\loader.cpp
+1423308834 source:c:\projects\creatio\include\loader\loader.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -436,12 +437,12 @@
 1422824063 c:\projects\creatio\include\loader\loader.h
 	<string>
 
-1422824795 c:\projects\creatio\include\manager\texture\texture.h
+1423426133 c:\projects\creatio\include\manager\texture\texture.h
 	<string>
 	<SDL.h>
 	<unordered_map>
 
-1422824846 source:c:\projects\creatio\include\manager\texture\texture.cpp
+1423426400 source:c:\projects\creatio\include\manager\texture\texture.cpp
 	<iostream>
 	"Texture.h"
 

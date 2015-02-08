@@ -2,6 +2,21 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
+	<File name="..\Include\Loader\Loader.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="195" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="..\Include\Engine\Event\Event.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="616" topLine="42" />
+		</Cursor>
+	</File>
+	<File name="..\Include\Utility\Exception.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="100" topLine="0" />
+		</Cursor>
+	</File>
 	<File name="..\Include\Utility\Utility.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="3120" topLine="58" />
@@ -12,9 +27,9 @@
 			<Cursor1 position="81" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="..\Include\Engine\Renderer\Renderer.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\Include\Engine\Renderer\Renderer.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="416" topLine="0" />
+			<Cursor1 position="198" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="..\Include\Utility\Utility.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -22,12 +37,12 @@
 			<Cursor1 position="18" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="..\Include\Engine\Renderer\Renderer.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\Include\Engine\Renderer\Renderer.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="132" topLine="30" />
+			<Cursor1 position="1562" topLine="21" />
 		</Cursor>
 	</File>
-	<File name="..\Include\Engine\Event\Event.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\Include\Engine\Event\Event.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="450" topLine="4" />
 		</Cursor>
@@ -37,9 +52,9 @@
 			<Cursor1 position="508" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="..\Include\Engine\Core\Core.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\Include\Engine\Core\Core.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3162" topLine="101" />
+			<Cursor1 position="768" topLine="9" />
 		</Cursor>
 	</File>
 	<File name="..\Include\Application\Application.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -47,29 +62,29 @@
 			<Cursor1 position="609" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="..\Include\Manager\Texture\Texture.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\Include\Manager\Texture\Texture.cpp" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="666" topLine="30" />
+			<Cursor1 position="1448" topLine="21" />
 		</Cursor>
 	</File>
-	<File name="..\Include\Manager\Texture\Texture.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\Include\Manager\Texture\Texture.h" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="473" topLine="0" />
+			<Cursor1 position="714" topLine="27" />
 		</Cursor>
 	</File>
-	<File name="..\Include\Engine\Core\Entity.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\Include\Engine\Core\Entity.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="505" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="..\Include\Engine\Core\Core.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\Include\Engine\Core\Core.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="2115" topLine="33" />
 		</Cursor>
 	</File>
-	<File name="..\Include\Engine\Core\World.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\Include\Engine\Core\World.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="728" topLine="11" />
+			<Cursor1 position="669" topLine="11" />
 		</Cursor>
 	</File>
 	<File name="..\Include\Loader\Loader.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -77,9 +92,9 @@
 			<Cursor1 position="89" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1122" topLine="24" />
+			<Cursor1 position="1159" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="..\Include\Engine\Core\Entity.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -87,20 +102,5 @@
 			<Cursor1 position="880" topLine="1" />
 		</Cursor>
 	</File>
-	<File name="..\Include\Loader\Loader.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="447" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="..\Include\Engine\Event\Event.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="616" topLine="42" />
-		</Cursor>
-	</File>
-	<File name="..\Include\Utility\Exception.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="100" topLine="0" />
-		</Cursor>
-	</File>
-	<EditorTabsLayout layout="0938d29054d5f609000017eb00000002=0;Development:main.cpp,1;Development:..\Include\Engine\Core\Core.h,*2;Development:..\Include\Engine\Core\Core.cpp,3;Development:..\Include\Engine\Event\Event.h,4;Development:..\Include\Engine\Event\Event.cpp,5;Development:..\Include\Engine\Core\World.h,6;Development:..\Include\Engine\Renderer\Renderer.h,7;Development:..\Include\Engine\Renderer\Renderer.cpp,8;Development:..\Include\Utility\Exception.h@layout2|name=dummy;caption=;state=2098174;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=511;besth=284;minw=511;minh=284;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=0938d29054d5f609000017eb00000002;caption=;state=2098172;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=200;besth=200;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(5,0,0)=202|" />
+	<EditorTabsLayout layout="092f0a9054d7c2f2000016a800000002=0;Development:..\Include\Manager\Texture\Texture.h,*1;Development:..\Include\Manager\Texture\Texture.cpp,2;Development:..\Include\Engine\Core\Core.cpp@layout2|name=dummy;caption=;state=2098174;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=511;besth=284;minw=511;minh=284;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=092f0a9054d7c2f2000016a800000002;caption=;state=2098172;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=200;besth=200;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(5,0,0)=202|" />
 </CodeBlocks_layout_file>

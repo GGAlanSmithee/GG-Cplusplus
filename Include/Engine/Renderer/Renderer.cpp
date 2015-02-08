@@ -37,19 +37,18 @@ void GG_DestroyRenderer(GG_Renderer* renderer)
     renderer = nullptr;
 }
 
-SDL_Texture* const GG_CreateTexture(GG_Renderer* const renderer)
-{
-    SDL_Surface* surface = SDL_LoadBMP("helloworld.bmp");
-
-    auto texture = SDL_CreateTextureFromSurface(renderer->_renderer, surface);
-
-    SDL_FreeSurface(surface);
-
-    return texture;
-}
-
 void GG_RenderTexture(GG_Renderer* const renderer, SDL_Texture* const texture)
 {
+    if (renderer == nullptr)
+    {
+        throw std::invalid_argument("renderer cannot be null");
+    }
+
+    if (texture == nullptr)
+    {
+        throw std::invalid_argument("texture cannot be null");
+    }
+
     SDL_RenderClear(renderer->_renderer);
     SDL_RenderCopy(renderer->_renderer, texture, nullptr, nullptr);
     SDL_RenderPresent(renderer->_renderer);

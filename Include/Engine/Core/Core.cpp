@@ -21,13 +21,6 @@ GG_Engine* const GG_CreateEngine(const std::string& title,
 
     engine->_window = SDL_CreateWindow(title.c_str(), x, y, w, h, flags);
 
-//    engine->_window = SDL_CreateWindow("Hello, World!",
-//                                       SDL_WINDOWPOS_UNDEFINED,
-//                                       SDL_WINDOWPOS_UNDEFINED,
-//                                       640,
-//                                       480,
-//                                       SDL_WINDOW_ALLOW_HIGHDPI);
-
     if (engine->_window == nullptr)
     {
         GG_DestroyEngine(engine);
@@ -91,19 +84,24 @@ void GG_QuitSDLImage()
 
 const int GG_Execute(GG_Engine* const engine)
 {
-    auto renderer = GG_CreateRenderer(GG_GetWindow(engine));
+    GG_Renderer* renderer = nullptr;
 
-    if (renderer == nullptr)
+    try
+    {
+        renderer = GG_CreateRenderer(GG_GetWindow(engine));
+    }
+    catch (const init_error& e)
     {
         GG_DestroyEngine(engine);
-        throw std::runtime_error("Could not create renderer");
+        throw;
     }
 
-    auto textureManager = GGTextureManager::Create();
-    auto handle = GGTextureManager::AddTexture(textureManager,
-    GGLoader::LoadTexture(GG_GetSDLRenderer(renderer), "test.png"));
-
+    auto textureManager = GG_CreateTextureManager();
     auto event = GG_CreateEvent();
+
+    auto texture = GGLoader::LoadTexture(GG_GetSDLRenderer(renderer), "test.png");
+
+    auto handle = GG_AddTexture(textureManager, texture);
 
     auto running = true;
 
@@ -113,15 +111,13 @@ const int GG_Execute(GG_Engine* const engine)
     {
         GG_HandleEvents(event);
 
-        auto texture = GGTextureManager::GetTexture(textureManager, handle);
-        GG_RenderTexture(renderer, texture);
+        GG_RenderTexture(renderer, GG_GetTexture(textureManager, handle));
 
         SDL_Delay(1);
     }
 
-    GGTextureManager::Destroy(textureManager);
     GG_DestroyEvent(event);
-
+    GG_DestroyTextureManager(textureManager);
     GG_DestroyRenderer(renderer);
 
     SDL_Quit();

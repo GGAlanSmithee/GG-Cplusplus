@@ -8,7 +8,6 @@ class GG_Renderer
     public:
         friend GG_Renderer* const GG_CreateRenderer(SDL_Window* const);
         friend void GG_DestroyRenderer(GG_Renderer*);
-        friend SDL_Texture* const GG_CreateTexture(GG_Renderer* const);
         friend void GG_RenderTexture(GG_Renderer* const, SDL_Texture* const);
         /// @todo remove this method, it break encapsulation, refactor code using it
         friend SDL_Renderer* const GG_GetSDLRenderer(GG_Renderer* const);
@@ -36,19 +35,13 @@ GG_Renderer* const GG_CreateRenderer(SDL_Window* const);
 /// @remarks friend of GG_Renderer
 void GG_DestroyRenderer(GG_Renderer*);
 
-/// Creates a texture
-/// @author Alan Smithee
-/// @date created 2015-02-07
-/// @param renderer the renderer to use to create the texture
-/// @return a SDL_Texture
-/// @remarks friend of GG_Renderer
-SDL_Texture* const GG_CreateTexture(GG_Renderer* const);
-
 /// Renders a texture
 /// @author Alan Smithee
 /// @date created 2015-02-07
 /// @param renderer the renderer to use to render the texture
 /// @param texture the texture to render
+/// @exception throws a std::invalid_arugment exception if \a renderer is null
+/// @exception throws a std::invalid_arugment exception if \a texture is null
 /// @remarks friend of GG_Renderer
 void GG_RenderTexture(GG_Renderer* const, SDL_Texture* const);
 

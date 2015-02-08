@@ -1,97 +1,63 @@
 #include <iostream>
 #include "Texture.h"
 
-// Private accessor
-namespace GGTextureManager
+GG_TextureManager* const GG_CreateTextureManager()
 {
-    class InstanceAccessor
-    {
-        public:
-            static Instance* Create();
-            static void Destroy(Instance*);
-            static const int AddTexture(Instance*, SDL_Texture*);
-            static SDL_Texture* GetTexture(Instance*, const int);
-    };
-
-    Instance* InstanceAccessor::Create()
-    {
-        return new Instance();
-    }
-
-    void InstanceAccessor::Destroy(Instance* instance)
-    {
-        if (instance == nullptr)
-        {
-            return;
-        }
-
-        for (auto& kvp : instance->_textures)
-        {
-            if (kvp.second != nullptr)
-            {
-                SDL_DestroyTexture(kvp.second);
-                kvp.second = nullptr;
-            }
-        }
-
-        delete instance;
-        instance = nullptr;
-    }
-
-    const int InstanceAccessor::AddTexture(Instance* instance, SDL_Texture* texture)
-    {
-        auto index = 0;
-        while (true)
-        {
-            if (instance->_textures.count(index) <= 0)
-            {
-                instance->_textures[index] = texture;
-                break;
-            }
-
-            ++index;
-        }
-
-        return index;
-    }
-
-    SDL_Texture* InstanceAccessor::GetTexture(Instance* instance, const int key)
-    {
-        instance->_textures[key];
-    }
+    return new GG_TextureManager();
 }
 
-// Public interface
-namespace GGTextureManager
+void GG_DestroyTextureManager(GG_TextureManager* textureManager)
 {
-    Instance* Create()
+    if (textureManager == nullptr)
     {
-        return InstanceAccessor::Create();
+        return;
     }
 
-    void Destroy(Instance* instance)
+    for (auto& kvp : textureManager->_textures)
     {
-        InstanceAccessor::Destroy(instance);
-    }
-
-    const int AddTexture(Instance* instance, SDL_Texture* texture)
-    {
-        if (texture == nullptr)
+        if (kvp.second != nullptr)
         {
-            return -1;
+            SDL_DestroyTexture(kvp.second);
+            kvp.second = nullptr;
         }
-
-        return InstanceAccessor::AddTexture(instance, texture);
     }
 
-    SDL_Texture* GetTexture(Instance* instance, const int key)
-    {
-        if (instance == nullptr || key < 0)
-        {
-            std::cerr << "Could not fetch the requested texture" << std::endl;
-            return nullptr;
-        }
+    delete textureManager;
+    textureManager = nullptr;
+}
 
-        return InstanceAccessor::GetTexture(instance, key);
+const unsigned int GG_AddTexture(GG_TextureManager* const textureManager, SDL_Texture* texture)
+{
+    if (textureManager == nullptr)
+    {
+        throw std::invalid_argument("textureManager can not be null.");
+    }
+
+    auto index = textureManager->_textures.size();
+
+    textureManager->_textures.insert(std::make_pair<unsigned int, SDL_Texture*>(index, std::move(texture)));
+
+    return index;
+}
+
+SDL_Texture* const GG_GetTexture(GG_TextureManager* const textureManager, const unsigned int key)
+{
+    if (textureManager == nullptr)
+    {
+        throw std::invalid_argument("textureManager can not be null.");
+    }
+
+    if (key < 0)
+    {
+        throw std::invalid_argument("key cannot be a negative value.");
+    }
+
+    try
+    {
+        return textureManager->_textures.at(key);
+    }
+    catch (const std::out_of_range& e)
+    {
+        return textureManager->_defaultTexture;
     }
 }
