@@ -12,4 +12,22 @@ class init_error : public std::runtime_error
         using runtime_error::runtime_error;
 };
 
+/// Exception indicating that a file was not found
+/// @author Alan Smithee
+/// @date created 2015-02-09
+class file_not_found_error : public std::runtime_error
+{
+    public:
+        using runtime_error::runtime_error;
+};
+
+/// Exception indicating that a SDL function failed
+/// @author Alan Smithee
+/// @date created 2015-02-09
+class sdl_error : public std::runtime_error
+{
+    public:
+        using runtime_error::runtime_error;
+};
+
 #endif // UTILITY_EXCEPTION_H_INCLUDED

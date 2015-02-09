@@ -14,9 +14,10 @@ class GG_Engine
                                                 GG_Event*,
                                                 GG_TextureManager*);
         friend void GG_DestroyEngine(GG_Engine*);
-        friend SDL_Window* const GG_GetWindow(GG_Engine* const);
 
-        friend GG_Event* const GG_GetEventFromEngine(GG_Engine* const);
+        friend GG_Renderer* const GG_GetRenderer(GG_Engine* const);
+        friend GG_Event* const GG_GetEvent(GG_Engine* const);
+        friend GG_TextureManager* const GG_GetTextureManager(GG_Engine* const);
 
     private:
         GG_Engine(SDL_Window*,
@@ -54,21 +55,33 @@ GG_Engine* const GG_CreateEngine(SDL_Window* const,
 /// @remarks friend of GG_Engine
 void GG_DestroyEngine(GG_Engine*);
 
-/// Gets the window that the engine is currently using
+/// Gets the renderer engine that the engine is currently using
 /// @author Alan Smithee
-/// @date created 2015-02-01
-/// @param engine the engine to get the window from
-/// @return the window, or null if no window is set
+/// @date created 2015-02-08
+/// @param engine the engine to get the renderer engine from
+/// @return the renderer engine, or null if no renderer engine is set
+/// @exception throws std::invalid_argument exception if \a engine is null
 /// @remarks friend of GG_Engine
-SDL_Window* const GG_GetWindow(GG_Engine* const);
+GG_Renderer* const GG_GetRenderer(GG_Engine* const);
 
 /// Gets the event handler that the engine is currently using
 /// @author Alan Smithee
 /// @date created 2015-02-08
+/// @date changed 2015-02-09
 /// @param engine the engine to get the event handler from
 /// @return the event handler, or null if no event handler is set
+/// @exception throws std::invalid_argument exception if \a engine is null
 /// @remarks friend of GG_Engine
-GG_Event* const GG_GetEventFromEngine(GG_Engine* const);
+GG_Event* const GG_GetEvent(GG_Engine* const);
+
+/// Gets the texture manager that the engine is currently using
+/// @author Alan Smithee
+/// @date created 2015-02-08
+/// @param engine the engine to get the renderer engine from
+/// @return the texture manager, or null if no texture manager is set
+/// @exception throws std::invalid_argument exception if \a engine is null
+/// @remarks friend of GG_Engine
+GG_TextureManager* const GG_GetTextureManager(GG_Engine* const);
 
 /// Initialized SDL
 /// @author Alan Smithee

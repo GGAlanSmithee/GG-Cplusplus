@@ -27,6 +27,12 @@ GG_Engine::~GG_Engine()
     GG_DestroyTextureManager(_textureManager);
     GG_DestroyEvent(_event);
     GG_DestroyRenderer(_renderer);
+
+    if (_window != nullptr)
+    {
+        SDL_DestroyWindow(_window);
+        _window = nullptr;
+    }
 }
 
 GG_Engine* const GG_CreateEngine(SDL_Window* const window,
@@ -37,14 +43,34 @@ GG_Engine* const GG_CreateEngine(SDL_Window* const window,
     return new GG_Engine(window, renderer, event, textureManager);
 }
 
-SDL_Window* const GG_GetWindow(GG_Engine* const engine)
+GG_Renderer* const GG_GetRenderer(GG_Engine* const engine)
 {
-    return engine->_window;
+    if (engine == nullptr)
+    {
+        throw new std::invalid_argument("engine cannot be null.");
+    }
+
+    return engine->_renderer;
 }
 
-GG_Event* const GG_GetEventFromEngine(GG_Engine* const engine)
+GG_Event* const GG_GetEvent(GG_Engine* const engine)
 {
+    if (engine == nullptr)
+    {
+        throw new std::invalid_argument("engine cannot be null.");
+    }
+
     return engine->_event;
+}
+
+GG_TextureManager* const GG_GetTextureManager(GG_Engine* const engine)
+{
+    if (engine == nullptr)
+    {
+        throw new std::invalid_argument("engine cannot be null.");
+    }
+
+    return engine->_textureManager;
 }
 
 void GG_DestroyEngine(GG_Engine* engine)
@@ -52,12 +78,6 @@ void GG_DestroyEngine(GG_Engine* engine)
     if (engine == nullptr)
     {
         return;
-    }
-
-    if (engine->_window != nullptr)
-    {
-        SDL_DestroyWindow(engine->_window);
-        engine->_window = nullptr;
     }
 
     delete engine;
@@ -96,19 +116,21 @@ void GG_QuitSDLImage()
 
 const int GG_Execute(GG_Engine* const engine)
 {
-    //auto texture = GGLoader::LoadTexture(GG_GetSDLRenderer(renderer), "test.png");
+    GG_SetDefaultTexture(GG_GetTextureManager(engine), GG_GetRenderer(engine), "default.png");
 
-    //auto handle = GG_AddTexture(textureManager, texture);
+    auto handle = GG_AddTexture(GG_GetTextureManager(engine),
+                                GG_GetRenderer(engine),
+                                "test.png");
 
     auto running = true;
 
-    GG_RegisterKeyboardEvent(GG_GetEventFromEngine(engine), SDLK_ESCAPE, [&]() { running = false; });
+    GG_RegisterKeyboardEvent(GG_GetEvent(engine), SDLK_ESCAPE, [&]() { running = false; });
 
     while (running)
     {
-        GG_HandleEvents(GG_GetEventFromEngine(engine));
+        GG_HandleEvents(GG_GetEvent(engine));
 
-        //GG_RenderTexture(renderer, GG_GetTexture(textureManager, handle));
+        GG_RenderTexture(GG_GetRenderer(engine), GG_GetTexture(GG_GetTextureManager(engine), handle+1));
 
         SDL_Delay(1);
     }

@@ -1,9 +1,9 @@
 #include <iostream>
 #include "Texture.h"
 
-GG_TextureManager* const GG_CreateTextureManager()
+GG_TextureManager* const GG_CreateTextureManager(GG_TextureLoader* const textureLoader)
 {
-    return new GG_TextureManager();
+    return new GG_TextureManager(textureLoader);
 }
 
 void GG_DestroyTextureManager(GG_TextureManager* textureManager)
@@ -26,16 +26,23 @@ void GG_DestroyTextureManager(GG_TextureManager* textureManager)
     textureManager = nullptr;
 }
 
-const unsigned int GG_AddTexture(GG_TextureManager* const textureManager, SDL_Texture* texture)
+const unsigned int GG_AddTexture(GG_TextureManager* const textureManager,
+                                 GG_Renderer* const renderer,
+                                 const std::string& name)
 {
     if (textureManager == nullptr)
     {
-        throw std::invalid_argument("textureManager can not be null.");
+        throw std::invalid_argument("textureManager cannot be null.");
+    }
+
+    if (renderer == nullptr)
+    {
+        throw std::invalid_argument("renderer cannot be null.");
     }
 
     auto index = textureManager->_textures.size();
 
-    textureManager->_textures.insert(std::make_pair<unsigned int, SDL_Texture*>(index, std::move(texture)));
+    textureManager->_textures[index] = GG_LoadTexture(textureManager->_textureLoader, renderer, name);
 
     return index;
 }
@@ -60,4 +67,21 @@ SDL_Texture* const GG_GetTexture(GG_TextureManager* const textureManager, const 
     {
         return textureManager->_defaultTexture;
     }
+}
+
+void GG_SetDefaultTexture(GG_TextureManager* const textureManager,
+                          GG_Renderer* const renderer,
+                          const std::string& name)
+{
+    if (textureManager == nullptr)
+    {
+        throw std::invalid_argument("textureManager cannot be null.");
+    }
+
+    if (renderer == nullptr)
+    {
+        throw std::invalid_argument("renderer cannot be null.");
+    }
+
+    textureManager->_defaultTexture = GG_LoadTexture(textureManager->_textureLoader, renderer, name);
 }
