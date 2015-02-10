@@ -114,7 +114,7 @@ void GG_QuitSDLImage()
     IMG_Quit();
 }
 
-const int GG_Execute(GG_Engine* const engine)
+const int GG_Execute(GG_Engine* const engine, GG_Application* const application)
 {
     GG_SetDefaultTexture(GG_GetTextureManager(engine), GG_GetRenderer(engine), "default.png");
 

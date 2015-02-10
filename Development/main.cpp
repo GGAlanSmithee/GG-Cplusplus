@@ -55,8 +55,11 @@ int main(int argc, char* args[])
         return -1;
     }
 
-    auto result = GG_Execute(engine);
+    auto application = GG_CreateApplication(GG_World(2000));
 
+    auto result = GG_Execute(engine, application);
+
+    GG_DestroyApplication(application);
     GG_DestroyEngine(engine);
     GG_QuitSDLImage();
     GG_QuitSDL();

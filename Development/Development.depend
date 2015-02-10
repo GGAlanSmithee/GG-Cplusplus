@@ -339,10 +339,10 @@
 	"begin_code.h"
 	"close_code.h"
 
-1423298955 source:c:\projects\creatio\include\application\application.cpp
+1423600414 source:c:\projects\creatio\include\application\application.cpp
 	"Application/Application.h"
 
-1423297089 c:\projects\creatio\include\application\application.h
+1423600433 c:\projects\creatio\include\application\application.h
 	"Engine/Core/World.h"
 
 1423306725 c:\projects\creatio\include\engine\core\world.h
@@ -367,7 +367,7 @@
 
 1418401178 c:\projects\creatio\include\engine\core\manager.h
 
-1423510773 source:c:\projects\creatio\include\engine\core\core.cpp
+1423512003 source:c:\projects\creatio\include\engine\core\core.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
