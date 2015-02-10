@@ -1,7 +1,6 @@
 #ifndef ENGINE_CORE_CORE_H_INCLUDED
 #define ENGINE_CORE_CORE_H_INCLUDED
 
-#include "Application/Application.h"
 #include "Engine/Renderer/Renderer.h"
 #include "Engine/Event/Event.h"
 #include "Manager/Texture/Texture.h"

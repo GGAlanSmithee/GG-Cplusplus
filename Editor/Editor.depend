@@ -1,12 +1,16 @@
 # depslib dependency file v1.0
-1423385918 source:c:\projects\creatio\include\engine\renderer\renderer.cpp
-	"Renderer.h"
+1423602531 source:c:\projects\creatio\include\engine\core\core.cpp
 	<iostream>
 	<SDL.h>
+	<SDL_image.h>
+	<stdexcept>
+	"Engine/Core/Core.h"
+	"Engine/Renderer/Renderer.h"
+	"Engine/Event/Event.h"
+	"Manager/Texture/Texture.h"
+	"Loader/Loader.h"
 	"Utility/Exception.h"
-
-1423385951 c:\projects\creatio\include\engine\renderer\renderer.h
-	<SDL.h>
+	<stdexcept>
 
 1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl.h
 	"SDL_main.h"
@@ -325,25 +329,48 @@
 	"begin_code.h"
 	"close_code.h"
 
-1423602511 source:c:\projects\creatio\development\main.cpp
-	<iostream>
-	<SDL.h>
-	<SDL_image.h>
-	"Application/Application.h"
-	"Engine/Core/Core.h"
-	"Utility/Exception.h"
-
 1376152754 c:\applications\sdl2_image-2.0.0\x86_64-w64-mingw32\include\sdl2\sdl_image.h
 	"SDL.h"
 	"SDL_version.h"
 	"begin_code.h"
 	"close_code.h"
 
-1423600414 source:c:\projects\creatio\include\application\application.cpp
-	"Application/Application.h"
+1423604857 c:\projects\creatio\include\engine\core\core.h
+	"Engine/Renderer/Renderer.h"
+	"Engine/Event/Event.h"
+	"Manager/Texture/Texture.h"
 
-1423600433 c:\projects\creatio\include\application\application.h
-	"Engine/Core/World.h"
+1423385951 c:\projects\creatio\include\engine\renderer\renderer.h
+	<SDL.h>
+
+1423306603 c:\projects\creatio\include\engine\event\event.h
+	<SDL.h>
+	<unordered_map>
+	<functional>
+
+1423511894 c:\projects\creatio\include\manager\texture\texture.h
+	<string>
+	<SDL.h>
+	<unordered_map>
+	"Loader/Loader.h"
+	"Engine/Renderer/Renderer.h"
+
+1423511565 c:\projects\creatio\include\loader\loader.h
+	<string>
+	"Engine/Renderer/Renderer.h"
+
+1423510122 c:\projects\creatio\include\utility\exception.h
+	<stdexcept>
+
+1423304972 source:c:\projects\creatio\include\engine\core\entity.cpp
+	<iostream>
+	"Entity.h"
+	"Engine/Core/Component.h"
+	"Utility/Utility.h"
+
+1423304963 c:\projects\creatio\include\engine\core\entity.h
+	"World.h"
+	<memory>
 
 1423306725 c:\projects\creatio\include\engine\core\world.h
 	<vector>
@@ -365,71 +392,15 @@
 	<stdexcept>
 	<vector>
 
-1418401178 c:\projects\creatio\include\engine\core\manager.h
-
-1423602531 source:c:\projects\creatio\include\engine\core\core.cpp
-	<iostream>
-	<SDL.h>
-	<SDL_image.h>
-	<stdexcept>
-	"Engine/Core/Core.h"
-	"Engine/Renderer/Renderer.h"
-	"Engine/Event/Event.h"
-	"Manager/Texture/Texture.h"
-	"Loader/Loader.h"
-	"Utility/Exception.h"
-	<stdexcept>
-
-1423602525 c:\projects\creatio\include\engine\core\core.h
-	"Application/Application.h"
-	"Engine/Renderer/Renderer.h"
-	"Engine/Event/Event.h"
-	"Manager/Texture/Texture.h"
-
-1423304972 source:c:\projects\creatio\include\engine\core\entity.cpp
-	<iostream>
-	"Entity.h"
-	"Engine/Core/Component.h"
-	"Utility/Utility.h"
-
-1423304963 c:\projects\creatio\include\engine\core\entity.h
-	"World.h"
-	<memory>
-
-1422782592 source:c:\projects\creatio\include\math\vec2.cpp
-	"Vec2.h"
-
-1422784709 c:\projects\creatio\include\manager\input\input.h
-
-1422785814 source:c:\projects\creatio\include\engine\input\input.cpp
-	"Input.h"
-
-1422785699 c:\projects\creatio\include\engine\input\input.h
-	<SDL.h>
-	<memory>
-	"Manager/Input/Input.h"
-
-1422785235 source:c:\projects\creatio\include\manager\input\gameinput.cpp
-	"GameInput.h"
-
-1422786206 c:\projects\creatio\include\manager\input\gameinput.h
-	"Input.h"
-
-1422784711 source:c:\projects\creatio\include\manager\input\input.cpp
-	"Manager/Input/Input.h"
-
-1422815010 source:c:\projects\creatio\include\utility\utility.cpp
-	<sstream>
-	"Utility/Utility.h"
-
 1423306630 source:c:\projects\creatio\include\engine\event\event.cpp
 	<stdexcept>
 	"Event.h"
 
-1423306603 c:\projects\creatio\include\engine\event\event.h
+1423385918 source:c:\projects\creatio\include\engine\renderer\renderer.cpp
+	"Renderer.h"
+	<iostream>
 	<SDL.h>
-	<unordered_map>
-	<functional>
+	"Utility/Exception.h"
 
 1423511510 source:c:\projects\creatio\include\loader\loader.cpp
 	<iostream>
@@ -438,21 +409,18 @@
 	"Loader.h"
 	"Utility/Exception.h"
 
-1423511565 c:\projects\creatio\include\loader\loader.h
-	<string>
-	"Engine/Renderer/Renderer.h"
-
-1423511894 c:\projects\creatio\include\manager\texture\texture.h
-	<string>
-	<SDL.h>
-	<unordered_map>
-	"Loader/Loader.h"
-	"Engine/Renderer/Renderer.h"
-
 1423511867 source:c:\projects\creatio\include\manager\texture\texture.cpp
 	<iostream>
 	"Texture.h"
 
-1423510122 c:\projects\creatio\include\utility\exception.h
-	<stdexcept>
+1422815010 source:c:\projects\creatio\include\utility\utility.cpp
+	<sstream>
+	"Utility/Utility.h"
+
+1423604931 source:c:\projects\creatio\editor\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"Engine/Core/Core.h"
+	"Utility/Exception.h"
 

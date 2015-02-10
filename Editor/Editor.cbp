@@ -2,12 +2,12 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="Development" />
+		<Option title="Editor" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc_481" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/Development" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/Editor" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc_481" />
@@ -16,7 +16,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/Development" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/Editor" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc_481" />
@@ -56,8 +56,6 @@
 		<Unit filename="../Include/Loader/Loader.h" />
 		<Unit filename="../Include/Manager/Texture/Texture.cpp" />
 		<Unit filename="../Include/Manager/Texture/Texture.h" />
-		<Unit filename="../Include/Math/Vec2.cpp" />
-		<Unit filename="../Include/Math/Vec2.h" />
 		<Unit filename="../Include/Utility/Exception.h" />
 		<Unit filename="../Include/Utility/Utility.cpp" />
 		<Unit filename="../Include/Utility/Utility.h" />
