@@ -113,27 +113,3 @@ void GG_QuitSDLImage()
 {
     IMG_Quit();
 }
-
-const int GG_Execute(GG_Engine* const engine, GG_Application* const application)
-{
-    GG_SetDefaultTexture(GG_GetTextureManager(engine), GG_GetRenderer(engine), "default.png");
-
-    auto handle = GG_AddTexture(GG_GetTextureManager(engine),
-                                GG_GetRenderer(engine),
-                                "test.png");
-
-    auto running = true;
-
-    GG_RegisterKeyboardEvent(GG_GetEvent(engine), SDLK_ESCAPE, [&]() { running = false; });
-
-    while (running)
-    {
-        GG_HandleEvents(GG_GetEvent(engine));
-
-        GG_RenderTexture(GG_GetRenderer(engine), GG_GetTexture(GG_GetTextureManager(engine), handle+1));
-
-        SDL_Delay(1);
-    }
-
-    return 0;
-}

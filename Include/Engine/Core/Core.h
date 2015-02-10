@@ -107,13 +107,4 @@ void GG_QuitSDL();
 /// @date created 2015-02-07
 void GG_QuitSDLImage();
 
-/// Executes the core engine
-/// @author Alan Smithee
-/// @date created 2014-12-03
-/// @date changed 2015-02-10
-/// @param engine the engine to execute
-/// @param application the application using the \a engine
-/// @remarks runs the main loop by using other engine's functionality
-const int GG_Execute(GG_Engine* const, GG_Application* const);
-
 #endif // ENGINE_CORE_CORE_H_INCLUDED
