@@ -55,8 +55,6 @@ int main(int argc, char* args[])
         return -1;
     }
 
-    auto application = GG_CreateApplication(GG_World(2000));
-
     try
     {
         GG_SetDefaultTexture(GG_GetTextureManager(engine), GG_GetRenderer(engine), "default.png");
@@ -80,13 +78,11 @@ int main(int argc, char* args[])
     }
     catch (std::exception e)
     {
-        GG_DestroyApplication(application);
         GG_DestroyEngine(engine);
         GG_QuitSDLImage();
         GG_QuitSDL();
     }
 
-    GG_DestroyApplication(application);
     GG_DestroyEngine(engine);
     GG_QuitSDLImage();
     GG_QuitSDL();
