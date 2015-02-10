@@ -6,30 +6,30 @@
 
 namespace GGCoreEngine
 {
-    const unsigned int CreateEntity(GG_World& world)
+    const unsigned int CreateEntity(GG_World* const world)
     {
-        for (auto i = 0; i < world.Size; ++i)
+        for (auto i = 0; i < world->Size; ++i)
         {
-            if (world.Enteties[i] == GGUtility::ToIntegral(ComponentType::None))
+            if (world->Enteties[i] == GGUtility::ToIntegral(ComponentType::None))
             {
-                world.Enteties[i] = GGUtility::ToIntegral(ComponentType::Transform) |
+                world->Enteties[i] = GGUtility::ToIntegral(ComponentType::Transform) |
                                     GGUtility::ToIntegral(ComponentType::Physics)   |
                                     GGUtility::ToIntegral(ComponentType::Appearance);
 
-                world.AppearanceComponents[i].Texture = "helloword";
+                world->AppearanceComponents[i].Texture = "helloword";
 
                 return i;
             }
         }
 
-        std::cerr << "No more enteties left in world." << std::endl;
+        std::cerr << "No more enteties left in _world->" << std::endl;
 
-        return world.Size;
+        return world->Size;
     }
 
-    void DestroyEntity(GG_World& world, const unsigned int entity)
+    void DestroyEntity(GG_World* world, const unsigned int entity)
     {
-        world.Enteties[entity] = GGUtility::ToIntegral(ComponentType::None);
+        world->Enteties[entity] = GGUtility::ToIntegral(ComponentType::None);
     }
 }
 

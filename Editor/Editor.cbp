@@ -42,6 +42,8 @@
 			<Add directory="C:/Applications/SDL2-2.0.3/x86_64-w64-mingw32/lib" />
 			<Add directory="C:/Applications/SDL2_image-2.0.0/x86_64-w64-mingw32/lib" />
 		</Linker>
+		<Unit filename="../Include/Application/Application.cpp" />
+		<Unit filename="../Include/Application/Application.h" />
 		<Unit filename="../Include/Engine/Core/Component.h" />
 		<Unit filename="../Include/Engine/Core/Core.cpp" />
 		<Unit filename="../Include/Engine/Core/Core.h" />
@@ -56,6 +58,8 @@
 		<Unit filename="../Include/Loader/Loader.h" />
 		<Unit filename="../Include/Manager/Texture/Texture.cpp" />
 		<Unit filename="../Include/Manager/Texture/Texture.h" />
+		<Unit filename="../Include/Math/Vec2.cpp" />
+		<Unit filename="../Include/Math/Vec2.h" />
 		<Unit filename="../Include/Utility/Exception.h" />
 		<Unit filename="../Include/Utility/Utility.cpp" />
 		<Unit filename="../Include/Utility/Utility.h" />
