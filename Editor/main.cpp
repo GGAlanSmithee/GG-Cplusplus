@@ -3,6 +3,7 @@
 #include <SDL_image.h>
 #include "Engine/Core/Core.h"
 #include "Utility/Exception.h"
+#include <memory>
 
 int main(int argc, char* args[])
 {
@@ -45,7 +46,7 @@ int main(int argc, char* args[])
     {
         engine = GG_CreateEngine(window,
                                  GG_CreateRenderer(window),
-                                 GG_CreateEvent(),
+                                 std::unique_ptr<GG_Event>(new GG_Event()),
                                  GG_CreateTextureManager(GG_CreateTextureLoader()));
     }
     catch (const init_error& e)

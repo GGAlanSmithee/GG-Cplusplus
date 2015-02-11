@@ -1,21 +1,15 @@
 #include <stdexcept>
+#include <memory>
 #include "Event.h"
 
-GG_Event* const GG_CreateEvent()
+GG_Event::GG_Event()
 {
     /// @todo instantiate maps with all keycodes to avoid costly resizing operators during runtime
-
-    return new GG_Event();
 }
 
-void GG_DestroyEvent(GG_Event* event)
+GG_Event::~GG_Event()
 {
-    if (event == nullptr)
-    {
-        return;
-    }
-
-    for (auto& kvp : event->_keyDownCallbacks)
+    for (auto& kvp : _keyDownCallbacks)
     {
         if (kvp.second != nullptr)
         {
@@ -23,27 +17,7 @@ void GG_DestroyEvent(GG_Event* event)
         }
     }
 
-    event->_keyDownCallbacks.clear();
-
-    delete event;
-    event = nullptr;
-}
-
-void GG_RegisterKeyboardEvent(GG_Event* const event,
-                              const SDL_Keycode keycode,
-                              const std::function<void()>& callback)
-{
-    if (event == nullptr)
-    {
-        throw std::invalid_argument("event cannot be null.");
-    }
-
-    if (callback == nullptr)
-    {
-        throw std::invalid_argument("callback cannot be null.");
-    }
-
-    event->_keyDownCallbacks[keycode] = callback;
+    _keyDownCallbacks.clear();
 }
 
 void GG_Event::HandleKeyDown(const SDL_Keycode keycode)
@@ -66,7 +40,24 @@ void GG_Event::HandleKeyUp(const SDL_Keycode keycode)
     _keyUpCallbacks.at(keycode)();
 }
 
-void GG_HandleEvents(GG_Event* const event)
+void GG_RegisterKeyboardEvent(std::unique_ptr<GG_Event> const& event,
+                              const SDL_Keycode keycode,
+                              std::function<void()> const& callback)
+{
+    if (event == nullptr)
+    {
+        throw std::invalid_argument("event cannot be null.");
+    }
+
+    if (callback == nullptr)
+    {
+        throw std::invalid_argument("callback cannot be null.");
+    }
+
+    event->_keyDownCallbacks[keycode] = callback;
+}
+
+void GG_HandleEvents(std::unique_ptr<GG_Event> const& event)
 {
     auto e = event->_event;
 

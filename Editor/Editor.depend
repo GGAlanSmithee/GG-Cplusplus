@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1423602531 source:c:\projects\creatio\include\engine\core\core.cpp
+1423684283 source:c:\projects\creatio\include\engine\core\core.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -335,7 +335,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1423604857 c:\projects\creatio\include\engine\core\core.h
+1423683165 c:\projects\creatio\include\engine\core\core.h
 	"Engine/Renderer/Renderer.h"
 	"Engine/Event/Event.h"
 	"Manager/Texture/Texture.h"
@@ -343,10 +343,11 @@
 1423385951 c:\projects\creatio\include\engine\renderer\renderer.h
 	<SDL.h>
 
-1423306603 c:\projects\creatio\include\engine\event\event.h
+1423684154 c:\projects\creatio\include\engine\event\event.h
 	<SDL.h>
 	<unordered_map>
 	<functional>
+	<memory>
 
 1423511894 c:\projects\creatio\include\manager\texture\texture.h
 	<string>
@@ -392,8 +393,9 @@
 	<stdexcept>
 	<vector>
 
-1423306630 source:c:\projects\creatio\include\engine\event\event.cpp
+1423684254 source:c:\projects\creatio\include\engine\event\event.cpp
 	<stdexcept>
+	<memory>
 	"Event.h"
 
 1423385918 source:c:\projects\creatio\include\engine\renderer\renderer.cpp
@@ -417,12 +419,13 @@
 	<sstream>
 	"Utility/Utility.h"
 
-1423604931 source:c:\projects\creatio\editor\main.cpp
+1423684269 source:c:\projects\creatio\editor\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 	"Engine/Core/Core.h"
 	"Utility/Exception.h"
+	<memory>
 
 1423681276 source:c:\projects\creatio\include\application\application.cpp
 	"Application.h"

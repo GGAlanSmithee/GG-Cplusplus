@@ -10,26 +10,26 @@ class GG_Engine
     public:
         friend GG_Engine* const GG_CreateEngine(SDL_Window*,
                                                 GG_Renderer*,
-                                                GG_Event*,
+                                                std::unique_ptr<GG_Event>,
                                                 GG_TextureManager*);
         friend void GG_DestroyEngine(GG_Engine*);
 
         friend GG_Renderer* const GG_GetRenderer(GG_Engine* const);
-        friend GG_Event* const GG_GetEvent(GG_Engine* const);
+        friend std::unique_ptr<GG_Event> const& GG_GetEvent(GG_Engine* const);
         friend GG_TextureManager* const GG_GetTextureManager(GG_Engine* const);
 
     private:
         GG_Engine(SDL_Window*,
                   GG_Renderer*,
-                  GG_Event*,
+                  std::unique_ptr<GG_Event>,
                   GG_TextureManager*);
 
         ~GG_Engine();
 
-        SDL_Window*        _window;
-        GG_Renderer*       _renderer;
-        GG_Event*          _event;
-        GG_TextureManager* _textureManager;
+        SDL_Window*               _window;
+        GG_Renderer*              _renderer;
+        std::unique_ptr<GG_Event> _event;
+        GG_TextureManager*        _textureManager;
 };
 
 /// Creates an instance of the core engine
@@ -44,7 +44,7 @@ class GG_Engine
 /// @remarks friend of GG_Engine
 GG_Engine* const GG_CreateEngine(SDL_Window* const,
                                  GG_Renderer* const,
-                                 GG_Event* const,
+                                 std::unique_ptr<GG_Event>,
                                  GG_TextureManager* const);
 
 /// Destroys an instance of the core engine by freeing the memory used
@@ -71,7 +71,7 @@ GG_Renderer* const GG_GetRenderer(GG_Engine* const);
 /// @return the event handler, or null if no event handler is set
 /// @exception throws std::invalid_argument exception if \a engine is null
 /// @remarks friend of GG_Engine
-GG_Event* const GG_GetEvent(GG_Engine* const);
+std::unique_ptr<GG_Event> const& GG_GetEvent(GG_Engine* const);
 
 /// Gets the texture manager that the engine is currently using
 /// @author Alan Smithee

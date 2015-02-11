@@ -12,11 +12,11 @@
 
 GG_Engine::GG_Engine(SDL_Window* window,
                      GG_Renderer* renderer,
-                     GG_Event* event,
+                     std::unique_ptr<GG_Event> event,
                      GG_TextureManager* textureManager) :
     _window(window),
     _renderer(renderer),
-    _event(event),
+    _event(std::move(event)),
     _textureManager(textureManager)
 {
     // Empty
@@ -25,7 +25,6 @@ GG_Engine::GG_Engine(SDL_Window* window,
 GG_Engine::~GG_Engine()
 {
     GG_DestroyTextureManager(_textureManager);
-    GG_DestroyEvent(_event);
     GG_DestroyRenderer(_renderer);
 
     if (_window != nullptr)
@@ -37,10 +36,10 @@ GG_Engine::~GG_Engine()
 
 GG_Engine* const GG_CreateEngine(SDL_Window* const window,
                                  GG_Renderer* const renderer,
-                                 GG_Event* const event,
+                                 std::unique_ptr<GG_Event> event,
                                  GG_TextureManager* const textureManager)
 {
-    return new GG_Engine(window, renderer, event, textureManager);
+    return new GG_Engine(window, renderer, std::move(event), textureManager);
 }
 
 GG_Renderer* const GG_GetRenderer(GG_Engine* const engine)
@@ -53,7 +52,7 @@ GG_Renderer* const GG_GetRenderer(GG_Engine* const engine)
     return engine->_renderer;
 }
 
-GG_Event* const GG_GetEvent(GG_Engine* const engine)
+std::unique_ptr<GG_Event> const& GG_GetEvent(GG_Engine* const engine)
 {
     if (engine == nullptr)
     {
