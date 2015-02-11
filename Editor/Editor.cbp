@@ -44,12 +44,8 @@
 		</Linker>
 		<Unit filename="../Include/Application/Application.cpp" />
 		<Unit filename="../Include/Application/Application.h" />
-		<Unit filename="../Include/Engine/Core/Component.h" />
 		<Unit filename="../Include/Engine/Core/Core.cpp" />
 		<Unit filename="../Include/Engine/Core/Core.h" />
-		<Unit filename="../Include/Engine/Core/Entity.cpp" />
-		<Unit filename="../Include/Engine/Core/Entity.h" />
-		<Unit filename="../Include/Engine/Core/World.h" />
 		<Unit filename="../Include/Engine/Event/Event.cpp" />
 		<Unit filename="../Include/Engine/Event/Event.h" />
 		<Unit filename="../Include/Engine/Renderer/Renderer.cpp" />

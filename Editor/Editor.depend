@@ -424,14 +424,11 @@
 	"Engine/Core/Core.h"
 	"Utility/Exception.h"
 
-1423608379 source:c:\projects\creatio\include\application\application.cpp
+1423681276 source:c:\projects\creatio\include\application\application.cpp
 	"Application.h"
 
-1423608225 c:\projects\creatio\include\application\application.h
-	"Engine/Core/Component.h"
-	"Engine/Core/World.h"
+1423681314 c:\projects\creatio\include\application\application.h
 	"Engine/Core/Core.h"
-	<bitset>
 
 1422782592 source:c:\projects\creatio\include\math\vec2.cpp
 	"Vec2.h"
