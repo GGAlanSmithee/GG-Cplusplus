@@ -1,6 +1,7 @@
 #ifndef MANAGER_TEXTURE_TEXTURE_H_INCLUDED
 #define MANAGER_TEXTURE_TEXTURE_H_INCLUDED
 
+#include <memory>
 #include <string>
 #include <SDL.h>
 #include <unordered_map>
@@ -13,10 +14,12 @@ class GG_TextureManager
         friend GG_TextureManager* const GG_CreateTextureManager(GG_TextureLoader* const);
         friend void GG_DestroyTextureManager(GG_TextureManager*);
         friend const unsigned int GG_AddTexture(GG_TextureManager* const,
-                                                GG_Renderer* const,
+                                                std::unique_ptr<GG_Renderer> const&,
                                                 const std::string&);
         friend SDL_Texture* const GG_GetTexture(GG_TextureManager* const, const unsigned int);
-        friend void GG_SetDefaultTexture(GG_TextureManager* const, GG_Renderer* const, const std::string&);
+        friend void GG_SetDefaultTexture(GG_TextureManager* const,
+                                         std::unique_ptr<GG_Renderer> const&,
+                                         const std::string&);
 
     private:
         GG_TextureManager(GG_TextureLoader* const textureLoader) :
@@ -58,7 +61,7 @@ void GG_DestroyTextureManager(GG_TextureManager*);
 /// @exception throws a std::invalid_argument exception if \a textureManager is null
 /// @exception throws a std::invalid_argument exception if \a renderer is null
 /// @remarks friend of the GG_TextureManager class
-const unsigned int GG_AddTexture(GG_TextureManager* const, GG_Renderer* const, const std::string&);
+const unsigned int GG_AddTexture(GG_TextureManager* const, std::unique_ptr<GG_Renderer> const&, const std::string&);
 
 /// Retreives a texture from the texture manager class
 /// @author Alan Smithee

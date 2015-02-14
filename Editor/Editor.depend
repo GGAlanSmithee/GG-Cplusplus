@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1423684283 source:c:\projects\creatio\include\engine\core\core.cpp
+1423952484 source:c:\projects\creatio\include\engine\core\core.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -335,12 +335,13 @@
 	"begin_code.h"
 	"close_code.h"
 
-1423683165 c:\projects\creatio\include\engine\core\core.h
+1423952470 c:\projects\creatio\include\engine\core\core.h
 	"Engine/Renderer/Renderer.h"
 	"Engine/Event/Event.h"
 	"Manager/Texture/Texture.h"
 
-1423385951 c:\projects\creatio\include\engine\renderer\renderer.h
+1423953061 c:\projects\creatio\include\engine\renderer\renderer.h
+	<memory>
 	<SDL.h>
 
 1423684154 c:\projects\creatio\include\engine\event\event.h
@@ -349,14 +350,16 @@
 	<functional>
 	<memory>
 
-1423511894 c:\projects\creatio\include\manager\texture\texture.h
+1423953004 c:\projects\creatio\include\manager\texture\texture.h
+	<memory>
 	<string>
 	<SDL.h>
 	<unordered_map>
 	"Loader/Loader.h"
 	"Engine/Renderer/Renderer.h"
 
-1423511565 c:\projects\creatio\include\loader\loader.h
+1423952949 c:\projects\creatio\include\loader\loader.h
+	<memory>
 	<string>
 	"Engine/Renderer/Renderer.h"
 
@@ -398,20 +401,20 @@
 	<memory>
 	"Event.h"
 
-1423385918 source:c:\projects\creatio\include\engine\renderer\renderer.cpp
+1423953072 source:c:\projects\creatio\include\engine\renderer\renderer.cpp
 	"Renderer.h"
 	<iostream>
 	<SDL.h>
 	"Utility/Exception.h"
 
-1423511510 source:c:\projects\creatio\include\loader\loader.cpp
+1423952723 source:c:\projects\creatio\include\loader\loader.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 	"Loader.h"
 	"Utility/Exception.h"
 
-1423511867 source:c:\projects\creatio\include\manager\texture\texture.cpp
+1423952983 source:c:\projects\creatio\include\manager\texture\texture.cpp
 	<iostream>
 	"Texture.h"
 
@@ -419,7 +422,7 @@
 	<sstream>
 	"Utility/Utility.h"
 
-1423684269 source:c:\projects\creatio\editor\main.cpp
+1423952546 source:c:\projects\creatio\editor\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>

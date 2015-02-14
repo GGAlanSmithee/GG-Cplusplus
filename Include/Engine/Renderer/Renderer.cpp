@@ -5,39 +5,26 @@
 #include "Utility/Exception.h"
 
 /// @todo add parameter for flags
-GG_Renderer* const GG_CreateRenderer(SDL_Window* const window)
+GG_Renderer::GG_Renderer(SDL_Window* const window)
 {
-    auto renderer = new GG_Renderer();
+    _sdlRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-    renderer->_renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
-    if (renderer->_renderer == nullptr)
+    if (_sdlRenderer == nullptr)
     {
-        GG_DestroyRenderer(renderer);
         throw init_error(std::string("Failed to create SDL renderer: ") + SDL_GetError());
     }
-
-    return renderer;
 }
 
-void GG_DestroyRenderer(GG_Renderer* renderer)
+GG_Renderer::~GG_Renderer()
 {
-    if (renderer == nullptr)
+    if (_sdlRenderer != nullptr)
     {
-        return;
+        SDL_DestroyRenderer(_sdlRenderer);
+        _sdlRenderer = nullptr;
     }
-
-    if (renderer->_renderer != nullptr)
-    {
-        SDL_DestroyRenderer(renderer->_renderer);
-        renderer->_renderer = nullptr;
-    }
-
-    delete renderer;
-    renderer = nullptr;
 }
 
-void GG_RenderTexture(GG_Renderer* const renderer, SDL_Texture* const texture)
+void GG_RenderTexture(std::unique_ptr<GG_Renderer> const& renderer, SDL_Texture* const texture)
 {
     if (renderer == nullptr)
     {
@@ -49,12 +36,12 @@ void GG_RenderTexture(GG_Renderer* const renderer, SDL_Texture* const texture)
         throw std::invalid_argument("texture cannot be null");
     }
 
-    SDL_RenderClear(renderer->_renderer);
-    SDL_RenderCopy(renderer->_renderer, texture, nullptr, nullptr);
-    SDL_RenderPresent(renderer->_renderer);
+    SDL_RenderClear(renderer->_sdlRenderer);
+    SDL_RenderCopy(renderer->_sdlRenderer, texture, nullptr, nullptr);
+    SDL_RenderPresent(renderer->_sdlRenderer);
 }
 
-SDL_Renderer* const GG_GetSDLRenderer(GG_Renderer* renderer)
+SDL_Renderer* const GG_GetSDLRenderer(std::unique_ptr<GG_Renderer> const& renderer)
 {
-    return renderer->_renderer;
+    return renderer->_sdlRenderer;
 }

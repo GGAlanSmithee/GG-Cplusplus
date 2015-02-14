@@ -27,7 +27,7 @@ void GG_DestroyTextureManager(GG_TextureManager* textureManager)
 }
 
 const unsigned int GG_AddTexture(GG_TextureManager* const textureManager,
-                                 GG_Renderer* const renderer,
+                                 std::unique_ptr<GG_Renderer> const& renderer,
                                  const std::string& name)
 {
     if (textureManager == nullptr)
@@ -70,7 +70,7 @@ SDL_Texture* const GG_GetTexture(GG_TextureManager* const textureManager, const 
 }
 
 void GG_SetDefaultTexture(GG_TextureManager* const textureManager,
-                          GG_Renderer* const renderer,
+                          std::unique_ptr<GG_Renderer> const& renderer,
                           const std::string& name)
 {
     if (textureManager == nullptr)

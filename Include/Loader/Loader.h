@@ -1,6 +1,7 @@
 #ifndef LOADER_LOADER_H_INCLUDED
 #define LOADER_LOADER_H_INCLUDED
 
+#include <memory>
 #include <string>
 #include "Engine/Renderer/Renderer.h"
 
@@ -9,7 +10,9 @@ class GG_TextureLoader
     public:
         friend GG_TextureLoader* const GG_CreateTextureLoader();
         friend void GG_DestroyTextureLoader(GG_TextureLoader*);
-        friend SDL_Texture* const GG_LoadTexture(GG_TextureLoader* const, GG_Renderer* const, const std::string&);
+        friend SDL_Texture* const GG_LoadTexture(GG_TextureLoader* const,
+                                                 std::unique_ptr<GG_Renderer> const&,
+                                                 const std::string&);
 
     private:
         GG_TextureLoader() {}
@@ -41,6 +44,8 @@ void GG_DestroyTextureLoader(GG_TextureLoader*);
 /// @return the loaded texture as a SDL_Texture*
 /// @exception throws a file_not_found_error if the file could not be found
 /// @exception throws a sdl_error if the SDL_Surface could not be converted to a SDL_Texture
-SDL_Texture* const GG_LoadTexture(GG_TextureLoader* const, GG_Renderer* const, const std::string&);
+SDL_Texture* const GG_LoadTexture(GG_TextureLoader* const,
+                                  std::unique_ptr<GG_Renderer> const&,
+                                  const std::string&);
 
 #endif // LOADER_LOADER_H_INCLUDED

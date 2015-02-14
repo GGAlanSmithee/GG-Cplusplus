@@ -21,7 +21,7 @@ void GG_DestroyTextureLoader(GG_TextureLoader* textureLoader)
 }
 
 SDL_Texture* const GG_LoadTexture(GG_TextureLoader* const textureLoader,
-                                  GG_Renderer* const renderer,
+                                  std::unique_ptr<GG_Renderer> const& renderer,
                                   const std::string& name)
 {
     SDL_Surface* surface = IMG_Load((textureLoader->_path + name).c_str());

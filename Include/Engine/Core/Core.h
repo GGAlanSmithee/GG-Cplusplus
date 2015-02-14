@@ -9,27 +9,27 @@ class GG_Engine
 {
     public:
         friend GG_Engine* const GG_CreateEngine(SDL_Window*,
-                                                GG_Renderer*,
+                                                std::unique_ptr<GG_Renderer>,
                                                 std::unique_ptr<GG_Event>,
                                                 GG_TextureManager*);
         friend void GG_DestroyEngine(GG_Engine*);
 
-        friend GG_Renderer* const GG_GetRenderer(GG_Engine* const);
+        friend std::unique_ptr<GG_Renderer> const& GG_GetRenderer(GG_Engine* const);
         friend std::unique_ptr<GG_Event> const& GG_GetEvent(GG_Engine* const);
         friend GG_TextureManager* const GG_GetTextureManager(GG_Engine* const);
 
     private:
         GG_Engine(SDL_Window*,
-                  GG_Renderer*,
+                  std::unique_ptr<GG_Renderer>,
                   std::unique_ptr<GG_Event>,
                   GG_TextureManager*);
 
         ~GG_Engine();
 
-        SDL_Window*               _window;
-        GG_Renderer*              _renderer;
-        std::unique_ptr<GG_Event> _event;
-        GG_TextureManager*        _textureManager;
+        SDL_Window*                  _window;
+        std::unique_ptr<GG_Renderer> _renderer;
+        std::unique_ptr<GG_Event>    _event;
+        GG_TextureManager*           _textureManager;
 };
 
 /// Creates an instance of the core engine
@@ -43,7 +43,7 @@ class GG_Engine
 /// @param textureManager the engines textureManager
 /// @remarks friend of GG_Engine
 GG_Engine* const GG_CreateEngine(SDL_Window* const,
-                                 GG_Renderer* const,
+                                 std::unique_ptr<GG_Renderer>,
                                  std::unique_ptr<GG_Event>,
                                  GG_TextureManager* const);
 
@@ -61,7 +61,7 @@ void GG_DestroyEngine(GG_Engine*);
 /// @return the renderer engine, or null if no renderer engine is set
 /// @exception throws std::invalid_argument exception if \a engine is null
 /// @remarks friend of GG_Engine
-GG_Renderer* const GG_GetRenderer(GG_Engine* const);
+std::unique_ptr<GG_Renderer> const& GG_GetRenderer(GG_Engine* const);
 
 /// Gets the event handler that the engine is currently using
 /// @author Alan Smithee

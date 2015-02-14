@@ -11,11 +11,11 @@
 #include <stdexcept>
 
 GG_Engine::GG_Engine(SDL_Window* window,
-                     GG_Renderer* renderer,
+                     std::unique_ptr<GG_Renderer> renderer,
                      std::unique_ptr<GG_Event> event,
                      GG_TextureManager* textureManager) :
     _window(window),
-    _renderer(renderer),
+    _renderer(std::move(renderer)),
     _event(std::move(event)),
     _textureManager(textureManager)
 {
@@ -25,7 +25,6 @@ GG_Engine::GG_Engine(SDL_Window* window,
 GG_Engine::~GG_Engine()
 {
     GG_DestroyTextureManager(_textureManager);
-    GG_DestroyRenderer(_renderer);
 
     if (_window != nullptr)
     {
@@ -35,14 +34,14 @@ GG_Engine::~GG_Engine()
 }
 
 GG_Engine* const GG_CreateEngine(SDL_Window* const window,
-                                 GG_Renderer* const renderer,
+                                 std::unique_ptr<GG_Renderer> renderer,
                                  std::unique_ptr<GG_Event> event,
                                  GG_TextureManager* const textureManager)
 {
-    return new GG_Engine(window, renderer, std::move(event), textureManager);
+    return new GG_Engine(window, std::move(renderer), std::move(event), textureManager);
 }
 
-GG_Renderer* const GG_GetRenderer(GG_Engine* const engine)
+std::unique_ptr<GG_Renderer> const& GG_GetRenderer(GG_Engine* const engine)
 {
     if (engine == nullptr)
     {
