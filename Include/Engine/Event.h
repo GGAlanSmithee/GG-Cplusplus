@@ -1,5 +1,5 @@
-#ifndef ENGINE_EVENT_EVENT_H_INCLUDED
-#define ENGINE_EVENT_EVENT_H_INCLUDED
+#ifndef ENGINE_EVENT_H_INCLUDED
+#define ENGINE_EVENT_H_INCLUDED
 
 #include <SDL.h>
 #include <unordered_map>
@@ -44,4 +44,4 @@ void GG_HandleEvents(std::unique_ptr<GG_Event> const&);
 /// @remarks friend of GG_Event
 void GG_RegisterKeyboardEvent(std::unique_ptr<GG_Event> const&, const SDL_Keycode, std::function<void()> const&);
 
-#endif // ENGINE_EVENT_EVENT_H_INCLUDED
+#endif // ENGINE_EVENT_H_INCLUDED

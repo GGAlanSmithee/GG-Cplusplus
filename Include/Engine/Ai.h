@@ -1,0 +1,9 @@
+#ifndef ENGINE_AI_H_INCLUDED
+#define ENGINE_AI_H_INCLUDED
+
+class GG_AI
+{
+
+};
+
+#endif // ENGINE_AI_H_INCLUDED

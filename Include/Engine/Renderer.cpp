@@ -26,7 +26,7 @@ GG_Renderer::~GG_Renderer()
 
 void GG_RenderTexture(std::unique_ptr<GG_Renderer> const& renderer, SDL_Texture* const texture)
 {
-    if (renderer == nullptr)
+    if (!renderer)
     {
         throw std::invalid_argument("renderer cannot be null");
     }

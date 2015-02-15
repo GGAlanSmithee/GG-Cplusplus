@@ -1,5 +1,5 @@
-#ifndef ENGINE_RENDERER_RENDERER_H_INCLUDED
-#define ENGINE_RENDERER_RENDERER_H_INCLUDED
+#ifndef ENGINE_RENDERER_H_INCLUDED
+#define ENGINE_RENDERER_H_INCLUDED
 
 #include <memory>
 #include <SDL.h>
@@ -32,4 +32,4 @@ void GG_RenderTexture(std::unique_ptr<GG_Renderer> const&, SDL_Texture* const);
 SDL_Renderer* const GG_GetSDLRenderer(std::unique_ptr<GG_Renderer> const&);
 
 
-#endif // ENGINE_RENDERER_RENDERER_H_INCLUDED
+#endif // ENGINE_RENDERER_H_INCLUDED

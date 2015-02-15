@@ -1,9 +1,9 @@
-#ifndef LOADER_LOADER_H_INCLUDED
-#define LOADER_LOADER_H_INCLUDED
+#ifndef LOADER_TEXTURE_H_INCLUDED
+#define LOADER_TEXTURE_H_INCLUDED
 
 #include <memory>
 #include <string>
-#include "Engine/Renderer/Renderer.h"
+#include "Engine/Renderer.h"
 
 class GG_TextureLoader
 {
@@ -33,4 +33,4 @@ SDL_Texture* const GG_LoadTexture(std::unique_ptr<GG_TextureLoader> const&,
                                   std::unique_ptr<GG_Renderer> const&,
                                   const std::string&);
 
-#endif // LOADER_LOADER_H_INCLUDED
+#endif // LOADER_TEXTURE_H_INCLUDED

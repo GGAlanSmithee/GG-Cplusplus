@@ -1,0 +1,9 @@
+#ifndef ENGINE_AUDIO_H_INCLUDED
+#define ENGINE_AUDIO_H_INCLUDED
+
+class GG_Audio
+{
+
+};
+
+#endif // ENGINE_AUDIO_H_INCLUDED

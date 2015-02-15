@@ -1,9 +1,9 @@
-#ifndef ENGINE_CORE_CORE_H_INCLUDED
-#define ENGINE_CORE_CORE_H_INCLUDED
+#ifndef ENGINE_CORE_H_INCLUDED
+#define ENGINE_CORE_H_INCLUDED
 
-#include "Engine/Renderer/Renderer.h"
-#include "Engine/Event/Event.h"
-#include "Manager/Texture/Texture.h"
+#include "Engine/Renderer.h"
+#include "Engine/Event.h"
+#include "Manager/Texture.h"
 
 class GG_Engine
 {
@@ -78,4 +78,4 @@ void GG_QuitSDL();
 /// @date created 2015-02-07
 void GG_QuitSDLImage();
 
-#endif // ENGINE_CORE_CORE_H_INCLUDED
+#endif // ENGINE_CORE_H_INCLUDED

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
-#include "Loader.h"
+#include "Texture.h"
 #include "Utility/Exception.h"
 
 GG_TextureLoader::GG_TextureLoader()

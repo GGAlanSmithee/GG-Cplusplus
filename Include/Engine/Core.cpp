@@ -2,11 +2,11 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <stdexcept>
-#include "Engine/Core/Core.h"
-#include "Engine/Renderer/Renderer.h"
-#include "Engine/Event/Event.h"
-#include "Manager/Texture/Texture.h"
-#include "Loader/Loader.h"
+#include "Engine/Core.h"
+#include "Engine/Renderer.h"
+#include "Engine/Event.h"
+#include "Manager/Texture.h"
+#include "Loader/Texture.h"
 #include "Utility/Exception.h"
 #include <stdexcept>
 

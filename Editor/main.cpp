@@ -1,7 +1,7 @@
 #include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
-#include "Engine/Core/Core.h"
+#include "Engine/Core.h"
 #include "Utility/Exception.h"
 #include <memory>
 

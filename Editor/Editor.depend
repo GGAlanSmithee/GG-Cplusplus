@@ -350,18 +350,18 @@
 	<functional>
 	<memory>
 
-1423954345 c:\projects\creatio\include\manager\texture\texture.h
+1423996342 c:\projects\creatio\include\manager\texture\texture.h
 	<memory>
 	<string>
 	<SDL.h>
 	<unordered_map>
-	"Loader/Loader.h"
-	"Engine/Renderer/Renderer.h"
+	"Loader/Texture.h"
+	"Renderer/Renderer.h"
 
-1423953279 c:\projects\creatio\include\loader\loader.h
+1423996114 c:\projects\creatio\include\loader\loader.h
 	<memory>
 	<string>
-	"Engine/Renderer/Renderer.h"
+	"Renderer/Renderer.h"
 
 1423510122 c:\projects\creatio\include\utility\exception.h
 	<stdexcept>
@@ -422,20 +422,122 @@
 	<sstream>
 	"Utility/Utility.h"
 
-1423995510 source:c:\projects\creatio\editor\main.cpp
+1423996848 source:c:\projects\creatio\editor\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
-	"Engine/Core/Core.h"
+	"Engine/Core.h"
 	"Utility/Exception.h"
 	<memory>
 
 1423994610 source:c:\projects\creatio\include\application\application.cpp
 	"Application.h"
 
-1423994645 c:\projects\creatio\include\application\application.h
-	"Engine/Core/Core.h"
+1423996811 c:\projects\creatio\include\application\application.h
+	"Engine/Core.h"
 
 1422782592 source:c:\projects\creatio\include\math\vec2.cpp
 	"Vec2.h"
+
+1423996106 c:\projects\creatio\include\core\core.h
+	"Renderer/Renderer.h"
+	"Event/Event.h"
+	"Manager/Texture/Texture.h"
+
+1423996096 c:\projects\creatio\include\renderer\renderer.h
+	<memory>
+	<SDL.h>
+
+1423996072 c:\projects\creatio\include\event\event.h
+	<SDL.h>
+	<unordered_map>
+	<functional>
+	<memory>
+
+1423996353 source:c:\projects\creatio\include\core\core.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	<stdexcept>
+	"Core/Core.h"
+	"Renderer/Renderer.h"
+	"Event/Event.h"
+	"Manager/Texture/Texture.h"
+	"Loader/Texture.h"
+	"Utility/Exception.h"
+	<stdexcept>
+
+1423684254 source:c:\projects\creatio\include\event\event.cpp
+	<stdexcept>
+	<memory>
+	"Event.h"
+
+1423995863 source:c:\projects\creatio\include\renderer\renderer.cpp
+	"Renderer.h"
+	<iostream>
+	<SDL.h>
+	"Utility/Exception.h"
+
+1423996829 c:\projects\creatio\include\loader\texture.h
+	<memory>
+	<string>
+	"Engine/Renderer.h"
+
+1423996826 c:\projects\creatio\include\engine\core.h
+	"Engine/Renderer.h"
+	"Engine/Event.h"
+	"Manager/Texture.h"
+
+1423996649 c:\projects\creatio\include\engine\renderer.h
+	<memory>
+	<SDL.h>
+
+1423996599 c:\projects\creatio\include\engine\event.h
+	<SDL.h>
+	<unordered_map>
+	<functional>
+	<memory>
+
+1423996832 c:\projects\creatio\include\manager\texture.h
+	<memory>
+	<string>
+	<SDL.h>
+	<unordered_map>
+	"Loader/Texture.h"
+	"Engine/Renderer.h"
+
+1423996840 source:c:\projects\creatio\include\engine\core.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	<stdexcept>
+	"Engine/Core.h"
+	"Engine/Renderer.h"
+	"Engine/Event.h"
+	"Manager/Texture.h"
+	"Loader/Texture.h"
+	"Utility/Exception.h"
+	<stdexcept>
+
+1423684254 source:c:\projects\creatio\include\engine\event.cpp
+	<stdexcept>
+	<memory>
+	"Event.h"
+
+1423995863 source:c:\projects\creatio\include\engine\renderer.cpp
+	"Renderer.h"
+	<iostream>
+	<SDL.h>
+	"Utility/Exception.h"
+
+1423996385 source:c:\projects\creatio\include\loader\texture.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"Texture.h"
+	"Utility/Exception.h"
+
+1423954365 source:c:\projects\creatio\include\manager\texture.cpp
+	<iostream>
+	"Texture.h"
 

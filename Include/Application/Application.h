@@ -1,7 +1,7 @@
 #ifndef APPLICATION_APPLICATION_H_INCLUDED
 #define APPLICATION_APPLICATION_H_INCLUDED
 
-#include "Engine/Core/Core.h"
+#include "Engine/Core.h"
 
 class GG_Application
 {

@@ -1,0 +1,9 @@
+#ifndef ENGINE_PHYSICS_H_INCLUDED
+#define ENGINE_PHYSICS_H_INCLUDED
+
+class GG_Physics
+{
+
+};
+
+#endif // ENGINE_PHYSICS_H_INCLUDED

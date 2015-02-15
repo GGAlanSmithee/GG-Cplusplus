@@ -1,12 +1,12 @@
-#ifndef MANAGER_TEXTURE_TEXTURE_H_INCLUDED
-#define MANAGER_TEXTURE_TEXTURE_H_INCLUDED
+#ifndef MANAGER_TEXTURE_H_INCLUDED
+#define MANAGER_TEXTURE_H_INCLUDED
 
 #include <memory>
 #include <string>
 #include <SDL.h>
 #include <unordered_map>
-#include "Loader/Loader.h"
-#include "Engine/Renderer/Renderer.h"
+#include "Loader/Texture.h"
+#include "Engine/Renderer.h"
 
 class GG_TextureManager
 {
@@ -65,4 +65,4 @@ SDL_Texture* const GG_GetTexture(std::unique_ptr<GG_TextureManager> const&, cons
 /// @remarks friend of GG_TextureManager
 void GG_SetDefaultTexture(std::unique_ptr<GG_TextureManager> const&, GG_Renderer* const, const std::string&);
 
-#endif // MANAGER_TEXTURE_TEXTURE_H_INCLUDED
+#endif // MANAGER_TEXTURE_H_INCLUDED
