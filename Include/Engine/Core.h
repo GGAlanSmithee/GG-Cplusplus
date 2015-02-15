@@ -4,15 +4,14 @@
 #include "Engine/Renderer.h"
 #include "Engine/Event.h"
 #include "Manager/Texture.h"
+#include "Utility/Factory.h"
 
+class GG_Factory;
 class GG_Engine
 {
-    public:
-        GG_Engine(SDL_Window*,
-                  std::unique_ptr<GG_Renderer>,
-                  std::unique_ptr<GG_Event>,
-                  std::unique_ptr<GG_TextureManager>);
+    friend GG_Factory;
 
+    public:
         ~GG_Engine();
 
         friend std::unique_ptr<GG_Renderer> const& GG_GetRenderer(std::unique_ptr<GG_Engine> const&);
@@ -20,6 +19,11 @@ class GG_Engine
         friend std::unique_ptr<GG_TextureManager> const& GG_GetTextureManager(std::unique_ptr<GG_Engine> const&);
 
     private:
+        GG_Engine(SDL_Window*,
+                  std::unique_ptr<GG_Renderer>,
+                  std::unique_ptr<GG_Event>,
+                  std::unique_ptr<GG_TextureManager>);
+
         SDL_Window*                        _window;
         std::unique_ptr<GG_Renderer>       _renderer;
         std::unique_ptr<GG_Event>          _event;
@@ -53,29 +57,5 @@ std::unique_ptr<GG_Event> const& GG_GetEvent(std::unique_ptr<GG_Engine> const&);
 /// @exception throws std::invalid_argument exception if \a engine is null
 /// @remarks friend of GG_Engine
 std::unique_ptr<GG_TextureManager> const& GG_GetTextureManager(std::unique_ptr<GG_Engine> const&);
-
-/// Initialized SDL
-/// @author Alan Smithee
-/// @date created 2015-02-01
-/// @param flags the flags used to initialize SDL
-/// @exception init_error could not initialize SDL
-void GG_InitializeSDL(const int);
-
-/// Initialized SDL image
-/// @author Alan Smithee
-/// @date created 2015-02-01
-/// @param flags the flags used to initialize SDL image
-/// @exception init_error could not initialize SDL image
-void GG_InitializeSDLImage(const int);
-
-/// Quits SDL
-/// @author Alan Smithee
-/// @date created 2015-02-07
-void GG_QuitSDL();
-
-/// Quits SDL
-/// @author Alan Smithee
-/// @date created 2015-02-07
-void GG_QuitSDLImage();
 
 #endif // ENGINE_CORE_H_INCLUDED

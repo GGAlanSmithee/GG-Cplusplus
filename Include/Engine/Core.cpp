@@ -29,6 +29,9 @@ GG_Engine::~GG_Engine()
         SDL_DestroyWindow(_window);
         _window = nullptr;
     }
+
+    IMG_Quit();
+    SDL_Quit();
 }
 
 std::unique_ptr<GG_Renderer> const& GG_GetRenderer(std::unique_ptr<GG_Engine> const& engine)
@@ -59,34 +62,4 @@ std::unique_ptr<GG_TextureManager> const& GG_GetTextureManager(std::unique_ptr<G
     }
 
     return engine->_textureManager;
-}
-
-void GG_InitializeSDL(const int flags)
-{
-    auto result = SDL_Init(flags);
-
-    if (result != 0)
-    {
-        throw init_error(std::string("Failed to initialize SDL: ") + SDL_GetError());
-    }
-}
-
-void GG_InitializeSDLImage(const int flags)
-{
-    auto result = IMG_Init(flags);
-
-    if (result & flags != flags)
-    {
-        throw init_error(std::string("Failed to initialize SDL: ") + IMG_GetError());
-    }
-}
-
-void GG_QuitSDL()
-{
-    SDL_Quit();
-}
-
-void GG_QuitSDLImage()
-{
-    IMG_Quit();
 }

@@ -422,13 +422,10 @@
 	<sstream>
 	"Utility/Utility.h"
 
-1423996848 source:c:\projects\creatio\editor\main.cpp
+1423999588 source:c:\projects\creatio\editor\main.cpp
 	<iostream>
-	<SDL.h>
-	<SDL_image.h>
-	"Engine/Core.h"
 	"Utility/Exception.h"
-	<memory>
+	"Utility/Factory.h"
 
 1423994610 source:c:\projects\creatio\include\application\application.cpp
 	"Application.h"
@@ -483,10 +480,11 @@
 	<string>
 	"Engine/Renderer.h"
 
-1423996826 c:\projects\creatio\include\engine\core.h
+1423998565 c:\projects\creatio\include\engine\core.h
 	"Engine/Renderer.h"
 	"Engine/Event.h"
 	"Manager/Texture.h"
+	"Utility/Factory.h"
 
 1423996649 c:\projects\creatio\include\engine\renderer.h
 	<memory>
@@ -506,7 +504,7 @@
 	"Loader/Texture.h"
 	"Engine/Renderer.h"
 
-1423996840 source:c:\projects\creatio\include\engine\core.cpp
+1423999424 source:c:\projects\creatio\include\engine\core.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -540,4 +538,14 @@
 1423954365 source:c:\projects\creatio\include\manager\texture.cpp
 	<iostream>
 	"Texture.h"
+
+1423999370 c:\projects\creatio\include\utility\factory.h
+	<memory>
+	"Engine/Core.h"
+
+1423999563 source:c:\projects\creatio\include\utility\factory.cpp
+	<SDL.h>
+	<SDL_image.h>
+	"Factory.h"
+	"Exception.h"
 

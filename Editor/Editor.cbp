@@ -61,6 +61,8 @@
 		<Unit filename="../Include/Math/Vec2.cpp" />
 		<Unit filename="../Include/Math/Vec2.h" />
 		<Unit filename="../Include/Utility/Exception.h" />
+		<Unit filename="../Include/Utility/Factory.cpp" />
+		<Unit filename="../Include/Utility/Factory.h" />
 		<Unit filename="../Include/Utility/Utility.cpp" />
 		<Unit filename="../Include/Utility/Utility.h" />
 		<Unit filename="main.cpp" />
