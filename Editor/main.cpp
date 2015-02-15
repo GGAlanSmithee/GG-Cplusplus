@@ -47,7 +47,7 @@ int main(int argc, char* args[])
         engine = GG_CreateEngine(window,
                                  std::unique_ptr<GG_Renderer>(new GG_Renderer(window)),
                                  std::unique_ptr<GG_Event>(new GG_Event()),
-                                 GG_CreateTextureManager(GG_CreateTextureLoader()));
+                                 std::unique_ptr<GG_TextureManager>(new GG_TextureManager(std::unique_ptr<GG_TextureLoader>(new GG_TextureLoader()))));
     }
     catch (const init_error& e)
     {

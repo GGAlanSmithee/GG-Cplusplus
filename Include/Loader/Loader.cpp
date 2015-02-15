@@ -4,23 +4,17 @@
 #include "Loader.h"
 #include "Utility/Exception.h"
 
-GG_TextureLoader* const GG_CreateTextureLoader()
+GG_TextureLoader::GG_TextureLoader()
 {
-    return new GG_TextureLoader();
+    // Empty
 }
 
-void GG_DestroyTextureLoader(GG_TextureLoader* textureLoader)
+GG_TextureLoader::~GG_TextureLoader()
 {
-    if (textureLoader == nullptr)
-    {
-        return;
-    }
-
-    delete textureLoader;
-    textureLoader = nullptr;
+    // Empty
 }
 
-SDL_Texture* const GG_LoadTexture(GG_TextureLoader* const textureLoader,
+SDL_Texture* const GG_LoadTexture(std::unique_ptr<GG_TextureLoader> const& textureLoader,
                                   std::unique_ptr<GG_Renderer> const& renderer,
                                   const std::string& name)
 {

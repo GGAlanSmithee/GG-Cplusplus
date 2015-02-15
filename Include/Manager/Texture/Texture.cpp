@@ -1,19 +1,15 @@
 #include <iostream>
 #include "Texture.h"
 
-GG_TextureManager* const GG_CreateTextureManager(GG_TextureLoader* const textureLoader)
+GG_TextureManager::GG_TextureManager(std::unique_ptr<GG_TextureLoader> textureLoader) :
+    _textureLoader(std::move(textureLoader))
 {
-    return new GG_TextureManager(textureLoader);
+    // Empty
 }
 
-void GG_DestroyTextureManager(GG_TextureManager* textureManager)
+GG_TextureManager::~GG_TextureManager()
 {
-    if (textureManager == nullptr)
-    {
-        return;
-    }
-
-    for (auto& kvp : textureManager->_textures)
+    for (auto& kvp : _textures)
     {
         if (kvp.second != nullptr)
         {
@@ -21,21 +17,18 @@ void GG_DestroyTextureManager(GG_TextureManager* textureManager)
             kvp.second = nullptr;
         }
     }
-
-    delete textureManager;
-    textureManager = nullptr;
 }
 
-const unsigned int GG_AddTexture(GG_TextureManager* const textureManager,
+const unsigned int GG_AddTexture(std::unique_ptr<GG_TextureManager> const& textureManager,
                                  std::unique_ptr<GG_Renderer> const& renderer,
                                  const std::string& name)
 {
-    if (textureManager == nullptr)
+    if (!textureManager)
     {
         throw std::invalid_argument("textureManager cannot be null.");
     }
 
-    if (renderer == nullptr)
+    if (!renderer)
     {
         throw std::invalid_argument("renderer cannot be null.");
     }
@@ -47,9 +40,9 @@ const unsigned int GG_AddTexture(GG_TextureManager* const textureManager,
     return index;
 }
 
-SDL_Texture* const GG_GetTexture(GG_TextureManager* const textureManager, const unsigned int key)
+SDL_Texture* const GG_GetTexture(std::unique_ptr<GG_TextureManager> const& textureManager, const unsigned int key)
 {
-    if (textureManager == nullptr)
+    if (!textureManager)
     {
         throw std::invalid_argument("textureManager can not be null.");
     }
@@ -69,16 +62,16 @@ SDL_Texture* const GG_GetTexture(GG_TextureManager* const textureManager, const 
     }
 }
 
-void GG_SetDefaultTexture(GG_TextureManager* const textureManager,
+void GG_SetDefaultTexture(std::unique_ptr<GG_TextureManager> const& textureManager,
                           std::unique_ptr<GG_Renderer> const& renderer,
                           const std::string& name)
 {
-    if (textureManager == nullptr)
+    if (!textureManager)
     {
         throw std::invalid_argument("textureManager cannot be null.");
     }
 
-    if (renderer == nullptr)
+    if (!renderer)
     {
         throw std::invalid_argument("renderer cannot be null.");
     }

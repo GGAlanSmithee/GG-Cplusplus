@@ -11,25 +11,25 @@ class GG_Engine
         friend GG_Engine* const GG_CreateEngine(SDL_Window*,
                                                 std::unique_ptr<GG_Renderer>,
                                                 std::unique_ptr<GG_Event>,
-                                                GG_TextureManager*);
+                                                std::unique_ptr<GG_TextureManager>);
         friend void GG_DestroyEngine(GG_Engine*);
 
         friend std::unique_ptr<GG_Renderer> const& GG_GetRenderer(GG_Engine* const);
         friend std::unique_ptr<GG_Event> const& GG_GetEvent(GG_Engine* const);
-        friend GG_TextureManager* const GG_GetTextureManager(GG_Engine* const);
+        friend std::unique_ptr<GG_TextureManager> const& GG_GetTextureManager(GG_Engine* const);
 
     private:
         GG_Engine(SDL_Window*,
                   std::unique_ptr<GG_Renderer>,
                   std::unique_ptr<GG_Event>,
-                  GG_TextureManager*);
+                  std::unique_ptr<GG_TextureManager>);
 
         ~GG_Engine();
 
-        SDL_Window*                  _window;
-        std::unique_ptr<GG_Renderer> _renderer;
-        std::unique_ptr<GG_Event>    _event;
-        GG_TextureManager*           _textureManager;
+        SDL_Window*                        _window;
+        std::unique_ptr<GG_Renderer>       _renderer;
+        std::unique_ptr<GG_Event>          _event;
+        std::unique_ptr<GG_TextureManager> _textureManager;
 };
 
 /// Creates an instance of the core engine
@@ -45,7 +45,7 @@ class GG_Engine
 GG_Engine* const GG_CreateEngine(SDL_Window* const,
                                  std::unique_ptr<GG_Renderer>,
                                  std::unique_ptr<GG_Event>,
-                                 GG_TextureManager* const);
+                                 std::unique_ptr<GG_TextureManager>);
 
 /// Destroys an instance of the core engine by freeing the memory used
 /// @author Alan Smithee
@@ -80,7 +80,7 @@ std::unique_ptr<GG_Event> const& GG_GetEvent(GG_Engine* const);
 /// @return the texture manager, or null if no texture manager is set
 /// @exception throws std::invalid_argument exception if \a engine is null
 /// @remarks friend of GG_Engine
-GG_TextureManager* const GG_GetTextureManager(GG_Engine* const);
+std::unique_ptr<GG_TextureManager> const& GG_GetTextureManager(GG_Engine* const);
 
 /// Initialized SDL
 /// @author Alan Smithee
