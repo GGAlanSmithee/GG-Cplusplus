@@ -11,6 +11,11 @@ class GG_Renderer
         ~GG_Renderer();
 
         friend void GG_RenderTexture(std::unique_ptr<GG_Renderer> const&, SDL_Texture* const);
+        friend void GG_RenderTexture(std::unique_ptr<GG_Renderer> const&,
+                                     SDL_Texture* const,
+                                     SDL_Rect& renderQuad,
+                                     SDL_Rect& clipRect);
+
         /// @todo remove this method, it break encapsulation, refactor code using it
         friend SDL_Renderer* const GG_GetSDLRenderer(std::unique_ptr<GG_Renderer> const&);
 
@@ -27,6 +32,11 @@ class GG_Renderer
 /// @exception throws a std::invalid_arugment exception if \a texture is null
 /// @remarks friend of GG_Renderer
 void GG_RenderTexture(std::unique_ptr<GG_Renderer> const&, SDL_Texture* const);
+
+void GG_RenderTexture(std::unique_ptr<GG_Renderer> const&,
+                                     SDL_Texture* const,
+                                     SDL_Rect& renderQuad,
+                                     SDL_Rect& clipRect);
 
 /// @todo remove this method, it breaks encapsulation, refactor code using it
 SDL_Renderer* const GG_GetSDLRenderer(std::unique_ptr<GG_Renderer> const&);

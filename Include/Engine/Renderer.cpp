@@ -41,6 +41,29 @@ void GG_RenderTexture(std::unique_ptr<GG_Renderer> const& renderer, SDL_Texture*
     SDL_RenderPresent(renderer->_sdlRenderer);
 }
 
+void GG_RenderTexture(std::unique_ptr<GG_Renderer> const& renderer,
+                      SDL_Texture* const texture,
+                      SDL_Rect& renderQuad,
+                      SDL_Rect& clipRect)
+{
+    if (!renderer)
+    {
+        throw std::invalid_argument("renderer cannot be null");
+    }
+
+    if (texture == nullptr)
+    {
+        throw std::invalid_argument("texture cannot be null");
+    }
+
+    renderQuad.w = clipRect.w;
+    renderQuad.h = clipRect.h;
+
+    SDL_RenderClear(renderer->_sdlRenderer);
+    SDL_RenderCopy(renderer->_sdlRenderer, texture, &clipRect, &renderQuad);
+    SDL_RenderPresent(renderer->_sdlRenderer);
+}
+
 SDL_Renderer* const GG_GetSDLRenderer(std::unique_ptr<GG_Renderer> const& renderer)
 {
     return renderer->_sdlRenderer;
