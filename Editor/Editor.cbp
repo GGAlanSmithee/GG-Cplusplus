@@ -30,6 +30,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-std=c++0x" />
 			<Add directory="C:/Projects/Creatio/Include" />
 			<Add directory="C:/Applications/SDL2-2.0.3/x86_64-w64-mingw32/include/SDL2" />
 			<Add directory="C:/Applications/SDL2_image-2.0.0/x86_64-w64-mingw32/include/SDL2" />

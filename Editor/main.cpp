@@ -40,14 +40,14 @@ int main(int argc, char* args[])
         return -1;
     }
 
-    GG_Engine* engine = nullptr;
+    std::unique_ptr<GG_Engine> engine;
 
     try
     {
-        engine = GG_CreateEngine(window,
-                                 std::unique_ptr<GG_Renderer>(new GG_Renderer(window)),
-                                 std::unique_ptr<GG_Event>(new GG_Event()),
-                                 std::unique_ptr<GG_TextureManager>(new GG_TextureManager(std::unique_ptr<GG_TextureLoader>(new GG_TextureLoader()))));
+        engine = std::unique_ptr<GG_Engine>(new GG_Engine(window,
+                                            std::unique_ptr<GG_Renderer>(new GG_Renderer(window)),
+                                            std::unique_ptr<GG_Event>(new GG_Event()),
+                                            std::unique_ptr<GG_TextureManager>(new GG_TextureManager(std::unique_ptr<GG_TextureLoader>(new GG_TextureLoader())))));
     }
     catch (const init_error& e)
     {
@@ -78,12 +78,10 @@ int main(int argc, char* args[])
     }
     catch (std::exception e)
     {
-        GG_DestroyEngine(engine);
         GG_QuitSDLImage();
         GG_QuitSDL();
     }
 
-    GG_DestroyEngine(engine);
     GG_QuitSDLImage();
     GG_QuitSDL();
 

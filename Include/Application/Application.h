@@ -9,9 +9,9 @@ class GG_Application
         friend GG_Application* const GG_CreateApplication();
         friend void GG_DestroyApplication(GG_Application*);
 
-        friend void GG_OnEvent(GG_Application* const, GG_Engine* const);
-        friend void GG_OnLogic(GG_Application* const, GG_Engine* const);
-        friend void GG_OnRender(GG_Application* const, GG_Engine* const);
+        friend void GG_OnEvent(GG_Application* const, std::unique_ptr<GG_Engine> const&);
+        friend void GG_OnLogic(GG_Application* const, std::unique_ptr<GG_Engine> const&);
+        friend void GG_OnRender(GG_Application* const, std::unique_ptr<GG_Engine> const&);
 
     private:
 
@@ -42,7 +42,7 @@ void GG_DestroyApplication(GG_Application*);
 /// @exception throws a std::invalid_argument if \a application is null
 /// @exception throws a std::invalid_argument if \a engine is null
 /// @remarks friend of GG_Application
-void GG_OnEvent(GG_Application* const, GG_Engine* const);
+void GG_OnEvent(GG_Application* const, std::unique_ptr<GG_Engine> const&);
 
 /// Executes the logic related systems of the \a application
 /// @author Alan Smithee
@@ -52,7 +52,7 @@ void GG_OnEvent(GG_Application* const, GG_Engine* const);
 /// @exception throws a std::invalid_argument if \a application is null
 /// @exception throws a std::invalid_argument if \a engine is null
 /// @remarks friend of GG_Application
-void GG_OnLogic(GG_Application* const, GG_Engine* const);
+void GG_OnLogic(GG_Application* const, std::unique_ptr<GG_Engine> const&);
 
 /// Executes the rendering related systems of the \a application
 /// @author Alan Smithee
@@ -62,6 +62,6 @@ void GG_OnLogic(GG_Application* const, GG_Engine* const);
 /// @exception throws a std::invalid_argument if \a application is null
 /// @exception throws a std::invalid_argument if \a engine is null
 /// @remarks friend of GG_Application
-void GG_OnRender(GG_Application* const, GG_Engine* const);
+void GG_OnRender(GG_Application* const, std::unique_ptr<GG_Engine> const&);
 
 #endif // APPLICATION_H_INCLUDED

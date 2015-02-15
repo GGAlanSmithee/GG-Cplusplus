@@ -31,15 +31,7 @@ GG_Engine::~GG_Engine()
     }
 }
 
-GG_Engine* const GG_CreateEngine(SDL_Window* const window,
-                                 std::unique_ptr<GG_Renderer> renderer,
-                                 std::unique_ptr<GG_Event> event,
-                                 std::unique_ptr<GG_TextureManager> textureManager)
-{
-    return new GG_Engine(window, std::move(renderer), std::move(event), std::move(textureManager));
-}
-
-std::unique_ptr<GG_Renderer> const& GG_GetRenderer(GG_Engine* const engine)
+std::unique_ptr<GG_Renderer> const& GG_GetRenderer(std::unique_ptr<GG_Engine> const& engine)
 {
     if (engine == nullptr)
     {
@@ -49,7 +41,7 @@ std::unique_ptr<GG_Renderer> const& GG_GetRenderer(GG_Engine* const engine)
     return engine->_renderer;
 }
 
-std::unique_ptr<GG_Event> const& GG_GetEvent(GG_Engine* const engine)
+std::unique_ptr<GG_Event> const& GG_GetEvent(std::unique_ptr<GG_Engine> const& engine)
 {
     if (engine == nullptr)
     {
@@ -59,7 +51,7 @@ std::unique_ptr<GG_Event> const& GG_GetEvent(GG_Engine* const engine)
     return engine->_event;
 }
 
-std::unique_ptr<GG_TextureManager> const& GG_GetTextureManager(GG_Engine* const engine)
+std::unique_ptr<GG_TextureManager> const& GG_GetTextureManager(std::unique_ptr<GG_Engine> const& engine)
 {
     if (engine == nullptr)
     {
@@ -67,17 +59,6 @@ std::unique_ptr<GG_TextureManager> const& GG_GetTextureManager(GG_Engine* const 
     }
 
     return engine->_textureManager;
-}
-
-void GG_DestroyEngine(GG_Engine* engine)
-{
-    if (engine == nullptr)
-    {
-        return;
-    }
-
-    delete engine;
-    engine = nullptr;
 }
 
 void GG_InitializeSDL(const int flags)

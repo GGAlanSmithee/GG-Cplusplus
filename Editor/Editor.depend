@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1423954359 source:c:\projects\creatio\include\engine\core\core.cpp
+1423994907 source:c:\projects\creatio\include\engine\core\core.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -335,7 +335,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1423954179 c:\projects\creatio\include\engine\core\core.h
+1423994924 c:\projects\creatio\include\engine\core\core.h
 	"Engine/Renderer/Renderer.h"
 	"Engine/Event/Event.h"
 	"Manager/Texture/Texture.h"
@@ -422,7 +422,7 @@
 	<sstream>
 	"Utility/Utility.h"
 
-1423954261 source:c:\projects\creatio\editor\main.cpp
+1423995510 source:c:\projects\creatio\editor\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -430,10 +430,10 @@
 	"Utility/Exception.h"
 	<memory>
 
-1423681276 source:c:\projects\creatio\include\application\application.cpp
+1423994610 source:c:\projects\creatio\include\application\application.cpp
 	"Application.h"
 
-1423681314 c:\projects\creatio\include\application\application.h
+1423994645 c:\projects\creatio\include\application\application.h
 	"Engine/Core/Core.h"
 
 1422782592 source:c:\projects\creatio\include\math\vec2.cpp
