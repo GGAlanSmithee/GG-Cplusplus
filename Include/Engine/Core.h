@@ -4,14 +4,14 @@
 #include "Engine/Renderer.h"
 #include "Engine/Event.h"
 #include "Manager/Texture.h"
-#include "Utility/Factory.h"
 
-class GG_Factory;
 class GG_Engine
 {
-    friend GG_Factory;
-
     public:
+        GG_Engine(SDL_Window*,
+                  std::unique_ptr<GG_Renderer>,
+                  std::unique_ptr<GG_Event>,
+                  std::unique_ptr<GG_TextureManager>);
         ~GG_Engine();
 
         friend std::unique_ptr<GG_Renderer> const& GG_GetRenderer(std::unique_ptr<GG_Engine> const&);
@@ -19,11 +19,6 @@ class GG_Engine
         friend std::unique_ptr<GG_TextureManager> const& GG_GetTextureManager(std::unique_ptr<GG_Engine> const&);
 
     private:
-        GG_Engine(SDL_Window*,
-                  std::unique_ptr<GG_Renderer>,
-                  std::unique_ptr<GG_Event>,
-                  std::unique_ptr<GG_TextureManager>);
-
         SDL_Window*                        _window;
         std::unique_ptr<GG_Renderer>       _renderer;
         std::unique_ptr<GG_Event>          _event;

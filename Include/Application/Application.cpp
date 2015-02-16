@@ -10,33 +10,28 @@ GG_Application::~GG_Application()
     // Empty
 }
 
-GG_Application* const GG_CreateApplication()
+void GG_OnLogic(std::unique_ptr<GG_Application> const& application, std::unique_ptr<GG_Engine> const& engine)
 {
-    return new GG_Application();
-}
-
-void GG_DestroyApplication(GG_Application* application)
-{
-    if (application == nullptr)
+    if (!application)
     {
-        return;
+        throw std::invalid_argument("application cannot be null.");
     }
 
-    delete application;
-    application = nullptr;
+    if (!engine)
+    {
+        throw std::invalid_argument("engine cannot be null.");
+    }
 }
 
-void GG_OnEvent(GG_Application* const application, std::unique_ptr<GG_Engine> const& engine)
+void GG_OnRender(std::unique_ptr<GG_Application> const& application, std::unique_ptr<GG_Engine> const& engine)
 {
-    // Empty
-}
+    if (!application)
+    {
+        throw std::invalid_argument("application cannot be null.");
+    }
 
-void GG_OnLogic(GG_Application* const application, std::unique_ptr<GG_Engine> const& engine)
-{
-    // Empty
-}
-
-void GG_OnRender(GG_Application* const application, std::unique_ptr<GG_Engine> const& engine)
-{
-    // Empty
+    if (!engine)
+    {
+        throw std::invalid_argument("engine cannot be null.");
+    }
 }

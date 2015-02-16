@@ -3,7 +3,7 @@
 #include "Factory.h"
 #include "Exception.h"
 
-std::unique_ptr<GG_Engine> GG_Factory::GG_CreateEngine()
+std::unique_ptr<GG_Engine> GG_CreateEngine()
 {
     auto result = SDL_Init(SDL_INIT_EVERYTHING);
 
@@ -50,5 +50,10 @@ std::unique_ptr<GG_Engine> GG_Factory::GG_CreateEngine()
         throw;
     }
 
-    return std::move(engine);
+    return engine;
+}
+
+std::unique_ptr<GG_Application> GG_CreateApplication()
+{
+    return std::unique_ptr<GG_Application>(new GG_Application());
 }

@@ -4,11 +4,9 @@
 
 int main(int argc, char* args[])
 {
-    GG_Factory factory;
-
     try
     {
-        auto engine = factory.GG_CreateEngine();
+        auto engine = GG_CreateEngine();
 
         GG_SetDefaultTexture(GG_GetTextureManager(engine), GG_GetRenderer(engine), "default.png");
 
@@ -23,9 +21,15 @@ int main(int argc, char* args[])
         SDL_Rect source = { 100, 50, 0, 0 };
         SDL_Rect clipRect = { 30, 30, 30, 30 };
 
+        auto application = GG_CreateApplication();
+
         while (running)
         {
             GG_HandleEvents(GG_GetEvent(engine));
+
+            GG_OnLogic(application, engine);
+
+            GG_OnRender(application, engine);
 
             GG_RenderTexture(GG_GetRenderer(engine),
                              GG_GetTexture(GG_GetTextureManager(engine), handle),
