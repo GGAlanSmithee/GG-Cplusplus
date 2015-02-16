@@ -18,8 +18,8 @@ int main(int argc, char* args[])
 
         GG_RegisterKeyboardEvent(GG_GetEvent(engine), SDLK_ESCAPE, [&]() { running = false; });
 
-        SDL_Rect source = { 100, 50, 0, 0 };
-        SDL_Rect clipRect = { 30, 30, 30, 30 };
+        SDL_Rect source = { 30, 30, 30, 30 };
+        SDL_Rect dest = { 100, 50, 0, 0 };
 
         auto application = GG_CreateApplication();
 
@@ -34,8 +34,7 @@ int main(int argc, char* args[])
             GG_RenderTexture(GG_GetRenderer(engine),
                              GG_GetTexture(GG_GetTextureManager(engine), handle),
                              source,
-                             clipRect
-                             );
+                             dest);
 
             SDL_Delay(1);
         }

@@ -13,8 +13,8 @@ class GG_Renderer
         friend void GG_RenderTexture(std::unique_ptr<GG_Renderer> const&, SDL_Texture* const);
         friend void GG_RenderTexture(std::unique_ptr<GG_Renderer> const&,
                                      SDL_Texture* const,
-                                     SDL_Rect& renderQuad,
-                                     SDL_Rect& clipRect);
+                                     SDL_Rect&,
+                                     SDL_Rect&);
 
         /// @todo remove this method, it break encapsulation, refactor code using it
         friend SDL_Renderer* const GG_GetSDLRenderer(std::unique_ptr<GG_Renderer> const&);
@@ -35,8 +35,8 @@ void GG_RenderTexture(std::unique_ptr<GG_Renderer> const&, SDL_Texture* const);
 
 void GG_RenderTexture(std::unique_ptr<GG_Renderer> const&,
                                      SDL_Texture* const,
-                                     SDL_Rect& renderQuad,
-                                     SDL_Rect& clipRect);
+                                     SDL_Rect&,
+                                     SDL_Rect&);
 
 /// @todo remove this method, it breaks encapsulation, refactor code using it
 SDL_Renderer* const GG_GetSDLRenderer(std::unique_ptr<GG_Renderer> const&);
