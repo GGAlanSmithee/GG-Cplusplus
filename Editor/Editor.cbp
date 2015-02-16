@@ -45,6 +45,10 @@
 		</Linker>
 		<Unit filename="../Include/Application/Application.cpp" />
 		<Unit filename="../Include/Application/Application.h" />
+		<Unit filename="../Include/Application/Map.cpp" />
+		<Unit filename="../Include/Application/Map.h" />
+		<Unit filename="../Include/Application/Tile.cpp" />
+		<Unit filename="../Include/Application/Tile.h" />
 		<Unit filename="../Include/Engine/Ai.h" />
 		<Unit filename="../Include/Engine/Audio.h" />
 		<Unit filename="../Include/Engine/Core.cpp" />
