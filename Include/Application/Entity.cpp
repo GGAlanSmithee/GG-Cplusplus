@@ -14,13 +14,13 @@ GG_EntityManager::GG_EntityManager(const unsigned int size) :
     TransformComponents.resize(Size, GG_TransformComponent());
 }
 
-const unsigned int CreateEntity(std::unique_ptr<GG_EntityManager> const& entityManager)
+const unsigned int CreateEntity(GG_EntityManager& entityManager)
 {
-    for (auto i = 0; i < entityManager->Size; ++i)
+    for (auto i = 0; i < entityManager.Size; ++i)
     {
-        if (entityManager->Enteties[i] == GG_Utility::ToIntegral(GG_ComponentType::None))
+        if (entityManager.Enteties[i] == GG_Utility::ToIntegral(GG_ComponentType::None))
         {
-            entityManager->Enteties[i] = GG_Utility::ToIntegral(GG_ComponentType::Transform)  |
+            entityManager.Enteties[i] = GG_Utility::ToIntegral(GG_ComponentType::Transform)  |
                                 GG_Utility::ToIntegral(GG_ComponentType::Physics) |
                                 GG_Utility::ToIntegral(GG_ComponentType::Appearance);
 
@@ -30,12 +30,12 @@ const unsigned int CreateEntity(std::unique_ptr<GG_EntityManager> const& entityM
 
     std::cerr << "No more enteties left in entity manager." << std::endl;
 
-    return entityManager->Size;
+    return entityManager.Size;
 }
 
-void GG_DestroyEntity(std::unique_ptr<GG_EntityManager> const& entityManager, const unsigned int entity)
+void GG_DestroyEntity(GG_EntityManager& entityManager, const unsigned int entity)
 {
-    entityManager->Enteties[entity] = GG_Utility::ToIntegral(GG_ComponentType::None);
+    entityManager.Enteties[entity] = GG_Utility::ToIntegral(GG_ComponentType::None);
 }
 
 

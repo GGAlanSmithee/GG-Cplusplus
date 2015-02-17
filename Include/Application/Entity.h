@@ -6,6 +6,7 @@
 #include <vector>
 #include "Component.h"
 
+/// @todo add maxEntity variable
 class GG_EntityManager
 {
     public:
@@ -14,19 +15,19 @@ class GG_EntityManager
         /// @date created 2014-11-28
         /// @date changed 2014-12-21
         /// @param size the inital size of the world
-        GG_EntityManager(const unsigned int);
+        GG_EntityManager(const unsigned int = 2000);
 
         /// Creates an entity by assigning it a mask and returning its id
         /// @author Alan Smithee
         /// @date created 2014-11-25
         /// @date changed 2015-02-17
-        friend const unsigned int GG_CreateEntity(std::unique_ptr<GG_EntityManager> const&);
+        friend const unsigned int GG_CreateEntity(GG_EntityManager&);
 
         /// Destroys an entity by assigning it an empty mask (ComponentType::None)
         /// @author Alan Smithee
         /// @date created 2014-11-25
         /// @date changed 2015-02-17
-        friend void GG_DestroyEntity(std::unique_ptr<GG_EntityManager> const&, const unsigned int);
+        friend void GG_DestroyEntity(GG_EntityManager&, const unsigned int);
 
         /// Worldsize
         /// @author Alan Smithee

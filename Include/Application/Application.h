@@ -3,6 +3,7 @@
 
 #include <memory>
 #include "Engine/Core.h"
+#include "Entity.h"
 
 class GG_Application
 {
@@ -12,6 +13,9 @@ class GG_Application
 
         friend void GG_OnLogic(std::unique_ptr<GG_Application> const&, std::unique_ptr<GG_Engine> const&);
         friend void GG_OnRender(std::unique_ptr<GG_Application> const&, std::unique_ptr<GG_Engine> const&);
+
+    private:
+        GG_EntityManager entityManager;
 };
 
 /// Executes the logic related systems of the \a application

@@ -13,36 +13,36 @@ namespace // Private varaibles and functions
                       GG_Utility::ToIntegral(GG_ComponentType::Appearance);
 }
 
-void GG_MovementSystem(std::unique_ptr<GG_EntityManager> const& entityManager)
+void GG_MovementSystem(GG_EntityManager& entityManager)
 {
     GG_TransformComponent* t;
     GG_PhysicsComponent*   p;
 
-    for (auto entity = 0; entity < entityManager->Size; ++entity)
+    for (auto entity = 0; entity < entityManager.Size; ++entity)
     {
-        if ((entityManager->Enteties[entity] & MovementMask) != MovementMask)
+        if ((entityManager.Enteties[entity] & MovementMask) != MovementMask)
         {
             continue;
         }
 
-        t = &(entityManager->TransformComponents[entity]);
-        p = &(entityManager->PhysicsComponents[entity]);
+        t = &(entityManager.TransformComponents[entity]);
+        p = &(entityManager.PhysicsComponents[entity]);
     }
 }
 
-void GG_RenderSystem(std::unique_ptr<GG_EntityManager> const& entityManager)
+void GG_RenderSystem(GG_EntityManager& entityManager)
 {
     GG_TransformComponent*  t;
     GG_AppearanceComponent* a;
 
-    for (unsigned int entity = 0; entity < entityManager->Size; ++entity)
+    for (unsigned int entity = 0; entity < entityManager.Size; ++entity)
     {
-        if ((entityManager->Enteties[entity] & RenderMask) != RenderMask)
+        if ((entityManager.Enteties[entity] & RenderMask) != RenderMask)
         {
             continue;
         }
 
-        t = &(entityManager->TransformComponents[entity]);
-        a = &(entityManager->AppearanceComponents[entity]);
+        t = &(entityManager.TransformComponents[entity]);
+        a = &(entityManager.AppearanceComponents[entity]);
     }
 }
