@@ -2,61 +2,6 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="..\Include\Engine\Renderer.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1589" topLine="39" />
-		</Cursor>
-	</File>
-	<File name="..\Include\Engine\Renderer.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1274" topLine="16" />
-		</Cursor>
-	</File>
-	<File name="..\Include\Engine\Ai.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="82" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="..\Include\Application\Tile.cpp" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="..\Include\Engine\Audio.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="91" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="..\Include\Engine\Physics.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="97" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="..\Include\Utility\Factory.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1932" topLine="30" />
-		</Cursor>
-	</File>
-	<File name="..\Include\Math\Vec2.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="..\Include\Application\Tile.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="214" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="..\Include\Utility\Factory.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="157" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="..\Include\Utility\Utility.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="315" topLine="0" />
-		</Cursor>
-	</File>
 	<File name="..\Include\Engine\Event.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="836" topLine="0" />
@@ -67,9 +12,9 @@
 			<Cursor1 position="846" topLine="12" />
 		</Cursor>
 	</File>
-	<File name="..\Include\Utility\Utility.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\Include\Utility\Utility.h" open="1" top="0" tabpos="22" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="0" topLine="0" />
+			<Cursor1 position="178" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="main.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -77,9 +22,9 @@
 			<Cursor1 position="681" topLine="12" />
 		</Cursor>
 	</File>
-	<File name="..\Include\Math\Vec2.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\Include\Math\Vec2.cpp" open="1" top="1" tabpos="16" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="21" topLine="0" />
+			<Cursor1 position="159" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="..\Include\Application\Application.cpp" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -122,7 +67,7 @@
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="..\Include\Application\Map.h" open="1" top="1" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="..\Include\Application\Map.h" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="273" topLine="0" />
 		</Cursor>
@@ -132,5 +77,85 @@
 			<Cursor1 position="230" topLine="1" />
 		</Cursor>
 	</File>
-	<EditorTabsLayout layout="095fcf9854e26005000021c200000002=0;Editor:..\Include\Engine\Core.h,1;Editor:main.cpp,2;Editor:..\Include\Application\Application.h,3;Editor:..\Include\Application\Application.cpp,4;Editor:..\Include\Utility\Factory.cpp,5;Editor:..\Include\Utility\Factory.h,6;Editor:..\Include\Utility\Utility.cpp,7;Editor:..\Include\Engine\Renderer.h,8;Editor:..\Include\Engine\Renderer.cpp,9;Editor:..\Include\Application\Tile.h,*10;Editor:..\Include\Application\Map.h,11;Editor:..\Include\Application\Tile.cpp,12;Editor:..\Include\Application\Map.cpp@layout2|name=dummy;caption=;state=2098174;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=534;besth=284;minw=534;minh=284;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=095fcf9854e26005000021c200000002;caption=;state=2098172;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=200;besth=200;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(5,0,0)=202|" />
+	<File name="..\Include\Engine\Renderer.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1589" topLine="39" />
+		</Cursor>
+	</File>
+	<File name="..\Include\Engine\Renderer.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1274" topLine="16" />
+		</Cursor>
+	</File>
+	<File name="..\Include\Application\Component.h" open="1" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="166" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="..\Include\Engine\Ai.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="82" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="..\Include\Application\Entity.cpp" open="1" top="0" tabpos="19" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="715" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="..\Include\Application\Tile.cpp" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="..\Include\Application\Entity.h" open="1" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1431" topLine="25" />
+		</Cursor>
+	</File>
+	<File name="..\Include\Engine\Audio.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="91" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="..\Include\Application\System.cpp" open="1" top="0" tabpos="21" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1459" topLine="19" />
+		</Cursor>
+	</File>
+	<File name="..\Include\Engine\Physics.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="97" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="..\Include\Application\System.h" open="1" top="0" tabpos="20" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="220" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="..\Include\Utility\Factory.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1932" topLine="30" />
+		</Cursor>
+	</File>
+	<File name="..\Include\Math\Vec2.h" open="1" top="0" tabpos="15" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="579" topLine="46" />
+		</Cursor>
+	</File>
+	<File name="..\Include\Application\Tile.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="214" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="..\Include\Utility\Factory.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="157" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="..\Include\Utility\Utility.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="72" topLine="0" />
+		</Cursor>
+	</File>
+	<EditorTabsLayout layout="08dd4a5854e365ef0000a85600000002=0;Editor:..\Include\Engine\Core.h,1;Editor:main.cpp,2;Editor:..\Include\Application\Application.h,3;Editor:..\Include\Application\Application.cpp,4;Editor:..\Include\Utility\Factory.cpp,5;Editor:..\Include\Utility\Factory.h,6;Editor:..\Include\Utility\Utility.cpp,7;Editor:..\Include\Engine\Renderer.h,8;Editor:..\Include\Engine\Renderer.cpp,9;Editor:..\Include\Application\Tile.h,10;Editor:..\Include\Application\Map.h,11;Editor:..\Include\Application\Tile.cpp,12;Editor:..\Include\Application\Map.cpp,13;Editor:..\Include\Application\Component.h,14;Editor:..\Include\Math\Vec2.h,*15;Editor:..\Include\Math\Vec2.cpp,16;Editor:..\Include\Application\Entity.h,17;,18;Editor:..\Include\Application\Entity.cpp,19;Editor:..\Include\Application\System.h,20;Editor:..\Include\Application\System.cpp,21;Editor:..\Include\Utility\Utility.h@layout2|name=dummy;caption=;state=2098174;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=534;besth=284;minw=534;minh=284;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=08dd4a5854e365ef0000a85600000002;caption=;state=2098172;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=200;besth=200;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(5,0,0)=202|" />
 </CodeBlocks_layout_file>

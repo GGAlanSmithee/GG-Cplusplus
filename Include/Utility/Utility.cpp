@@ -1,7 +1,7 @@
 #include <sstream>
 #include "Utility/Utility.h"
 
-namespace GGUtility
+namespace GG_Utility
 {
     std::vector<std::string> Split(const std::string& s, char delim)
     {

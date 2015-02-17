@@ -6,7 +6,7 @@
 #include <stdexcept>
 #include <vector>
 
-namespace GGUtility
+namespace GG_Utility
 {
     /// Converts an enum variable to its underlying type
     /// @author Alan Smithee

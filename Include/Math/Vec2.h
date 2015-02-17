@@ -3,76 +3,73 @@
 
 #include <SDL.h>
 
-namespace GGMath
+/// 2d (x, y) floating point structure
+/// @author Alan Smithee
+/// @date created 2015-02-01
+struct GG_Vec2f
 {
-  /// 2d (x, y) floating point structure
-  /// @author Alan Smithee
-  /// @date created 2015-02-01
-  struct Vec2
-  {
     // Constructors
-    Vec2();
-    Vec2(const Vec2&);
-    Vec2(const SDL_Rect&);
-    Vec2(const int);
-    Vec2(const float);
-    Vec2(const int, const int);
-    Vec2(const float, const float);
+    GG_Vec2f();
+    GG_Vec2f(const GG_Vec2f&);
+    GG_Vec2f(const SDL_Rect&);
+    GG_Vec2f(const int);
+    GG_Vec2f(const float);
+    GG_Vec2f(const int, const int);
+    GG_Vec2f(const float, const float);
 
     // Comparison operators
-    const bool operator==(const Vec2&) const;
-    const bool operator!=(const Vec2&) const;
+    const bool operator==(const GG_Vec2f&) const;
+    const bool operator!=(const GG_Vec2f&) const;
 
     // Unary operators
-    const Vec2& operator=(const Vec2&);
-    const Vec2& operator=(const SDL_Rect&);
-    const Vec2& operator=(const int);
-    const Vec2& operator=(const float);
+    const GG_Vec2f& operator=(const GG_Vec2f&);
+    const GG_Vec2f& operator=(const SDL_Rect&);
+    const GG_Vec2f& operator=(const int);
+    const GG_Vec2f& operator=(const float);
 
-    const Vec2& operator+=(const Vec2&);
-    const Vec2& operator+=(const SDL_Rect&);
-    const Vec2& operator+=(const int);
-    const Vec2& operator+=(const float);
+    const GG_Vec2f& operator+=(const GG_Vec2f&);
+    const GG_Vec2f& operator+=(const SDL_Rect&);
+    const GG_Vec2f& operator+=(const int);
+    const GG_Vec2f& operator+=(const float);
 
-    const Vec2& operator-=(const Vec2&);
-    const Vec2& operator-=(const SDL_Rect&);
-    const Vec2& operator-=(const int);
-    const Vec2& operator-=(const float);
+    const GG_Vec2f& operator-=(const GG_Vec2f&);
+    const GG_Vec2f& operator-=(const SDL_Rect&);
+    const GG_Vec2f& operator-=(const int);
+    const GG_Vec2f& operator-=(const float);
 
-    const Vec2& operator/=(const Vec2&);
-    const Vec2& operator/=(const SDL_Rect&);
-    const Vec2& operator/=(const int);
-    const Vec2& operator/=(const float);
+    const GG_Vec2f& operator/=(const GG_Vec2f&);
+    const GG_Vec2f& operator/=(const SDL_Rect&);
+    const GG_Vec2f& operator/=(const int);
+    const GG_Vec2f& operator/=(const float);
 
-    const Vec2& operator*=(const Vec2&);
-    const Vec2& operator*=(const SDL_Rect&);
-    const Vec2& operator*=(const int);
-    const Vec2& operator*=(const float);
+    const GG_Vec2f& operator*=(const GG_Vec2f&);
+    const GG_Vec2f& operator*=(const SDL_Rect&);
+    const GG_Vec2f& operator*=(const int);
+    const GG_Vec2f& operator*=(const float);
 
     // Binary operators
-    friend const Vec2 operator+(const Vec2&, const Vec2&);
-    friend const Vec2 operator+(const Vec2&, const SDL_Rect&);
-    friend const Vec2 operator+(const Vec2&, const int);
-    friend const Vec2 operator+(const Vec2&, const float);
+    friend const GG_Vec2f operator+(const GG_Vec2f&, const GG_Vec2f&);
+    friend const GG_Vec2f operator+(const GG_Vec2f&, const SDL_Rect&);
+    friend const GG_Vec2f operator+(const GG_Vec2f&, const int);
+    friend const GG_Vec2f operator+(const GG_Vec2f&, const float);
 
-    friend const Vec2 operator-(const Vec2&, const Vec2&);
-    friend const Vec2 operator-(const Vec2&, const SDL_Rect&);
-    friend const Vec2 operator-(const Vec2&, const int);
-    friend const Vec2 operator-(const Vec2&, const float);
+    friend const GG_Vec2f operator-(const GG_Vec2f&, const GG_Vec2f&);
+    friend const GG_Vec2f operator-(const GG_Vec2f&, const SDL_Rect&);
+    friend const GG_Vec2f operator-(const GG_Vec2f&, const int);
+    friend const GG_Vec2f operator-(const GG_Vec2f&, const float);
 
-    friend const Vec2 operator/(const Vec2&, const Vec2&);
-    friend const Vec2 operator/(const Vec2&, const SDL_Rect&);
-    friend const Vec2 operator/(const Vec2&, const int);
-    friend const Vec2 operator/(const Vec2&, const float);
+    friend const GG_Vec2f operator/(const GG_Vec2f&, const GG_Vec2f&);
+    friend const GG_Vec2f operator/(const GG_Vec2f&, const SDL_Rect&);
+    friend const GG_Vec2f operator/(const GG_Vec2f&, const int);
+    friend const GG_Vec2f operator/(const GG_Vec2f&, const float);
 
-    friend const Vec2 operator*(const Vec2&, const Vec2&);
-    friend const Vec2 operator*(const Vec2&, const SDL_Rect&);
-    friend const Vec2 operator*(const Vec2&, const int);
-    friend const Vec2 operator*(const Vec2&, const float);
+    friend const GG_Vec2f operator*(const GG_Vec2f&, const GG_Vec2f&);
+    friend const GG_Vec2f operator*(const GG_Vec2f&, const SDL_Rect&);
+    friend const GG_Vec2f operator*(const GG_Vec2f&, const int);
+    friend const GG_Vec2f operator*(const GG_Vec2f&, const float);
 
     float x;
     float y;
-  };
-}
+};
 
 #endif // MATH_VEC2_H_INCLUDED
