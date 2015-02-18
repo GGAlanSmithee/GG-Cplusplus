@@ -54,10 +54,9 @@ class GG_EntityManager
         /// @author Alan Smithee
         /// @date created 2014-11-28
         std::vector<GG_TransformComponent> TransformComponents;
-        
-    private:
-        int highestAliveEntity;
-};
 
+    private:
+        int maxEntityAlive;
+};
 
 #endif // APPLICATION_ENTITY_H_INCLUDED

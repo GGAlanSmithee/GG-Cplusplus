@@ -14,7 +14,7 @@ GG_EntityManager::GG_EntityManager(const unsigned int size) :
     TransformComponents.resize(Size, GG_TransformComponent());
 }
 
-const unsigned int CreateEntity(GG_EntityManager& entityManager)
+const unsigned int GG_CreateEntity(GG_EntityManager& entityManager)
 {
     for (auto i = 0; i < entityManager.Size; ++i)
     {
@@ -23,16 +23,16 @@ const unsigned int CreateEntity(GG_EntityManager& entityManager)
             entityManager.Enteties[i] = GG_Utility::ToIntegral(GG_ComponentType::Transform)  |
                                 GG_Utility::ToIntegral(GG_ComponentType::Physics) |
                                 GG_Utility::ToIntegral(GG_ComponentType::Appearance);
-            
-            if (i > highestAliveEntity)
+
+            if (i > entityManager.maxEntityAlive)
             {
-                highestAliveEntity = entity;
+                entityManager.maxEntityAlive = i;
             }
-            
+
             return i;
         }
     }
-    
+
     std::cerr << "No more enteties left in entity manager." << std::endl;
 
     return entityManager.Size;
@@ -44,19 +44,19 @@ void GG_DestroyEntity(GG_EntityManager& entityManager, const unsigned int entity
     {
         return;
     }
-    
-    if (entity >= highestAliveEntity)
+
+    if (entity >= entityManager.maxEntityAlive)
     {
         for (auto i = entity; i >= 0; --i)
         {
-            if (entityManager.Enteties[i] != GG_Utility::ToIntegral(GG_ComponentType::None)
+            if (entityManager.Enteties[i] != GG_Utility::ToIntegral(GG_ComponentType::None))
             {
-                highestAliveEntity = i;
+                entityManager.maxEntityAlive = i;
                 break;
             }
         }
     }
-    
+
     entityManager.Enteties[entity] = GG_Utility::ToIntegral(GG_ComponentType::None);
 }
 
