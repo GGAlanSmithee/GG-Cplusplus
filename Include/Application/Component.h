@@ -4,18 +4,17 @@
 #include <string>
 #include "Math/Vec2.h"
 
-const int GG_NumberOfComponentTypes = 1 << 3;
-
 /// Enum representing the different component types
 /// @author Alan Smithee
 /// @date created 2014-11-19
 /// @date changed 2015-02-17
-enum class GG_ComponentType : int
+enum GG_ComponentType
 {
     None        = 0,
     Appearance  = 1 << 0,
     Physics     = 1 << 1,
-    Transform   = 1 << 2
+    Transform   = 1 << 2,
+    Total       = 1 << 3
 };
 
 /// Enables an entity to have an observable appearance in the 2D world

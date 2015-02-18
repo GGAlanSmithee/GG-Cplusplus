@@ -5,6 +5,7 @@
 #include <memory>
 #include <vector>
 #include "Component.h"
+#include "Utility/Utility.h"
 
 /// @todo add maxEntity variable
 class GG_EntityManager
@@ -38,7 +39,7 @@ class GG_EntityManager
         /// @author Alan Smithee
         /// @date created 2014-11-28
         /// @remarks an entity is idetified with a mask that specifies what components the entety is made up of
-        std::vector<std::bitset<GG_NumberOfComponentTypes>> Enteties;
+        std::vector<std::bitset<GG_ComponentType::Total>> Enteties;
 
         /// List of appearance components
         /// @author Alan Smithee

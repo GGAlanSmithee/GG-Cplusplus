@@ -4,7 +4,7 @@
 
 namespace // Private varaibles and functions
 {
-    using Mask = std::bitset<GG_NumberOfComponentTypes>;
+    using Mask = std::bitset<GG_ComponentType::Total>;
 
     Mask MovementMask = GG_Utility::ToIntegral(GG_ComponentType::Transform) |
                         GG_Utility::ToIntegral(GG_ComponentType::Physics);

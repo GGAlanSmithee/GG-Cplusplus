@@ -2,7 +2,6 @@
 
 #include "Entity.h"
 #include "Application/Component.h"
-#include "Utility/Utility.h"
 
 GG_EntityManager::GG_EntityManager(const unsigned int size) :
     Size(size)

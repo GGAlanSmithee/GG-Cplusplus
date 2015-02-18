@@ -10,6 +10,13 @@ class GG_Renderer
         GG_Renderer(SDL_Window* const);
         ~GG_Renderer();
 
+        /// Renders a texture
+        /// @author Alan Smithee
+        /// @date created 2015-02-07
+        /// @param renderer the renderer to use to render the texture
+        /// @param texture the texture to render
+        /// @exception throws a std::invalid_arugment exception if \a renderer is null
+        /// @exception throws a std::invalid_arugment exception if \a texture is null
         friend void GG_RenderTexture(std::unique_ptr<GG_Renderer> const&, SDL_Texture* const);
         friend void GG_RenderTexture(std::unique_ptr<GG_Renderer> const&,
                                      SDL_Texture* const,
@@ -22,24 +29,5 @@ class GG_Renderer
     private:
         SDL_Renderer* _sdlRenderer = nullptr;
 };
-
-/// Renders a texture
-/// @author Alan Smithee
-/// @date created 2015-02-07
-/// @param renderer the renderer to use to render the texture
-/// @param texture the texture to render
-/// @exception throws a std::invalid_arugment exception if \a renderer is null
-/// @exception throws a std::invalid_arugment exception if \a texture is null
-/// @remarks friend of GG_Renderer
-void GG_RenderTexture(std::unique_ptr<GG_Renderer> const&, SDL_Texture* const);
-
-void GG_RenderTexture(std::unique_ptr<GG_Renderer> const&,
-                                     SDL_Texture* const,
-                                     SDL_Rect&,
-                                     SDL_Rect&);
-
-/// @todo remove this method, it breaks encapsulation, refactor code using it
-SDL_Renderer* const GG_GetSDLRenderer(std::unique_ptr<GG_Renderer> const&);
-
 
 #endif // ENGINE_RENDERER_H_INCLUDED
