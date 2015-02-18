@@ -20,6 +20,9 @@ int main(int argc, char* args[])
 
         SDL_Rect source = { 30, 30, 30, 30 };
         SDL_Rect dest = { 100, 50, 0, 0 };
+        SDL_Rect dest2 = { 130, 50, 0, 0 };
+        SDL_Rect dest3 = { 130, 80, 0, 0 };
+        SDL_Rect dest4 = { 100, 80, 0, 0 };
 
         auto application = GG_CreateApplication();
 
@@ -31,10 +34,29 @@ int main(int argc, char* args[])
 
             GG_OnRender(application, engine);
 
+            GG_ClearScreen(GG_GetRenderer(engine));
+
             GG_RenderTexture(GG_GetRenderer(engine),
                              GG_GetTexture(GG_GetTextureManager(engine), handle),
                              source,
                              dest);
+
+            GG_RenderTexture(GG_GetRenderer(engine),
+                             GG_GetTexture(GG_GetTextureManager(engine), handle),
+                             source,
+                             dest2);
+
+           GG_RenderTexture(GG_GetRenderer(engine),
+                             GG_GetTexture(GG_GetTextureManager(engine), handle),
+                             source,
+                             dest3);
+
+           GG_RenderTexture(GG_GetRenderer(engine),
+                             GG_GetTexture(GG_GetTextureManager(engine), handle),
+                             source,
+                             dest4);
+
+            GG_UpdateScreen(GG_GetRenderer(engine));
 
             SDL_Delay(1);
         }

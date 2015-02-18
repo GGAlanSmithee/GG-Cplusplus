@@ -30,4 +30,7 @@ class GG_Renderer
         SDL_Renderer* _sdlRenderer = nullptr;
 };
 
+void GG_ClearScreen(std::unique_ptr<GG_Renderer> const&);
+void GG_UpdateScreen(std::unique_ptr<GG_Renderer> const&);
+
 #endif // ENGINE_RENDERER_H_INCLUDED

@@ -24,6 +24,26 @@ GG_Renderer::~GG_Renderer()
     }
 }
 
+void GG_ClearScreen(std::unique_ptr<GG_Renderer> const& renderer)
+{
+    if (!renderer)
+    {
+        throw std::invalid_argument("renderer cannot be null");
+    }
+
+    SDL_RenderClear(GG_GetSDLRenderer(renderer));
+}
+
+void GG_UpdateScreen(std::unique_ptr<GG_Renderer> const& renderer)
+{
+    if (!renderer)
+    {
+        throw std::invalid_argument("renderer cannot be null");
+    }
+
+    SDL_RenderPresent(GG_GetSDLRenderer(renderer));
+}
+
 void GG_RenderTexture(std::unique_ptr<GG_Renderer> const& renderer, SDL_Texture* const texture)
 {
     if (!renderer)
@@ -66,9 +86,7 @@ void GG_RenderTexture(std::unique_ptr<GG_Renderer> const& renderer,
         dest.h = source.h;
     }
 
-    SDL_RenderClear(renderer->_sdlRenderer);
     SDL_RenderCopy(renderer->_sdlRenderer, texture, &source, &dest);
-    SDL_RenderPresent(renderer->_sdlRenderer);
 }
 
 SDL_Renderer* const GG_GetSDLRenderer(std::unique_ptr<GG_Renderer> const& renderer)
