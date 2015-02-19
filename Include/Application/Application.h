@@ -4,12 +4,15 @@
 #include <memory>
 #include "Engine/Core.h"
 #include "Entity.h"
+#include "map.h"
 
 class GG_Application
 {
     public:
         GG_Application();
         ~GG_Application();
+
+        friend GG_Map const& GG_GetMap(std::unique_ptr<GG_Application> const&);
 
         /// Executes the logic related systems of the \a application
         /// @author Alan Smithee
@@ -33,6 +36,7 @@ class GG_Application
 
     private:
         GG_EntityManager entityManager;
+        GG_Map           map;
 };
 
 #endif // APPLICATION_H_INCLUDED
