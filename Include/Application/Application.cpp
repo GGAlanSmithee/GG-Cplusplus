@@ -48,7 +48,7 @@ void GG_OnRender(std::unique_ptr<GG_Application> const& application, std::unique
         throw std::invalid_argument("engine cannot be null.");
     }
 
-    SDL_Rect cameraRect = { 20, 20, 640, 480 };
+    SDL_Rect cameraRect = { 15, 15, 20, 15 };
 
     GG_RenderMap(GG_GetMap(application), GG_GetRenderer(engine), GG_GetTextureManager(engine), cameraRect);
 
