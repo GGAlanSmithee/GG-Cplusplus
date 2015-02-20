@@ -48,16 +48,16 @@ void GG_RenderMap(GG_Map const& map,
 {
     auto boundary = GG_GetBoundary(map);
 
-//    if (!(cameraRect.x + cameraRect.w >= boundary.x && cameraRect.x <= boundary.x + boundary.w &&
-//          cameraRect.y + cameraRect.h >= boundary.y && cameraRect.y <= boundary.y + boundary.h))
-//    {
-//        return;
-//    }
+    if (!(cameraRect.x + cameraRect.w >= boundary.x && cameraRect.x <= boundary.x + boundary.w &&
+          cameraRect.y + cameraRect.h >= boundary.y && cameraRect.y <= boundary.y + boundary.h))
+    {
+        return;
+    }
 
-    auto startX = static_cast<int>(cameraRect.x) / 32;
-    auto endX   = static_cast<int>(cameraRect.x + cameraRect.w) / 32;
-    auto startY = static_cast<int>(cameraRect.y) / 32;
-    auto endY   = static_cast<int>(cameraRect.y + cameraRect.h) / 32;
+    auto startX = static_cast<int>(cameraRect.x);
+    auto endX   = static_cast<int>(cameraRect.x + cameraRect.w + 1);
+    auto startY = static_cast<int>(cameraRect.y);
+    auto endY   = static_cast<int>(cameraRect.y + cameraRect.h + 1);
 
     auto tiles = GG_GetTiles(map);
     SDL_Rect source = { 32, 32, 32, 32 };
@@ -67,8 +67,8 @@ void GG_RenderMap(GG_Map const& map,
         for (auto x = startX; x < endX; ++x)
         {
             SDL_Rect tileBoundary = GG_GetBoundary(tiles[y][x]);
-            tileBoundary.x *= 32;
-            tileBoundary.y *= 32;
+            tileBoundary.x = (tileBoundary.x - cameraRect.x) * 32;
+            tileBoundary.y = (tileBoundary.y - cameraRect.y) * 32;
             tileBoundary.w *= 32;
             tileBoundary.h *= 32;
 
