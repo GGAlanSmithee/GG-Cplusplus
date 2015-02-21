@@ -427,11 +427,11 @@
 	"Utility/Exception.h"
 	"Utility/Factory.h"
 
-1424509978 source:c:\projects\creatio\include\application\application.cpp
+1424530605 source:c:\projects\creatio\include\application\application.cpp
 	"Application.h"
 	"System.h"
 
-1424508193 c:\projects\creatio\include\application\application.h
+1424530696 c:\projects\creatio\include\application\application.h
 	<memory>
 	"Engine/Core.h"
 	"Entity.h"
@@ -598,4 +598,10 @@
 	"Entity.h"
 
 1424367308 c:\projects\creatio\include\engine\physics.h
+
+1424530776 source:c:\projects\creatio\include\application\applicationdata.cpp
+	"ApplicationData.h"
+
+1424536335 c:\projects\creatio\include\application\applicationdata.h
+	<unordered_map>
 

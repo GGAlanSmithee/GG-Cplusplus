@@ -42,4 +42,4 @@ class GG_Application
         unsigned int     camera;
 };
 
-#endif // APPLICATION_H_INCLUDED
+#endif // APPLICATION_APPLICATION_H_INCLUDED
