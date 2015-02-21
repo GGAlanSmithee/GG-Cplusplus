@@ -60,4 +60,6 @@ class GG_EntityManager
         int maxEntityAlive;
 };
 
+const unsigned int GG_CreateCamera(GG_EntityManager&);
+
 #endif // APPLICATION_ENTITY_H_INCLUDED

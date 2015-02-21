@@ -40,11 +40,11 @@ void GG_Event::HandleKeyUp(const SDL_Keycode keycode)
     _keyUpCallbacks.at(keycode)();
 }
 
-void GG_RegisterKeyboardEvent(std::unique_ptr<GG_Event> const& event,
-                              const SDL_Keycode keycode,
-                              std::function<void()> const& callback)
+void GG_RegisterKeyDownEvent(std::unique_ptr<GG_Event> const& event,
+                             const SDL_Keycode keycode,
+                             std::function<void()> const& callback)
 {
-    if (event == nullptr)
+    if (!event)
     {
         throw std::invalid_argument("event cannot be null.");
     }
@@ -55,6 +55,21 @@ void GG_RegisterKeyboardEvent(std::unique_ptr<GG_Event> const& event,
     }
 
     event->_keyDownCallbacks[keycode] = callback;
+}
+
+void GG_RegisterMouseEvent(std::unique_ptr<GG_Event> const& event, std::function<void(int)> const& callback)
+{
+    if (!event)
+    {
+        throw std::invalid_argument("event cannot be null.");
+    }
+
+    if (callback == nullptr)
+    {
+        throw std::invalid_argument("callback cannot be null.");
+    }
+
+    event->_mouseEventCallback = callback;
 }
 
 void GG_HandleEvents(std::unique_ptr<GG_Event> const& event)
@@ -73,6 +88,17 @@ void GG_HandleEvents(std::unique_ptr<GG_Event> const& event)
             case SDL_KEYUP:
             {
                 event->HandleKeyUp(e.key.keysym.sym);
+                break;
+            }
+            case SDL_MOUSEMOTION:
+            case SDL_MOUSEBUTTONDOWN:
+            case SDL_MOUSEBUTTONUP:
+            {
+                if (event->_mouseEventCallback != nullptr)
+                {
+                    event->_mouseEventCallback(e.type);
+                }
+
                 break;
             }
             case SDL_QUIT:

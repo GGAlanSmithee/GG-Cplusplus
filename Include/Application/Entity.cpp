@@ -19,10 +19,6 @@ const unsigned int GG_CreateEntity(GG_EntityManager& entityManager)
     {
         if (entityManager.Enteties[i] == GG_Utility::ToIntegral(GG_ComponentType::None))
         {
-            entityManager.Enteties[i] = GG_Utility::ToIntegral(GG_ComponentType::Transform)  |
-                                GG_Utility::ToIntegral(GG_ComponentType::Physics) |
-                                GG_Utility::ToIntegral(GG_ComponentType::Appearance);
-
             if (i > entityManager.maxEntityAlive)
             {
                 entityManager.maxEntityAlive = i;
@@ -59,4 +55,28 @@ void GG_DestroyEntity(GG_EntityManager& entityManager, const unsigned int entity
     entityManager.Enteties[entity] = GG_Utility::ToIntegral(GG_ComponentType::None);
 }
 
+const unsigned int GG_CreateCamera(GG_EntityManager& entityManager)
+{
+    auto entity = GG_CreateEntity(entityManager);
 
+    if (entity < entityManager.Size)
+    {
+        entityManager.Enteties[entity] = GG_Utility::ToIntegral(GG_ComponentType::Transform) |
+                                    GG_Utility::ToIntegral(GG_ComponentType::Physics);
+
+        entityManager.TransformComponents[entity].Translation.x = 15.0f;
+        entityManager.TransformComponents[entity].Translation.y = 15.0f;
+
+        entityManager.PhysicsComponents[entity].Velocity.x = 0.0f;
+        entityManager.PhysicsComponents[entity].Velocity.y = 0.0f;
+
+        entityManager.PhysicsComponents[entity].Hitbox.x = 0.0f;
+        entityManager.PhysicsComponents[entity].Hitbox.y = 0.0f;
+
+        /// @todo set width and height from actual window size
+        entityManager.PhysicsComponents[entity].Hitbox.w = 20.0f;
+        entityManager.PhysicsComponents[entity].Hitbox.h = 15.0f;
+    }
+
+    return entity;
+}

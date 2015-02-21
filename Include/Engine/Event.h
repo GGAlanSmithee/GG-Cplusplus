@@ -22,12 +22,21 @@ class GG_Event
         /// Registers a callback to a keyboard event
         /// @author Alan Smithee
         /// @date created 2015-02-01
+        /// @date changed 2015-02-21
         /// @param event the event used to handle events
         /// @param keycode the keycode to bind the callback to
         /// @param callback the callback to invoke when this event occours
-        friend void GG_RegisterKeyboardEvent(std::unique_ptr<GG_Event> const&,
-                                             const SDL_Keycode,
-                                             std::function<void()> const&);
+        friend void GG_RegisterKeyDownEvent(std::unique_ptr<GG_Event> const&,
+                                            const SDL_Keycode,
+                                            std::function<void()> const&);
+
+        /// Registers the callback to be invoked on a mouse event
+        /// @author Alan Smithee
+        /// @date created 2015-02-21
+        /// @param event the event used to handle events
+        /// @param keycode the keycode to bind the callback to
+        /// @param callback the callback to invoke when this event occours
+        friend void GG_RegisterMouseEvent(std::unique_ptr<GG_Event> const&, std::function<void(int)> const&);
 
     private:
         void HandleKeyDown(const SDL_Keycode);
@@ -35,6 +44,7 @@ class GG_Event
 
         SDL_Event _event;
 
+        std::function<void(int)> _mouseEventCallback;
         std::unordered_map<SDL_Keycode, std::function<void()>> _keyDownCallbacks;
         std::unordered_map<SDL_Keycode, std::function<void()>> _keyUpCallbacks;
 };

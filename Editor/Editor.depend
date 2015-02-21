@@ -422,16 +422,16 @@
 	<sstream>
 	"Utility/Utility.h"
 
-1424369041 source:c:\projects\creatio\editor\main.cpp
+1424508242 source:c:\projects\creatio\editor\main.cpp
 	<iostream>
 	"Utility/Exception.h"
 	"Utility/Factory.h"
 
-1424369468 source:c:\projects\creatio\include\application\application.cpp
+1424509978 source:c:\projects\creatio\include\application\application.cpp
 	"Application.h"
 	"System.h"
 
-1424369458 c:\projects\creatio\include\application\application.h
+1424508193 c:\projects\creatio\include\application\application.h
 	<memory>
 	"Engine/Core.h"
 	"Entity.h"
@@ -493,7 +493,7 @@
 	<memory>
 	<SDL.h>
 
-1424285992 c:\projects\creatio\include\engine\event.h
+1424508039 c:\projects\creatio\include\engine\event.h
 	<SDL.h>
 	<unordered_map>
 	<functional>
@@ -520,7 +520,7 @@
 	"Utility/Exception.h"
 	<stdexcept>
 
-1423684254 source:c:\projects\creatio\include\engine\event.cpp
+1424508202 source:c:\projects\creatio\include\engine\event.cpp
 	<stdexcept>
 	<memory>
 	"Event.h"
@@ -542,27 +542,28 @@
 	<iostream>
 	"Texture.h"
 
-1424115718 c:\projects\creatio\include\utility\factory.h
+1424508234 c:\projects\creatio\include\utility\factory.h
 	<memory>
 	"Engine/Core.h"
 	"Application/Application.h"
 
-1424115965 source:c:\projects\creatio\include\utility\factory.cpp
+1424508218 source:c:\projects\creatio\include\utility\factory.cpp
 	<SDL.h>
 	<SDL_image.h>
 	"Factory.h"
 	"Exception.h"
 
-1424369551 source:c:\projects\creatio\include\application\map.cpp
+1424509721 source:c:\projects\creatio\include\application\map.cpp
 	"Map.h"
 
-1424369216 c:\projects\creatio\include\application\map.h
+1424509847 c:\projects\creatio\include\application\map.h
 	<memory>
 	<SDL.h>
 	<vector>
 	"Tile.h"
 	"Engine/Renderer.h"
 	"Manager/Texture.h"
+	"Math/Vec2.h"
 
 1424367741 c:\projects\creatio\include\application\tile.h
 	<SDL.h>
@@ -571,12 +572,12 @@
 1424367710 source:c:\projects\creatio\include\application\tile.cpp
 	"Tile.h"
 
-1424285495 source:c:\projects\creatio\include\application\entity.cpp
+1424508861 source:c:\projects\creatio\include\application\entity.cpp
 	<iostream>
 	"Entity.h"
 	"Application/Component.h"
 
-1424285703 c:\projects\creatio\include\application\entity.h
+1424506698 c:\projects\creatio\include\application\entity.h
 	<bitset>
 	<memory>
 	<vector>
@@ -587,7 +588,7 @@
 	<string>
 	"Math/Vec2.h"
 
-1424285755 source:c:\projects\creatio\include\application\system.cpp
+1424509105 source:c:\projects\creatio\include\application\system.cpp
 	"System.h"
 	"Component.h"
 	"Utility/Utility.h"

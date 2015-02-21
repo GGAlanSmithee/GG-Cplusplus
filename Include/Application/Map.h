@@ -7,6 +7,7 @@
 #include "Tile.h"
 #include "Engine/Renderer.h"
 #include "Manager/Texture.h"
+#include "Math/Vec2.h"
 
 class GG_Map
 {
@@ -27,6 +28,7 @@ class GG_Map
 void GG_RenderMap(GG_Map const&,
                   std::unique_ptr<GG_Renderer> const&,
                   std::unique_ptr<GG_TextureManager> const&,
+                  GG_Vec2f const&,
                   SDL_Rect const&);
 
 #endif // APPLICATION_MAP_H_INCLUDED

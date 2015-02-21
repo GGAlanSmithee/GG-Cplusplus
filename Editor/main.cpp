@@ -16,15 +16,9 @@ int main(int argc, char* args[])
 
         auto running = true;
 
-        GG_RegisterKeyboardEvent(GG_GetEvent(engine), SDLK_ESCAPE, [&]() { running = false; });
+        GG_RegisterKeyDownEvent(GG_GetEvent(engine), SDLK_ESCAPE, [&]() { running = false; });
 
-        SDL_Rect source = { 32, 32, 32, 32 };
-        SDL_Rect dest   = { 100, 50, 0, 0 };
-        SDL_Rect dest2  = { 130, 50, 0, 0 };
-        SDL_Rect dest3  = { 130, 80, 0, 0 };
-        SDL_Rect dest4  = { 100, 80, 0, 0 };
-
-        auto application = GG_CreateApplication();
+        auto application = GG_CreateApplication(engine);
 
         while (running)
         {
@@ -33,26 +27,6 @@ int main(int argc, char* args[])
             GG_OnLogic(application, engine);
 
             GG_ClearScreen(GG_GetRenderer(engine));
-
-            GG_RenderTexture(GG_GetRenderer(engine),
-                             GG_GetTexture(GG_GetTextureManager(engine), handle),
-                             source,
-                             dest);
-
-            GG_RenderTexture(GG_GetRenderer(engine),
-                             GG_GetTexture(GG_GetTextureManager(engine), handle),
-                             source,
-                             dest2);
-
-            GG_RenderTexture(GG_GetRenderer(engine),
-                             GG_GetTexture(GG_GetTextureManager(engine), handle),
-                             source,
-                             dest3);
-
-            GG_RenderTexture(GG_GetRenderer(engine),
-                             GG_GetTexture(GG_GetTextureManager(engine), handle),
-                             source,
-                             dest4);
 
             GG_OnRender(application, engine);
 

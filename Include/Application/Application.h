@@ -9,7 +9,7 @@
 class GG_Application
 {
     public:
-        GG_Application();
+        GG_Application(std::unique_ptr<GG_Engine> const&);
         ~GG_Application();
 
         friend GG_Map const& GG_GetMap(std::unique_ptr<GG_Application> const&);
@@ -35,8 +35,11 @@ class GG_Application
         friend void GG_OnRender(std::unique_ptr<GG_Application> const&, std::unique_ptr<GG_Engine> const&);
 
     private:
+        void OnMouseEvent(const unsigned int);
+
         GG_EntityManager entityManager;
         GG_Map           map;
+        unsigned int     camera;
 };
 
 #endif // APPLICATION_H_INCLUDED

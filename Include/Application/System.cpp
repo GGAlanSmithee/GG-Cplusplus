@@ -27,6 +27,10 @@ void GG_MovementSystem(GG_EntityManager& entityManager)
 
         t = &(entityManager.TransformComponents[entity]);
         p = &(entityManager.PhysicsComponents[entity]);
+
+        /// @todo use actual deltatime
+        t->Translation.x += p->Velocity.x * 0.16f;
+        t->Translation.y += p->Velocity.y * 0.16f;
     }
 }
 
