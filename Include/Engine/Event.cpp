@@ -72,6 +72,21 @@ void GG_RegisterMouseEvent(std::unique_ptr<GG_Event> const& event, std::function
     event->_mouseEventCallback = callback;
 }
 
+void GG_UnregisterMouseEvent(std::unique_ptr<GG_Event> const& event)
+{
+    if (!event)
+    {
+        throw std::invalid_argument("event cannot be null.");
+    }
+
+    if (event->_mouseEventCallback == nullptr)
+    {
+        return;
+    }
+
+    event->_mouseEventCallback = nullptr;
+}
+
 void GG_HandleEvents(std::unique_ptr<GG_Event> const& event)
 {
     auto e = event->_event;

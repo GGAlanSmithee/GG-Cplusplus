@@ -80,6 +80,8 @@
 		<Unit filename="../Include/Utility/Utility.h" />
 		<Unit filename="Application/EditorApplication.cpp" />
 		<Unit filename="Application/EditorApplication.h" />
+		<Unit filename="Application/TestApplication.cpp" />
+		<Unit filename="Application/TestApplication.h" />
 		<Unit filename="Utility/Declarations.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>

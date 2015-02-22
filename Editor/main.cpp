@@ -4,6 +4,7 @@
 #include "Application/Application.h"
 #include "Application/ApplicationData.h"
 #include "Application/EditorApplication.h"
+#include "Application/TestApplication.h"
 #include "Utility/Declarations.h"
 
 int main(int argc, char* args[])
@@ -19,25 +20,40 @@ int main(int argc, char* args[])
                                     "tileset.png");
 
         auto running = true;
-
         GG_RegisterKeyDownEvent(GG_GetEvent(engine), SDLK_ESCAPE, [&]() { running = false; });
 
         auto data = std::make_shared<GG_ApplicationData>();
         data->Add<EntityManagerEntry>(GG_EntityManager());
         data->Add<MapEntry>(GG_Map());
+        data->Add<CameraEntry>(GG_CreateCamera(*data->Write<EntityManagerEntry>()));
 
-        auto editor = std::make_shared<EditorApplication>(engine, data);
+        std::shared_ptr<GG_Application> application(new EditorApplication(engine, data));
+
+        auto state = 0;
+        GG_RegisterKeyDownEvent(GG_GetEvent(engine), SDLK_1, [&]()
+                                {
+                                    if (state == 0)
+                                    {
+                                        application = std::make_shared<TestApplication>(engine, data);
+                                        state = 1;
+                                    }
+                                    else if (state == 1)
+                                    {
+                                        application = std::make_shared<EditorApplication>(engine, data);
+                                        state = 0;
+                                    }
+                                });
 
         while (running)
         {
             GG_HandleEvents(GG_GetEvent(engine));
             GG_UpdateTimer(GG_GetTimer(engine));
 
-            editor->OnLogic(engine);
+            application->OnLogic(engine);
 
             GG_ClearScreen(GG_GetRenderer(engine));
 
-            editor->OnRender(engine);
+            application->OnRender(engine);
 
             GG_UpdateScreen(GG_GetRenderer(engine));
 

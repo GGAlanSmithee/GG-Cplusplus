@@ -422,13 +422,14 @@
 	<sstream>
 	"Utility/Utility.h"
 
-1424610810 source:c:\projects\creatio\editor\main.cpp
+1424616147 source:c:\projects\creatio\editor\main.cpp
 	<iostream>
 	"Utility/Exception.h"
 	"Utility/Factory.h"
 	"Application/Application.h"
 	"Application/ApplicationData.h"
 	"Application/EditorApplication.h"
+	"Application/TestApplication.h"
 	"Utility/Declarations.h"
 
 1424604836 source:c:\projects\creatio\include\application\application.cpp
@@ -498,7 +499,7 @@
 	<memory>
 	<SDL.h>
 
-1424611565 c:\projects\creatio\include\engine\event.h
+1424613636 c:\projects\creatio\include\engine\event.h
 	<SDL.h>
 	<unordered_map>
 	<functional>
@@ -525,7 +526,7 @@
 	"Utility/Exception.h"
 	<stdexcept>
 
-1424611559 source:c:\projects\creatio\include\engine\event.cpp
+1424613692 source:c:\projects\creatio\include\engine\event.cpp
 	<stdexcept>
 	<memory>
 	"Event.h"
@@ -609,8 +610,7 @@
 1424607839 c:\projects\creatio\include\application\applicationdata.h
 	<unordered_map>
 
-1424613173 source:c:\projects\creatio\editor\application\editorapplication.cpp
-	<iostream>
+1424616033 source:c:\projects\creatio\editor\application\editorapplication.cpp
 	"Application/System.h"
 	"EditorApplication.h"
 	"../Utility/Declarations.h"
@@ -629,4 +629,12 @@
 	<stdexcept>
 	<SDL.h>
 	"Timer.h"
+
+1424616077 source:c:\projects\creatio\editor\application\testapplication.cpp
+	"Application/System.h"
+	"TestApplication.h"
+	"../Utility/Declarations.h"
+
+1424614003 c:\projects\creatio\editor\application\testapplication.h
+	"Application/Application.h"
 

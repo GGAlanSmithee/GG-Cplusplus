@@ -6,8 +6,6 @@ EditorApplication::EditorApplication(std::unique_ptr<GG_Engine> const& engine,
                                      std::shared_ptr<GG_ApplicationData> data) :
     GG_Application(data)
 {
-    data->Add<CameraEntry>(GG_CreateCamera(*data->Write<EntityManagerEntry>()));
-
     GG_RegisterMouseEvent(GG_GetEvent(engine),
                           [&](int eventType)
                           {
@@ -17,7 +15,6 @@ EditorApplication::EditorApplication(std::unique_ptr<GG_Engine> const& engine,
 
 EditorApplication::~EditorApplication()
 {
-    /// @todo unregister mouse event
     // Empty
 }
 
@@ -49,6 +46,7 @@ void EditorApplication::OnRender(std::unique_ptr<GG_Engine> const& engine)
                  GG_GetTextureManager(engine),
                  cameraPos,
                  cameraRect);
+
 
     GG_RenderSystem(data->Read<EntityManagerEntry>());
 }

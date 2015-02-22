@@ -34,9 +34,14 @@ class GG_Event
         /// @author Alan Smithee
         /// @date created 2015-02-21
         /// @param event the event used to handle events
-        /// @param keycode the keycode to bind the callback to
         /// @param callback the callback to invoke when this event occours
         friend void GG_RegisterMouseEvent(std::unique_ptr<GG_Event> const&, std::function<void(int)> const&);
+
+        /// Unregisters the any callback that was bound to be invoked on a mouse event
+        /// @author Alan Smithee
+        /// @date created 2015-02-22
+        /// @param event the event used to handle events
+        friend void GG_UnregisterMouseEvent(std::unique_ptr<GG_Event> const&);
 
     private:
         void HandleKeyDown(const SDL_Keycode);
