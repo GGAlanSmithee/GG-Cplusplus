@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Map.h"
 
 GG_Map::GG_Map() :
@@ -49,6 +50,12 @@ void GG_RenderMap(GG_Map const& map,
                   SDL_Rect const& cameraRect)
 {
     auto boundary = GG_GetBoundary(map);
+
+    static auto last = 0.0f;
+
+    std::cout << SDL_GetTicks() - last << std::endl;
+
+    last = SDL_GetTicks();
 
     if (!(cameraPos.x + cameraRect.w >= boundary.x && cameraPos.x <= boundary.x + boundary.w &&
           cameraPos.y + cameraRect.h >= boundary.y && cameraPos.y <= boundary.y + boundary.h))

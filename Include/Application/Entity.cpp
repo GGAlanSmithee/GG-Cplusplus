@@ -62,7 +62,7 @@ const unsigned int GG_CreateCamera(GG_EntityManager& entityManager)
     if (entity < entityManager.Size)
     {
         entityManager.Enteties[entity] = GG_Utility::ToIntegral(GG_ComponentType::Transform) |
-                                    GG_Utility::ToIntegral(GG_ComponentType::Physics);
+                                         GG_Utility::ToIntegral(GG_ComponentType::Physics);
 
         entityManager.TransformComponents[entity].Translation.x = 15.0f;
         entityManager.TransformComponents[entity].Translation.y = 15.0f;

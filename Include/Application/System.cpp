@@ -34,10 +34,10 @@ void GG_MovementSystem(GG_EntityManager& entityManager)
     }
 }
 
-void GG_RenderSystem(GG_EntityManager& entityManager)
+void GG_RenderSystem(GG_EntityManager const& entityManager)
 {
-    GG_TransformComponent*  t;
-    GG_AppearanceComponent* a;
+    GG_TransformComponent  t;
+    GG_AppearanceComponent a;
 
     for (unsigned int entity = 0; entity < entityManager.Size; ++entity)
     {
@@ -46,7 +46,7 @@ void GG_RenderSystem(GG_EntityManager& entityManager)
             continue;
         }
 
-        t = &(entityManager.TransformComponents[entity]);
-        a = &(entityManager.AppearanceComponents[entity]);
+        t = entityManager.TransformComponents[entity];
+        a = entityManager.AppearanceComponents[entity];
     }
 }

@@ -52,8 +52,3 @@ std::unique_ptr<GG_Engine> GG_CreateEngine()
 
     return engine;
 }
-
-std::unique_ptr<GG_Application> GG_CreateApplication(std::unique_ptr<GG_Engine> const& engine)
-{
-    return std::unique_ptr<GG_Application>(new GG_Application(engine));
-}

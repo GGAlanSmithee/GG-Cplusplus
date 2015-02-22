@@ -3,15 +3,10 @@
 
 #include <unordered_map>
 
-using type = unsigned;
+using GG_Type = unsigned;
 
-struct GG_IApplicationDataEntry
-{
-    virtual ~GG_IApplicationDataEntry() {}
-};
-
-template<type NAME, typename T>
-struct GG_ApplicationDataEntry : GG_IApplicationDataEntry
+template<GG_Type NAME, typename T>
+struct GG_ApplicationDataEntry
 {
     T value_type;
 };
@@ -26,9 +21,15 @@ class GG_ApplicationData
         }
 
         template<typename T>
-        inline decltype(T::value_type)& Get()
+        inline decltype(T::value_type) & Read()
         {
             return data<T>()[id].value_type;
+        }
+
+        template<typename T>
+        inline decltype(T::value_type)* Write()
+        {
+            return &data<T>()[id].value_type;
         }
 
         template<typename T>
@@ -37,19 +38,19 @@ class GG_ApplicationData
             data<T>()[id].value_type = t;
         }
 
-        static type Count()
+        static GG_Type Count()
         {
-            static type applicationDataCount = 0;
+            static GG_Type applicationDataCount = 0;
             return applicationDataCount++;
         }
 
     private:
-        const type id;
+        const GG_Type id;
 
         template<typename T>
-        static std::unordered_map<type, T>& data()
+        static std::unordered_map<GG_Type, T>& data()
         {
-            static std::unordered_map<type, T> objects;
+            static std::unordered_map<GG_Type, T> objects;
             return objects;
         }
 };

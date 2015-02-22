@@ -4,42 +4,33 @@
 #include <memory>
 #include "Engine/Core.h"
 #include "Entity.h"
-#include "map.h"
+#include "Map.h"
+#include "ApplicationData.h"
 
 class GG_Application
 {
     public:
-        GG_Application(std::unique_ptr<GG_Engine> const&);
-        ~GG_Application();
-
-        friend GG_Map const& GG_GetMap(std::unique_ptr<GG_Application> const&);
+        GG_Application(std::shared_ptr<GG_ApplicationData>);
+        virtual ~GG_Application() = 0;
 
         /// Executes the logic related systems of the \a application
         /// @author Alan Smithee
         /// @date created 2015-02-10
-        /// @date changed 2015-02-16
-        /// @param application the GG_Application to invoke the systems on
+        /// @date changed 2015-02-22
         /// @param engine the GG_Engine used by the applications systems
-        /// @exception throws a std::invalid_argument if \a application is null
         /// @exception throws a std::invalid_argument if \a engine is null
-        friend void GG_OnLogic(std::unique_ptr<GG_Application> const&, std::unique_ptr<GG_Engine> const&);
+        virtual void OnLogic(std::unique_ptr<GG_Engine> const&) = 0;
 
         /// Executes the rendering related systems of the \a application
         /// @author Alan Smithee
         /// @date created 2015-02-10
-        /// @date changed 2015-02-16
-        /// @param application the GG_Application to invoke the systems on
+        /// @date changed 2015-02-22
         /// @param engine the GG_Engine used by the applications systems
-        /// @exception throws a std::invalid_argument if \a application is null
         /// @exception throws a std::invalid_argument if \a engine is null
-        friend void GG_OnRender(std::unique_ptr<GG_Application> const&, std::unique_ptr<GG_Engine> const&);
+        virtual void OnRender(std::unique_ptr<GG_Engine> const&) = 0;
 
-    private:
-        void OnMouseEvent(const unsigned int);
-
-        GG_EntityManager entityManager;
-        GG_Map           map;
-        unsigned int     camera;
+    protected:
+        std::shared_ptr<GG_ApplicationData> data;
 };
 
 #endif // APPLICATION_APPLICATION_H_INCLUDED

@@ -1,24 +1,13 @@
 #include <iostream>
 #include "Utility/Exception.h"
 #include "Utility/Factory.h"
+#include "Application/Application.h"
 #include "Application/ApplicationData.h"
+#include "Application/EditorApplication.h"
+#include "Utility/Declarations.h"
 
 int main(int argc, char* args[])
 {
-    /// @todo remove when done testing
-    using IntEntry = GG_ApplicationDataEntry<'int', int>;
-    using StrEntry = GG_ApplicationDataEntry<'str', std::string>;
-
-    GG_ApplicationData applicationData;
-    applicationData.Add<IntEntry>(12321);
-    applicationData.Add<StrEntry>("sdasdasd");
-
-    auto i = applicationData.Get<IntEntry>();
-    std::cout << i << std::endl;
-
-    auto s = applicationData.Get<StrEntry>();
-    std::cout << s << std::endl;
-
     try
     {
         auto engine = GG_CreateEngine();
@@ -33,17 +22,21 @@ int main(int argc, char* args[])
 
         GG_RegisterKeyDownEvent(GG_GetEvent(engine), SDLK_ESCAPE, [&]() { running = false; });
 
-        auto application = GG_CreateApplication(engine);
+        auto data = std::make_shared<GG_ApplicationData>();
+        data->Add<EntityManagerEntry>(GG_EntityManager());
+        data->Add<MapEntry>(GG_Map());
+
+        auto editor = std::make_shared<EditorApplication>(engine, data);
 
         while (running)
         {
             GG_HandleEvents(GG_GetEvent(engine));
 
-            GG_OnLogic(application, engine);
+            editor->OnLogic(engine);
 
             GG_ClearScreen(GG_GetRenderer(engine));
 
-            GG_OnRender(application, engine);
+            editor->OnRender(engine);
 
             GG_UpdateScreen(GG_GetRenderer(engine));
 

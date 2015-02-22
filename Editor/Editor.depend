@@ -422,20 +422,24 @@
 	<sstream>
 	"Utility/Utility.h"
 
-1424508242 source:c:\projects\creatio\editor\main.cpp
+1424607179 source:c:\projects\creatio\editor\main.cpp
 	<iostream>
 	"Utility/Exception.h"
 	"Utility/Factory.h"
+	"Application/Application.h"
+	"Application/ApplicationData.h"
+	"Application/EditorApplication.h"
+	"Utility/Declarations.h"
 
-1424530605 source:c:\projects\creatio\include\application\application.cpp
+1424604836 source:c:\projects\creatio\include\application\application.cpp
 	"Application.h"
-	"System.h"
 
-1424530696 c:\projects\creatio\include\application\application.h
+1424604795 c:\projects\creatio\include\application\application.h
 	<memory>
 	"Engine/Core.h"
 	"Entity.h"
-	"map.h"
+	"Map.h"
+	"ApplicationData.h"
 
 1424191348 source:c:\projects\creatio\include\math\vec2.cpp
 	"Vec2.h"
@@ -542,18 +546,18 @@
 	<iostream>
 	"Texture.h"
 
-1424508234 c:\projects\creatio\include\utility\factory.h
+1424604577 c:\projects\creatio\include\utility\factory.h
 	<memory>
 	"Engine/Core.h"
-	"Application/Application.h"
 
-1424508218 source:c:\projects\creatio\include\utility\factory.cpp
+1424604573 source:c:\projects\creatio\include\utility\factory.cpp
 	<SDL.h>
 	<SDL_image.h>
 	"Factory.h"
 	"Exception.h"
 
-1424509721 source:c:\projects\creatio\include\application\map.cpp
+1424607778 source:c:\projects\creatio\include\application\map.cpp
+	<iostream>
 	"Map.h"
 
 1424509847 c:\projects\creatio\include\application\map.h
@@ -572,7 +576,7 @@
 1424367710 source:c:\projects\creatio\include\application\tile.cpp
 	"Tile.h"
 
-1424508861 source:c:\projects\creatio\include\application\entity.cpp
+1424606119 source:c:\projects\creatio\include\application\entity.cpp
 	<iostream>
 	"Entity.h"
 	"Application/Component.h"
@@ -588,12 +592,12 @@
 	<string>
 	"Math/Vec2.h"
 
-1424509105 source:c:\projects\creatio\include\application\system.cpp
+1424607258 source:c:\projects\creatio\include\application\system.cpp
 	"System.h"
 	"Component.h"
 	"Utility/Utility.h"
 
-1424192691 c:\projects\creatio\include\application\system.h
+1424607281 c:\projects\creatio\include\application\system.h
 	<memory>
 	"Entity.h"
 
@@ -602,6 +606,18 @@
 1424530776 source:c:\projects\creatio\include\application\applicationdata.cpp
 	"ApplicationData.h"
 
-1424536335 c:\projects\creatio\include\application\applicationdata.h
+1424607839 c:\projects\creatio\include\application\applicationdata.h
 	<unordered_map>
+
+1424607701 source:c:\projects\creatio\editor\application\editorapplication.cpp
+	"Application/System.h"
+	"EditorApplication.h"
+	"../Utility/Declarations.h"
+
+1424605283 c:\projects\creatio\editor\application\editorapplication.h
+	"Application/Application.h"
+
+1424605091 c:\projects\creatio\editor\utility\declarations.h
+	"Application/Entity.h"
+	"Application/Map.h"
 

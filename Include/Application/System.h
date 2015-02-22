@@ -12,6 +12,6 @@ void GG_MovementSystem(GG_EntityManager&);
 /// Renders enteties identified by the render mask
 /// @author Alan Smithee
 /// @date created 2014-11-25
-void GG_RenderSystem(GG_EntityManager&);
+void GG_RenderSystem(GG_EntityManager const&);
 
 #endif // SYSTEM_H_INCLUDED
