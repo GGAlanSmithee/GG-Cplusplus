@@ -37,12 +37,14 @@ std::unique_ptr<GG_Engine> GG_CreateEngine()
     {
         std::unique_ptr<GG_Renderer>       renderer(new GG_Renderer(window));
         std::unique_ptr<GG_Event>          event(new GG_Event());
+        std::unique_ptr<GG_Timer>          timer(new GG_Timer());
         std::unique_ptr<GG_TextureLoader>  textureLoader(new GG_TextureLoader());
         std::unique_ptr<GG_TextureManager> textureManager(new GG_TextureManager(std::move(textureLoader)));
 
         engine = std::unique_ptr<GG_Engine>(new GG_Engine(window,
                                                           std::move(renderer),
                                                           std::move(event),
+                                                          std::move(timer),
                                                           std::move(textureManager)));
     }
     catch (const init_error&)

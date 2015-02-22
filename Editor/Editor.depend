@@ -422,7 +422,7 @@
 	<sstream>
 	"Utility/Utility.h"
 
-1424607179 source:c:\projects\creatio\editor\main.cpp
+1424610810 source:c:\projects\creatio\editor\main.cpp
 	<iostream>
 	"Utility/Exception.h"
 	"Utility/Factory.h"
@@ -488,16 +488,17 @@
 	<string>
 	"Engine/Renderer.h"
 
-1424285980 c:\projects\creatio\include\engine\core.h
+1424610762 c:\projects\creatio\include\engine\core.h
 	"Engine/Renderer.h"
 	"Engine/Event.h"
+	"Engine/Timer.h"
 	"Manager/Texture.h"
 
 1424286378 c:\projects\creatio\include\engine\renderer.h
 	<memory>
 	<SDL.h>
 
-1424508039 c:\projects\creatio\include\engine\event.h
+1424611565 c:\projects\creatio\include\engine\event.h
 	<SDL.h>
 	<unordered_map>
 	<functional>
@@ -511,7 +512,7 @@
 	"Loader/Texture.h"
 	"Engine/Renderer.h"
 
-1423999424 source:c:\projects\creatio\include\engine\core.cpp
+1424610750 source:c:\projects\creatio\include\engine\core.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -524,7 +525,7 @@
 	"Utility/Exception.h"
 	<stdexcept>
 
-1424508202 source:c:\projects\creatio\include\engine\event.cpp
+1424611559 source:c:\projects\creatio\include\engine\event.cpp
 	<stdexcept>
 	<memory>
 	"Event.h"
@@ -550,14 +551,13 @@
 	<memory>
 	"Engine/Core.h"
 
-1424604573 source:c:\projects\creatio\include\utility\factory.cpp
+1424610776 source:c:\projects\creatio\include\utility\factory.cpp
 	<SDL.h>
 	<SDL_image.h>
 	"Factory.h"
 	"Exception.h"
 
-1424607778 source:c:\projects\creatio\include\application\map.cpp
-	<iostream>
+1424612464 source:c:\projects\creatio\include\application\map.cpp
 	"Map.h"
 
 1424509847 c:\projects\creatio\include\application\map.h
@@ -609,15 +609,24 @@
 1424607839 c:\projects\creatio\include\application\applicationdata.h
 	<unordered_map>
 
-1424607701 source:c:\projects\creatio\editor\application\editorapplication.cpp
+1424613173 source:c:\projects\creatio\editor\application\editorapplication.cpp
+	<iostream>
 	"Application/System.h"
 	"EditorApplication.h"
 	"../Utility/Declarations.h"
 
-1424605283 c:\projects\creatio\editor\application\editorapplication.h
+1424610951 c:\projects\creatio\editor\application\editorapplication.h
 	"Application/Application.h"
 
 1424605091 c:\projects\creatio\editor\utility\declarations.h
 	"Application/Entity.h"
 	"Application/Map.h"
+
+1424613084 c:\projects\creatio\include\engine\timer.h
+	<memory>
+
+1424613081 source:c:\projects\creatio\include\engine\timer.cpp
+	<stdexcept>
+	<SDL.h>
+	"Timer.h"
 

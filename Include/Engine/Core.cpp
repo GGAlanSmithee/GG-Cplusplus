@@ -13,10 +13,12 @@
 GG_Engine::GG_Engine(SDL_Window* window,
                      std::unique_ptr<GG_Renderer> renderer,
                      std::unique_ptr<GG_Event> event,
+                     std::unique_ptr<GG_Timer> timer,
                      std::unique_ptr<GG_TextureManager> textureManager) :
     _window(window),
     _renderer(std::move(renderer)),
     _event(std::move(event)),
+    _timer(std::move(timer)),
     _textureManager(std::move(textureManager))
 {
     // Empty
@@ -52,6 +54,16 @@ std::unique_ptr<GG_Event> const& GG_GetEvent(std::unique_ptr<GG_Engine> const& e
     }
 
     return engine->_event;
+}
+
+std::unique_ptr<GG_Timer> const& GG_GetTimer(std::unique_ptr<GG_Engine> const& engine)
+{
+    if (engine == nullptr)
+    {
+        throw new std::invalid_argument("engine cannot be null.");
+    }
+
+    return engine->_timer;
 }
 
 std::unique_ptr<GG_TextureManager> const& GG_GetTextureManager(std::unique_ptr<GG_Engine> const& engine)

@@ -31,6 +31,7 @@ int main(int argc, char* args[])
         while (running)
         {
             GG_HandleEvents(GG_GetEvent(engine));
+            GG_UpdateTimer(GG_GetTimer(engine));
 
             editor->OnLogic(engine);
 

@@ -8,9 +8,10 @@ EditorApplication::EditorApplication(std::unique_ptr<GG_Engine> const& engine,
 {
     data->Add<CameraEntry>(GG_CreateCamera(*data->Write<EntityManagerEntry>()));
 
-    GG_RegisterMouseEvent(GG_GetEvent(engine), [=](int eventType)
+    GG_RegisterMouseEvent(GG_GetEvent(engine),
+                          [&](int eventType)
                           {
-                              this->OnMouseEvent(eventType);
+                              this->OnMouseEvent(eventType, GG_GetDelta(GG_GetTimer(engine)));
                           });
 }
 
@@ -52,7 +53,7 @@ void EditorApplication::OnRender(std::unique_ptr<GG_Engine> const& engine)
     GG_RenderSystem(data->Read<EntityManagerEntry>());
 }
 
-void EditorApplication::OnMouseEvent(const unsigned int eventType)
+void EditorApplication::OnMouseEvent(const unsigned int eventType, const float delta)
 {
     int x, y;
     SDL_GetMouseState( &x, &y );
@@ -60,7 +61,8 @@ void EditorApplication::OnMouseEvent(const unsigned int eventType)
     auto camera = data->Read<CameraEntry>();
     auto p = &data->Write<EntityManagerEntry>()->PhysicsComponents[camera];
 
-    auto vel = 1.0f;
+    auto vel = 75.0f * delta;
+
     p->Velocity.x = x < 100 ? -vel : x > 540 ? vel : 0.0f;
     p->Velocity.y = y < 100 ? -vel : y > 380 ? vel : 0.0f;
 }
