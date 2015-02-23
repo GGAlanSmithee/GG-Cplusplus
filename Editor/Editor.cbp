@@ -45,7 +45,6 @@
 		</Linker>
 		<Unit filename="../Include/Application/Application.cpp" />
 		<Unit filename="../Include/Application/Application.h" />
-		<Unit filename="../Include/Application/ApplicationData.cpp" />
 		<Unit filename="../Include/Application/ApplicationData.h" />
 		<Unit filename="../Include/Application/Component.h" />
 		<Unit filename="../Include/Application/Entity.cpp" />

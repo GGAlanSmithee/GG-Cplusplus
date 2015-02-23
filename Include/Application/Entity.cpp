@@ -55,7 +55,7 @@ void GG_DestroyEntity(GG_EntityManager& entityManager, const unsigned int entity
     entityManager.Enteties[entity] = GG_Utility::ToIntegral(GG_ComponentType::None);
 }
 
-const unsigned int GG_CreateCamera(GG_EntityManager& entityManager)
+const unsigned int GG_CreateCamera(GG_EntityManager& entityManager, SDL_Rect const& windowRect)
 {
     auto entity = GG_CreateEntity(entityManager);
 
@@ -64,18 +64,13 @@ const unsigned int GG_CreateCamera(GG_EntityManager& entityManager)
         entityManager.Enteties[entity] = GG_Utility::ToIntegral(GG_ComponentType::Transform) |
                                          GG_Utility::ToIntegral(GG_ComponentType::Physics);
 
-        entityManager.TransformComponents[entity].Translation.x = 15.0f;
-        entityManager.TransformComponents[entity].Translation.y = 15.0f;
+        entityManager.TransformComponents[entity].Translation.x = 0.0f;
+        entityManager.TransformComponents[entity].Translation.y = 0.0f;
 
         entityManager.PhysicsComponents[entity].Velocity.x = 0.0f;
         entityManager.PhysicsComponents[entity].Velocity.y = 0.0f;
 
-        entityManager.PhysicsComponents[entity].Hitbox.x = 0.0f;
-        entityManager.PhysicsComponents[entity].Hitbox.y = 0.0f;
-
-        /// @todo set width and height from actual window size
-        entityManager.PhysicsComponents[entity].Hitbox.w = 20.0f;
-        entityManager.PhysicsComponents[entity].Hitbox.h = 15.0f;
+        entityManager.PhysicsComponents[entity].Hitbox = windowRect;
     }
 
     return entity;

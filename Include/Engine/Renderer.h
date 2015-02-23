@@ -23,11 +23,14 @@ class GG_Renderer
                                      SDL_Rect&,
                                      SDL_Rect&);
 
+        friend const SDL_Rect GG_GetWindowSize(std::unique_ptr<GG_Renderer> const&);
+
         /// @todo remove this method, it break encapsulation, refactor code using it
         friend SDL_Renderer* const GG_GetSDLRenderer(std::unique_ptr<GG_Renderer> const&);
 
     private:
         SDL_Renderer* _sdlRenderer = nullptr;
+        SDL_Rect      _windowRect;
 };
 
 void GG_ClearScreen(std::unique_ptr<GG_Renderer> const&);

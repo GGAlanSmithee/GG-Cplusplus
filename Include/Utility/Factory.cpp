@@ -22,8 +22,8 @@ std::unique_ptr<GG_Engine> GG_CreateEngine()
     SDL_Window* window = SDL_CreateWindow("Hello, World!",
                                           SDL_WINDOWPOS_UNDEFINED,
                                           SDL_WINDOWPOS_UNDEFINED,
-                                          640,
-                                          480,
+                                          800,
+                                          600,
                                           SDL_WINDOW_ALLOW_HIGHDPI);
 
     if (window == nullptr)

@@ -25,7 +25,8 @@ int main(int argc, char* args[])
         auto data = std::make_shared<GG_ApplicationData>();
         data->Add<EntityManagerEntry>(GG_EntityManager());
         data->Add<MapEntry>(GG_Map());
-        data->Add<CameraEntry>(GG_CreateCamera(*data->Write<EntityManagerEntry>()));
+        data->Add<CameraEntry>(GG_CreateCamera(*data->Write<EntityManagerEntry>(),
+                                               GG_GetWindowSize(GG_GetRenderer(engine))));
 
         std::shared_ptr<GG_Application> application(new EditorApplication(engine, data));
 

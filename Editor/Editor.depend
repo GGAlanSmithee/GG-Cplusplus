@@ -495,7 +495,7 @@
 	"Engine/Timer.h"
 	"Manager/Texture.h"
 
-1424286378 c:\projects\creatio\include\engine\renderer.h
+1424713836 c:\projects\creatio\include\engine\renderer.h
 	<memory>
 	<SDL.h>
 
@@ -531,7 +531,7 @@
 	<memory>
 	"Event.h"
 
-1424286593 source:c:\projects\creatio\include\engine\renderer.cpp
+1424713820 source:c:\projects\creatio\include\engine\renderer.cpp
 	"Renderer.h"
 	<iostream>
 	<SDL.h>
@@ -552,7 +552,7 @@
 	<memory>
 	"Engine/Core.h"
 
-1424610776 source:c:\projects\creatio\include\utility\factory.cpp
+1424709940 source:c:\projects\creatio\include\utility\factory.cpp
 	<SDL.h>
 	<SDL_image.h>
 	"Factory.h"
@@ -577,12 +577,12 @@
 1424367710 source:c:\projects\creatio\include\application\tile.cpp
 	"Tile.h"
 
-1424606119 source:c:\projects\creatio\include\application\entity.cpp
+1424713955 source:c:\projects\creatio\include\application\entity.cpp
 	<iostream>
 	"Entity.h"
 	"Application/Component.h"
 
-1424506698 c:\projects\creatio\include\application\entity.h
+1424713978 c:\projects\creatio\include\application\entity.h
 	<bitset>
 	<memory>
 	<vector>
@@ -610,12 +610,13 @@
 1424607839 c:\projects\creatio\include\application\applicationdata.h
 	<unordered_map>
 
-1424616033 source:c:\projects\creatio\editor\application\editorapplication.cpp
+1424713557 source:c:\projects\creatio\editor\application\editorapplication.cpp
+	<iostream>
 	"Application/System.h"
 	"EditorApplication.h"
 	"../Utility/Declarations.h"
 
-1424610951 c:\projects\creatio\editor\application\editorapplication.h
+1424713642 c:\projects\creatio\editor\application\editorapplication.h
 	"Application/Application.h"
 
 1424605091 c:\projects\creatio\editor\utility\declarations.h

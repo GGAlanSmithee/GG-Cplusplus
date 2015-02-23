@@ -7,6 +7,16 @@
 /// @todo add parameter for flags
 GG_Renderer::GG_Renderer(SDL_Window* const window)
 {
+    if (window == nullptr)
+    {
+        throw std::invalid_argument("window cannot be null");
+    }
+
+    _windowRect.x = 0;
+    _windowRect.y = 0;
+
+    SDL_GetWindowSize(window, &_windowRect.w, &_windowRect.h);
+
     _sdlRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
     if (_sdlRenderer == nullptr)
@@ -91,5 +101,20 @@ void GG_RenderTexture(std::unique_ptr<GG_Renderer> const& renderer,
 
 SDL_Renderer* const GG_GetSDLRenderer(std::unique_ptr<GG_Renderer> const& renderer)
 {
+    if (!renderer)
+    {
+        throw std::invalid_argument("renderer cannot be null");
+    }
+
     return renderer->_sdlRenderer;
+}
+
+const SDL_Rect GG_GetWindowSize(std::unique_ptr<GG_Renderer> const& renderer)
+{
+    if (!renderer)
+    {
+        throw std::invalid_argument("renderer cannot be null");
+    }
+
+    return renderer->_windowRect;
 }
