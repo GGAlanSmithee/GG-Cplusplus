@@ -7,7 +7,6 @@
 #include "Component.h"
 #include "Utility/Utility.h"
 
-/// @todo add maxEntity variable
 class GG_EntityManager
 {
     public:

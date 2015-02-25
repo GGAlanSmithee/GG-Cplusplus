@@ -422,7 +422,7 @@
 	<sstream>
 	"Utility/Utility.h"
 
-1424616147 source:c:\projects\creatio\editor\main.cpp
+1424888552 source:c:\projects\creatio\editor\main.cpp
 	<iostream>
 	"Utility/Exception.h"
 	"Utility/Factory.h"
@@ -495,7 +495,7 @@
 	"Engine/Timer.h"
 	"Manager/Texture.h"
 
-1424713836 c:\projects\creatio\include\engine\renderer.h
+1424888425 c:\projects\creatio\include\engine\renderer.h
 	<memory>
 	<SDL.h>
 
@@ -531,7 +531,7 @@
 	<memory>
 	"Event.h"
 
-1424713820 source:c:\projects\creatio\include\engine\renderer.cpp
+1424885706 source:c:\projects\creatio\include\engine\renderer.cpp
 	"Renderer.h"
 	<iostream>
 	<SDL.h>
@@ -552,16 +552,16 @@
 	<memory>
 	"Engine/Core.h"
 
-1424709940 source:c:\projects\creatio\include\utility\factory.cpp
+1424885388 source:c:\projects\creatio\include\utility\factory.cpp
 	<SDL.h>
 	<SDL_image.h>
 	"Factory.h"
 	"Exception.h"
 
-1424612464 source:c:\projects\creatio\include\application\map.cpp
+1424888232 source:c:\projects\creatio\include\application\map.cpp
 	"Map.h"
 
-1424509847 c:\projects\creatio\include\application\map.h
+1424886569 c:\projects\creatio\include\application\map.h
 	<memory>
 	<SDL.h>
 	<vector>
@@ -582,7 +582,7 @@
 	"Entity.h"
 	"Application/Component.h"
 
-1424713978 c:\projects\creatio\include\application\entity.h
+1424888394 c:\projects\creatio\include\application\entity.h
 	<bitset>
 	<memory>
 	<vector>
@@ -593,12 +593,12 @@
 	<string>
 	"Math/Vec2.h"
 
-1424607258 source:c:\projects\creatio\include\application\system.cpp
+1424888365 source:c:\projects\creatio\include\application\system.cpp
 	"System.h"
 	"Component.h"
 	"Utility/Utility.h"
 
-1424607281 c:\projects\creatio\include\application\system.h
+1424888168 c:\projects\creatio\include\application\system.h
 	<memory>
 	"Entity.h"
 
@@ -607,16 +607,15 @@
 1424530776 source:c:\projects\creatio\include\application\applicationdata.cpp
 	"ApplicationData.h"
 
-1424607839 c:\projects\creatio\include\application\applicationdata.h
+1424888529 c:\projects\creatio\include\application\applicationdata.h
 	<unordered_map>
 
-1424713557 source:c:\projects\creatio\editor\application\editorapplication.cpp
-	<iostream>
+1424888563 source:c:\projects\creatio\editor\application\editorapplication.cpp
 	"Application/System.h"
 	"EditorApplication.h"
 	"../Utility/Declarations.h"
 
-1424713642 c:\projects\creatio\editor\application\editorapplication.h
+1424886911 c:\projects\creatio\editor\application\editorapplication.h
 	"Application/Application.h"
 
 1424605091 c:\projects\creatio\editor\utility\declarations.h
@@ -631,7 +630,7 @@
 	<SDL.h>
 	"Timer.h"
 
-1424616077 source:c:\projects\creatio\editor\application\testapplication.cpp
+1424888558 source:c:\projects\creatio\editor\application\testapplication.cpp
 	"Application/System.h"
 	"TestApplication.h"
 	"../Utility/Declarations.h"

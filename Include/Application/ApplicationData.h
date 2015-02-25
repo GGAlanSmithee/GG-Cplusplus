@@ -21,15 +21,9 @@ class GG_ApplicationData
         }
 
         template<typename T>
-        inline decltype(T::value_type) & Read()
+        inline decltype(T::value_type)& Get()
         {
-            return data<T>()[id].value_type;
-        }
-
-        template<typename T>
-        inline decltype(T::value_type)* Write()
-        {
-            return &data<T>()[id].value_type;
+            return data<T>().at(id).value_type;
         }
 
         template<typename T>

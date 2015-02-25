@@ -7,7 +7,10 @@
 /// Applies movement to enteties identified by the movement mask
 /// @author Alan Smithee
 /// @date created 2014-11-25
-void GG_MovementSystem(GG_EntityManager&);
+/// @date changed 2015-02-25
+/// @param entityManager entity manager to use movement system on
+/// @param delta delta time (time since last update)
+void GG_MovementSystem(GG_EntityManager&, const float);
 
 /// Renders enteties identified by the render mask
 /// @author Alan Smithee

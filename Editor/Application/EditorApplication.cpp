@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Application/System.h"
 #include "EditorApplication.h"
 #include "../Utility/Declarations.h"
@@ -7,6 +6,8 @@ EditorApplication::EditorApplication(std::unique_ptr<GG_Engine> const& engine,
                                      std::shared_ptr<GG_ApplicationData> data) :
     GG_Application(data)
 {
+    auto windowRect = GG_GetWindowSize(GG_GetRenderer(engine));
+
     GG_RegisterMouseEvent(GG_GetEvent(engine),
                           [&](int eventType)
                           {
@@ -28,7 +29,10 @@ void EditorApplication::OnLogic(std::unique_ptr<GG_Engine> const& engine)
         throw std::invalid_argument("engine cannot be null.");
     }
 
-    GG_MovementSystem(*data->Write<EntityManagerEntry>());
+    /// @todo log delta
+    // std::cout << GG_GetDelta(GG_GetTimer(engine)) << std::endl;
+
+    GG_MovementSystem(data->Get<EntityManagerEntry>(), GG_GetDelta(GG_GetTimer(engine)));
 }
 
 void EditorApplication::OnRender(std::unique_ptr<GG_Engine> const& engine)
@@ -38,20 +42,19 @@ void EditorApplication::OnRender(std::unique_ptr<GG_Engine> const& engine)
         throw std::invalid_argument("engine cannot be null.");
     }
 
-    auto entityManager = data->Read<EntityManagerEntry>();
-    auto camera = data->Read<CameraEntry>();
+    auto entityManager = data->Get<EntityManagerEntry>();
+    auto camera = data->Get<CameraEntry>();
 
     auto cameraPos = entityManager.TransformComponents[camera].Translation;
     auto cameraRect = entityManager.PhysicsComponents[camera].Hitbox;
 
-    GG_RenderMap(data->Read<MapEntry>(),
+    GG_RenderMap(data->Get<MapEntry>(),
                  GG_GetRenderer(engine),
                  GG_GetTextureManager(engine),
                  cameraPos,
                  cameraRect);
 
-
-    GG_RenderSystem(data->Read<EntityManagerEntry>());
+    GG_RenderSystem(entityManager);
 }
 
 void EditorApplication::OnMouseEvent(const unsigned int eventType,
@@ -61,11 +64,10 @@ void EditorApplication::OnMouseEvent(const unsigned int eventType,
     int x, y;
     SDL_GetMouseState(&x, &y);
 
-    auto camera = data->Read<CameraEntry>();
-    auto p = &data->Write<EntityManagerEntry>()->PhysicsComponents[camera];
+    auto camera = data->Get<CameraEntry>();
+    auto p = &data->Get<EntityManagerEntry>().PhysicsComponents[camera];
 
-    auto vel = 75.0f * delta;
-
+    auto vel = 8.0f;
 
     auto leftBorder = windowRect.w * 0.15f;
     auto rightBorder = windowRect.w - leftBorder;

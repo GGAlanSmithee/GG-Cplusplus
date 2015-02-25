@@ -5,7 +5,8 @@
 #include "Utility/Exception.h"
 
 /// @todo add parameter for flags
-GG_Renderer::GG_Renderer(SDL_Window* const window)
+GG_Renderer::GG_Renderer(SDL_Window* const window) :
+    UnitSize(32.0f)
 {
     if (window == nullptr)
     {
@@ -117,4 +118,58 @@ const SDL_Rect GG_GetWindowSize(std::unique_ptr<GG_Renderer> const& renderer)
     }
 
     return renderer->_windowRect;
+}
+
+const float GG_ToLogical(std::unique_ptr<GG_Renderer> const& renderer, const float value)
+{
+    if (!renderer)
+    {
+        throw std::invalid_argument("renderer cannot be null");
+    }
+
+    return value / renderer->UnitSize;
+}
+
+const float GG_ToView(std::unique_ptr<GG_Renderer> const& renderer, const float value)
+{
+    if (!renderer)
+    {
+        throw std::invalid_argument("renderer cannot be null");
+    }
+
+    return value * renderer->UnitSize;
+}
+
+const SDL_Rect GG_ToLogical(std::unique_ptr<GG_Renderer> const& renderer, SDL_Rect const& value)
+{
+    if (!renderer)
+    {
+        throw std::invalid_argument("renderer cannot be null");
+    }
+
+    SDL_Rect rect = value;
+
+    rect.x /= renderer->UnitSize;
+    rect.y /= renderer->UnitSize;
+    rect.w /= renderer->UnitSize;
+    rect.h /= renderer->UnitSize;
+
+    return rect;
+}
+
+const SDL_Rect GG_ToView(std::unique_ptr<GG_Renderer> const& renderer, SDL_Rect const& value)
+{
+    if (!renderer)
+    {
+        throw std::invalid_argument("renderer cannot be null");
+    }
+
+    SDL_Rect rect = value;
+
+    rect.x *= renderer->UnitSize;
+    rect.y *= renderer->UnitSize;
+    rect.w *= renderer->UnitSize;
+    rect.h *= renderer->UnitSize;
+
+    return rect;
 }

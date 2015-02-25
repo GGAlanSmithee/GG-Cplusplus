@@ -6,8 +6,8 @@ TestApplication::TestApplication(std::unique_ptr<GG_Engine> const& engine,
                                  std::shared_ptr<GG_ApplicationData> data) :
     GG_Application(data)
 {
-    auto camera = data->Read<CameraEntry>();
-    auto p = &data->Write<EntityManagerEntry>()->PhysicsComponents[camera];
+    auto camera = data->Get<CameraEntry>();
+    auto p = &data->Get<EntityManagerEntry>().PhysicsComponents[camera];
 
     p->Velocity.x = 0.0f;
     p->Velocity.y = 0.0f;
@@ -27,7 +27,7 @@ void TestApplication::OnLogic(std::unique_ptr<GG_Engine> const& engine)
         throw std::invalid_argument("engine cannot be null.");
     }
 
-    GG_MovementSystem(*data->Write<EntityManagerEntry>());
+    GG_MovementSystem(data->Get<EntityManagerEntry>(), GG_GetDelta(GG_GetTimer(engine)));
 }
 
 void TestApplication::OnRender(std::unique_ptr<GG_Engine> const& engine)
@@ -37,13 +37,13 @@ void TestApplication::OnRender(std::unique_ptr<GG_Engine> const& engine)
         throw std::invalid_argument("engine cannot be null.");
     }
 
-    auto entityManager = data->Read<EntityManagerEntry>();
-    auto camera = data->Read<CameraEntry>();
+    auto entityManager = data->Get<EntityManagerEntry>();
+    auto camera = data->Get<CameraEntry>();
 
     auto cameraPos = entityManager.TransformComponents[camera].Translation;
     auto cameraRect = entityManager.PhysicsComponents[camera].Hitbox;
 
-    GG_RenderMap(data->Read<MapEntry>(),
+    GG_RenderMap(data->Get<MapEntry>(),
                  GG_GetRenderer(engine),
                  GG_GetTextureManager(engine),
                  cameraPos,
@@ -53,5 +53,5 @@ void TestApplication::OnRender(std::unique_ptr<GG_Engine> const& engine)
 
     SDL_RenderDrawRect(GG_GetSDLRenderer(GG_GetRenderer(engine)), &rect);
 
-    GG_RenderSystem(data->Read<EntityManagerEntry>());
+    GG_RenderSystem(data->Get<EntityManagerEntry>());
 }
