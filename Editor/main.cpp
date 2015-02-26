@@ -13,8 +13,6 @@ int main(int argc, char* args[])
     {
         auto engine = GG_CreateEngine();
 
-        GG_SetDefaultTexture(GG_GetTextureManager(engine), GG_GetRenderer(engine), "default.png");
-
         GG_AddAllTextures(GG_GetTextureManager(engine), GG_GetRenderer(engine));
 
         auto running = true;

@@ -4,11 +4,21 @@
 #include "Utility/Utility.h"
 
 GG_TextureManager::GG_TextureManager(std::unique_ptr<GG_TextureLoader> textureLoader,
+                                     std::unique_ptr<GG_Renderer> const& renderer,
                                      std::string const& gfxPath) :
     _textureLoader(std::move(textureLoader)),
     _gfxPath(gfxPath)
 {
-    // Empty
+    if (!renderer)
+    {
+        throw std::invalid_argument("renderer cannot be null.");
+    }
+
+    auto surface = SDL_CreateRGBSurface(0, 33, 33, 32, 0, 0, 0, 0);
+
+    SDL_FillRect(surface, nullptr, SDL_MapRGB(surface->format, 100, 149, 237));
+
+    _defaultTexture = SDL_CreateTextureFromSurface(GG_GetSDLRenderer(renderer), surface);
 }
 
 GG_TextureManager::~GG_TextureManager()

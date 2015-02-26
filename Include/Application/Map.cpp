@@ -1,7 +1,7 @@
 #include "Map.h"
 
 GG_Map::GG_Map() :
-    tilesetId(2)
+    tilesetId(1)
 {
     auto numbTiles = 500;
 

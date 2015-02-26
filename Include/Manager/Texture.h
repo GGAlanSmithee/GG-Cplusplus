@@ -11,7 +11,9 @@
 class GG_TextureManager
 {
     public:
-        GG_TextureManager(std::unique_ptr<GG_TextureLoader>, std::string const& = "../Gfx/");
+        GG_TextureManager(std::unique_ptr<GG_TextureLoader>,
+                          std::unique_ptr<GG_Renderer> const&,
+                          std::string const& = "../Gfx/");
         ~GG_TextureManager();
 
         friend std::string const& GG_GetPath(std::unique_ptr<GG_TextureManager> const&);
