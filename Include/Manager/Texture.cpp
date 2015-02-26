@@ -1,27 +1,41 @@
-#include <iostream>
+#include <dirent.h>
+#include <stdexcept>
 #include "Texture.h"
+#include "Utility/Utility.h"
 
-GG_TextureManager::GG_TextureManager(std::unique_ptr<GG_TextureLoader> textureLoader) :
-    _textureLoader(std::move(textureLoader))
+GG_TextureManager::GG_TextureManager(std::unique_ptr<GG_TextureLoader> textureLoader,
+                                     std::string const& gfxPath) :
+    _textureLoader(std::move(textureLoader)),
+    _gfxPath(gfxPath)
 {
     // Empty
 }
 
 GG_TextureManager::~GG_TextureManager()
 {
-    for (auto& kvp : _textures)
+    for (auto texture : _textures)
     {
-        if (kvp.second != nullptr)
+        if (texture != nullptr)
         {
-            SDL_DestroyTexture(kvp.second);
-            kvp.second = nullptr;
+            SDL_DestroyTexture(texture);
+            texture = nullptr;
         }
     }
 }
 
-const unsigned int GG_AddTexture(std::unique_ptr<GG_TextureManager> const& textureManager,
-                                 std::unique_ptr<GG_Renderer> const& renderer,
-                                 const std::string& name)
+std::string const& GG_GetPath(std::unique_ptr<GG_TextureManager> const& textureManager)
+{
+    if (!textureManager)
+    {
+        throw std::invalid_argument("textureManager cannot be null.");
+    }
+
+    return textureManager->_gfxPath;
+}
+
+void GG_AddTexture(std::unique_ptr<GG_TextureManager> const& textureManager,
+                   std::unique_ptr<GG_Renderer> const& renderer,
+                   std::string const& name)
 {
     if (!textureManager)
     {
@@ -33,11 +47,62 @@ const unsigned int GG_AddTexture(std::unique_ptr<GG_TextureManager> const& textu
         throw std::invalid_argument("renderer cannot be null.");
     }
 
-    auto index = textureManager->_textures.size();
+    auto texture = GG_LoadTexture(textureManager->_textureLoader, renderer, name);
 
-    textureManager->_textures[index] = GG_LoadTexture(textureManager->_textureLoader, renderer, name);
+    auto index = 0;
+    while (index < textureManager->_textures.size())
+    {
+        if (textureManager->_textures[index] == nullptr)
+        {
+            break;
+        }
 
-    return index;
+        ++index;
+    }
+
+    if (index >= textureManager->_textures.size())
+    {
+        textureManager->_textures.push_back(texture);
+    }
+    else
+    {
+        textureManager->_textures[index] = texture;
+    }
+}
+
+void GG_AddAllTextures(std::unique_ptr<GG_TextureManager> const& textureManager,
+                       std::unique_ptr<GG_Renderer> const& renderer)
+{
+    if (!textureManager)
+    {
+        throw std::invalid_argument("textureManager cannot be null.");
+    }
+
+    if (!renderer)
+    {
+        throw std::invalid_argument("renderer cannot be null.");
+    }
+
+    auto dir = opendir(GG_GetPath(textureManager).c_str());
+
+    if (dir == nullptr)
+    {
+        throw std::runtime_error("could not open path " + GG_GetPath(textureManager));
+    }
+
+    while (auto entity = readdir(dir))
+    {
+        std::string filename(entity->d_name);
+
+        if (!GG_Utility::EndsWith(filename, ".png"))
+        {
+            continue;
+        }
+
+        GG_AddTexture(textureManager, renderer, filename);
+    }
+
+    closedir(dir);
 }
 
 SDL_Texture* const GG_GetTexture(std::unique_ptr<GG_TextureManager> const& textureManager, const unsigned int key)

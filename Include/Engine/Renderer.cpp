@@ -18,7 +18,7 @@ GG_Renderer::GG_Renderer(SDL_Window* const window) :
 
     SDL_GetWindowSize(window, &_windowRect.w, &_windowRect.h);
 
-    _sdlRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    _sdlRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
     if (_sdlRenderer == nullptr)
     {

@@ -15,9 +15,7 @@ int main(int argc, char* args[])
 
         GG_SetDefaultTexture(GG_GetTextureManager(engine), GG_GetRenderer(engine), "default.png");
 
-        auto handle = GG_AddTexture(GG_GetTextureManager(engine),
-                                    GG_GetRenderer(engine),
-                                    "tileset.png");
+        GG_AddAllTextures(GG_GetTextureManager(engine), GG_GetRenderer(engine));
 
         auto running = true;
         GG_RegisterKeyDownEvent(GG_GetEvent(engine), SDLK_ESCAPE, [&]() { running = false; });
