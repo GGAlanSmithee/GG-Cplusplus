@@ -1,7 +1,9 @@
+#include <fstream>
 #include "Map.h"
+#include "Utility/Exception.h"
 
-GG_Map::GG_Map() :
-    tilesetId(1)
+GG_Map::GG_Map(const unsigned int tilesetId) :
+    tilesetId(tilesetId)
 {
     auto numbTiles = 500;
 
@@ -86,4 +88,25 @@ void GG_RenderMap(GG_Map const& map,
             GG_RenderTexture(renderer, texture, source, tileBoundary);
         }
     }
+}
+
+GG_Map GG_LoadMap(std::string const& filepath)
+{
+    std::ifstream map(filepath);
+
+    if (map == nullptr)
+    {
+        throw file_not_found_error("Could not find map with path " + filepath);
+    }
+
+    int tilesetId;
+
+    map >> tilesetId;
+
+    if (map.fail())
+    {
+        throw std::runtime_error("Error loading map.");
+    }
+
+    return GG_Map(tilesetId);
 }

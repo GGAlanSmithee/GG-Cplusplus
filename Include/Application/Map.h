@@ -1,6 +1,7 @@
 #ifndef APPLICATION_MAP_H_INCLUDED
 #define APPLICATION_MAP_H_INCLUDED
 
+#include <climits>
 #include <memory>
 #include <SDL.h>
 #include <vector>
@@ -12,7 +13,7 @@
 class GG_Map
 {
     public:
-        GG_Map();
+        GG_Map(const unsigned int = INT_MAX);
         ~GG_Map();
 
         friend SDL_Rect const& GG_GetBoundary(GG_Map const&);
@@ -29,5 +30,7 @@ class GG_Map
         SDL_Rect                          boundary;
         std::vector<std::vector<GG_Tile>> tiles;
 };
+
+GG_Map GG_LoadMap(std::string const&);
 
 #endif // APPLICATION_MAP_H_INCLUDED
