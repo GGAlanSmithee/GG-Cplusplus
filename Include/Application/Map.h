@@ -31,6 +31,6 @@ class GG_Map
         std::vector<std::vector<GG_Tile>> tiles;
 };
 
-GG_Map GG_LoadMap(std::string const&);
+const GG_Map GG_LoadMap(std::unique_ptr<GG_TextureManager> const&, std::string const&);
 
 #endif // APPLICATION_MAP_H_INCLUDED

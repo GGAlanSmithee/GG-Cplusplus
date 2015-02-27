@@ -422,7 +422,7 @@
 	<sstream>
 	"Utility/Utility.h"
 
-1424991232 source:c:\projects\creatio\editor\main.cpp
+1425063007 source:c:\projects\creatio\editor\main.cpp
 	<iostream>
 	"Utility/Exception.h"
 	"Utility/Factory.h"
@@ -505,11 +505,12 @@
 	<functional>
 	<memory>
 
-1424989889 c:\projects\creatio\include\manager\texture.h
+1425062525 c:\projects\creatio\include\manager\texture.h
 	<memory>
 	<string>
 	<SDL.h>
 	<vector>
+	<unordered_map>
 	"Loader/Texture.h"
 	"Engine/Renderer.h"
 
@@ -544,9 +545,10 @@
 	"Texture.h"
 	"Utility/Exception.h"
 
-1424990058 source:c:\projects\creatio\include\manager\texture.cpp
+1425062510 source:c:\projects\creatio\include\manager\texture.cpp
 	<dirent.h>
 	<stdexcept>
+	<climits>
 	"Texture.h"
 	"Utility/Utility.h"
 
@@ -560,12 +562,12 @@
 	"Factory.h"
 	"Exception.h"
 
-1424991281 source:c:\projects\creatio\include\application\map.cpp
+1425062980 source:c:\projects\creatio\include\application\map.cpp
 	<fstream>
 	"Map.h"
 	"Utility/Exception.h"
 
-1424991258 c:\projects\creatio\include\application\map.h
+1425062937 c:\projects\creatio\include\application\map.h
 	<climits>
 	<memory>
 	<SDL.h>

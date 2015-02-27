@@ -90,8 +90,13 @@ void GG_RenderMap(GG_Map const& map,
     }
 }
 
-GG_Map GG_LoadMap(std::string const& filepath)
+const GG_Map GG_LoadMap(std::unique_ptr<GG_TextureManager> const& textureManager, std::string const& filepath)
 {
+    if (!textureManager)
+    {
+        throw std::invalid_argument("texture manager cannot be null.");
+    }
+
     std::ifstream map(filepath);
 
     if (map == nullptr)
@@ -99,14 +104,14 @@ GG_Map GG_LoadMap(std::string const& filepath)
         throw file_not_found_error("Could not find map with path " + filepath);
     }
 
-    int tilesetId;
+    std::string tilesetName;
 
-    map >> tilesetId;
+    map >> tilesetName;
 
     if (map.fail())
     {
         throw std::runtime_error("Error loading map.");
     }
 
-    return GG_Map(tilesetId);
+    return GG_Map(GG_GetTextureId(textureManager, tilesetName));
 }

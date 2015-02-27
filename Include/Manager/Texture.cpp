@@ -1,5 +1,6 @@
 #include <dirent.h>
 #include <stdexcept>
+#include <climits>
 #include "Texture.h"
 #include "Utility/Utility.h"
 
@@ -72,10 +73,12 @@ void GG_AddTexture(std::unique_ptr<GG_TextureManager> const& textureManager,
 
     if (index >= textureManager->_textures.size())
     {
+        textureManager->_textureIds[name] = textureManager->_textures.size();
         textureManager->_textures.push_back(texture);
     }
     else
     {
+        textureManager->_textureIds[name] = index;
         textureManager->_textures[index] = texture;
     }
 }
@@ -131,7 +134,7 @@ SDL_Texture* const GG_GetTexture(std::unique_ptr<GG_TextureManager> const& textu
     {
         return textureManager->_textures.at(key);
     }
-    catch (const std::out_of_range& e)
+    catch (std::out_of_range const&)
     {
         return textureManager->_defaultTexture;
     }
@@ -152,4 +155,22 @@ void GG_SetDefaultTexture(std::unique_ptr<GG_TextureManager> const& textureManag
     }
 
     textureManager->_defaultTexture = GG_LoadTexture(textureManager->_textureLoader, renderer, name);
+}
+
+const unsigned int GG_GetTextureId(std::unique_ptr<GG_TextureManager> const& textureManager,
+                                   std::string const& name)
+{
+    if (!textureManager)
+    {
+        throw std::invalid_argument("textureManager cannot be null.");
+    }
+
+    try
+    {
+        return textureManager->_textureIds.at(name);
+    }
+    catch (std::out_of_range const&)
+    {
+        return INT_MAX;
+    }
 }

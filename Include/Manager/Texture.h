@@ -5,6 +5,7 @@
 #include <string>
 #include <SDL.h>
 #include <vector>
+#include <unordered_map>
 #include "Loader/Texture.h"
 #include "Engine/Renderer.h"
 
@@ -51,13 +52,18 @@ class GG_TextureManager
         /// @exception throws a std::invalid_argument exception if \a renderer is null
         friend void GG_SetDefaultTexture(std::unique_ptr<GG_TextureManager> const&,
                                          std::unique_ptr<GG_Renderer> const&,
-                                         const std::string&);
+                                         std::string const&);
+
+        friend const unsigned int GG_GetTextureId(std::unique_ptr<GG_TextureManager> const&,
+                                                  std::string const&);
+
     private:
 
-        std::unique_ptr<GG_TextureLoader> _textureLoader;
-        SDL_Texture*                      _defaultTexture;
-        std::vector<SDL_Texture*>         _textures;
-        std::string                       _gfxPath;
+        std::unique_ptr<GG_TextureLoader>             _textureLoader;
+        SDL_Texture*                                  _defaultTexture;
+        std::vector<SDL_Texture*>                     _textures;
+        std::unordered_map<std::string, unsigned int> _textureIds;
+        std::string                                   _gfxPath;
 };
 
 void GG_AddAllTextures(std::unique_ptr<GG_TextureManager> const&,
