@@ -13,7 +13,7 @@
 class GG_Map
 {
     public:
-        GG_Map(const unsigned int = INT_MAX);
+        GG_Map(const unsigned int = INT_MAX, const unsigned int = 10, std::vector<std::vector<GG_Tile>> const& = std::vector<std::vector<GG_Tile>>());
         ~GG_Map();
 
         friend SDL_Rect const& GG_GetBoundary(GG_Map const&);
@@ -26,9 +26,11 @@ class GG_Map
                                  SDL_Rect const&);
 
     private:
+        int                               size;
         int                               tilesetId;
         SDL_Rect                          boundary;
         std::vector<std::vector<GG_Tile>> tiles;
+
 };
 
 const GG_Map GG_LoadMap(std::unique_ptr<GG_TextureManager> const&, std::string const&);

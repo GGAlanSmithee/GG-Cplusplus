@@ -1,29 +1,16 @@
+#include <iostream>
 #include <fstream>
 #include "Map.h"
 #include "Utility/Exception.h"
 
-GG_Map::GG_Map(const unsigned int tilesetId) :
-    tilesetId(tilesetId)
+GG_Map::GG_Map(const unsigned int tilesetId,
+               const unsigned int size,
+               std::vector<std::vector<GG_Tile>> const& tiles) :
+    tilesetId(tilesetId),
+    size(size),
+    tiles(tiles)
 {
-    auto numbTiles = 500;
-
-    std::vector<std::vector<GG_Tile>> tiles;
-
-    for (auto y = 0; y < numbTiles; ++y)
-    {
-        std::vector<GG_Tile> tilesRow;
-
-        for (auto x = 0; x < numbTiles; ++x)
-        {
-            SDL_Rect rect = { x, y, 1, 1 };
-            tilesRow.push_back(GG_Tile(rect, GG_TileType::Normal, GG_CollisionType::Box));
-        }
-
-        tiles.push_back(tilesRow);
-    }
-
-    boundary = { 0, 0, numbTiles, numbTiles };
-    this->tiles = tiles;
+    boundary = { 0, 0, size, size };
 }
 
 GG_Map::~GG_Map()
@@ -85,6 +72,8 @@ void GG_RenderMap(GG_Map const& map,
             tileBoundary.w *= 32.0f;
             tileBoundary.h *= 32.0f;
 
+            source.x = GG_GetTileNumber(tile) * 32;
+
             GG_RenderTexture(renderer, texture, source, tileBoundary);
         }
     }
@@ -113,5 +102,39 @@ const GG_Map GG_LoadMap(std::unique_ptr<GG_TextureManager> const& textureManager
         throw std::runtime_error("Error loading map.");
     }
 
-    return GG_Map(GG_GetTextureId(textureManager, tilesetName));
+    int mapSize;
+
+    map >> mapSize;
+
+    if (map.fail())
+    {
+        throw std::runtime_error("Error loading map.");
+    }
+
+    int tileNumber;
+    SDL_Rect tileBoundary;
+    std::vector<std::vector<GG_Tile>> tiles;
+
+    for (auto y = 0; y < mapSize; ++y)
+    {
+        std::vector<GG_Tile> tilesRow;
+
+        for (auto x = 0; x < mapSize; ++x)
+        {
+            map >> tileNumber;
+
+            if (tileNumber != 1)
+            {
+                std::cout << tileNumber << std::endl;
+            }
+
+            tileBoundary = { x, y, 1, 1 };
+
+            tilesRow.push_back(GG_Tile(tileBoundary, tileNumber, GG_TileType::Normal, GG_CollisionType::Box));
+        }
+
+        tiles.push_back(tilesRow);
+    }
+
+    return GG_Map(GG_GetTextureId(textureManager, tilesetName), mapSize, tiles);
 }

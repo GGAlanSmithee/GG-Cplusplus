@@ -562,12 +562,13 @@
 	"Factory.h"
 	"Exception.h"
 
-1425062980 source:c:\projects\creatio\include\application\map.cpp
+1425065995 source:c:\projects\creatio\include\application\map.cpp
+	<iostream>
 	<fstream>
 	"Map.h"
 	"Utility/Exception.h"
 
-1425062937 c:\projects\creatio\include\application\map.h
+1425065583 c:\projects\creatio\include\application\map.h
 	<climits>
 	<memory>
 	<SDL.h>
@@ -577,11 +578,11 @@
 	"Manager/Texture.h"
 	"Math/Vec2.h"
 
-1424367741 c:\projects\creatio\include\application\tile.h
+1425065369 c:\projects\creatio\include\application\tile.h
 	<SDL.h>
 	"Engine/Physics.h"
 
-1424367710 source:c:\projects\creatio\include\application\tile.cpp
+1425065821 source:c:\projects\creatio\include\application\tile.cpp
 	"Tile.h"
 
 1424713955 source:c:\projects\creatio\include\application\entity.cpp
