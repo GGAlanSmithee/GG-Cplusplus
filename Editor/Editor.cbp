@@ -70,6 +70,8 @@
 		<Unit filename="../Include/Loader/Texture.h" />
 		<Unit filename="../Include/Manager/Texture.cpp" />
 		<Unit filename="../Include/Manager/Texture.h" />
+		<Unit filename="../Include/Math/Rect.cpp" />
+		<Unit filename="../Include/Math/Rect.h" />
 		<Unit filename="../Include/Math/Vec2.cpp" />
 		<Unit filename="../Include/Math/Vec2.h" />
 		<Unit filename="../Include/Utility/Exception.h" />

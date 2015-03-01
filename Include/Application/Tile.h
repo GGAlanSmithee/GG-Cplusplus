@@ -1,7 +1,7 @@
 #ifndef APPLICATION_TILE_H_INCLUDED
 #define APPLICATION_TILE_H_INCLUDED
 
-#include <SDL.h>
+#include "Math/Rect.h"
 #include "Engine/Physics.h"
 
 enum class GG_TileType
@@ -18,7 +18,7 @@ class GG_Tile
         GG_Tile(SDL_Rect const&, const unsigned int, const GG_TileType, const GG_CollisionType);
         ~GG_Tile();
 
-        friend SDL_Rect const&         GG_GetBoundary(GG_Tile const&);
+        friend SDL_Rect const&          GG_GetBoundary(GG_Tile const&);
         friend unsigned int const      GG_GetTileNumber(GG_Tile const&);
         friend GG_TileType const       GG_GetTileType(GG_Tile const&);
         friend GG_CollisionType const  GG_GetCollisionType(GG_Tile const&);

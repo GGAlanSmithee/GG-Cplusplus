@@ -1,4 +1,3 @@
-#include <iostream>
 #include <fstream>
 #include "Map.h"
 #include "Utility/Exception.h"
@@ -10,7 +9,7 @@ GG_Map::GG_Map(const unsigned int tilesetId,
     size(size),
     tiles(tiles)
 {
-    boundary = { 0, 0, size, size };
+    boundary = { 0.0f, 0.0f, size, size };
 }
 
 GG_Map::~GG_Map()
@@ -18,7 +17,7 @@ GG_Map::~GG_Map()
 
 }
 
-SDL_Rect const& GG_GetBoundary(GG_Map const& map)
+GG_Rect const& GG_GetBoundary(GG_Map const& map)
 {
     return map.boundary;
 }
@@ -42,7 +41,7 @@ void GG_RenderMap(GG_Map const& map,
                   std::unique_ptr<GG_Renderer> const& renderer,
                   std::unique_ptr<GG_TextureManager> const& textureManager,
                   GG_Vec2f const& cameraPos,
-                  SDL_Rect const& cameraRect)
+                  GG_Rect const& cameraRect)
 {
     auto boundary = GG_GetBoundary(map);
 
@@ -66,13 +65,16 @@ void GG_RenderMap(GG_Map const& map,
         for (auto x = startX; x < endX; ++x)
         {
             auto tile = GG_GetTile(map, x, y);
-            SDL_Rect tileBoundary = GG_GetBoundary(GG_GetTile(map, x, y));
-            tileBoundary.x = (tileBoundary.x - cameraPos.x) * 32.0f;
-            tileBoundary.y = (tileBoundary.y - cameraPos.y) * 32.0f;
-            tileBoundary.w *= 32.0f;
-            tileBoundary.h *= 32.0f;
 
             source.x = GG_GetTileNumber(tile) * 32;
+            //source = GG_ToView(renderer, source);
+
+            auto tileBoundary = GG_GetBoundary(GG_GetTile(map, x, y));
+            tileBoundary.x = (tileBoundary.x - cameraPos.x) * 32;
+            tileBoundary.y = (tileBoundary.y - cameraPos.y) * 32;
+            tileBoundary.w *= 32;
+            tileBoundary.h *= 32;
+            //tileBoundary = GG_ToView(renderer, tileBoundary);
 
             GG_RenderTexture(renderer, texture, source, tileBoundary);
         }
@@ -122,11 +124,6 @@ const GG_Map GG_LoadMap(std::unique_ptr<GG_TextureManager> const& textureManager
         for (auto x = 0; x < mapSize; ++x)
         {
             map >> tileNumber;
-
-            if (tileNumber != 1)
-            {
-                std::cout << tileNumber << std::endl;
-            }
 
             tileBoundary = { x, y, 1, 1 };
 

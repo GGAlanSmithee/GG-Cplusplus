@@ -387,8 +387,9 @@
 	<string>
 	"Math/Vec2.h"
 
-1424189330 c:\projects\creatio\include\math\vec2.h
+1425232237 c:\projects\creatio\include\math\vec2.h
 	<SDL.h>
+	"Rect.h"
 
 1424190746 c:\projects\creatio\include\utility\utility.h
 	<algorithm>
@@ -442,7 +443,7 @@
 	"Map.h"
 	"ApplicationData.h"
 
-1424191348 source:c:\projects\creatio\include\math\vec2.cpp
+1425232164 source:c:\projects\creatio\include\math\vec2.cpp
 	"Vec2.h"
 
 1423996106 c:\projects\creatio\include\core\core.h
@@ -532,7 +533,7 @@
 	<memory>
 	"Event.h"
 
-1424989265 source:c:\projects\creatio\include\engine\renderer.cpp
+1425232742 source:c:\projects\creatio\include\engine\renderer.cpp
 	"Renderer.h"
 	<iostream>
 	<SDL.h>
@@ -562,13 +563,12 @@
 	"Factory.h"
 	"Exception.h"
 
-1425065995 source:c:\projects\creatio\include\application\map.cpp
-	<iostream>
+1425232732 source:c:\projects\creatio\include\application\map.cpp
 	<fstream>
 	"Map.h"
 	"Utility/Exception.h"
 
-1425065583 c:\projects\creatio\include\application\map.h
+1425232882 c:\projects\creatio\include\application\map.h
 	<climits>
 	<memory>
 	<SDL.h>
@@ -578,11 +578,11 @@
 	"Manager/Texture.h"
 	"Math/Vec2.h"
 
-1425065369 c:\projects\creatio\include\application\tile.h
-	<SDL.h>
+1425232888 c:\projects\creatio\include\application\tile.h
+	"Math/Rect.h"
 	"Engine/Physics.h"
 
-1425065821 source:c:\projects\creatio\include\application\tile.cpp
+1425232895 source:c:\projects\creatio\include\application\tile.cpp
 	"Tile.h"
 
 1424713955 source:c:\projects\creatio\include\application\entity.cpp
@@ -645,4 +645,11 @@
 
 1424614003 c:\projects\creatio\editor\application\testapplication.h
 	"Application/Application.h"
+
+1425232779 source:c:\projects\creatio\include\math\rect.cpp
+	"Rect.h"
+
+1425232480 c:\projects\creatio\include\math\rect.h
+	<SDL.h>
+	"Vec2.h"
 
