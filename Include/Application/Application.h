@@ -7,9 +7,17 @@
 #include "Map.h"
 #include "ApplicationData.h"
 
+/// Abstract base class for an application using the GG Engine
+/// @author Alan Smithee
+/// @date created 2015-03-09
+/// @remarks All apllications intending to use the engine should inherit this class, the applications can share data through the application data that is passed in to the constructor
 class GG_Application
 {
     public:
+        /// Constructs an application
+        /// @author Alan Smithee
+        /// @date created 2015-03-09
+        /// @param applicationData the shared data to use in the application
         GG_Application(std::shared_ptr<GG_ApplicationData>);
         virtual ~GG_Application() = 0;
 
