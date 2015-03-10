@@ -56,7 +56,7 @@ void GG_RenderMap(GG_Map const& map,
     auto startY = cameraPos.y < 0 ? 0 : static_cast<int>(cameraPos.y);
     auto endY   = cameraPos.y + cameraRect.h + 2 > boundary.h ? boundary.h : static_cast<int>(cameraPos.y + cameraRect.h + 2);
 
-    SDL_Rect source = { 32, 32, 32, 32 };
+    SDL_Rect src = { 1, 1, 1, 1 };
 
     auto texture = GG_GetTexture(textureManager, GG_GetTilesetId(map));
 
@@ -66,17 +66,14 @@ void GG_RenderMap(GG_Map const& map,
         {
             auto tile = GG_GetTile(map, x, y);
 
-            source.x = GG_GetTileNumber(tile) * 32;
-            //source = GG_ToView(renderer, source);
+            src.x = GG_GetTileNumber(tile);
 
-            auto tileBoundary = GG_GetBoundary(GG_GetTile(map, x, y));
-            tileBoundary.x = (tileBoundary.x - cameraPos.x) * 32;
-            tileBoundary.y = (tileBoundary.y - cameraPos.y) * 32;
-            tileBoundary.w *= 32;
-            tileBoundary.h *= 32;
-            //tileBoundary = GG_ToView(renderer, tileBoundary);
+            auto dest = GG_GetBoundary(GG_GetTile(map, x, y));
 
-            GG_RenderTexture(renderer, texture, source, tileBoundary);
+            dest.x -= cameraPos.x;
+            dest.y -= cameraPos.y;
+
+            GG_RenderTexture(renderer, texture, GG_ToView(renderer, src), GG_ToView(renderer, dest));
         }
     }
 }

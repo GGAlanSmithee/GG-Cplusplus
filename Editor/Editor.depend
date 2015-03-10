@@ -436,7 +436,7 @@
 1424604836 source:c:\projects\creatio\include\application\application.cpp
 	"Application.h"
 
-1424604795 c:\projects\creatio\include\application\application.h
+1425934848 c:\projects\creatio\include\application\application.h
 	<memory>
 	"Engine/Core.h"
 	"Entity.h"
@@ -496,9 +496,10 @@
 	"Engine/Timer.h"
 	"Manager/Texture.h"
 
-1424888425 c:\projects\creatio\include\engine\renderer.h
+1426021825 c:\projects\creatio\include\engine\renderer.h
 	<memory>
 	<SDL.h>
+	"Math/Rect.h"
 
 1424613636 c:\projects\creatio\include\engine\event.h
 	<SDL.h>
@@ -533,13 +534,13 @@
 	<memory>
 	"Event.h"
 
-1425232742 source:c:\projects\creatio\include\engine\renderer.cpp
+1426021834 source:c:\projects\creatio\include\engine\renderer.cpp
 	"Renderer.h"
 	<iostream>
 	<SDL.h>
 	"Utility/Exception.h"
 
-1423996385 source:c:\projects\creatio\include\loader\texture.cpp
+1425934848 source:c:\projects\creatio\include\loader\texture.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -563,7 +564,7 @@
 	"Factory.h"
 	"Exception.h"
 
-1425232732 source:c:\projects\creatio\include\application\map.cpp
+1426021924 source:c:\projects\creatio\include\application\map.cpp
 	<fstream>
 	"Map.h"
 	"Utility/Exception.h"
@@ -578,11 +579,11 @@
 	"Manager/Texture.h"
 	"Math/Vec2.h"
 
-1425232888 c:\projects\creatio\include\application\tile.h
+1425935962 c:\projects\creatio\include\application\tile.h
 	"Math/Rect.h"
 	"Engine/Physics.h"
 
-1425232895 source:c:\projects\creatio\include\application\tile.cpp
+1425936017 source:c:\projects\creatio\include\application\tile.cpp
 	"Tile.h"
 
 1424713955 source:c:\projects\creatio\include\application\entity.cpp
@@ -590,16 +591,18 @@
 	"Entity.h"
 	"Application/Component.h"
 
-1424888394 c:\projects\creatio\include\application\entity.h
+1426022079 c:\projects\creatio\include\application\entity.h
 	<bitset>
 	<memory>
 	<vector>
 	"Component.h"
+	"Math/Rect.h"
 	"Utility/Utility.h"
 
-1424285693 c:\projects\creatio\include\application\component.h
+1426022050 c:\projects\creatio\include\application\component.h
 	<string>
 	"Math/Vec2.h"
+	"Math/Rect.h"
 
 1424888365 source:c:\projects\creatio\include\application\system.cpp
 	"System.h"

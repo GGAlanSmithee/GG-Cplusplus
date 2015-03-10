@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <SDL.h>
+#include "Math/Rect.h"
 
 class GG_Renderer
 {
@@ -20,8 +21,8 @@ class GG_Renderer
         friend void GG_RenderTexture(std::unique_ptr<GG_Renderer> const&, SDL_Texture* const);
         friend void GG_RenderTexture(std::unique_ptr<GG_Renderer> const&,
                                      SDL_Texture* const,
-                                     SDL_Rect&,
-                                     SDL_Rect&);
+                                     SDL_Rect,
+                                     SDL_Rect);
 
         friend const SDL_Rect GG_GetWindowSize(std::unique_ptr<GG_Renderer> const&);
 
@@ -29,7 +30,7 @@ class GG_Renderer
         friend const float GG_ToView(std::unique_ptr<GG_Renderer> const&, const float);
 
         friend const SDL_Rect GG_ToLogical(std::unique_ptr<GG_Renderer> const&, SDL_Rect const&);
-        friend const SDL_Rect GG_ToView(std::unique_ptr<GG_Renderer> const&, SDL_Rect const&);
+        friend SDL_Rect GG_ToView(std::unique_ptr<GG_Renderer> const&, GG_Rect const&);
 
         friend SDL_Renderer* const GG_GetSDLRenderer(std::unique_ptr<GG_Renderer> const&);
 

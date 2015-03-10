@@ -24,7 +24,7 @@ GG_Tile::~GG_Tile()
 
 }
 
-SDL_Rect const& GG_GetBoundary(GG_Tile const& tile)
+GG_Rect const& GG_GetBoundary(GG_Tile const& tile)
 {
     return tile.boundary;
 }
@@ -34,12 +34,12 @@ unsigned int const GG_GetTileNumber(GG_Tile const& tile)
     return tile.tileNumber;
 }
 
-GG_TileType const  GG_GetTileType(GG_Tile const& tile)
+GG_TileType const GG_GetTileType(GG_Tile const& tile)
 {
     return tile.tileType;
 }
 
-GG_CollisionType const  GG_GetCollisionType(GG_Tile const& tile)
+GG_CollisionType const GG_GetCollisionType(GG_Tile const& tile)
 {
     return tile.collisionType;
 }

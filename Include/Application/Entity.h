@@ -5,6 +5,7 @@
 #include <memory>
 #include <vector>
 #include "Component.h"
+#include "Math/Rect.h"
 #include "Utility/Utility.h"
 
 class GG_EntityManager
@@ -59,6 +60,6 @@ class GG_EntityManager
         int maxEntityAlive;
 };
 
-const unsigned int GG_CreateCamera(GG_EntityManager&, SDL_Rect const&);
+const unsigned int GG_CreateCamera(GG_EntityManager&, GG_Rect const&);
 
 #endif // APPLICATION_ENTITY_H_INCLUDED

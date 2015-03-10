@@ -74,8 +74,8 @@ void GG_RenderTexture(std::unique_ptr<GG_Renderer> const& renderer, SDL_Texture*
 
 void GG_RenderTexture(std::unique_ptr<GG_Renderer> const& renderer,
                       SDL_Texture* const texture,
-                      SDL_Rect& source,
-                      SDL_Rect& dest)
+                      SDL_Rect source,
+                      SDL_Rect dest)
 {
     if (!renderer)
     {
@@ -157,19 +157,20 @@ const SDL_Rect GG_ToLogical(std::unique_ptr<GG_Renderer> const& renderer, SDL_Re
     return rect;
 }
 
-const SDL_Rect GG_ToView(std::unique_ptr<GG_Renderer> const& renderer, SDL_Rect const& value)
+SDL_Rect GG_ToView(std::unique_ptr<GG_Renderer> const& renderer, GG_Rect const& value)
 {
     if (!renderer)
     {
         throw std::invalid_argument("renderer cannot be null");
     }
 
-    SDL_Rect rect = value;
-
-    rect.x *= renderer->UnitSize;
-    rect.y *= renderer->UnitSize;
-    rect.w *= renderer->UnitSize;
-    rect.h *= renderer->UnitSize;
+    SDL_Rect rect
+             {
+                 value.x * renderer->UnitSize,
+                 value.y * renderer->UnitSize,
+                 value.w * renderer->UnitSize,
+                 value.h * renderer->UnitSize
+             };
 
     return rect;
 }

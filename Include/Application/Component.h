@@ -3,6 +3,7 @@
 
 #include <string>
 #include "Math/Vec2.h"
+#include "Math/Rect.h"
 
 /// Enum representing the different component types
 /// @author Alan Smithee
@@ -34,7 +35,7 @@ GG_AppearanceComponent;
 typedef struct GG_PhysicsComponent
 {
     GG_Vec2f Velocity;
-    SDL_Rect Hitbox;
+    GG_Rect Hitbox;
 }
 GG_PhysicsComponent;
 

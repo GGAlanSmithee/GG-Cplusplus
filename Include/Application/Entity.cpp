@@ -55,7 +55,7 @@ void GG_DestroyEntity(GG_EntityManager& entityManager, const unsigned int entity
     entityManager.Enteties[entity] = GG_Utility::ToIntegral(GG_ComponentType::None);
 }
 
-const unsigned int GG_CreateCamera(GG_EntityManager& entityManager, SDL_Rect const& windowRect)
+const unsigned int GG_CreateCamera(GG_EntityManager& entityManager, GG_Rect const& windowRect)
 {
     auto entity = GG_CreateEntity(entityManager);
 
