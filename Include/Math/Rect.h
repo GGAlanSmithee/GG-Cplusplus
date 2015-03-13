@@ -51,25 +51,21 @@ struct GG_Rect
     // Binary operators
     friend const GG_Rect operator+(GG_Rect const&, GG_Rect const&);
     friend const GG_Rect operator+(GG_Rect const&, GG_Vec2f const&);
-    friend const GG_Rect operator+(GG_Rect const&, SDL_Rect const&);
     friend const GG_Rect operator+(GG_Rect const&, const int);
     friend const GG_Rect operator+(GG_Rect const&, const float);
 
     friend const GG_Rect operator-(GG_Rect const&, GG_Rect const&);
     friend const GG_Rect operator-(GG_Rect const&, GG_Vec2f const&);
-    friend const GG_Rect operator-(GG_Rect const&, SDL_Rect const&);
     friend const GG_Rect operator-(GG_Rect const&, const int);
     friend const GG_Rect operator-(GG_Rect const&, const float);
 
     friend const GG_Rect operator/(GG_Rect const&, GG_Rect const&);
     friend const GG_Rect operator/(GG_Rect const&, GG_Vec2f const&);
-    friend const GG_Rect operator/(GG_Rect const&, SDL_Rect const&);
     friend const GG_Rect operator/(GG_Rect const&, const int);
     friend const GG_Rect operator/(GG_Rect const&, const float);
 
     friend const GG_Rect operator*(GG_Rect const&, GG_Rect const&);
     friend const GG_Rect operator*(GG_Rect const&, GG_Vec2f const&);
-    friend const GG_Rect operator*(GG_Rect const&, SDL_Rect const&);
     friend const GG_Rect operator*(GG_Rect const&, const int);
     friend const GG_Rect operator*(GG_Rect const&, const float);
 
