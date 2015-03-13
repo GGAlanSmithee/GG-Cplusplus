@@ -3,7 +3,6 @@
 // Constructors
 GG_Rect::GG_Rect()                                                           : x(0.0f), y(0.0f), w(0.0f), h(0.0f) {}
 GG_Rect::GG_Rect(GG_Rect const& r)                                           : x(r.x), y(r.y), w(r.w), h(r.h)     {}
-GG_Rect::GG_Rect(SDL_Rect const& r)                                          : x(r.x), y(r.y), w(r.w), h(r.h)     {}
 GG_Rect::GG_Rect(const int i)                                                : x(i), y(i), w(i), h(i)             {}
 GG_Rect::GG_Rect(const float f)                                              : x(f), y(f), w(f), h(f)             {}
 GG_Rect::GG_Rect(const int x, const int y, const int w, const int h)         : x(x), y(y), w(w), h(h)             {}
@@ -173,16 +172,6 @@ GG_Rect const& GG_Rect::operator/=(GG_Vec2f const& v)
     return *this;
 }
 
-GG_Rect const& GG_Rect::operator/=(SDL_Rect const& r)
-{
-    x /= r.x;
-    y /= r.y;
-    w /= r.w;
-    h /= r.h;
-
-    return *this;
-}
-
 GG_Rect const& GG_Rect::operator/=(const int i)
 {
     x /= i;
@@ -268,14 +257,6 @@ const GG_Rect operator+(GG_Rect const& r, GG_Vec2f const& v)
     return ret;
 }
 
-const GG_Rect operator+(GG_Rect const& r, SDL_Rect const& r2)
-{
-    auto ret = r;
-    ret += r2;
-
-    return ret;
-}
-
 const GG_Rect operator+(GG_Rect const& r, const int i)
 {
     auto ret = r;
@@ -308,14 +289,6 @@ const GG_Rect operator-(GG_Rect const& r, GG_Vec2f const& v)
     return ret;
 }
 
-const GG_Rect operator-(GG_Rect const& r, SDL_Rect const& r2)
-{
-    auto ret = r;
-    ret -= r2;
-
-    return ret;
-}
-
 const GG_Rect operator-(GG_Rect const& r, const int i)
 {
     auto ret = r;
@@ -344,14 +317,6 @@ const GG_Rect operator/(GG_Rect const& r, GG_Vec2f const& v)
 {
     auto ret = r;
     ret /= v;
-
-    return ret;
-}
-
-const GG_Rect operator/(GG_Rect const& r, SDL_Rect const& r2)
-{
-    auto ret = r;
-    ret /= r2;
 
     return ret;
 }
