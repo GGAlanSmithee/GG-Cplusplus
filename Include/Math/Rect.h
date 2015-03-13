@@ -1,7 +1,6 @@
 #ifndef MATH_RECT_H_INCLUDED
 #define MATH_RECT_H_INCLUDED
 
-#include <SDL.h>
 #include "Vec2.h"
 
 class GG_Vec2f;
@@ -14,7 +13,6 @@ struct GG_Rect
     // Constructors
     GG_Rect();
     GG_Rect(GG_Rect const&);
-    GG_Rect(SDL_Rect const&);
     GG_Rect(const int);
     GG_Rect(const float);
     GG_Rect(const int, const int, const int, const int);
@@ -32,25 +30,21 @@ struct GG_Rect
 
     GG_Rect const& operator+=(GG_Rect const&);
     GG_Rect const& operator+=(GG_Vec2f const&);
-    GG_Rect const& operator+=(SDL_Rect const&);
     GG_Rect const& operator+=(const int);
     GG_Rect const& operator+=(const float);
 
     GG_Rect const& operator-=(GG_Rect const&);
     GG_Rect const& operator-=(GG_Vec2f const&);
-    GG_Rect const& operator-=(SDL_Rect const&);
     GG_Rect const& operator-=(const int);
     GG_Rect const& operator-=(const float);
 
     GG_Rect const& operator/=(GG_Rect const&);
     GG_Rect const& operator/=(GG_Vec2f const&);
-    GG_Rect const& operator/=(SDL_Rect const&);
     GG_Rect const& operator/=(const int);
     GG_Rect const& operator/=(const float);
 
     GG_Rect const& operator*=(GG_Rect const&);
     GG_Rect const& operator*=(GG_Vec2f const&);
-    GG_Rect const& operator*=(SDL_Rect const&);
     GG_Rect const& operator*=(const int);
     GG_Rect const& operator*=(const float);
 
@@ -78,8 +72,6 @@ struct GG_Rect
     friend const GG_Rect operator*(GG_Rect const&, SDL_Rect const&);
     friend const GG_Rect operator*(GG_Rect const&, const int);
     friend const GG_Rect operator*(GG_Rect const&, const float);
-
-    friend const SDL_Rect GG_ToSDL_Rect(GG_Rect const&);
 
     float x;
     float y;
