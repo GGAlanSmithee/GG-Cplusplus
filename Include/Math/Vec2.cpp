@@ -4,7 +4,6 @@
 GG_Vec2f::GG_Vec2f()                             : x(0.0f), y(0.0f) {}
 GG_Vec2f::GG_Vec2f(GG_Vec2f const& v)            : x(v.x),  y(v.y)  {}
 GG_Vec2f::GG_Vec2f(GG_Rect const& r)             : x(r.x),  y(r.y)  {}
-GG_Vec2f::GG_Vec2f(SDL_Rect const& r)            : x(r.x),  y(r.y)  {}
 GG_Vec2f::GG_Vec2f(const int i)                  : x(i),    y(i)    {}
 GG_Vec2f::GG_Vec2f(const float f)                : x(f),    y(f)    {}
 GG_Vec2f::GG_Vec2f(const int x, const int y)     : x(x),    y(y)    {}
@@ -26,14 +25,6 @@ GG_Vec2f const& GG_Vec2f::operator=(GG_Vec2f const& v)
 {
     x = v.x;
     y = v.y;
-
-    return *this;
-}
-
-GG_Vec2f const& GG_Vec2f::operator=(SDL_Rect const& r)
-{
-    x = r.x;
-    y = r.y;
 
     return *this;
 }
@@ -63,14 +54,6 @@ GG_Vec2f const& GG_Vec2f::operator+=(GG_Vec2f const& v)
 }
 
 GG_Vec2f const& GG_Vec2f::operator+=(GG_Rect const& r)
-{
-    x += r.x;
-    y += r.y;
-
-    return *this;
-}
-
-GG_Vec2f const& GG_Vec2f::operator+=(SDL_Rect const& r)
 {
     x += r.x;
     y += r.y;
@@ -110,14 +93,6 @@ GG_Vec2f const& GG_Vec2f::operator-=(GG_Rect const& r)
     return *this;
 }
 
-GG_Vec2f const& GG_Vec2f::operator-=(SDL_Rect const& r)
-{
-    x -= r.x;
-    y -= r.y;
-
-    return *this;
-}
-
 GG_Vec2f const& GG_Vec2f::operator-=(const int i)
 {
     x -= i;
@@ -150,14 +125,6 @@ GG_Vec2f const& GG_Vec2f::operator/=(GG_Rect const& r)
     return *this;
 }
 
-GG_Vec2f const& GG_Vec2f::operator/=(SDL_Rect const& r)
-{
-    x /= r.x;
-    y /= r.y;
-
-    return *this;
-}
-
 GG_Vec2f const& GG_Vec2f::operator/=(const int i)
 {
     x /= i;
@@ -183,14 +150,6 @@ GG_Vec2f const& GG_Vec2f::operator*=(GG_Vec2f const& v)
 }
 
 GG_Vec2f const& GG_Vec2f::operator*=(GG_Rect const& r)
-{
-    x *= r.x;
-    y *= r.y;
-
-    return *this;
-}
-
-GG_Vec2f const& GG_Vec2f::operator*=(SDL_Rect const& r)
 {
     x *= r.x;
     y *= r.y;
@@ -231,14 +190,6 @@ const GG_Vec2f operator+(GG_Vec2f const& v, GG_Rect const& r)
     return ret;
 }
 
-const GG_Vec2f operator+(GG_Vec2f const& v, SDL_Rect const& r)
-{
-    auto ret = v;
-    ret += r;
-
-    return ret;
-}
-
 const GG_Vec2f operator+(GG_Vec2f const& v, const int i)
 {
     auto ret = v;
@@ -264,14 +215,6 @@ const GG_Vec2f operator-(GG_Vec2f const& v, GG_Vec2f const& v2)
 }
 
 const GG_Vec2f operator-(GG_Vec2f const& v, GG_Rect const& r)
-{
-    auto ret = v;
-    ret -= r;
-
-    return ret;
-}
-
-const GG_Vec2f operator-(GG_Vec2f const& v, SDL_Rect const& r)
 {
     auto ret = v;
     ret -= r;
@@ -311,14 +254,6 @@ const GG_Vec2f operator/(GG_Vec2f const& v, GG_Rect const& r)
     return ret;
 }
 
-const GG_Vec2f operator/(GG_Vec2f const& v, SDL_Rect const& r)
-{
-    auto ret = v;
-    ret /= r;
-
-    return ret;
-}
-
 const GG_Vec2f operator/(GG_Vec2f const& v, const int i)
 {
     auto ret = v;
@@ -344,14 +279,6 @@ const GG_Vec2f operator*(GG_Vec2f const& v, GG_Vec2f const& v2)
 }
 
 const GG_Vec2f operator*(GG_Vec2f const& v, GG_Rect const& r)
-{
-    auto ret = v;
-    ret *= r;
-
-    return ret;
-}
-
-const GG_Vec2f operator*(GG_Vec2f const& v, SDL_Rect const& r)
 {
     auto ret = v;
     ret *= r;
