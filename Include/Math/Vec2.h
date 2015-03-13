@@ -1,7 +1,6 @@
 #ifndef MATH_VEC2_H_INCLUDED
 #define MATH_VEC2_H_INCLUDED
 
-#include <SDL.h>
 #include "Rect.h"
 
 class GG_Rect;
@@ -15,7 +14,6 @@ struct GG_Vec2f
     GG_Vec2f();
     GG_Vec2f(GG_Vec2f const&);
     GG_Vec2f(GG_Rect const&);
-    GG_Vec2f(SDL_Rect const&);
     GG_Vec2f(const int);
     GG_Vec2f(const float);
     GG_Vec2f(const int, const int);
@@ -27,56 +25,47 @@ struct GG_Vec2f
 
     // Unary operators
     GG_Vec2f const& operator=(GG_Vec2f const&);
-    GG_Vec2f const& operator=(SDL_Rect const&);
     GG_Vec2f const& operator=(const int);
     GG_Vec2f const& operator=(const float);
 
     GG_Vec2f const& operator+=(GG_Vec2f const&);
     GG_Vec2f const& operator+=(GG_Rect const&);
-    GG_Vec2f const& operator+=(SDL_Rect const&);
     GG_Vec2f const& operator+=(const int);
     GG_Vec2f const& operator+=(const float);
 
     GG_Vec2f const& operator-=(GG_Vec2f const&);
     GG_Vec2f const& operator-=(GG_Rect const&);
-    GG_Vec2f const& operator-=(SDL_Rect const&);
     GG_Vec2f const& operator-=(const int);
     GG_Vec2f const& operator-=(const float);
 
     GG_Vec2f const& operator/=(GG_Vec2f const&);
     GG_Vec2f const& operator/=(GG_Rect const&);
-    GG_Vec2f const& operator/=(SDL_Rect const&);
     GG_Vec2f const& operator/=(const int);
     GG_Vec2f const& operator/=(const float);
 
     GG_Vec2f const& operator*=(GG_Vec2f const&);
     GG_Vec2f const& operator*=(GG_Rect const&);
-    GG_Vec2f const& operator*=(SDL_Rect const&);
     GG_Vec2f const& operator*=(const int);
     GG_Vec2f const& operator*=(const float);
 
     // Binary operators
     friend const GG_Vec2f operator+(GG_Vec2f const&, GG_Vec2f const&);
     friend const GG_Vec2f operator+(GG_Vec2f const&, GG_Rect const&);
-    friend const GG_Vec2f operator+(GG_Vec2f const&, SDL_Rect const&);
     friend const GG_Vec2f operator+(GG_Vec2f const&, const int);
     friend const GG_Vec2f operator+(GG_Vec2f const&, const float);
 
     friend const GG_Vec2f operator-(GG_Vec2f const&, GG_Vec2f const&);
     friend const GG_Vec2f operator-(GG_Vec2f const&, GG_Rect const&);
-    friend const GG_Vec2f operator-(GG_Vec2f const&, SDL_Rect const&);
     friend const GG_Vec2f operator-(GG_Vec2f const&, const int);
     friend const GG_Vec2f operator-(GG_Vec2f const&, const float);
 
     friend const GG_Vec2f operator/(GG_Vec2f const&, GG_Vec2f const&);
     friend const GG_Vec2f operator/(GG_Vec2f const&, GG_Rect const&);
-    friend const GG_Vec2f operator/(GG_Vec2f const&, SDL_Rect const&);
     friend const GG_Vec2f operator/(GG_Vec2f const&, const int);
     friend const GG_Vec2f operator/(GG_Vec2f const&, const float);
 
     friend const GG_Vec2f operator*(GG_Vec2f const&, GG_Vec2f const&);
     friend const GG_Vec2f operator*(GG_Vec2f const&, GG_Rect const&);
-    friend const GG_Vec2f operator*(GG_Vec2f const&, SDL_Rect const&);
     friend const GG_Vec2f operator*(GG_Vec2f const&, const int);
     friend const GG_Vec2f operator*(GG_Vec2f const&, const float);
 
