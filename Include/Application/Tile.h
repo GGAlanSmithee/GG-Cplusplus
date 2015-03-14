@@ -15,7 +15,7 @@ class GG_Tile
 {
     public:
         GG_Tile();
-        GG_Tile(SDL_Rect const&, const unsigned int, const GG_TileType, const GG_CollisionType);
+        GG_Tile(GG_Rect const&, const unsigned int, const GG_TileType, const GG_CollisionType);
         ~GG_Tile();
 
         friend GG_Rect const&          GG_GetBoundary(GG_Tile const&);
@@ -24,7 +24,7 @@ class GG_Tile
         friend GG_CollisionType const  GG_GetCollisionType(GG_Tile const&);
 
     private:
-        GG_Rect         boundary;
+        GG_Rect          boundary;
         unsigned int     tileNumber;
         GG_TileType      tileType;
         GG_CollisionType collisionType;

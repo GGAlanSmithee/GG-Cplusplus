@@ -14,7 +14,7 @@ class EditorApplication : public GG_Application
         void OnRender(std::unique_ptr<GG_Engine> const&) override;
 
     private:
-        void OnMouseEvent(const unsigned int, const float, const SDL_Rect);
+        void OnMouseEvent(const unsigned int, const float, const GG_Rect);
 };
 
 #endif // EDITORAPPLICATION_H_INCLUDED

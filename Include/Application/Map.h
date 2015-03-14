@@ -3,7 +3,6 @@
 
 #include <climits>
 #include <memory>
-#include <SDL.h>
 #include <vector>
 #include "Tile.h"
 #include "Engine/Renderer.h"

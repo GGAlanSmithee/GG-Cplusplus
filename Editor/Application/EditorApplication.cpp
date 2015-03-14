@@ -59,7 +59,7 @@ void EditorApplication::OnRender(std::unique_ptr<GG_Engine> const& engine)
 
 void EditorApplication::OnMouseEvent(const unsigned int eventType,
                                      const float delta,
-                                     const SDL_Rect windowRect)
+                                     const GG_Rect windowRect)
 {
     int x, y;
     SDL_GetMouseState(&x, &y);
@@ -74,6 +74,15 @@ void EditorApplication::OnMouseEvent(const unsigned int eventType,
     auto topBorder = windowRect.h * 0.15f;
     auto bottomBorder = windowRect.h - topBorder;
 
-    p->Velocity.x = x < leftBorder ? -vel : x > rightBorder ? vel : 0.0f;
-    p->Velocity.y = y < topBorder ? -vel : y > bottomBorder ? vel : 0.0f;
+    auto xVelocity = x < leftBorder ? -vel : x > rightBorder ? vel : 0.0f;
+    auto yVelocity = y < topBorder ? -vel : y > bottomBorder ? vel : 0.0f;
+
+    if (xVelocity > 0.0f && yVelocity > 0.0f || xVelocity < 0.0f && yVelocity < 0.0f)
+    {
+        xVelocity -= (xVelocity / 6.0f);
+        yVelocity -= (yVelocity / 6.0f);
+    }
+
+    p->Velocity.x = xVelocity;
+    p->Velocity.y = yVelocity;
 }

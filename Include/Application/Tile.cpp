@@ -7,7 +7,7 @@ GG_Tile::GG_Tile() :
 }
 
 
-GG_Tile::GG_Tile(SDL_Rect const& boundary,
+GG_Tile::GG_Tile(GG_Rect const& boundary,
                  const unsigned int tileNumber,
                  const GG_TileType tileType,
                  const GG_CollisionType collisionType) :

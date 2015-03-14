@@ -1,7 +1,6 @@
 #include "Renderer.h"
 
 #include <iostream>
-#include <SDL.h>
 #include "Utility/Exception.h"
 
 /// @todo add parameter for flags
@@ -13,10 +12,13 @@ GG_Renderer::GG_Renderer(SDL_Window* const window) :
         throw std::invalid_argument("window cannot be null");
     }
 
-    _windowRect.x = 0;
-    _windowRect.y = 0;
+    int w = 0;
+    int h = 0;
 
-    SDL_GetWindowSize(window, &_windowRect.w, &_windowRect.h);
+    SDL_GetWindowSize(window, &w, &h);
+
+    _windowRect.w = w;
+    _windowRect.h = h;
 
     _sdlRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
@@ -74,8 +76,8 @@ void GG_RenderTexture(std::unique_ptr<GG_Renderer> const& renderer, SDL_Texture*
 
 void GG_RenderTexture(std::unique_ptr<GG_Renderer> const& renderer,
                       SDL_Texture* const texture,
-                      SDL_Rect source,
-                      SDL_Rect dest)
+                      GG_Rect source,
+                      GG_Rect destination)
 {
     if (!renderer)
     {
@@ -87,17 +89,33 @@ void GG_RenderTexture(std::unique_ptr<GG_Renderer> const& renderer,
         throw std::invalid_argument("texture cannot be null");
     }
 
-    if (dest.w == 0)
+    if (destination.w == 0)
     {
-        dest.w = source.w;
+        destination.w = source.w;
     }
 
-    if (dest.h == 0)
+    if (destination.h == 0)
     {
-        dest.h = source.h;
+        destination.h = source.h;
     }
 
-    SDL_RenderCopy(renderer->_sdlRenderer, texture, &source, &dest);
+    SDL_Rect src =
+             {
+                 GG_ToView(renderer, source.x),
+                 GG_ToView(renderer, source.y),
+                 GG_ToView(renderer, source.w),
+                 GG_ToView(renderer, source.h)
+             };
+
+    SDL_Rect dest =
+             {
+                 GG_ToView(renderer, destination.x),
+                 GG_ToView(renderer, destination.y),
+                 GG_ToView(renderer, destination.w),
+                 GG_ToView(renderer, destination.h)
+             };
+
+    SDL_RenderCopy(renderer->_sdlRenderer, texture, &src, &dest);
 }
 
 SDL_Renderer* const GG_GetSDLRenderer(std::unique_ptr<GG_Renderer> const& renderer)
@@ -110,7 +128,7 @@ SDL_Renderer* const GG_GetSDLRenderer(std::unique_ptr<GG_Renderer> const& render
     return renderer->_sdlRenderer;
 }
 
-const SDL_Rect GG_GetWindowSize(std::unique_ptr<GG_Renderer> const& renderer)
+const GG_Rect GG_GetWindowSize(std::unique_ptr<GG_Renderer> const& renderer)
 {
     if (!renderer)
     {
@@ -118,6 +136,18 @@ const SDL_Rect GG_GetWindowSize(std::unique_ptr<GG_Renderer> const& renderer)
     }
 
     return renderer->_windowRect;
+}
+
+const GG_Rect GG_GetWindowLogicalSize(std::unique_ptr<GG_Renderer> const& renderer)
+{
+    auto windowRect = GG_GetWindowSize(renderer);
+
+    windowRect.x = GG_ToLogical(renderer, windowRect.x);
+    windowRect.y = GG_ToLogical(renderer, windowRect.y);
+    windowRect.w = GG_ToLogical(renderer, windowRect.w);
+    windowRect.h = GG_ToLogical(renderer, windowRect.h);
+
+    return windowRect;
 }
 
 const float GG_ToLogical(std::unique_ptr<GG_Renderer> const& renderer, const float value)
@@ -138,39 +168,4 @@ const float GG_ToView(std::unique_ptr<GG_Renderer> const& renderer, const float 
     }
 
     return value * renderer->UnitSize;
-}
-
-const SDL_Rect GG_ToLogical(std::unique_ptr<GG_Renderer> const& renderer, SDL_Rect const& value)
-{
-    if (!renderer)
-    {
-        throw std::invalid_argument("renderer cannot be null");
-    }
-
-    SDL_Rect rect = value;
-
-    rect.x /= renderer->UnitSize;
-    rect.y /= renderer->UnitSize;
-    rect.w /= renderer->UnitSize;
-    rect.h /= renderer->UnitSize;
-
-    return rect;
-}
-
-SDL_Rect GG_ToView(std::unique_ptr<GG_Renderer> const& renderer, GG_Rect const& value)
-{
-    if (!renderer)
-    {
-        throw std::invalid_argument("renderer cannot be null");
-    }
-
-    SDL_Rect rect
-             {
-                 value.x * renderer->UnitSize,
-                 value.y * renderer->UnitSize,
-                 value.w * renderer->UnitSize,
-                 value.h * renderer->UnitSize
-             };
-
-    return rect;
 }

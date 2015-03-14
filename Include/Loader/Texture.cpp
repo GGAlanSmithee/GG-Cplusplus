@@ -1,5 +1,4 @@
 #include <iostream>
-#include <SDL.h>
 #include <SDL_image.h>
 #include "Texture.h"
 #include "Utility/Exception.h"
@@ -26,7 +25,7 @@ SDL_Texture* const GG_LoadTexture(std::unique_ptr<GG_TextureLoader> const& textu
     }
 
     SDL_SetColorKey(surface, SDL_TRUE, SDL_MapRGB(surface->format, 0xFF, 0, 0xFF));
-    
+
     auto texture = SDL_CreateTextureFromSurface(GG_GetSDLRenderer(renderer), surface);
 
     SDL_FreeSurface(surface);

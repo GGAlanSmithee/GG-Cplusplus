@@ -19,12 +19,12 @@ int main(int argc, char* args[])
         GG_RegisterKeyDownEvent(GG_GetEvent(engine), SDLK_ESCAPE, [&]() { running = false; });
 
         auto data = std::make_shared<GG_ApplicationData>();
+
         data->Add<EntityManagerEntry>(GG_EntityManager());
         data->Add<MapEntry>(GG_LoadMap(GG_GetTextureManager(engine), "../Maps/test.ggmap"));
 
-        auto windowRect = GG_GetWindowSize(GG_GetRenderer(engine));
         auto camera = GG_CreateCamera(data->Get<EntityManagerEntry>(),
-                                      GG_ToLogical(GG_GetRenderer(engine), windowRect));
+                                      GG_GetWindowLogicalSize(GG_GetRenderer(engine)));
 
         data->Add<CameraEntry>(camera);
 

@@ -21,22 +21,20 @@ class GG_Renderer
         friend void GG_RenderTexture(std::unique_ptr<GG_Renderer> const&, SDL_Texture* const);
         friend void GG_RenderTexture(std::unique_ptr<GG_Renderer> const&,
                                      SDL_Texture* const,
-                                     SDL_Rect,
-                                     SDL_Rect);
+                                     GG_Rect,
+                                     GG_Rect);
 
-        friend const SDL_Rect GG_GetWindowSize(std::unique_ptr<GG_Renderer> const&);
+        friend const GG_Rect GG_GetWindowSize(std::unique_ptr<GG_Renderer> const&);
+        friend const GG_Rect GG_GetWindowLogicalSize(std::unique_ptr<GG_Renderer> const&);
 
         friend const float GG_ToLogical(std::unique_ptr<GG_Renderer> const&, const float);
         friend const float GG_ToView(std::unique_ptr<GG_Renderer> const&, const float);
-
-        friend const SDL_Rect GG_ToLogical(std::unique_ptr<GG_Renderer> const&, SDL_Rect const&);
-        friend SDL_Rect GG_ToView(std::unique_ptr<GG_Renderer> const&, GG_Rect const&);
 
         friend SDL_Renderer* const GG_GetSDLRenderer(std::unique_ptr<GG_Renderer> const&);
 
     private:
         SDL_Renderer* _sdlRenderer = nullptr;
-        SDL_Rect      _windowRect;
+        GG_Rect       _windowRect;
         const float   UnitSize;
 };
 
