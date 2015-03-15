@@ -66,7 +66,7 @@ void GG_RenderMap(GG_Map const& map,
         {
             auto tile = GG_GetTile(map, x, y);
 
-            src.x = GG_GetTileNumber(tile);
+            src.x = GG_GetNumber(tile);
 
             auto dest = GG_GetBoundary(GG_GetTile(map, x, y));
 
@@ -124,7 +124,7 @@ const GG_Map GG_LoadMap(std::unique_ptr<GG_TextureManager> const& textureManager
 
             tileBoundary = { x, y, 1, 1 };
 
-            tilesRow.push_back(GG_Tile(tileBoundary, tileNumber, GG_TileType::Normal, GG_CollisionType::Box));
+            tilesRow.push_back(GG_Tile(tileBoundary, 1, tileNumber, GG_TileType::Normal, GG_TileShape::Box, GG_CollisionType::Box));
         }
 
         tiles.push_back(tilesRow);
