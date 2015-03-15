@@ -76,8 +76,8 @@ void GG_RenderTexture(std::unique_ptr<GG_Renderer> const& renderer, SDL_Texture*
 
 void GG_RenderTexture(std::unique_ptr<GG_Renderer> const& renderer,
                       SDL_Texture* const texture,
-                      GG_Rect source,
-                      GG_Rect destination)
+                      GG_Rect const& source,
+                      GG_Rect const& destination)
 {
     if (!renderer)
     {
@@ -87,16 +87,6 @@ void GG_RenderTexture(std::unique_ptr<GG_Renderer> const& renderer,
     if (texture == nullptr)
     {
         throw std::invalid_argument("texture cannot be null");
-    }
-
-    if (destination.w == 0)
-    {
-        destination.w = source.w;
-    }
-
-    if (destination.h == 0)
-    {
-        destination.h = source.h;
     }
 
     SDL_Rect src =

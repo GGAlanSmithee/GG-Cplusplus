@@ -21,8 +21,8 @@ class GG_Renderer
         friend void GG_RenderTexture(std::unique_ptr<GG_Renderer> const&, SDL_Texture* const);
         friend void GG_RenderTexture(std::unique_ptr<GG_Renderer> const&,
                                      SDL_Texture* const,
-                                     GG_Rect,
-                                     GG_Rect);
+                                     GG_Rect const&,
+                                     GG_Rect const&);
 
         friend const GG_Rect GG_GetWindowSize(std::unique_ptr<GG_Renderer> const&);
         friend const GG_Rect GG_GetWindowLogicalSize(std::unique_ptr<GG_Renderer> const&);
