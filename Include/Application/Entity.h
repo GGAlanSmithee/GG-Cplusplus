@@ -11,7 +11,7 @@
 class GG_EntityManager
 {
     public:
-        /// Initializes a world object
+        /// Initializes an entity manager object
         /// @author Alan Smithee
         /// @date created 2014-11-28
         /// @date changed 2014-12-21
@@ -30,7 +30,7 @@ class GG_EntityManager
         /// @date changed 2015-02-17
         friend void GG_DestroyEntity(GG_EntityManager&, const unsigned int);
 
-        /// Worldsize
+        /// Number of enteties managed by the entity manager
         /// @author Alan Smithee
         /// @date created 2014-11-28
         unsigned int Size;
@@ -60,6 +60,12 @@ class GG_EntityManager
         int maxEntityAlive;
 };
 
+/// Creates a camera entity
+/// @author Alan Smithee
+/// @date created 2015-03-16
+/// @param entityManager the entity manager used to create the camera
+/// @param windowRect the viewport used by the camera in logical size
+/// @return the id of the ewly created camera
 const unsigned int GG_CreateCamera(GG_EntityManager&, GG_Rect const&);
 
 #endif // APPLICATION_ENTITY_H_INCLUDED
