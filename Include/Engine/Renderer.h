@@ -24,6 +24,8 @@ class GG_Renderer
                                      GG_Rect const&,
                                      GG_Rect const&);
 
+        friend void GG_RenderRect(std::unique_ptr<GG_Renderer> const&, GG_Rect const&);
+
         friend const GG_Rect GG_GetWindowSize(std::unique_ptr<GG_Renderer> const&);
         friend const GG_Rect GG_GetWindowLogicalSize(std::unique_ptr<GG_Renderer> const&);
 

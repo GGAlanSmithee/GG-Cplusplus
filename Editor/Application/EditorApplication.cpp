@@ -15,6 +15,8 @@ EditorApplication::EditorApplication(std::unique_ptr<GG_Engine> const& engine,
                                                  GG_GetDelta(GG_GetTimer(engine)),
                                                  GG_GetWindowSize(GG_GetRenderer(engine)));
                           });
+
+    guiTestElement = GG_GUI_Element({ 10, 10, 5, 5 });
 }
 
 EditorApplication::~EditorApplication()
@@ -48,13 +50,15 @@ void EditorApplication::OnRender(std::unique_ptr<GG_Engine> const& engine)
     auto cameraPos = entityManager.TransformComponents[camera].Translation;
     auto cameraRect = entityManager.PhysicsComponents[camera].Hitbox;
 
-    GG_RenderMap(data->Get<MapEntry>(),
-                 GG_GetRenderer(engine),
-                 GG_GetTextureManager(engine),
-                 cameraPos,
-                 cameraRect);
+    GG_Render(data->Get<MapEntry>(),
+              GG_GetRenderer(engine),
+              GG_GetTextureManager(engine),
+              cameraPos,
+              cameraRect);
 
     GG_RenderSystem(entityManager);
+
+    GG_Render(guiTestElement, GG_GetRenderer(engine));
 }
 
 void EditorApplication::OnMouseEvent(const unsigned int eventType,

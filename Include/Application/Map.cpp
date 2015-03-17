@@ -37,11 +37,11 @@ GG_Tile const& GG_GetTile(GG_Map const& map, const int x, const int y)
     return map.tiles[y][x];
 }
 
-void GG_RenderMap(GG_Map const& map,
-                  std::unique_ptr<GG_Renderer> const& renderer,
-                  std::unique_ptr<GG_TextureManager> const& textureManager,
-                  GG_Vec2f const& cameraPos,
-                  GG_Rect const& cameraRect)
+void GG_Render(GG_Map const& map,
+               std::unique_ptr<GG_Renderer> const& renderer,
+               std::unique_ptr<GG_TextureManager> const& textureManager,
+               GG_Vec2f const& cameraPos,
+               GG_Rect const& cameraRect)
 {
     auto boundary = GG_GetBoundary(map);
 

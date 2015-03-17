@@ -43,11 +43,11 @@ void TestApplication::OnRender(std::unique_ptr<GG_Engine> const& engine)
     auto cameraPos = entityManager.TransformComponents[camera].Translation;
     auto cameraRect = entityManager.PhysicsComponents[camera].Hitbox;
 
-    GG_RenderMap(data->Get<MapEntry>(),
-                 GG_GetRenderer(engine),
-                 GG_GetTextureManager(engine),
-                 cameraPos,
-                 cameraRect);
+    GG_Render(data->Get<MapEntry>(),
+              GG_GetRenderer(engine),
+              GG_GetTextureManager(engine),
+              cameraPos,
+              cameraRect);
 
     SDL_Rect rect = { 200, 100, 200, 100 };
 

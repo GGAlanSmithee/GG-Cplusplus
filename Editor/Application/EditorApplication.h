@@ -2,6 +2,7 @@
 #define EDITORAPPLICATION_H_INCLUDED
 
 #include "Application/Application.h"
+#include "Gui/Element.h"
 
 class EditorApplication : public GG_Application
 {
@@ -15,6 +16,7 @@ class EditorApplication : public GG_Application
 
     private:
         void OnMouseEvent(const unsigned int, const float, const GG_Rect);
+        GG_GUI_Element guiTestElement;
 };
 
 #endif // EDITORAPPLICATION_H_INCLUDED

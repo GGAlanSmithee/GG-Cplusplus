@@ -495,7 +495,7 @@
 	"Engine/Timer.h"
 	"Manager/Texture.h"
 
-1426420568 c:\projects\creatio\include\engine\renderer.h
+1426616678 c:\projects\creatio\include\engine\renderer.h
 	<memory>
 	<SDL.h>
 	"Math/Rect.h"
@@ -533,7 +533,7 @@
 	<memory>
 	"Event.h"
 
-1426420641 source:c:\projects\creatio\include\engine\renderer.cpp
+1426616923 source:c:\projects\creatio\include\engine\renderer.cpp
 	"Renderer.h"
 	<iostream>
 	"Utility/Exception.h"
@@ -561,12 +561,12 @@
 	"Factory.h"
 	"Exception.h"
 
-1426420271 source:c:\projects\creatio\include\application\map.cpp
+1426615958 source:c:\projects\creatio\include\application\map.cpp
 	<fstream>
 	"Map.h"
 	"Utility/Exception.h"
 
-1426322561 c:\projects\creatio\include\application\map.h
+1426615965 c:\projects\creatio\include\application\map.h
 	<climits>
 	<memory>
 	<vector>
@@ -617,13 +617,14 @@
 1426613948 c:\projects\creatio\include\application\applicationdata.h
 	<unordered_map>
 
-1426323589 source:c:\projects\creatio\editor\application\editorapplication.cpp
+1426617257 source:c:\projects\creatio\editor\application\editorapplication.cpp
 	"Application/System.h"
 	"EditorApplication.h"
 	"../Utility/Declarations.h"
 
-1426267036 c:\projects\creatio\editor\application\editorapplication.h
+1426617183 c:\projects\creatio\editor\application\editorapplication.h
 	"Application/Application.h"
+	"Gui/Element.h"
 
 1424605091 c:\projects\creatio\editor\utility\declarations.h
 	"Application/Entity.h"
@@ -637,7 +638,7 @@
 	<SDL.h>
 	"Timer.h"
 
-1426321795 source:c:\projects\creatio\editor\application\testapplication.cpp
+1426615950 source:c:\projects\creatio\editor\application\testapplication.cpp
 	"Application/System.h"
 	"TestApplication.h"
 	"../Utility/Declarations.h"
@@ -651,10 +652,12 @@
 1426265567 c:\projects\creatio\include\math\rect.h
 	"Vec2.h"
 
-1426614983 source:c:\projects\creatio\include\gui\element.cpp
+1426617062 source:c:\projects\creatio\include\gui\element.cpp
 	"Element.h"
 
-1426614864 c:\projects\creatio\include\gui\element.h
+1426617032 c:\projects\creatio\include\gui\element.h
+	<memory>
 	"Math/Vec2.h"
 	"Math/Rect.h"
+	"Engine/Renderer.h"
 

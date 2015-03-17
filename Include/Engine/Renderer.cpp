@@ -108,6 +108,24 @@ void GG_RenderTexture(std::unique_ptr<GG_Renderer> const& renderer,
     SDL_RenderCopy(renderer->_sdlRenderer, texture, &src, &dest);
 }
 
+void GG_RenderRect(std::unique_ptr<GG_Renderer> const& renderer, GG_Rect const& rect)
+{
+    if (!renderer)
+    {
+        throw std::invalid_argument("renderer cannot be null");
+    }
+
+    SDL_Rect dest =
+             {
+                 GG_ToView(renderer, rect.x - (rect.w / 2)),
+                 GG_ToView(renderer, rect.y - (rect.h / 2)),
+                 GG_ToView(renderer, rect.w),
+                 GG_ToView(renderer, rect.h)
+             };
+
+    SDL_RenderDrawRect(GG_GetSDLRenderer(renderer), &dest);
+}
+
 SDL_Renderer* const GG_GetSDLRenderer(std::unique_ptr<GG_Renderer> const& renderer)
 {
     if (!renderer)

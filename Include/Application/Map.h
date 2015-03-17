@@ -18,11 +18,11 @@ class GG_Map
         friend GG_Rect const& GG_GetBoundary(GG_Map const&);
         friend const int GG_GetTilesetId(GG_Map const&);
         friend GG_Tile const& GG_GetTile(GG_Map const&, const int, const int);
-        friend void GG_RenderMap(GG_Map const&,
-                                 std::unique_ptr<GG_Renderer> const&,
-                                 std::unique_ptr<GG_TextureManager> const&,
-                                 GG_Vec2f const&,
-                                 GG_Rect const&);
+        friend void GG_Render(GG_Map const&,
+                              std::unique_ptr<GG_Renderer> const&,
+                              std::unique_ptr<GG_TextureManager> const&,
+                              GG_Vec2f const&,
+                              GG_Rect const&);
 
     private:
         int                               size;
