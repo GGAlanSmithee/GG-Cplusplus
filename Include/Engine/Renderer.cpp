@@ -123,7 +123,11 @@ void GG_RenderRect(std::unique_ptr<GG_Renderer> const& renderer, GG_Rect const& 
                  GG_ToView(renderer, rect.h)
              };
 
-    SDL_RenderDrawRect(GG_GetSDLRenderer(renderer), &dest);
+    /// @todo add color struct and add an instance "backgroundColor" of it to the GG_GUI_Element class 
+    /// and pass it in as a paramter
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+
+    SDL_RenderFillRect(GG_GetSDLRenderer(renderer), &dest);
 }
 
 SDL_Renderer* const GG_GetSDLRenderer(std::unique_ptr<GG_Renderer> const& renderer)
