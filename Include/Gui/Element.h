@@ -2,6 +2,7 @@
 #define GUI_ELEMENT_H_INCLUDED
 
 #include <memory>
+#include <vector>
 #include "Math/Vec2.h"
 #include "Math/Rect.h"
 #include "Engine/Renderer.h"
@@ -17,8 +18,8 @@ class GG_GUI_Element
 
     private:
         GG_Rect _rect;
-        GG_GUI_Element* parent = nullptr;
-        std::vector<GG_GUI_Element*> children;
+        GG_GUI_Element* _parent = nullptr;
+        std::vector<GG_GUI_Element*> _children;
 };
 
 #endif // GUI_ELEMENT_H_INCLUDED

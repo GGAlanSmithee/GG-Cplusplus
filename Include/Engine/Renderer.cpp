@@ -54,6 +54,7 @@ void GG_UpdateScreen(std::unique_ptr<GG_Renderer> const& renderer)
         throw std::invalid_argument("renderer cannot be null");
     }
 
+    SDL_SetRenderDrawColor(GG_GetSDLRenderer(renderer), 100, 149, 237, 255);
     SDL_RenderPresent(GG_GetSDLRenderer(renderer));
 }
 
@@ -69,9 +70,7 @@ void GG_RenderTexture(std::unique_ptr<GG_Renderer> const& renderer, SDL_Texture*
         throw std::invalid_argument("texture cannot be null");
     }
 
-    SDL_RenderClear(renderer->_sdlRenderer);
     SDL_RenderCopy(renderer->_sdlRenderer, texture, nullptr, nullptr);
-    SDL_RenderPresent(renderer->_sdlRenderer);
 }
 
 void GG_RenderTexture(std::unique_ptr<GG_Renderer> const& renderer,
@@ -123,9 +122,9 @@ void GG_RenderRect(std::unique_ptr<GG_Renderer> const& renderer, GG_Rect const& 
                  GG_ToView(renderer, rect.h)
              };
 
-    /// @todo add color struct and add an instance "backgroundColor" of it to the GG_GUI_Element class 
+    /// @todo add color struct and add an instance "backgroundColor" of it to the GG_GUI_Element class
     /// and pass it in as a paramter
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    SDL_SetRenderDrawColor(GG_GetSDLRenderer(renderer), 255, 0, 0, 255);
 
     SDL_RenderFillRect(GG_GetSDLRenderer(renderer), &dest);
 }

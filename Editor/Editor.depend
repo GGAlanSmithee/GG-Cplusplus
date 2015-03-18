@@ -533,7 +533,7 @@
 	<memory>
 	"Event.h"
 
-1426616923 source:c:\projects\creatio\include\engine\renderer.cpp
+1426694059 source:c:\projects\creatio\include\engine\renderer.cpp
 	"Renderer.h"
 	<iostream>
 	"Utility/Exception.h"
@@ -617,7 +617,7 @@
 1426613948 c:\projects\creatio\include\application\applicationdata.h
 	<unordered_map>
 
-1426617257 source:c:\projects\creatio\editor\application\editorapplication.cpp
+1426617340 source:c:\projects\creatio\editor\application\editorapplication.cpp
 	"Application/System.h"
 	"EditorApplication.h"
 	"../Utility/Declarations.h"
@@ -652,11 +652,12 @@
 1426265567 c:\projects\creatio\include\math\rect.h
 	"Vec2.h"
 
-1426617062 source:c:\projects\creatio\include\gui\element.cpp
+1426693642 source:c:\projects\creatio\include\gui\element.cpp
 	"Element.h"
 
-1426617032 c:\projects\creatio\include\gui\element.h
+1426693839 c:\projects\creatio\include\gui\element.h
 	<memory>
+	<vector>
 	"Math/Vec2.h"
 	"Math/Rect.h"
 	"Engine/Renderer.h"
