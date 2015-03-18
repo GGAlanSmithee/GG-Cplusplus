@@ -17,6 +17,8 @@ class GG_GUI_Element
 
     private:
         GG_Rect _rect;
+        GG_GUI_Element* parent = nullptr;
+        std::vector<GG_GUI_Element*> children;
 };
 
 #endif // GUI_ELEMENT_H_INCLUDED
