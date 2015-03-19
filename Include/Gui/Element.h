@@ -7,6 +7,14 @@
 #include "Math/Rect.h"
 #include "Engine/Renderer.h"
 
+enum class GG_GUI_Style
+{
+    None,
+    Inherited,
+    Relative,
+    Absolute
+};
+
 class GG_GUI_Element
 {
     public:
@@ -18,6 +26,13 @@ class GG_GUI_Element
 
     private:
         GG_Rect _rect;
+
+        struct Style
+        {
+            GG_GUI_Style position;
+            GG_GUI_Style size;
+        };
+
         GG_GUI_Element* _parent = nullptr;
         std::vector<GG_GUI_Element*> _children;
 };
