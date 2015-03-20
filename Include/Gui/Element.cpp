@@ -30,3 +30,13 @@ void GG_Render(GG_GUI_Element const& element, std::unique_ptr<GG_Renderer> const
 {
     GG_RenderRect(renderer, element._rect);
 }
+
+void GG_AddStyle(GG_GUI_Element const& element, std::string const& name, GG_GUI_Style const& style)
+{
+    element._styles[name] = style;
+}
+
+void GG_RemoveStyle(GG_GUI_Element const& element, std::string const& name)
+{
+    element._styles.erase(name);
+}
