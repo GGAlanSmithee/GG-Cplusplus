@@ -25,7 +25,7 @@ class GG_GUI_Element
 
         friend void GG_Render(GG_GUI_Element const&, std::unique_ptr<GG_Renderer> const&);
         friend void GG_AddStyle(GG_GUI_Element const&, std::string const&, GG_GUI_Style const&);
-        friend void GG_RemoveStyle(GG_GUI_Element const&, std::string const&, GG_GUI_Style const&);
+        friend void GG_RemoveStyle(GG_GUI_Element const&, std::string const&);
         
     private:
         GG_Rect _rect;
