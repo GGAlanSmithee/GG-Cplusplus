@@ -68,6 +68,8 @@
 		<Unit filename="../Include/Engine/Timer.h" />
 		<Unit filename="../Include/Gui/Element.cpp" />
 		<Unit filename="../Include/Gui/Element.h" />
+		<Unit filename="../Include/Gui/Styles.cpp" />
+		<Unit filename="../Include/Gui/Styles.h" />
 		<Unit filename="../Include/Loader/Texture.cpp" />
 		<Unit filename="../Include/Loader/Texture.h" />
 		<Unit filename="../Include/Manager/Texture.cpp" />

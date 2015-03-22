@@ -16,7 +16,7 @@ EditorApplication::EditorApplication(std::unique_ptr<GG_Engine> const& engine,
                                                  GG_GetWindowSize(GG_GetRenderer(engine)));
                           });
 
-    guiTestElement = GG_GUI_Element({ 10, 10, 5, 5 });
+    guiTestElement = GG_GUI_Element({ 10, 10 }, 5, 5);
 }
 
 EditorApplication::~EditorApplication()
