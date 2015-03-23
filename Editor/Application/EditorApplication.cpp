@@ -16,12 +16,20 @@ EditorApplication::EditorApplication(std::unique_ptr<GG_Engine> const& engine,
                                                  GG_GetWindowSize(GG_GetRenderer(engine)));
                           });
 
-    guiTestElement = GG_GUI_Element({ 10, 10 }, 5, 5);
+    baseGuiElement = new GG_GUI_Element(GG_GetWindowLogicalSize(GG_GetRenderer(engine)),
+                                        GG_GUI_Style::Absolute,
+                                        false);
+
+    GG_AddChild(baseGuiElement, new GG_GUI_Element({ 10, 10, 5, 5 }, GG_GUI_Style::Relative, true));
 }
 
 EditorApplication::~EditorApplication()
 {
-    // Empty
+    if (baseGuiElement != nullptr)
+    {
+        delete baseGuiElement;
+        baseGuiElement = nullptr;
+    }
 }
 
 void EditorApplication::OnLogic(std::unique_ptr<GG_Engine> const& engine)
@@ -30,9 +38,6 @@ void EditorApplication::OnLogic(std::unique_ptr<GG_Engine> const& engine)
     {
         throw std::invalid_argument("engine cannot be null.");
     }
-
-    /// @todo log delta
-    // std::cout << GG_GetDelta(GG_GetTimer(engine)) << std::endl;
 
     GG_MovementSystem(data->Get<EntityManagerEntry>(), GG_GetDelta(GG_GetTimer(engine)));
 }
@@ -58,7 +63,7 @@ void EditorApplication::OnRender(std::unique_ptr<GG_Engine> const& engine)
 
     GG_RenderSystem(entityManager);
 
-    GG_Render(guiTestElement, GG_GetRenderer(engine));
+    GG_Render(baseGuiElement, GG_GetRenderer(engine));
 }
 
 void EditorApplication::OnMouseEvent(const unsigned int eventType,

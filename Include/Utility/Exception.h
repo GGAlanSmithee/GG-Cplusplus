@@ -3,6 +3,15 @@
 
 #include <stdexcept>
 
+/// Exception indicating that an element was attempted to be fetched from a collection using an invalid key
+/// @author Alan Smithee
+/// @date created 2015-03-22
+class invalid_key_error : public std::runtime_error
+{
+    public:
+        using runtime_error::runtime_error;
+};
+
 /// Exception indicating that something went wrong with initialization
 /// @author Alan Smithee
 /// @date created 2015-02-07

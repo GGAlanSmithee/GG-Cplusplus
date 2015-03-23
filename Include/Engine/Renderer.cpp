@@ -1,6 +1,4 @@
 #include "Renderer.h"
-
-#include <iostream>
 #include "Utility/Exception.h"
 
 /// @todo add parameter for flags
@@ -116,8 +114,8 @@ void GG_RenderRect(std::unique_ptr<GG_Renderer> const& renderer, GG_Rect const& 
 
     SDL_Rect dest =
              {
-                 GG_ToView(renderer, rect.x - (rect.w / 2)),
-                 GG_ToView(renderer, rect.y - (rect.h / 2)),
+                 GG_ToView(renderer, rect.x),
+                 GG_ToView(renderer, rect.y),
                  GG_ToView(renderer, rect.w),
                  GG_ToView(renderer, rect.h)
              };

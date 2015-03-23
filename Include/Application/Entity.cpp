@@ -1,5 +1,3 @@
-#include <iostream>
-
 #include "Entity.h"
 #include "Application/Component.h"
 
@@ -27,8 +25,6 @@ const unsigned int GG_CreateEntity(GG_EntityManager& entityManager)
             return i;
         }
     }
-
-    std::cerr << "No more enteties left in entity manager." << std::endl;
 
     return entityManager.Size;
 }

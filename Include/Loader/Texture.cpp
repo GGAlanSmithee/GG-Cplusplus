@@ -1,4 +1,3 @@
-#include <iostream>
 #include <SDL_image.h>
 #include "Texture.h"
 #include "Utility/Exception.h"

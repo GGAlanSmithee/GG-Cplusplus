@@ -363,7 +363,7 @@
 	<string>
 	"Renderer/Renderer.h"
 
-1423510122 c:\projects\creatio\include\utility\exception.h
+1427047944 c:\projects\creatio\include\utility\exception.h
 	<stdexcept>
 
 1423608497 source:c:\projects\creatio\include\engine\core\entity.cpp
@@ -515,8 +515,7 @@
 	"Loader/Texture.h"
 	"Engine/Renderer.h"
 
-1424610750 source:c:\projects\creatio\include\engine\core.cpp
-	<iostream>
+1427135749 source:c:\projects\creatio\include\engine\core.cpp
 	<SDL.h>
 	<SDL_image.h>
 	<stdexcept>
@@ -533,13 +532,11 @@
 	<memory>
 	"Event.h"
 
-1427045670 source:c:\projects\creatio\include\engine\renderer.cpp
+1427135736 source:c:\projects\creatio\include\engine\renderer.cpp
 	"Renderer.h"
-	<iostream>
 	"Utility/Exception.h"
 
-1426322669 source:c:\projects\creatio\include\loader\texture.cpp
-	<iostream>
+1427135722 source:c:\projects\creatio\include\loader\texture.cpp
 	<SDL_image.h>
 	"Texture.h"
 	"Utility/Exception.h"
@@ -582,8 +579,7 @@
 1426419541 source:c:\projects\creatio\include\application\tile.cpp
 	"Tile.h"
 
-1426022058 source:c:\projects\creatio\include\application\entity.cpp
-	<iostream>
+1427135707 source:c:\projects\creatio\include\application\entity.cpp
 	"Entity.h"
 	"Application/Component.h"
 
@@ -617,14 +613,15 @@
 1426613948 c:\projects\creatio\include\application\applicationdata.h
 	<unordered_map>
 
-1427046355 source:c:\projects\creatio\editor\application\editorapplication.cpp
+1427135675 source:c:\projects\creatio\editor\application\editorapplication.cpp
 	"Application/System.h"
 	"EditorApplication.h"
 	"../Utility/Declarations.h"
 
-1426617183 c:\projects\creatio\editor\application\editorapplication.h
+1427135640 c:\projects\creatio\editor\application\editorapplication.h
 	"Application/Application.h"
 	"Gui/Element.h"
+	<memory>
 
 1424605091 c:\projects\creatio\editor\utility\declarations.h
 	"Application/Entity.h"
@@ -652,22 +649,20 @@
 1426265567 c:\projects\creatio\include\math\rect.h
 	"Vec2.h"
 
-1427046336 source:c:\projects\creatio\include\gui\element.cpp
+1427135730 source:c:\projects\creatio\include\gui\element.cpp
 	"Element.h"
+	<stdexcept>
 
-1427046274 c:\projects\creatio\include\gui\element.h
-	<memory>
-	<string>
-	<unordered_map>
+1427135182 c:\projects\creatio\include\gui\element.h
 	<vector>
-	"Styles.h"
 	"Engine/Renderer.h"
-	"Math/Vec2.h"
+	"Math/Rect.h"
 
-1427046283 c:\projects\creatio\include\gui\styles.h
+1427048285 c:\projects\creatio\include\gui\styles.h
 	<string>
 	<unordered_map>
 
-1427045956 source:c:\projects\creatio\include\gui\styles.cpp
+1427048276 source:c:\projects\creatio\include\gui\styles.cpp
 	"Styles.h"
+	"Utility/Exception.h"
 
