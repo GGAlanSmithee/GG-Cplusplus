@@ -17,7 +17,7 @@ class EditorApplication : public GG_Application
 
     private:
         void OnMouseEvent(const unsigned int, const float, const GG_Rect);
-        GG_GUI_Element* baseGuiElement;
+        std::unique_ptr<GG_GUI_Element> baseGuiElement;
 };
 
 #endif // EDITORAPPLICATION_H_INCLUDED

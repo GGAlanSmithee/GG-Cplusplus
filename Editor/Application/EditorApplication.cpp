@@ -16,20 +16,17 @@ EditorApplication::EditorApplication(std::unique_ptr<GG_Engine> const& engine,
                                                  GG_GetWindowSize(GG_GetRenderer(engine)));
                           });
 
-    baseGuiElement = new GG_GUI_Element(GG_GetWindowLogicalSize(GG_GetRenderer(engine)),
+    baseGuiElement = std::unique_ptr<GG_GUI_Element>(new GG_GUI_Element(
+                                        GG_GetWindowLogicalSize(GG_GetRenderer(engine)),
                                         GG_GUI_Style::Absolute,
-                                        false);
+                                        false));
 
-    GG_AddChild(baseGuiElement, new GG_GUI_Element({ 10, 10, 5, 5 }, GG_GUI_Style::Relative, true));
+    GG_AddChild(baseGuiElement.get(), new GG_GUI_Element({ 10, 10, 5, 5 }, GG_GUI_Style::Relative, true));
 }
 
 EditorApplication::~EditorApplication()
 {
-    if (baseGuiElement != nullptr)
-    {
-        delete baseGuiElement;
-        baseGuiElement = nullptr;
-    }
+    // Empty
 }
 
 void EditorApplication::OnLogic(std::unique_ptr<GG_Engine> const& engine)
@@ -63,7 +60,7 @@ void EditorApplication::OnRender(std::unique_ptr<GG_Engine> const& engine)
 
     GG_RenderSystem(entityManager);
 
-    GG_Render(baseGuiElement, GG_GetRenderer(engine));
+    GG_Render(baseGuiElement.get(), GG_GetRenderer(engine));
 }
 
 void EditorApplication::OnMouseEvent(const unsigned int eventType,
