@@ -34,6 +34,7 @@ class GG_GUI_Element
                                                   GG_GUI_Element *const);
 
     private:
+        GG_GUI_Element*              context;
         GG_GUI_Element*              parent;
         std::vector<GG_GUI_Element*> children;
         GG_Rect                      rect;
