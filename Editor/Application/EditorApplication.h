@@ -2,7 +2,7 @@
 #define EDITORAPPLICATION_H_INCLUDED
 
 #include "Application/Application.h"
-#include "Gui/Element.h"
+#include "Gui/Context.h"
 #include <memory>
 
 class EditorApplication : public GG_Application
@@ -17,7 +17,7 @@ class EditorApplication : public GG_Application
 
     private:
         void OnMouseEvent(const unsigned int, const float, const GG_Rect);
-        std::unique_ptr<GG_GUI_Element> baseGuiElement;
+        GG_GUI_Context* guiContext;
 };
 
 #endif // EDITORAPPLICATION_H_INCLUDED

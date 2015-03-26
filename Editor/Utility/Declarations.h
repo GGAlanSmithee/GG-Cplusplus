@@ -1,6 +1,7 @@
 #ifndef DECLARATIONS_H_INCLUDED
 #define DECLARATIONS_H_INCLUDED
 
+#include "Application/ApplicationData.h"
 #include "Application/Entity.h"
 #include "Application/Map.h"
 

@@ -613,17 +613,19 @@
 1426613948 c:\projects\creatio\include\application\applicationdata.h
 	<unordered_map>
 
-1427215021 source:c:\projects\creatio\editor\application\editorapplication.cpp
+1427409192 source:c:\projects\creatio\editor\application\editorapplication.cpp
+	"../Utility/Declarations.h"
 	"Application/System.h"
 	"EditorApplication.h"
-	"../Utility/Declarations.h"
-
-1427214936 c:\projects\creatio\editor\application\editorapplication.h
-	"Application/Application.h"
 	"Gui/Element.h"
+
+1427405051 c:\projects\creatio\editor\application\editorapplication.h
+	"Application/Application.h"
+	"Gui/Context.h"
 	<memory>
 
-1424605091 c:\projects\creatio\editor\utility\declarations.h
+1427405213 c:\projects\creatio\editor\utility\declarations.h
+	"Application/ApplicationData.h"
 	"Application/Entity.h"
 	"Application/Map.h"
 
@@ -649,12 +651,14 @@
 1426265567 c:\projects\creatio\include\math\rect.h
 	"Vec2.h"
 
-1427135730 source:c:\projects\creatio\include\gui\element.cpp
-	"Element.h"
+1427408342 source:c:\projects\creatio\include\gui\element.cpp
 	<stdexcept>
+	<iostream>
+	"Element.h"
 
-1427135182 c:\projects\creatio\include\gui\element.h
+1427409910 c:\projects\creatio\include\gui\element.h
 	<vector>
+	"Context.h"
 	"Engine/Renderer.h"
 	"Math/Rect.h"
 
@@ -665,4 +669,15 @@
 1427048276 source:c:\projects\creatio\include\gui\styles.cpp
 	"Styles.h"
 	"Utility/Exception.h"
+
+1427409919 c:\projects\creatio\include\gui\context.h
+	<memory>
+	<vector>
+	"Element.h"
+	"Engine/Renderer.h"
+	"Math/Rect.h"
+
+1427409837 source:c:\projects\creatio\include\gui\context.cpp
+	<stdexcept>
+	"Context.h"
 

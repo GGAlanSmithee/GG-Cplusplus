@@ -1,14 +1,11 @@
-#include "Element.h"
 #include <stdexcept>
+#include <iostream>
+#include "Element.h"
 
-GG_GUI_Element::GG_GUI_Element() :
-    GG_GUI_Element({ 0.0f, 0.0f, 0.0f, 0.0f }, GG_GUI_Style::Absolute, true)
-{
-    // Empty
-}
-
-GG_GUI_Element::GG_GUI_Element(GG_Rect const& rect, GG_GUI_Style const style, bool const isVisible) :
-    rect(rect),
+GG_GUI_Element::GG_GUI_Element(GG_Rect const& boundary,
+                               GG_GUI_Style const style,
+                               bool const isVisible) :
+    boundary(boundary),
     style(style),
     isVisible(isVisible)
 {
@@ -32,6 +29,11 @@ GG_GUI_Element *const GG_GetParent(GG_GUI_Element *const element)
     return element == nullptr ? nullptr : element->parent;
 }
 
+GG_GUI_Context *const GG_GetContext(GG_GUI_Element *const element)
+{
+    return element == nullptr ? nullptr : element->context;
+}
+
 void GG_AddChild(GG_GUI_Element *const element, GG_GUI_Element *const child)
 {
     if (element == nullptr || child == nullptr)
@@ -43,7 +45,16 @@ void GG_AddChild(GG_GUI_Element *const element, GG_GUI_Element *const child)
     child->parent = element;
 }
 
-/// @todo bad logic: GetX relative must calculate parent with - parent x
+void GG_SetContext(GG_GUI_Element *const element, GG_GUI_Context *const context)
+{
+    if (element == nullptr || context == nullptr)
+    {
+        return;
+    }
+
+    element->context = context;
+}
+
 float const GG_GetX(GG_GUI_Element *const element)
 {
     if (element == nullptr)
@@ -51,14 +62,25 @@ float const GG_GetX(GG_GUI_Element *const element)
         return 0.0f;
     }
 
+    auto parent = GG_GetParent(element);
+    auto context = GG_GetContext(element);
+
     switch (element->style)
     {
-        case GG_GUI_Style::Absolute: return element->rect.x;
-        case GG_GUI_Style::Relative: return GG_GetX(GG_GetParent(element)) * (element->rect.x / 100.0f);
+        case GG_GUI_Style::Absolute:
+        {
+            return element->boundary.x + (parent == nullptr ? GG_GetX(context) : GG_GetX(parent));
+        }
+        case GG_GUI_Style::Relative:
+        {
+            auto offset = (parent == nullptr ? GG_GetX(context) : GG_GetX(parent));
+            auto base = (parent == nullptr ? GG_GetWidth(context) : GG_GetWidth(parent));
+
+            return offset + base * (element->boundary.x / 100.0f);
+        }
     }
 }
 
-/// @todo bad logic: GetY relative must calculate parent with - parent x
 float const GG_GetY(GG_GUI_Element *const element)
 {
     if (element == nullptr)
@@ -66,10 +88,22 @@ float const GG_GetY(GG_GUI_Element *const element)
         return 0.0f;
     }
 
+    auto parent = GG_GetParent(element);
+    auto context = GG_GetContext(element);
+
     switch (element->style)
     {
-        case GG_GUI_Style::Absolute: return element->rect.y;
-        case GG_GUI_Style::Relative: return GG_GetY(GG_GetParent(element)) * (element->rect.y / 100.0f);
+        case GG_GUI_Style::Absolute:
+        {
+            return element->boundary.y + (parent == nullptr ? GG_GetY(context) : GG_GetY(parent));
+        }
+        case GG_GUI_Style::Relative:
+        {
+            auto offset = (parent == nullptr ? GG_GetY(context) : GG_GetY(parent));
+            auto base = (parent == nullptr ? GG_GetHeight(context) : GG_GetHeight(parent));
+
+            return offset + base * (element->boundary.y / 100.0f);
+        }
     }
 }
 
@@ -82,14 +116,15 @@ float const GG_GetWidth(GG_GUI_Element *const element)
 
     switch (element->style)
     {
-        case GG_GUI_Style::Absolute: return element->rect.w;
-        case GG_GUI_Style::Relative: return GG_GetWidth(GG_GetParent(element)) * (element->rect.w / 100.0f);
-    }
-}
+        case GG_GUI_Style::Absolute: return element->boundary.w;
+        case GG_GUI_Style::Relative:
+        {
+            auto parent = GG_GetParent(element);
+            auto context = GG_GetContext(element);
 
-bool const GG_IsVisible(GG_GUI_Element *const element)
-{
-    return element == nullptr ? false : element->isVisible;
+            return (element->boundary.w / 100.0f) * (parent == nullptr ? GG_GetWidth(context) : GG_GetWidth(parent));
+        }
+    }
 }
 
 float const GG_GetHeight(GG_GUI_Element *const element)
@@ -101,9 +136,20 @@ float const GG_GetHeight(GG_GUI_Element *const element)
 
     switch (element->style)
     {
-        case GG_GUI_Style::Absolute: return element->rect.h;
-        case GG_GUI_Style::Relative: return GG_GetHeight(GG_GetParent(element)) * (element->rect.h / 100.0f);
+        case GG_GUI_Style::Absolute: return element->boundary.h;
+        case GG_GUI_Style::Relative:
+        {
+            auto parent = GG_GetParent(element);
+            auto context = GG_GetContext(element);
+
+            return (element->boundary.h / 100.0f) * (parent == nullptr ? GG_GetHeight(context) : GG_GetHeight(parent));
+        }
     }
+}
+
+bool const GG_IsVisible(GG_GUI_Element *const element)
+{
+    return element == nullptr ? false : element->isVisible;
 }
 
 std::vector<GG_GUI_Element*> const& GG_GetChildren(GG_GUI_Element *const element)
@@ -120,7 +166,7 @@ void GG_Render(GG_GUI_Element *const element, std::unique_ptr<GG_Renderer> const
 {
     if (element == nullptr)
     {
-        throw std::invalid_argument("element cannot be null.");
+        return;
     }
 
     for (auto child : GG_GetChildren(element))

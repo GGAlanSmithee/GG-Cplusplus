@@ -1,6 +1,7 @@
+#include "../Utility/Declarations.h"
 #include "Application/System.h"
 #include "EditorApplication.h"
-#include "../Utility/Declarations.h"
+#include "Gui/Element.h"
 
 EditorApplication::EditorApplication(std::unique_ptr<GG_Engine> const& engine,
                                      std::shared_ptr<GG_ApplicationData> data) :
@@ -16,17 +17,20 @@ EditorApplication::EditorApplication(std::unique_ptr<GG_Engine> const& engine,
                                                  GG_GetWindowSize(GG_GetRenderer(engine)));
                           });
 
-    baseGuiElement = std::unique_ptr<GG_GUI_Element>(new GG_GUI_Element(
-                                        GG_GetWindowLogicalSize(GG_GetRenderer(engine)),
-                                        GG_GUI_Style::Absolute,
-                                        false));
+    guiContext = new GG_GUI_Context(GG_GetWindowLogicalSize(GG_GetRenderer(engine)));
 
-    GG_AddChild(baseGuiElement.get(), new GG_GUI_Element({ 10, 10, 5, 5 }, GG_GUI_Style::Relative, true));
+    GG_AddChild(guiContext, new GG_GUI_Element({ 70, 70, 20, 20 }, GG_GUI_Style::Relative, true));
 }
 
 EditorApplication::~EditorApplication()
 {
-    // Empty
+    if (guiContext == nullptr)
+    {
+        return;
+    }
+
+    delete guiContext;
+    guiContext = nullptr;
 }
 
 void EditorApplication::OnLogic(std::unique_ptr<GG_Engine> const& engine)
@@ -60,7 +64,7 @@ void EditorApplication::OnRender(std::unique_ptr<GG_Engine> const& engine)
 
     GG_RenderSystem(entityManager);
 
-    GG_Render(baseGuiElement.get(), GG_GetRenderer(engine));
+    GG_Render(guiContext, GG_GetRenderer(engine));
 }
 
 void EditorApplication::OnMouseEvent(const unsigned int eventType,

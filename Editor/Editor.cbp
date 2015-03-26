@@ -66,6 +66,8 @@
 		<Unit filename="../Include/Engine/Renderer.h" />
 		<Unit filename="../Include/Engine/Timer.cpp" />
 		<Unit filename="../Include/Engine/Timer.h" />
+		<Unit filename="../Include/Gui/Context.cpp" />
+		<Unit filename="../Include/Gui/Context.h" />
 		<Unit filename="../Include/Gui/Element.cpp" />
 		<Unit filename="../Include/Gui/Element.h" />
 		<Unit filename="../Include/Loader/Texture.cpp" />
