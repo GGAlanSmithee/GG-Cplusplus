@@ -19,7 +19,10 @@ EditorApplication::EditorApplication(std::unique_ptr<GG_Engine> const& engine,
 
     guiContext = new GG_GUI_Context(GG_GetWindowLogicalSize(GG_GetRenderer(engine)));
 
-    GG_AddChild(guiContext, new GG_GUI_Element({ 70, 70, 20, 20 }, GG_GUI_Style::Relative, true));
+    GG_AddChild(guiContext, new GG_GUI_Element(true,
+                                               GG_GUI_Style::Relative,
+                                               { 74, 74, 25, 25 },
+                                               { 120, 200, 200, 255 }));
 }
 
 EditorApplication::~EditorApplication()

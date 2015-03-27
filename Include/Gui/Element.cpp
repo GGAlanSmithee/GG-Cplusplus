@@ -1,12 +1,14 @@
 #include <stdexcept>
 #include "Element.h"
 
-GG_GUI_Element::GG_GUI_Element(GG_Rect const& boundary,
-                               GG_GUI_Style const style,
-                               bool const isVisible) :
-    boundary(boundary),
+GG_GUI_Element::GG_GUI_Element(bool         const  isVisible,
+                               GG_GUI_Style const  style,
+                               GG_Rect      const& boundary,
+                               GG_Color     const& color) :
+    isVisible(isVisible),
     style(style),
-    isVisible(isVisible)
+    boundary(boundary),
+    color(color)
 {
     // Empty
 }
@@ -60,8 +62,6 @@ float const GG_GetX(GG_GUI_Element *const element)
     {
         return 0.0f;
     }
-
-    //return element->boundary.x;
 
     auto parent = GG_GetParent(element);
     auto context = GG_GetContext(element);
@@ -148,6 +148,16 @@ float const GG_GetHeight(GG_GUI_Element *const element)
     }
 }
 
+GG_Color const& GG_GetColor (GG_GUI_Element *const element)
+{
+    if (element == nullptr)
+    {
+        return { 0, 0, 0, 0 };
+    }
+
+    return element->color;
+}
+
 bool const GG_IsVisible(GG_GUI_Element *const element)
 {
     return element == nullptr ? false : element->isVisible;
@@ -186,5 +196,6 @@ void GG_Render(GG_GUI_Element *const element, std::unique_ptr<GG_Renderer> const
                       GG_GetY(element),
                       GG_GetWidth(element),
                       GG_GetHeight(element)
-                  });
+                  },
+                  GG_GetColor(element));
 }

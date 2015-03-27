@@ -4,6 +4,7 @@
 #include <memory>
 #include <SDL.h>
 #include "Math/Rect.h"
+#include "Graphics/Color.h"
 
 class GG_Renderer
 {
@@ -18,19 +19,20 @@ class GG_Renderer
         /// @param texture the texture to render
         /// @exception throws a std::invalid_arugment exception if \a renderer is null
         /// @exception throws a std::invalid_arugment exception if \a texture is null
+        /// @todo refactor these in to one method that takes two rect pointers
         friend void GG_RenderTexture(std::unique_ptr<GG_Renderer> const&, SDL_Texture* const);
         friend void GG_RenderTexture(std::unique_ptr<GG_Renderer> const&,
                                      SDL_Texture* const,
                                      GG_Rect const&,
                                      GG_Rect const&);
 
-        friend void GG_RenderRect(std::unique_ptr<GG_Renderer> const&, GG_Rect const&);
+        friend void GG_RenderRect(std::unique_ptr<GG_Renderer> const&, GG_Rect const&, GG_Color const&);
 
-        friend const GG_Rect GG_GetWindowSize(std::unique_ptr<GG_Renderer> const&);
+        friend const GG_Rect GG_GetWindowSize       (std::unique_ptr<GG_Renderer> const&);
         friend const GG_Rect GG_GetWindowLogicalSize(std::unique_ptr<GG_Renderer> const&);
 
         friend const float GG_ToLogical(std::unique_ptr<GG_Renderer> const&, const float);
-        friend const float GG_ToView(std::unique_ptr<GG_Renderer> const&, const float);
+        friend const float GG_ToView   (std::unique_ptr<GG_Renderer> const&, const float);
 
         friend SDL_Renderer* const GG_GetSDLRenderer(std::unique_ptr<GG_Renderer> const&);
 

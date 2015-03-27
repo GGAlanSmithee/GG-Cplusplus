@@ -105,7 +105,9 @@ void GG_RenderTexture(std::unique_ptr<GG_Renderer> const& renderer,
     SDL_RenderCopy(renderer->_sdlRenderer, texture, &src, &dest);
 }
 
-void GG_RenderRect(std::unique_ptr<GG_Renderer> const& renderer, GG_Rect const& rect)
+void GG_RenderRect(std::unique_ptr<GG_Renderer> const& renderer,
+                   GG_Rect                      const& rect,
+                   GG_Color                     const& color)
 {
     if (!renderer)
     {
@@ -120,9 +122,7 @@ void GG_RenderRect(std::unique_ptr<GG_Renderer> const& renderer, GG_Rect const& 
                  GG_ToView(renderer, rect.h)
              };
 
-    /// @todo add color struct and add an instance "backgroundColor" of it to the GG_GUI_Element class
-    /// and pass it in as a paramter
-    SDL_SetRenderDrawColor(GG_GetSDLRenderer(renderer), 255, 0, 0, 255);
+    SDL_SetRenderDrawColor(GG_GetSDLRenderer(renderer), color.R, color.G, color.B, color.A);
 
     SDL_RenderFillRect(GG_GetSDLRenderer(renderer), &dest);
 }

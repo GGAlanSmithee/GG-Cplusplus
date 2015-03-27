@@ -495,10 +495,11 @@
 	"Engine/Timer.h"
 	"Manager/Texture.h"
 
-1426616678 c:\projects\creatio\include\engine\renderer.h
+1427484353 c:\projects\creatio\include\engine\renderer.h
 	<memory>
 	<SDL.h>
 	"Math/Rect.h"
+	"Graphics/Color.h"
 
 1424613636 c:\projects\creatio\include\engine\event.h
 	<SDL.h>
@@ -532,7 +533,7 @@
 	<memory>
 	"Event.h"
 
-1427482840 source:c:\projects\creatio\include\engine\renderer.cpp
+1427484376 source:c:\projects\creatio\include\engine\renderer.cpp
 	"Renderer.h"
 	"Utility/Exception.h"
 
@@ -613,7 +614,7 @@
 1426613948 c:\projects\creatio\include\application\applicationdata.h
 	<unordered_map>
 
-1427409192 source:c:\projects\creatio\editor\application\editorapplication.cpp
+1427484892 source:c:\projects\creatio\editor\application\editorapplication.cpp
 	"../Utility/Declarations.h"
 	"Application/System.h"
 	"EditorApplication.h"
@@ -651,14 +652,15 @@
 1426265567 c:\projects\creatio\include\math\rect.h
 	"Vec2.h"
 
-1427483164 source:c:\projects\creatio\include\gui\element.cpp
+1427484934 source:c:\projects\creatio\include\gui\element.cpp
 	<stdexcept>
 	"Element.h"
 
-1427483120 c:\projects\creatio\include\gui\element.h
+1427484917 c:\projects\creatio\include\gui\element.h
 	<vector>
 	"Context.h"
 	"Engine/Renderer.h"
+	"Graphics/Color.h"
 	"Math/Rect.h"
 
 1427048285 c:\projects\creatio\include\gui\styles.h
@@ -679,4 +681,6 @@
 1427482548 source:c:\projects\creatio\include\gui\context.cpp
 	<stdexcept>
 	"Context.h"
+
+1427484313 c:\projects\creatio\include\graphics\color.h
 

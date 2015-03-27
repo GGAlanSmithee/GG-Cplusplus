@@ -4,6 +4,7 @@
 #include <vector>
 #include "Context.h"
 #include "Engine/Renderer.h"
+#include "Graphics/Color.h"
 #include "Math/Rect.h"
 
 enum class GG_GUI_Style
@@ -18,14 +19,15 @@ class GG_GUI_Context;
 class GG_GUI_Element
 {
     public:
-        GG_GUI_Element(GG_Rect const&, GG_GUI_Style const, bool const);
+        GG_GUI_Element(bool const, GG_GUI_Style const, GG_Rect const&, GG_Color const&);
 
         ~GG_GUI_Element();
 
-        friend float const GG_GetX     (GG_GUI_Element *const);
-        friend float const GG_GetY     (GG_GUI_Element *const);
-        friend float const GG_GetWidth (GG_GUI_Element *const);
-        friend float const GG_GetHeight(GG_GUI_Element *const);
+        friend float const     GG_GetX     (GG_GUI_Element *const);
+        friend float const     GG_GetY     (GG_GUI_Element *const);
+        friend float const     GG_GetWidth (GG_GUI_Element *const);
+        friend float const     GG_GetHeight(GG_GUI_Element *const);
+        friend GG_Color const& GG_GetColor (GG_GUI_Element *const);
 
         friend bool const GG_IsVisible(GG_GUI_Element *const);
 
@@ -42,9 +44,11 @@ class GG_GUI_Element
         GG_GUI_Context*              context = nullptr;
         GG_GUI_Element*              parent  = nullptr;
         std::vector<GG_GUI_Element*> children;
-        GG_Rect                      boundary;
-        GG_GUI_Style                 style;
+
         bool                         isVisible;
+        GG_GUI_Style                 style;
+        GG_Rect                      boundary;
+        GG_Color                     color;
 };
 
 void GG_Render(GG_GUI_Element *const, std::unique_ptr<GG_Renderer> const&);
