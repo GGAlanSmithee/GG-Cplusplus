@@ -532,7 +532,7 @@
 	<memory>
 	"Event.h"
 
-1427135736 source:c:\projects\creatio\include\engine\renderer.cpp
+1427482840 source:c:\projects\creatio\include\engine\renderer.cpp
 	"Renderer.h"
 	"Utility/Exception.h"
 
@@ -651,12 +651,11 @@
 1426265567 c:\projects\creatio\include\math\rect.h
 	"Vec2.h"
 
-1427408342 source:c:\projects\creatio\include\gui\element.cpp
+1427483164 source:c:\projects\creatio\include\gui\element.cpp
 	<stdexcept>
-	<iostream>
 	"Element.h"
 
-1427409910 c:\projects\creatio\include\gui\element.h
+1427483120 c:\projects\creatio\include\gui\element.h
 	<vector>
 	"Context.h"
 	"Engine/Renderer.h"
@@ -677,7 +676,7 @@
 	"Engine/Renderer.h"
 	"Math/Rect.h"
 
-1427409837 source:c:\projects\creatio\include\gui\context.cpp
+1427482548 source:c:\projects\creatio\include\gui\context.cpp
 	<stdexcept>
 	"Context.h"
 

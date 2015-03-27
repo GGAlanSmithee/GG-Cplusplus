@@ -39,8 +39,8 @@ class GG_GUI_Element
                                                    GG_GUI_Context *const);
 
     private:
-        GG_GUI_Context*              context;
-        GG_GUI_Element*              parent;
+        GG_GUI_Context*              context = nullptr;
+        GG_GUI_Element*              parent  = nullptr;
         std::vector<GG_GUI_Element*> children;
         GG_Rect                      boundary;
         GG_GUI_Style                 style;

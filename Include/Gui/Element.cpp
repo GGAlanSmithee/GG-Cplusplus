@@ -1,5 +1,4 @@
 #include <stdexcept>
-#include <iostream>
 #include "Element.h"
 
 GG_GUI_Element::GG_GUI_Element(GG_Rect const& boundary,
@@ -61,6 +60,8 @@ float const GG_GetX(GG_GUI_Element *const element)
     {
         return 0.0f;
     }
+
+    //return element->boundary.x;
 
     auto parent = GG_GetParent(element);
     auto context = GG_GetContext(element);
