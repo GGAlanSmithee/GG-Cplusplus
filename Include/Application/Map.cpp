@@ -76,6 +76,43 @@ void GG_Render(GG_Map const& map,
             GG_RenderTexture(renderer, texture, src, dest);
         }
     }
+
+    auto window = GG_GetWindowLogicalSize(renderer);
+
+    GG_Rect cornerRect =
+            {
+                window.w - (window.w / 5.0f),
+                0.0f,
+                window.w / 5.0f,
+                window.h / 4.0f
+            };
+
+    GG_SetViewPort(renderer, cornerRect);
+    GG_RenderRect(renderer, window, { 0, 0, 0, 255 });
+
+    for (auto y = startY; y < endY; ++y)
+    {
+        for (auto x = startX; x < endX; ++x)
+        {
+            auto tile = GG_GetTile(map, x, y);
+
+            src.x = GG_GetNumber(tile);
+
+            auto dest = GG_GetBoundary(GG_GetTile(map, x, y));
+
+            dest.x -= cameraPos.x;
+            dest.y -= cameraPos.y;
+
+            dest.x /= 5.0f;
+            dest.y /= 4.0f;
+            dest.w /= 5.0f;
+            dest.h /= 4.0f;
+
+            GG_RenderTexture(renderer, texture, src, dest);
+        }
+    }
+
+    GG_SetViewPort(renderer);
 }
 
 const GG_Map GG_LoadMap(std::unique_ptr<GG_TextureManager> const& textureManager, std::string const& filepath)

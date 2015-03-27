@@ -38,11 +38,14 @@ class GG_Renderer
 
     private:
         SDL_Renderer* _sdlRenderer = nullptr;
+        SDL_Texture*  renderTarget = nullptr;
         GG_Rect       _windowRect;
         const float   UnitSize;
 };
 
-void GG_ClearScreen(std::unique_ptr<GG_Renderer> const&);
+void GG_ClearScreen (std::unique_ptr<GG_Renderer> const&);
 void GG_UpdateScreen(std::unique_ptr<GG_Renderer> const&);
+void GG_SetViewPort (std::unique_ptr<GG_Renderer> const&);
+void GG_SetViewPort (std::unique_ptr<GG_Renderer> const&, GG_Rect const&);
 
 #endif // ENGINE_RENDERER_H_INCLUDED

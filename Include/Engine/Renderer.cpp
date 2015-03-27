@@ -42,6 +42,7 @@ void GG_ClearScreen(std::unique_ptr<GG_Renderer> const& renderer)
         throw std::invalid_argument("renderer cannot be null");
     }
 
+    SDL_SetRenderDrawColor(GG_GetSDLRenderer(renderer), 100, 149, 237, 255);
     SDL_RenderClear(GG_GetSDLRenderer(renderer));
 }
 
@@ -52,7 +53,6 @@ void GG_UpdateScreen(std::unique_ptr<GG_Renderer> const& renderer)
         throw std::invalid_argument("renderer cannot be null");
     }
 
-    SDL_SetRenderDrawColor(GG_GetSDLRenderer(renderer), 100, 149, 237, 255);
     SDL_RenderPresent(GG_GetSDLRenderer(renderer));
 }
 
@@ -177,4 +177,31 @@ const float GG_ToView(std::unique_ptr<GG_Renderer> const& renderer, const float 
     }
 
     return value * renderer->UnitSize;
+}
+
+void GG_SetViewPort(std::unique_ptr<GG_Renderer> const& renderer)
+{
+    if (!renderer)
+    {
+        return;
+    }
+
+    SDL_RenderSetViewport(GG_GetSDLRenderer(renderer), nullptr);
+}
+
+void GG_SetViewPort(std::unique_ptr<GG_Renderer> const& renderer, GG_Rect const& viewport)
+{
+    if (!renderer)
+    {
+        return;
+    }
+
+    SDL_Rect sdlViewport = {
+                              GG_ToView(renderer, viewport.x),
+                              GG_ToView(renderer, viewport.y),
+                              GG_ToView(renderer, viewport.w),
+                              GG_ToView(renderer, viewport.h)
+                          };
+
+    SDL_RenderSetViewport(GG_GetSDLRenderer(renderer), &sdlViewport);
 }
