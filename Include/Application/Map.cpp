@@ -45,16 +45,21 @@ void GG_Render(GG_Map const& map,
 {
     auto boundary = GG_GetBoundary(map);
 
-    if (!(cameraPos.x + cameraRect.w >= boundary.x && cameraPos.x <= boundary.x + boundary.w &&
-          cameraPos.y + cameraRect.h >= boundary.y && cameraPos.y <= boundary.y + boundary.h))
+    auto startX = cameraPos.x - (cameraRect.w / 2);
+    auto endX   = startX + cameraRect.w + 1;
+    auto startY = cameraPos.y - (cameraRect.h / 2);
+    auto endY   = startY + cameraRect.h + 1;
+
+    if (!(endX >= boundary.x && startX <= boundary.x + boundary.w &&
+          endY >= boundary.y && startY <= boundary.y + boundary.h))
     {
         return;
     }
 
-    auto startX = cameraPos.x < 0 ? 0 : static_cast<int>(cameraPos.x);
-    auto endX   = cameraPos.x + cameraRect.w + 2 > boundary.w ? boundary.w : static_cast<int>(cameraPos.x + cameraRect.w + 2);
-    auto startY = cameraPos.y < 0 ? 0 : static_cast<int>(cameraPos.y);
-    auto endY   = cameraPos.y + cameraRect.h + 2 > boundary.h ? boundary.h : static_cast<int>(cameraPos.y + cameraRect.h + 2);
+    startX = startX >= 0 ? startX : 0;
+    endX = endX < boundary.w ? endX : boundary.w;
+    startY = startY >= 0 ? startY : 0;
+    endY = endY < boundary.h ? endY : boundary.h;
 
     GG_Rect src = { 1, 1, 1, 1 };
 
@@ -70,8 +75,8 @@ void GG_Render(GG_Map const& map,
 
             auto dest = GG_GetBoundary(GG_GetTile(map, x, y));
 
-            dest.x -= cameraPos.x;
-            dest.y -= cameraPos.y;
+            dest.x -= cameraPos.x - (cameraRect.w / 2);
+            dest.y -= cameraPos.y - (cameraRect.h / 2);
 
             GG_RenderTexture(renderer, texture, src, dest);
         }
@@ -81,9 +86,9 @@ void GG_Render(GG_Map const& map,
 
     GG_Rect cornerRect =
             {
-                window.w - (window.w / 5.0f),
+                window.w - (window.w / 4.0f),
                 0.0f,
-                window.w / 5.0f,
+                window.w / 4.0f,
                 window.h / 4.0f
             };
 
@@ -103,10 +108,10 @@ void GG_Render(GG_Map const& map,
             dest.x -= cameraPos.x;
             dest.y -= cameraPos.y;
 
-            dest.x /= 5.0f;
-            dest.y /= 4.0f;
-            dest.w /= 5.0f;
-            dest.h /= 4.0f;
+            dest.x /= 8.0f;
+            dest.y /= 8.0f;
+            dest.w /= 8.0f;
+            dest.h /= 8.0f;
 
             GG_RenderTexture(renderer, texture, src, dest);
         }

@@ -92,8 +92,8 @@ void EditorApplication::OnMouseEvent(const unsigned int eventType,
 
     if (xVelocity > 0.0f && yVelocity > 0.0f || xVelocity < 0.0f && yVelocity < 0.0f)
     {
-        xVelocity -= (xVelocity / 6.0f);
-        yVelocity -= (yVelocity / 6.0f);
+        xVelocity -= static_cast<float>(xVelocity / 6.0f);
+        yVelocity -= static_cast<float>(yVelocity / 6.0f);
     }
 
     p->Velocity.x = xVelocity;

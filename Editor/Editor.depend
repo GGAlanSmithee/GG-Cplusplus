@@ -12,7 +12,7 @@
 	"Utility/Exception.h"
 	<stdexcept>
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl.h
 	"SDL_main.h"
 	"SDL_stdinc.h"
 	"SDL_assert.h"
@@ -43,12 +43,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_main.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_main.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_stdinc.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_stdinc.h
 	"SDL_config.h"
 	<sys/types.h>
 	<stdio.h>
@@ -76,33 +76,33 @@
 	<stdlib.h>
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_config.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_config.h
 	"SDL_platform.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_platform.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_platform.h
 	"AvailabilityMacros.h"
 	"TargetConditionals.h"
 	<winapifamily.h>
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\begin_code.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\begin_code.h
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\close_code.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\close_code.h
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_assert.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_assert.h
 	"SDL_config.h"
 	"begin_code.h"
 	<signal.h>
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_atomic.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_atomic.h
 	"SDL_stdinc.h"
 	"SDL_platform.h"
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_audio.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_audio.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_endian.h"
@@ -112,24 +112,24 @@
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_error.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_error.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_endian.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_endian.h
 	"SDL_stdinc.h"
 	<endian.h>
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_mutex.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_mutex.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_thread.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_thread.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_atomic.h"
@@ -138,18 +138,18 @@
 	<process.h>
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_rwops.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_rwops.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_clipboard.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_clipboard.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_cpuinfo.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_cpuinfo.h
 	"SDL_stdinc.h"
 	<intrin.h>
 	<intrin.h>
@@ -161,7 +161,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_events.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_events.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -175,7 +175,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_video.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_video.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -183,12 +183,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_pixels.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_pixels.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_rect.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_rect.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_pixels.h"
@@ -196,7 +196,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_surface.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_surface.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -205,11 +205,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_blendmode.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_blendmode.h
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_keyboard.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_keyboard.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_keycode.h"
@@ -217,27 +217,27 @@
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_keycode.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_keycode.h
 	"SDL_stdinc.h"
 	"SDL_scancode.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_scancode.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_scancode.h
 	"SDL_stdinc.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_mouse.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_mouse.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_joystick.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_joystick.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_gamecontroller.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_gamecontroller.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_rwops.h"
@@ -245,11 +245,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_quit.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_quit.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_gesture.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_gesture.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -257,60 +257,60 @@
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_touch.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_touch.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_filesystem.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_filesystem.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_haptic.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_haptic.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_joystick.h"
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_hints.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_hints.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_loadso.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_loadso.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_log.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_log.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_messagebox.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_messagebox.h
 	"SDL_stdinc.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_power.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_power.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_render.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_render.h
 	"SDL_stdinc.h"
 	"SDL_rect.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_system.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_system.h
 	"SDL_stdinc.h"
 	"SDL_keyboard.h"
 	"SDL_render.h"
@@ -318,18 +318,18 @@
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_timer.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_timer.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1394937281 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_version.h
+1394940881 c:\applications\sdl2-2.0.3\x86_64-w64-mingw32\include\sdl2\sdl_version.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1376152754 c:\applications\sdl2_image-2.0.0\x86_64-w64-mingw32\include\sdl2\sdl_image.h
+1376156354 c:\applications\sdl2_image-2.0.0\x86_64-w64-mingw32\include\sdl2\sdl_image.h
 	"SDL.h"
 	"SDL_version.h"
 	"begin_code.h"
@@ -363,7 +363,7 @@
 	<string>
 	"Renderer/Renderer.h"
 
-1427047944 c:\projects\creatio\include\utility\exception.h
+1427051544 c:\projects\creatio\include\utility\exception.h
 	<stdexcept>
 
 1423608497 source:c:\projects\creatio\include\engine\core\entity.cpp
@@ -387,10 +387,10 @@
 	<string>
 	"Math/Vec2.h"
 
-1426265567 c:\projects\creatio\include\math\vec2.h
+1426269167 c:\projects\creatio\include\math\vec2.h
 	"Rect.h"
 
-1424190746 c:\projects\creatio\include\utility\utility.h
+1424194346 c:\projects\creatio\include\utility\utility.h
 	<algorithm>
 	<string>
 	<stdexcept>
@@ -418,11 +418,11 @@
 	<iostream>
 	"Texture.h"
 
-1424190750 source:c:\projects\creatio\include\utility\utility.cpp
+1424194350 source:c:\projects\creatio\include\utility\utility.cpp
 	<sstream>
 	"Utility/Utility.h"
 
-1426615122 source:c:\projects\creatio\editor\main.cpp
+1426618722 source:c:\projects\creatio\editor\main.cpp
 	<iostream>
 	"Utility/Exception.h"
 	"Utility/Factory.h"
@@ -432,17 +432,17 @@
 	"Application/TestApplication.h"
 	"Utility/Declarations.h"
 
-1424604836 source:c:\projects\creatio\include\application\application.cpp
+1424608436 source:c:\projects\creatio\include\application\application.cpp
 	"Application.h"
 
-1425934848 c:\projects\creatio\include\application\application.h
+1425938448 c:\projects\creatio\include\application\application.h
 	<memory>
 	"Engine/Core.h"
 	"Entity.h"
 	"Map.h"
 	"ApplicationData.h"
 
-1426265567 source:c:\projects\creatio\include\math\vec2.cpp
+1426269167 source:c:\projects\creatio\include\math\vec2.cpp
 	"Vec2.h"
 
 1423996106 c:\projects\creatio\include\core\core.h
@@ -484,30 +484,30 @@
 	<SDL.h>
 	"Utility/Exception.h"
 
-1424285851 c:\projects\creatio\include\loader\texture.h
+1424289451 c:\projects\creatio\include\loader\texture.h
 	<memory>
 	<string>
 	"Engine/Renderer.h"
 
-1424610762 c:\projects\creatio\include\engine\core.h
+1424614362 c:\projects\creatio\include\engine\core.h
 	"Engine/Renderer.h"
 	"Engine/Event.h"
 	"Engine/Timer.h"
 	"Manager/Texture.h"
 
-1427487488 c:\projects\creatio\include\engine\renderer.h
+1427491088 c:\projects\creatio\include\engine\renderer.h
 	<memory>
 	<SDL.h>
 	"Math/Rect.h"
 	"Graphics/Color.h"
 
-1424613636 c:\projects\creatio\include\engine\event.h
+1424617236 c:\projects\creatio\include\engine\event.h
 	<SDL.h>
 	<unordered_map>
 	<functional>
 	<memory>
 
-1425062525 c:\projects\creatio\include\manager\texture.h
+1425066125 c:\projects\creatio\include\manager\texture.h
 	<memory>
 	<string>
 	<SDL.h>
@@ -516,7 +516,7 @@
 	"Loader/Texture.h"
 	"Engine/Renderer.h"
 
-1427135749 source:c:\projects\creatio\include\engine\core.cpp
+1427139349 source:c:\projects\creatio\include\engine\core.cpp
 	<SDL.h>
 	<SDL_image.h>
 	<stdexcept>
@@ -528,43 +528,43 @@
 	"Utility/Exception.h"
 	<stdexcept>
 
-1424613692 source:c:\projects\creatio\include\engine\event.cpp
+1424617292 source:c:\projects\creatio\include\engine\event.cpp
 	<stdexcept>
 	<memory>
 	"Event.h"
 
-1427487033 source:c:\projects\creatio\include\engine\renderer.cpp
+1427662851 source:c:\projects\creatio\include\engine\renderer.cpp
 	"Renderer.h"
 	"Utility/Exception.h"
 
-1427135722 source:c:\projects\creatio\include\loader\texture.cpp
+1427139322 source:c:\projects\creatio\include\loader\texture.cpp
 	<SDL_image.h>
 	"Texture.h"
 	"Utility/Exception.h"
 
-1425062510 source:c:\projects\creatio\include\manager\texture.cpp
+1425066110 source:c:\projects\creatio\include\manager\texture.cpp
 	<dirent.h>
 	<stdexcept>
 	<climits>
 	"Texture.h"
 	"Utility/Utility.h"
 
-1424604577 c:\projects\creatio\include\utility\factory.h
+1424608177 c:\projects\creatio\include\utility\factory.h
 	<memory>
 	"Engine/Core.h"
 
-1424989953 source:c:\projects\creatio\include\utility\factory.cpp
+1424993553 source:c:\projects\creatio\include\utility\factory.cpp
 	<SDL.h>
 	<SDL_image.h>
 	"Factory.h"
 	"Exception.h"
 
-1427487434 source:c:\projects\creatio\include\application\map.cpp
+1427664740 source:c:\projects\creatio\include\application\map.cpp
 	<fstream>
 	"Map.h"
 	"Utility/Exception.h"
 
-1426615965 c:\projects\creatio\include\application\map.h
+1426619565 c:\projects\creatio\include\application\map.h
 	<climits>
 	<memory>
 	<vector>
@@ -573,18 +573,18 @@
 	"Manager/Texture.h"
 	"Math/Vec2.h"
 
-1426419480 c:\projects\creatio\include\application\tile.h
+1426423080 c:\projects\creatio\include\application\tile.h
 	"Math/Rect.h"
 	"Engine/Physics.h"
 
-1426419541 source:c:\projects\creatio\include\application\tile.cpp
+1426423141 source:c:\projects\creatio\include\application\tile.cpp
 	"Tile.h"
 
-1427135707 source:c:\projects\creatio\include\application\entity.cpp
+1427139307 source:c:\projects\creatio\include\application\entity.cpp
 	"Entity.h"
 	"Application/Component.h"
 
-1426613948 c:\projects\creatio\include\application\entity.h
+1426617548 c:\projects\creatio\include\application\entity.h
 	<bitset>
 	<memory>
 	<vector>
@@ -592,71 +592,71 @@
 	"Math/Rect.h"
 	"Utility/Utility.h"
 
-1426022050 c:\projects\creatio\include\application\component.h
+1426025650 c:\projects\creatio\include\application\component.h
 	<string>
 	"Math/Vec2.h"
 	"Math/Rect.h"
 
-1424888365 source:c:\projects\creatio\include\application\system.cpp
+1424891965 source:c:\projects\creatio\include\application\system.cpp
 	"System.h"
 	"Component.h"
 	"Utility/Utility.h"
 
-1424888168 c:\projects\creatio\include\application\system.h
+1424891768 c:\projects\creatio\include\application\system.h
 	<memory>
 	"Entity.h"
 
-1424367308 c:\projects\creatio\include\engine\physics.h
+1424370908 c:\projects\creatio\include\engine\physics.h
 
 1424530776 source:c:\projects\creatio\include\application\applicationdata.cpp
 	"ApplicationData.h"
 
-1426613948 c:\projects\creatio\include\application\applicationdata.h
+1426617548 c:\projects\creatio\include\application\applicationdata.h
 	<unordered_map>
 
-1427484967 source:c:\projects\creatio\editor\application\editorapplication.cpp
+1427662800 source:c:\projects\creatio\editor\application\editorapplication.cpp
 	"../Utility/Declarations.h"
 	"Application/System.h"
 	"EditorApplication.h"
 	"Gui/Element.h"
 
-1427405051 c:\projects\creatio\editor\application\editorapplication.h
+1427408651 c:\projects\creatio\editor\application\editorapplication.h
 	"Application/Application.h"
 	"Gui/Context.h"
 	<memory>
 
-1427405213 c:\projects\creatio\editor\utility\declarations.h
+1427408813 c:\projects\creatio\editor\utility\declarations.h
 	"Application/ApplicationData.h"
 	"Application/Entity.h"
 	"Application/Map.h"
 
-1424613084 c:\projects\creatio\include\engine\timer.h
+1424616684 c:\projects\creatio\include\engine\timer.h
 	<memory>
 
-1426322639 source:c:\projects\creatio\include\engine\timer.cpp
+1427663369 source:c:\projects\creatio\include\engine\timer.cpp
 	<stdexcept>
 	<SDL.h>
 	"Timer.h"
 
-1426615950 source:c:\projects\creatio\editor\application\testapplication.cpp
+1426619550 source:c:\projects\creatio\editor\application\testapplication.cpp
 	"Application/System.h"
 	"TestApplication.h"
 	"../Utility/Declarations.h"
 
-1424614003 c:\projects\creatio\editor\application\testapplication.h
+1424617603 c:\projects\creatio\editor\application\testapplication.h
 	"Application/Application.h"
 
-1426265567 source:c:\projects\creatio\include\math\rect.cpp
+1426269167 source:c:\projects\creatio\include\math\rect.cpp
 	"Rect.h"
 
-1426265567 c:\projects\creatio\include\math\rect.h
+1426269167 c:\projects\creatio\include\math\rect.h
 	"Vec2.h"
 
-1427484934 source:c:\projects\creatio\include\gui\element.cpp
+1427488534 source:c:\projects\creatio\include\gui\element.cpp
 	<stdexcept>
 	"Element.h"
 
-1427484917 c:\projects\creatio\include\gui\element.h
+1427488517 c:\projects\creatio\include\gui\element.h
 	<vector>
 	"Context.h"
 	"Engine/Renderer.h"
@@ -671,16 +671,16 @@
 	"Styles.h"
 	"Utility/Exception.h"
 
-1427409919 c:\projects\creatio\include\gui\context.h
+1427413519 c:\projects\creatio\include\gui\context.h
 	<memory>
 	<vector>
 	"Element.h"
 	"Engine/Renderer.h"
 	"Math/Rect.h"
 
-1427482548 source:c:\projects\creatio\include\gui\context.cpp
+1427486148 source:c:\projects\creatio\include\gui\context.cpp
 	<stdexcept>
 	"Context.h"
 
-1427484313 c:\projects\creatio\include\graphics\color.h
+1427487913 c:\projects\creatio\include\graphics\color.h
 
