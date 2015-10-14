@@ -9,12 +9,3 @@
 ### How do I get set up? ###
 
 * Run Develop.exe
-
-### Contribution guidelines ###
-
-* Currently there is no test suite, but this will be introduced soon
-* Commit messages are to be kept short and following the style outlined below:
-
-1. "fixes bug causing meshes to not render"
-2. "changes the namespace GG to GGCore"
-3. "updates framework X to new version"
